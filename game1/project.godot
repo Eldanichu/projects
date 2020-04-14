@@ -10,25 +10,23 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "G",
-"language": "GDScript",
-"path": "res://src/Commons/globals.gd"
-}, {
-"base": "Node",
 "class": "State",
 "language": "GDScript",
 "path": "res://src/Commons/states.gd"
 } ]
 _global_script_class_icons={
-"G": "",
 "State": ""
 }
 
 [application]
 
 config/name="MyGame"
-run/main_scene="res://Gmae/Game.tscn"
+run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+States="*res://src/Commons/states.gd"
 
 [debug]
 
@@ -36,6 +34,7 @@ settings/stdout/verbose_stdout=true
 
 [display]
 
+window/size/height=768
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
@@ -50,6 +49,13 @@ window/stretch/aspect="keep"
 2d_render/layer_4="items"
 2d_physics/layer_4="items"
 
+[physics]
+
+2d/thread_model=2
+
 [rendering]
 
+quality/driver/driver_name="GLES2"
+threads/thread_model=2
+environment/default_clear_color=Color( 0.160784, 0.160784, 0.160784, 0.780392 )
 environment/default_environment="res://default_env.tres"

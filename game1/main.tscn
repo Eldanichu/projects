@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://main.gd" type="Script" id=1]
+[ext_resource path="res://UI/ui.tscn" type="PackedScene" id=2]
+[ext_resource path="res://images/dlg_char.png" type="Texture" id=3]
+[ext_resource path="res://images/dlg_properties.BMP" type="Texture" id=4]
+
+[node name="main" type="Node"]
+script = ExtResource( 1 )
+
+[node name="cam" type="Camera2D" parent="."]
+offset = Vector2( 200, 0 )
+anchor_mode = 0
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 1024
+limit_bottom = 768
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.96
+drag_margin_top = 0.96
+drag_margin_right = 0.96
+drag_margin_bottom = 0.96
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="dlg_char" type="Sprite" parent="cam"]
+position = Vector2( 151.005, 181.349 )
+texture = ExtResource( 3 )
+
+[node name="dlg_properties" type="Sprite" parent="cam"]
+position = Vector2( 1244.22, 354.297 )
+texture = ExtResource( 4 )
+
+[node name="ui" parent="." instance=ExtResource( 2 )]
+margin_left = -2.17334
+margin_top = -2.29011
+margin_right = -2.17334
+margin_bottom = -2.2901
