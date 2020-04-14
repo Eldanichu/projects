@@ -1,0 +1,55 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "G",
+"language": "GDScript",
+"path": "res://src/Commons/globals.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://src/Commons/states.gd"
+} ]
+_global_script_class_icons={
+"G": "",
+"State": ""
+}
+
+[application]
+
+config/name="MyGame"
+run/main_scene="res://Gmae/Game.tscn"
+config/icon="res://icon.png"
+
+[debug]
+
+settings/stdout/verbose_stdout=true
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[layer_names]
+
+2d_render/layer_1="world"
+2d_physics/layer_1="world"
+2d_render/layer_2="players"
+2d_physics/layer_2="players"
+2d_render/layer_3="objects"
+2d_physics/layer_3="objects"
+2d_render/layer_4="items"
+2d_physics/layer_4="items"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

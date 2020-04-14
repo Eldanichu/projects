@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://images/dlg_char.png" type="Texture" id=1]
+[ext_resource path="res://UI/dlg_char.gd" type="Script" id=2]
+
+[node name="gears" type="TextureRect"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -182.426
+margin_top = 12.0482
+margin_right = -14.426
+margin_bottom = 246.048
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="sLbrace" type="Sprite" parent="."]
+
+[node name="Lbrace" type="Position2D" parent="sLbrace"]
+position = Vector2( 4.71106, 124.928 )
+
+[node name="sRbrace" type="Sprite" parent="."]
+
+[node name="Rbrace" type="Position2D" parent="sRbrace"]
+position = Vector2( 129.421, 124.893 )
+
+[node name="sRring" type="Sprite" parent="."]
+
+[node name="Rring" type="Position2D" parent="sRring"]
+position = Vector2( 129.355, 164.044 )
+
+[node name="sLring" type="Sprite" parent="."]
+
+[node name="Lring" type="Position2D" parent="sLring"]
+position = Vector2( 4.42371, 163.946 )
+
+[node name="sAmulet" type="Sprite" parent="."]
+
+[node name="amulet" type="Position2D" parent="sAmulet"]
+position = Vector2( 130.182, 35.6595 )
+
+[node name="sChest" type="Sprite" parent="."]
+
+[node name="chest" type="Position2D" parent="sChest"]
+position = Vector2( 66.6579, 111.618 )
+
+[node name="sWeapon" type="Sprite" parent="."]
+
+[node name="weapon" type="Position2D" parent="sWeapon"]
+position = Vector2( 4.78192, 75.7322 )
+
+[node name="sHanded" type="Sprite" parent="."]
+
+[node name="handed" type="Position2D" parent="sHanded"]
+position = Vector2( 130.205, 73.3658 )
+
+[node name="sRacc" type="Sprite" parent="."]
+
+[node name="Racc" type="Position2D" parent="sRacc"]
+position = Vector2( 129.311, 202.667 )
+
+[node name="sLacc" type="Sprite" parent="."]
+
+[node name="Lacc" type="Position2D" parent="sLacc"]
+position = Vector2( 4.51074, 202.448 )
+
+[node name="sBelt" type="Sprite" parent="."]
+
+[node name="belt" type="Position2D" parent="sBelt"]
+position = Vector2( 46.4808, 202.632 )
+
+[node name="sBoot" type="Sprite" parent="."]
+
+[node name="boot" type="Position2D" parent="sBoot"]
+position = Vector2( 88.6667, 202.959 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+[connection signal="mouse_entered" from="." to="." method="_on_gears_mouse_entered"]
