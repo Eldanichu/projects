@@ -1,10 +1,9 @@
 extends Node
-
-var L;
+class_name Game
 
 func _ready():
-	L = Level.new()
-	L.init_level()
+	print("game ready")
+	pass
 
 func _exit_tree():
-	L.free()
+	pass
