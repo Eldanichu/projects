@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/ui.gd" type="Script" id=1]
+[ext_resource path="res://UI/top.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameObject/dongens.tscn" type="PackedScene" id=3]
+
+[node name="ui" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_right = -1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="top" parent="." instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_left = 5.0
+margin_right = 1025.0
+
+[node name="center" type="Panel" parent="."]
+anchor_left = 0.242
+anchor_top = 1.0
+anchor_right = 0.758
+anchor_bottom = 1.0
+margin_left = 0.191986
+margin_top = -641.122
+margin_right = -0.192017
+margin_bottom = -1.12244
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rtl" type="RichTextLabel" parent="center"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -255.0
+margin_top = 15.2946
+margin_right = 253.0
+margin_bottom = 311.295
+text = "this is battle information"
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="maps" type="Panel" parent="."]
+anchor_top = 0.177
+anchor_bottom = 0.997
+margin_top = -2.18091
+margin_right = 240.0
+margin_bottom = 0.0591431
+rect_pivot_offset = Vector2( 120, 304.418 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="maps"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bz" parent="maps/TabContainer" instance=ExtResource( 3 )]
+
+[node name="mz" type="Tabs" parent="maps/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Button" type="Button" parent="maps/TabContainer/mz"]
+margin_right = 12.0
+margin_bottom = 20.0
+
+[node name="brm" type="Tabs" parent="maps/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Panel2" type="Panel" parent="."]
+anchor_left = 1.0
+anchor_top = 0.176
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -240.0
+margin_top = -0.168015
+rect_pivot_offset = Vector2( 120, 304.418 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

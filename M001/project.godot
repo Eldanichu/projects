@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Level",
 "language": "GDScript",
-"path": "res://levels.gd"
+"path": "res://gameObject/levels.gd"
 } ]
 _global_script_class_icons={
 "Level": ""
