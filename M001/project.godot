@@ -10,24 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "Game",
+"class": "Level",
 "language": "GDScript",
-"path": "res://game.gd"
-}, {
-"base": "Node",
-"class": "Props",
-"language": "GDScript",
-"path": "res://props_player.gd"
-}, {
-"base": "Control",
-"class": "UI",
-"language": "GDScript",
-"path": "res://ui.gd"
+"path": "res://levels.gd"
 } ]
 _global_script_class_icons={
-"Game": "",
-"Props": "",
-"UI": ""
+"Level": ""
 }
 
 [application]
