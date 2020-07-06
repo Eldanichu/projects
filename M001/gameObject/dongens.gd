@@ -18,6 +18,7 @@ func createDongensButton() ->void:
 
 
 func dongenClick(e):
+	
 	var rnd = RandomNumberGenerator.new();
 	rnd.randomize();
 	var num = rnd.randi_range(0.0,3.0)

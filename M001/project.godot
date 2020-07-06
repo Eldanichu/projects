@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Level",
 "language": "GDScript",
 "path": "res://gameObject/levels.gd"
+}, {
+"base": "RichTextLabel",
+"class": "RTL",
+"language": "GDScript",
+"path": "res://UI/rtl.gd"
 } ]
 _global_script_class_icons={
-"Level": ""
+"Level": "",
+"RTL": ""
 }
 
 [application]
