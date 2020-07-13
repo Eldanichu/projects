@@ -10,7 +10,7 @@
                :style="{'left':(_getDataPercent() * (index + 1) - 2 + 'px')}"
                v-for="(o,index) in data"
                :key="o">
-                <div style="display: none">{{o}}</div>
+                <i style="display: none">{{o}}</i>
             </i>
             <div class="hover-tip"></div>
             <div class="const-tip"></div>
@@ -19,14 +19,24 @@
 </template>
 
 <script>
-    import {delay} from "../../../utils/common";
+    let timer;
+    const delay = (ms = 100) => {
+        if (timer) clearTimeout(timer);
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve()
+            }, ms)
+        })
+    }
 
     const toPx = (unit) => {
         return [unit, 'px'].join('')
     }
-
-    const dR = (className) => {
-        return document.getElementsByClassName(className)[0].getClientRects()[0];
+    const d = (className) => {
+        return document.getElementsByClassName(className)[0]
+    }
+    const dR = (dom) => {
+        return dom.getClientRects()[0];
     }
 
     export default {
@@ -64,10 +74,11 @@
         },
         async mounted() {
             await this.$nextTick();
+            const $progress = d('progress');
             this.styles.w = document.body.offsetWidth;
-            this.rect = dR('progress')
+            this.rect = dR($progress)
             document.body.onresize = () => {
-                this.rect = dR('progress');
+                this.rect = dR($progress);
                 this.styles.w = document.body.offsetWidth;
             }
 
@@ -100,11 +111,11 @@
             },
             async prgOver(e) {
                 this.mouse.isHover = true;
-                await delay(100)
+                await delay(220)
                 this._setPlayed(this._getPercent(e.pageX - this.rect.left))
             },
-            prgOut() {
-                console.log('out')
+            async prgOut() {
+                await delay(300)
                 this.mouse.isHover = false;
             },
             _setPlayed(x) {
