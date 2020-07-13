@@ -6,10 +6,15 @@
              @click="prgClick($event)">
             <div :class="['played',mouse.isHover?'hover-played':'']"></div>
             <div :class="['playing']"></div>
+            <i class="slash"
+               :style="{'left':(_getDataPercent() * (index + 1) - 2 + 'px')}"
+               v-for="(o,index) in data"
+               :key="o">
+                <div style="display: none">{{o}}</div>
+            </i>
             <div class="hover-tip"></div>
             <div class="const-tip"></div>
         </div>
-        {{mouse.isHover}}
     </div>
 </template>
 
@@ -45,10 +50,10 @@
                 rect: null,
                 mouse: {
                     x: 0,
-                    index:0,
+                    index: 0,
                     isHover: false,
                 },
-                data:[
+                data: [
                     '0',
                     '1',
                     '2',
@@ -65,6 +70,7 @@
                 this.rect = dR('progress');
                 this.styles.w = document.body.offsetWidth;
             }
+
             document.body.onmousemove = () => {
                 if (!this.mouse.isHover) this._setPlayed(0)
             }
@@ -77,12 +83,20 @@
                     "--played-width": toPx(_pw * this.styles.played.w),
                     "--playing-width": toPx(_pw * this.styles.playing.w)
                 }
+            },
+            dataLen() {
+                return this.data.length;
             }
         },
         methods: {
             prgClick(e) {
                 this.mouse.x = e.pageX - this.rect.left
                 this._setPlaying(this._getPercent(this.mouse.x))
+                this._setPlaying(this._getPercent(this._getDataPercent() * (this.mouse.index + 1)))
+                this.mouse.index++
+                if (this.mouse.index + 1 > this.dataLen) {
+                    this.mouse.index = -1
+                }
             },
             async prgOver(e) {
                 this.mouse.isHover = true;
@@ -102,9 +116,13 @@
             _getPercent(x) {
                 return x / parseFloat(this.CSS_VARS["--progress-width"])
             },
+            _getDataPercent() {
+                return parseFloat(this.CSS_VARS["--progress-width"]) / this.dataLen
+            }
         },
         destroyed() {
             document.body.onresize = null;
+            document.body.onmousemove = null
         }
     };
 </script>
@@ -112,17 +130,17 @@
 <style scoped lang="scss">
     #test {
         position: absolute;
-        bottom: 0;
+        bottom: 60px;
 
         .progress {
             position: relative;
-            left: 300px;
+            left: 60px;
             margin: 10px;
             width: var(--progress-width);
             min-height: 10px;
             border-radius: 90px;
             background-color: rgba(255, 160, 122, 0.85);
-            transition: width ease-in-out .2s;
+            transition: width ease-in-out .5s;
 
             .played {
                 position: absolute;
@@ -134,7 +152,7 @@
                 transition: width linear .2s, background-color linear .5s;
 
                 &.hover-played {
-                    background-color: rgba(255, 228, 196, 0.35);
+                    background-color: rgba(255, 255, 255, 0.65) !important;
                 }
             }
 
@@ -142,8 +160,21 @@
                 height: 10px;
                 border-radius: inherit;
                 width: var(--playing-width);
-                background-color: rgba(206, 160, 106, 0.95) !important;
-                transition: width linear .2s, background-color linear .5s;
+                background-color: rgba(255, 255, 255, 0.95);
+                transition: width linear .3s, background-color linear .3s;
+            }
+
+            .slash {
+                position: absolute;
+                top: .5px;
+                display: block;
+                content: ' ';
+                width: 2px;
+                height: 8px;
+                background-color: rgba(66, 66, 69, 0.65);
+                color: transparent;
+                border-radius: 10px;
+                transition: width linear .2s, left linear .6s;
             }
         }
     }
