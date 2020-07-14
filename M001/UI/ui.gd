@@ -17,10 +17,7 @@ onready var logger= $center/rtl
 
 func _ready():
 	_bind_events()
-	addMsg('sdfasdf')
-	addMsg('sdfasdf')
-	addMsg('sdfasdf')
-	loadMsg();
+
 
 func on_hp_changed(v):
 	emit_signal('hp_change',v);
@@ -34,3 +31,6 @@ func addMsg(msg):
 
 func loadMsg():
 	pass
+
+func _onTimeOut():
+	print('111')
