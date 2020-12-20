@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://gui.gd" type="Script" id=1]
+[ext_resource path="res://components/Inventory/inv.tscn" type="PackedScene" id=2]
+[ext_resource path="res://main.gd" type="Script" id=3]
+[ext_resource path="res://components/Skill/Skill.tscn" type="PackedScene" id=4]
+
+[node name="gui" type="CanvasLayer"]
+
+[node name="control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="v_split_container" type="VSplitContainer" parent="control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+split_offset = 132
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="navi" type="PanelContainer" parent="control/v_split_container"]
+margin_right = 1366.0
+margin_bottom = 146.0
+
+[node name="v_box_container" type="VBoxContainer" parent="control/v_split_container/navi"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1359.0
+margin_bottom = 139.0
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="button_group" type="HBoxContainer" parent="control/v_split_container/navi/v_box_container"]
+size_flags_horizontal = 0
+custom_constants/separation = 10
+
+[node name="content" type="PanelContainer" parent="control/v_split_container"]
+margin_top = 158.0
+margin_right = 1366.0
+margin_bottom = 768.0
+
+[node name="main" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="inv" parent="main" instance=ExtResource( 2 )]
+position = Vector2( 299.368, 357.745 )
+
+[node name="skill_1" parent="main" instance=ExtResource( 4 )]
+SKILL_CD = 3.5
