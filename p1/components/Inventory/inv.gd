@@ -10,16 +10,19 @@ const SLOT_WIDTH = 37
 const SLOT_HEIGHT = 36
 const NULL = -4
 
+onready var RECT_SIZE = get_rect().size;
 onready var dis = $"."
 onready var slots = []
 var SLOT_SIZE =  Vector2(SLOT_WIDTH,SLOT_HEIGHT)
 var mouse_pos;
 var rect_vector2:Vector2;
+var rect_origin_vector2:Vector2;
+var dragging = false;
 
 var _font = preload("res://Fonts/sim_sun.tres")
 var item_res = preload("res://Images/items.tres")
 
-signal slot_click(slot_index)
+signal slot_dbclick(slot_index)
 
 func _ready():
 	_init_inv_slots();
@@ -41,16 +44,19 @@ func _init_inv_slots():
 func _process(delta):
 	mouse_pos = get_global_mouse_position();
 	rect_vector2 = mouse_pos - Vector2(position.x + X_OFFSET, position.y + Y_OFFSET)
+	rect_origin_vector2 = mouse_pos - Vector2(position.x, position.y)
 	_dragging_item()
 	update()
 
 func _dragging_item():
+	if(!dis.get_child_count()):return
 	var _d = dis.get_child(0)
 	if(_d):
 		_d.position = Vector2(rect_vector2.x + X_OFFSET,rect_vector2.y + Y_OFFSET)
 
 func _draw():
 	#_draw_slots();
+	_draw_moviable_area()
 	_draw_item();
 	_draw_debug_info();
 	
@@ -84,6 +90,18 @@ func highlight_slot_index(index: Vector2, color: Color):
 		draw_rect(Rect2(slot_pos,SLOT_SIZE),color,false);
 
 
+func _draw_moviable_area():
+	var _rect = Rect2(Vector2(0,0),Vector2(RECT_SIZE.x, Y_OFFSET - 3))
+	draw_rect(_rect,Color(1,1,1,1),false)
+
+func _is_moviable_area():
+	return (
+		rect_origin_vector2.x >= 0 && 
+		rect_origin_vector2.y >= 0 && 
+		rect_origin_vector2.x <= RECT_SIZE.x && 
+		rect_origin_vector2.y <= Y_OFFSET - 3
+	)
+
 func _draw_slots():
 	for col_ in range(0,COL):
 		for row_ in range(0,ROW):
@@ -115,6 +133,8 @@ func _draw_item():
 func _draw_debug_info():
 	draw_string(_font,Vector2(0,-30),"global postion:{0}".format([mouse_pos]),Color.white)
 	draw_string(_font,Vector2(0,-56),"rect postion:{0}".format([rect_vector2]),Color.white)
+	draw_string(_font,Vector2(0,-116),"rect draggin:{0}".format([dragging]),Color.white)
+	draw_string(_font,Vector2(0,-96),"rect_origin postion:{0}, inarea?->{1}".format([rect_origin_vector2,_is_moviable_area()]),Color.white)
 	draw_string(_font,Vector2(0,-76),"rect index:{0}".format([_get_slot_index()]),Color.white)
 
 
@@ -124,7 +144,12 @@ func _highlight_slot():
 
 
 func _is_inside(slot_index:Vector2):
-	return slot_index.x >= 0 && slot_index.y >= 0 && slot_index.x < ROW && slot_index.y < COL
+	return (
+		slot_index.x >= 0 && 
+		slot_index.y >= 0 && 
+		slot_index.x < ROW && 
+		slot_index.y < COL
+	)
 
 
 func _get_slot_index() -> Vector2:
@@ -153,19 +178,37 @@ func _slot_has_item(index:Vector2):
 		return false
 
 func _input(event):
-	if(event is InputEventMouseButton):
-		if(event.button_index==1 && event.pressed):
-			var _index = _get_slot_index()
-			if(_is_inside(_index)):
-				swap_item(_index)
+	drag_event(event)
 
-		if(event.button_index ==1 && event.doubleclick):
-			var _index = _get_slot_index()
-			emit_signal("slot_dbclick", _index);
+	if(event is InputEventMouseButton):
+		if(event.button_index == BUTTON_LEFT):
+			if(event.pressed):
+				var _index = _get_slot_index()
+				if(_is_inside(_index)):
+					swap_item(_index)
+			if(event.doubleclick):
+				var _index = _get_slot_index()
+				emit_signal("slot_dbclick", _index);
+
+
+func drag_event(event):
+	if event is InputEventMouseMotion:
+		if(!_is_moviable_area()):
+			dragging = false
+	if(_is_moviable_area() && event is InputEventMouseButton):
+		if not dragging and event.pressed:
+			dragging = true
+		if dragging and not event.pressed:
+			dragging = false
+	if event is InputEventMouseMotion and dragging:
+		position = event.position - rect_origin_vector2;
+
 
 func swap_item(index:Vector2):
 	var _index = index;
-	var _mouse_item = dis.get_child(0)
+	var _mouse_item;
+	if(dis.get_child_count() > 0):
+		_mouse_item = dis.get_child(0)
 	var _item_pos = Vector2(_index.y,_index.x)
 	if(_slot_has_item(_index)):
 		if(!_mouse_item):
@@ -182,8 +225,5 @@ func swap_item(index:Vector2):
 	elif(!_slot_has_item(_index) && _mouse_item):
 		set_slot_item(_item_pos,_mouse_item.name)
 		remove_child(_mouse_item)
-	
-
-
 
 
