@@ -2,12 +2,12 @@ extends Sprite
 
 const ROW = 8
 const COL = 5
-const Y_OFFSET = 59
-const X_OFFSET = 27
+const Y_OFFSET = 59.0
+const X_OFFSET = 27.0
 
 const TOTAL_SLOTS = 50
-const SLOT_WIDTH = 37
-const SLOT_HEIGHT = 36
+const SLOT_WIDTH = 37.0
+const SLOT_HEIGHT = 36.0
 const NULL = -4
 
 onready var RECT_SIZE = get_rect().size;
@@ -30,7 +30,7 @@ func _ready():
 	set_slot_item(Vector2(0,7),"i83")
 	set_slot_item(Vector2(4,2),"i394")
 	
-	print_debug(slots)
+	#print_debug(slots)
 
 func _init_inv_slots():
 	var _col = []
@@ -39,7 +39,7 @@ func _init_inv_slots():
 	for row_ in range(0,ROW):
 		slots.append(_col.duplicate(true))
 
-	print_debug(slots)
+	#print_debug(slots)
 
 func _process(delta):
 	mouse_pos = get_global_mouse_position();
@@ -56,12 +56,12 @@ func _dragging_item():
 
 func _draw():
 	#_draw_slots();
-	_draw_moviable_area()
+	#_draw_moviable_area()
 	_draw_item();
-	_draw_debug_info();
+	#_draw_debug_info();
 	
-	highlight_slot_index(Vector2(1,1) ,  Color.yellow)
-	_highlight_slot();
+	#highlight_slot_index(Vector2(1,1) ,  Color.yellow)
+	#_highlight_slot();
 	
 	"""draw_rect(
 				get_rect(),

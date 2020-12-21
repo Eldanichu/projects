@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://gui.gd" type="Script" id=1]
 [ext_resource path="res://components/Inventory/inv.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main.gd" type="Script" id=3]
 [ext_resource path="res://components/Skill/Skill.tscn" type="PackedScene" id=4]
+[ext_resource path="res://components/CharProp/char_props.tscn" type="PackedScene" id=5]
 
 [node name="gui" type="CanvasLayer"]
 
@@ -48,7 +49,11 @@ margin_bottom = 768.0
 script = ExtResource( 3 )
 
 [node name="inv" parent="main" instance=ExtResource( 2 )]
-position = Vector2( 299.368, 357.745 )
+position = Vector2( 16.8106, 168.844 )
 
 [node name="skill_1" parent="main" instance=ExtResource( 4 )]
+position = Vector2( 1220.24, 339.612 )
 SKILL_CD = 3.5
+
+[node name="char_props" parent="main" instance=ExtResource( 5 )]
+position = Vector2( 654.529, 358.349 )

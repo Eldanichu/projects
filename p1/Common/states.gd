@@ -26,7 +26,7 @@ func _transition(inst, params:Dictionary):
 	else:
 		printerr("[ERROR]:Undefined action ->()", action_func_name)
 		print_stack()
-	
+
 
 func dispatch(inst, state:String, action:String, params:Dictionary):
 	var _action = _upperFirstLatter(action)
