@@ -29,8 +29,6 @@ func _ready():
 	
 	set_slot_item(Vector2(0,7),"i83")
 	set_slot_item(Vector2(4,2),"i394")
-	
-	#print_debug(slots)
 
 func _init_inv_slots():
 	var _col = []
@@ -39,7 +37,6 @@ func _init_inv_slots():
 	for row_ in range(0,ROW):
 		slots.append(_col.duplicate(true))
 
-	#print_debug(slots)
 
 func _process(delta):
 	mouse_pos = get_global_mouse_position();
