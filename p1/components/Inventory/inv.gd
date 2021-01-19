@@ -175,7 +175,7 @@ func _slot_has_item(index:Vector2):
 		return false
 
 func _input(event):
-	drag_event(event)
+	#drag_event(event)
 
 	if(event is InputEventMouseButton):
 		if(event.button_index == BUTTON_LEFT):
