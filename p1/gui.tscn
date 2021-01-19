@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://gui.gd" type="Script" id=1]
 [ext_resource path="res://components/Inventory/inv.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main.gd" type="Script" id=3]
 [ext_resource path="res://components/Skill/Skill.tscn" type="PackedScene" id=4]
 [ext_resource path="res://components/CharProp/char_props.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Images/ui/health_bar_blue.png" type="Texture" id=6]
+[ext_resource path="res://Images/ui/00773.png" type="Texture" id=7]
+[ext_resource path="res://Images/ui/health_bar_red.png" type="Texture" id=8]
 
 [node name="gui" type="CanvasLayer"]
 
@@ -14,6 +17,32 @@ anchor_bottom = 1.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+
+[node name="hp" type="TextureProgress" parent="controls"]
+margin_left = 80.8173
+margin_top = 126.838
+margin_right = 194.817
+margin_bottom = 240.838
+min_value = 10.0
+max_value = 384.0
+value = 384.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
+fill_mode = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="mp" type="TextureProgress" parent="controls/hp"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+value = 60.0
+texture_progress = ExtResource( 6 )
+fill_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="main" type="Node2D" parent="."]
