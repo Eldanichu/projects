@@ -13,9 +13,7 @@ var rect_v:Vector2;
 var slot;
 
 func _ready():
-	var ast = AStar2D.new()
-	ast.add_point(0,Vector2(100,200));
-
+	pass 
 
 func _process(delta):
 	mp = get_global_mouse_position();
