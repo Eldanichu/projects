@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://Common/states.gd"
+"path": "res://Common/State.gd"
 } ]
 _global_script_class_icons={
 "State": ""
@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="P 1"
-run/main_scene="res://gui.tscn"
+run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
 [display]

@@ -1,4 +1,4 @@
-extends Sprite
+extends TextureRect
 var _font = preload("res://Fonts/sim_sun.tres")
 
 const SLOT_SIZE = Vector2(35.0,35.0)
@@ -19,7 +19,7 @@ func _ready():
 
 func _process(delta):
 	mp = get_global_mouse_position();
-	rect_v = mp - position
+	rect_v = mp - rect_global_position
 	update();
 
 func _draw():
@@ -52,7 +52,7 @@ func _input(event):
 
 
 func _draw_debug_info():
-	draw_string(_font,Vector2(10,10),str(rect_v))
+	draw_string(_font,Vector2(10,10),str(slot))
 	draw_string(_font,Vector2(10,26),str(slots[0].position.x))
 
 

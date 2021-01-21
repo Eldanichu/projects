@@ -1,4 +1,4 @@
-extends Sprite
+extends TextureRect
 
 const ROW = 8
 const COL = 5
@@ -26,7 +26,6 @@ signal slot_dbclick(slot_index)
 
 func _ready():
 	_init_inv_slots();
-	
 	set_slot_item(Vector2(0,7),"i83")
 	set_slot_item(Vector2(4,2),"i394")
 
@@ -37,11 +36,17 @@ func _init_inv_slots():
 	for row_ in range(0,ROW):
 		slots.append(_col.duplicate(true))
 
+func _draw_debug_info():
+	draw_string(_font,Vector2(0,-30),"global postion:{0}".format([mouse_pos]),Color.white)
+	draw_string(_font,Vector2(0,-56),"rect postion:{0}".format([rect_vector2]),Color.white)
+	draw_string(_font,Vector2(0,-116),"rect draggin:{0}".format([dragging]),Color.white)
+	draw_string(_font,Vector2(0,-96),"rect_origin postion:{0}, inarea?->{1}".format([rect_origin_vector2,_is_moviable_area()]),Color.white)
+	draw_string(_font,Vector2(0,-76),"rect index:{0}".format([_get_slot_index()]),Color.white)
 
 func _process(delta):
 	mouse_pos = get_global_mouse_position();
-	rect_vector2 = mouse_pos - Vector2(position.x + X_OFFSET, position.y + Y_OFFSET)
-	rect_origin_vector2 = mouse_pos - Vector2(position.x, position.y)
+	rect_vector2 = mouse_pos - Vector2(rect_global_position.x + X_OFFSET, rect_global_position.y + Y_OFFSET)
+	rect_origin_vector2 = mouse_pos - Vector2(rect_global_position.x, rect_global_position.y)
 	_dragging_item()
 	update()
 
@@ -55,7 +60,7 @@ func _draw():
 	#_draw_slots();
 	#_draw_moviable_area()
 	_draw_item();
-	#_draw_debug_info();
+	_draw_debug_info();
 	
 	#highlight_slot_index(Vector2(1,1) ,  Color.yellow)
 	#_highlight_slot();
@@ -127,14 +132,6 @@ func _draw_item():
 				#draw_string(_font,_pos,str(slots[col_][row_]),Color(1,1,1,1))
 
 
-func _draw_debug_info():
-	draw_string(_font,Vector2(0,-30),"global postion:{0}".format([mouse_pos]),Color.white)
-	draw_string(_font,Vector2(0,-56),"rect postion:{0}".format([rect_vector2]),Color.white)
-	draw_string(_font,Vector2(0,-116),"rect draggin:{0}".format([dragging]),Color.white)
-	draw_string(_font,Vector2(0,-96),"rect_origin postion:{0}, inarea?->{1}".format([rect_origin_vector2,_is_moviable_area()]),Color.white)
-	draw_string(_font,Vector2(0,-76),"rect index:{0}".format([_get_slot_index()]),Color.white)
-
-
 func _highlight_slot():
 	var slot_pos = _get_slot_position(_get_slot_index())
 	highlight_slot_index(_get_slot_index() ,  Color.red)
@@ -198,7 +195,7 @@ func drag_event(event):
 		if dragging and not event.pressed:
 			dragging = false
 	if event is InputEventMouseMotion and dragging:
-		position = event.position - rect_origin_vector2;
+		rect_global_position = event.position - rect_origin_vector2;
 
 
 func swap_item(index:Vector2):
