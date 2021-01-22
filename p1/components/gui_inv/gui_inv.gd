@@ -1,4 +1,5 @@
 extends TextureRect
+class_name Inventory, "res://Images/ui/inv.png"
 
 const ROW = 8
 const COL = 5

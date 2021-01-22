@@ -1,64 +1,32 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://components/CharProp/char_props.tscn" type="PackedScene" id=1]
-[ext_resource path="res://components/Skill/Skill.tscn" type="PackedScene" id=2]
-[ext_resource path="res://components/gui_inv/gui_inv.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Images/ui/00773.png" type="Texture" id=4]
-[ext_resource path="res://Images/ui/health_bar_red.png" type="Texture" id=5]
-[ext_resource path="res://Images/ui/health_bar_blue.png" type="Texture" id=6]
+[ext_resource path="res://addHP.gd" type="Script" id=1]
+[ext_resource path="res://components/HealthBar/health_bar.tscn" type="PackedScene" id=4]
 
-[node name="main" type="CanvasLayer"]
-
-[node name="controls" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="hp" type="TextureProgress" parent="controls"]
-anchor_top = 0.753
-anchor_bottom = 0.753
-margin_left = 123.306
-margin_top = 0.232239
-margin_right = 237.306
-margin_bottom = 114.232
-min_value = 10.0
-max_value = 384.0
-value = 384.0
-texture_under = ExtResource( 4 )
-texture_progress = ExtResource( 5 )
-fill_mode = 3
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="mp" type="TextureProgress" parent="controls/hp"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-value = 60.0
-texture_progress = ExtResource( 6 )
-fill_mode = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="char_props" parent="controls" instance=ExtResource( 1 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 1047.46
-margin_top = 72.1008
-margin_right = 1283.46
-margin_bottom = 338.101
-
-[node name="gui_inv" parent="controls" instance=ExtResource( 3 )]
+[node name="Mir" type="Node2D"]
 
 [node name="main" type="Node2D" parent="."]
 
-[node name="skill_1" parent="main" instance=ExtResource( 2 )]
-position = Vector2( 415.595, 560.003 )
-scale = Vector2( 0.65925, 0.683765 )
-SKILL_CD = 3.5
+[node name="button" type="Button" parent="."]
+margin_left = 76.3274
+margin_top = 709.396
+margin_right = 181.327
+margin_bottom = 729.396
+text = "click to add hp"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="health_bar" parent="GUI" instance=ExtResource( 4 )]
+anchor_top = 0.666
+anchor_right = 1.0
+anchor_bottom = 0.666
+margin_left = 73.8162
+margin_top = 28.3511
+margin_right = -1292.18
+margin_bottom = 28.3511
+[connection signal="addStats" from="button" to="GUI/health_bar" method="_on_button_addStats"]
+[connection signal="pressed" from="button" to="button" method="_on_button_pressed"]

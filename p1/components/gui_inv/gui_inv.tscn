@@ -3,11 +3,9 @@
 [ext_resource path="res://Images/ui/inv.png" type="Texture" id=2]
 [ext_resource path="res://components/gui_inv/gui_inv.gd" type="Script" id=3]
 
-[node name="texture_rect" type="TextureRect"]
-margin_left = 73.5308
-margin_top = 53.9652
-margin_right = 419.531
-margin_bottom = 357.965
+[node name="inventory" type="TextureRect"]
+margin_right = 346.0
+margin_bottom = 304.0
 texture = ExtResource( 2 )
 script = ExtResource( 3 )
 __meta__ = {

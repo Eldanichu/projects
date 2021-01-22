@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://components/HealthBar/health_bar_ctrl.gd" type="Script" id=1]
+[ext_resource path="res://Images/ui/00773.png" type="Texture" id=2]
+[ext_resource path="res://Images/ui/health_bar_red.png" type="Texture" id=3]
+[ext_resource path="res://Images/ui/health_bar_blue.png" type="Texture" id=4]
+
+[node name="health_bar" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hp" type="TextureProgress" parent="."]
+anchor_top = 0.753
+anchor_bottom = 0.753
+margin_top = 18.8988
+margin_right = 114.0
+margin_bottom = 132.899
+max_value = 384.0
+value = 384.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+fill_mode = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="mp" type="TextureProgress" parent="hp"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+value = 60.0
+texture_progress = ExtResource( 4 )
+fill_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="l_hp" type="Label" parent="."]
+margin_left = 10.2807
+margin_top = 133.416
+margin_right = 60.2807
+margin_bottom = 147.416
+text = "0/0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

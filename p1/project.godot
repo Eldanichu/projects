@@ -9,13 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "HealthyCtrl",
+"language": "GDScript",
+"path": "res://components/HealthBar/health_bar_ctrl.gd"
+}, {
+"base": "TextureRect",
+"class": "Inventory",
+"language": "GDScript",
+"path": "res://components/gui_inv/gui_inv.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
 "path": "res://Common/State.gd"
+}, {
+"base": "Node",
+"class": "Stats",
+"language": "GDScript",
+"path": "res://components/Stats.gd"
 } ]
 _global_script_class_icons={
-"State": ""
+"HealthyCtrl": "res://Images/ui/00773.png",
+"Inventory": "res://Images/ui/inv.png",
+"State": "",
+"Stats": ""
 }
 
 [application]
