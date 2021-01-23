@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/skill_mask.png-27b238bcdc16befb7303896d341c1c84.stex"
+path="res://.import/00206.png-6baf2bca55cd21dd6d9b5ca3853203b7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://components/Skill/skill_mask.png"
-dest_files=[ "res://.import/skill_mask.png-27b238bcdc16befb7303896d341c1c84.stex" ]
+source_file="res://Effects/Healing/00206.png"
+dest_files=[ "res://.import/00206.png-6baf2bca55cd21dd6d9b5ca3853203b7.stex" ]
 
 [params]
 

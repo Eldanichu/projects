@@ -1,0 +1,31 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Effects/Shield/03889.png" type="Texture" id=1]
+[ext_resource path="res://Effects/Shield/03887.png" type="Texture" id=2]
+[ext_resource path="res://Effects/Shield/03888.png" type="Texture" id=3]
+[ext_resource path="res://Effects/Shield/03883.png" type="Texture" id=4]
+[ext_resource path="res://Effects/Shield/03892.png" type="Texture" id=5]
+[ext_resource path="res://Effects/Shield/03884.png" type="Texture" id=6]
+[ext_resource path="res://Effects/Shield/03882.png" type="Texture" id=7]
+[ext_resource path="res://Effects/Shield/03886.png" type="Texture" id=8]
+[ext_resource path="res://Effects/Shield/03891.png" type="Texture" id=9]
+[ext_resource path="res://Effects/Shield/03890.png" type="Texture" id=10]
+[ext_resource path="res://Effects/Shield/03881.png" type="Texture" id=11]
+[ext_resource path="res://Effects/Shield/03885.png" type="Texture" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "start",
+"speed": 8.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "hits",
+"speed": 5.0
+} ]
+
+[node name="shield" type="AnimatedSprite"]
+frames = SubResource( 1 )
+animation = "hits"
