@@ -2,7 +2,7 @@ extends Control
 class_name HealthyCtrl,"res://Images/ui/00773.png"
 
 onready var hp_bar:TextureProgress = $hp
-onready var l_hp:Label = $l_hp
+onready var l_hp:Label = $lhp/l_hp
 onready var mp_bar:TextureProgress = $hp/mp
 
 var healing = preload("res://Timers/healing.tscn")

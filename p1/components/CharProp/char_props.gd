@@ -23,8 +23,8 @@ func _process(delta):
 	update();
 
 func _draw():
-	_draw_debug_info()
-	_draw_slots();
+	#_draw_debug_info()
+	#_draw_slots();
 	slot_range()
 	draw_string(_font,Vector2(0,-90),str(slot))
 
