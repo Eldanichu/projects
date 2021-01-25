@@ -82,8 +82,8 @@ func drag_event(event) -> void:
 func swap_item(index:Vector2) -> void:
 	var _index = index;
 	var _mouse_item;
-	var _item = _get_item_by_name(get_slot_item(_index))
-	
+	var _slot_item = get_slot_item(_index)
+	var _item = _get_item_by_name(_slot_item)
 	if(_item):
 		_mouse_item = _item
 	else:
@@ -92,7 +92,6 @@ func swap_item(index:Vector2) -> void:
 	var _item_pos = Vector2(_index.y,_index.x)
 	if(_slot_has_item(_index)):
 		if(!_mouse_item):
-			var _slot_item = get_slot_item(_index)
 			var _spr_item = Sprite.new();
 			_spr_item.name = _slot_item.name;
 			_spr_item.texture = item_res[_slot_item.name]
@@ -100,11 +99,10 @@ func swap_item(index:Vector2) -> void:
 			current_item = {"name":_spr_item.name}
 			set_slot_item(_item_pos,EMPTY_SLOT)
 		else:
-			var _slot_item = get_slot_item(_index)
-			var _temp = _slot_item
+			var _temp_slot_item = _slot_item
 			set_slot_item(_item_pos,{"name":_mouse_item.name})
-			_mouse_item.texture = item_res[_temp.name]
-			_mouse_item.name = _temp.name
+			_mouse_item.texture = item_res[_temp_slot_item.name]
+			_mouse_item.name = _temp_slot_item.name
 			current_item = {"name":_mouse_item.name}
 	elif(!_slot_has_item(_index) && _mouse_item):
 		set_slot_item(_item_pos,{"name":_mouse_item.name})
