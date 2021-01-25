@@ -1,6 +1,8 @@
 extends TextureRect
 class_name Inventory, "res://Images/ui/inv.png"
 
+signal slot_dbclick(slot_index)
+
 const ROW = 8
 const COL = 5
 const Y_OFFSET = 59.0
@@ -11,9 +13,6 @@ const SLOT_WIDTH = 37.0
 const SLOT_HEIGHT = 36.0
 const NULL = -4
 
-onready var RECT_SIZE = get_rect().size;
-onready var dis = $"."
-onready var slots = []
 var SLOT_SIZE =  Vector2(SLOT_WIDTH,SLOT_HEIGHT)
 var mouse_pos;
 var rect_vector2:Vector2;
@@ -22,12 +21,18 @@ var dragging = false;
 
 var _font = preload("res://Fonts/sim_sun.tres")
 var item_res = preload("res://Images/items.tres")
+var current_item;
 
-signal slot_dbclick(slot_index)
+onready var RECT_SIZE = get_rect().size;
+onready var dis = $"."
+onready var slots = []
+onready var parent_node = get_parent();
 
 func _ready():
 	_init_inv_slots();
-	set_slot_item(Vector2(0,7),"i83")
+	set_slot_item(Vector2(0,7),"i29")
+	set_slot_item(Vector2(0,6),"i28")
+	set_slot_item(Vector2(0,1),"i83")
 	set_slot_item(Vector2(4,2),"i394")
 
 func _init_inv_slots():
@@ -52,10 +57,9 @@ func _process(delta):
 	update()
 
 func _dragging_item():
-	if(!dis.get_child_count()):return
-	var _d = dis.get_child(0)
-	if(_d):
-		_d.position = Vector2(rect_vector2.x + X_OFFSET,rect_vector2.y + Y_OFFSET)
+	var _item = _get_item_by_name(current_item)
+	if(!_item):return
+	_item.position = Vector2(mouse_pos.x,mouse_pos.y)
 
 func _draw():
 	#_draw_slots();
@@ -92,7 +96,6 @@ func highlight_slot_index(index: Vector2, color: Color):
 	if( _is_inside( index ) ):
 		draw_rect(Rect2(slot_pos,SLOT_SIZE),color,false);
 
-
 func _draw_moviable_area():
 	var _rect = Rect2(Vector2(0,0),Vector2(RECT_SIZE.x, Y_OFFSET - 3))
 	draw_rect(_rect,Color(1,1,1,1),false)
@@ -120,23 +123,25 @@ func _draw_slots():
 				false
 			)
 
-
 func _draw_item():
 	for col_ in range(0,COL):
 		for row_ in range(0,ROW):
-			if(_slot_has_item(Vector2(row_,col_))):
-				var _pos = _get_slot_position(Vector2(row_,col_))
-				#draw_string(_font,_pos,str(get_slot_item(Vector2(row_,col_))))
-				var _item = get_slot_item(Vector2(row_,col_));
-				if(item_res[_item]):
-					draw_texture(item_res[_item],Vector2(_pos.x,_pos.y))
-				#draw_string(_font,_pos,str(slots[col_][row_]),Color(1,1,1,1))
-
+			var _vec = Vector2(row_,col_)
+			if(_slot_has_item(_vec)):
+				var _pos = _get_slot_position(_vec)
+				var _item = get_slot_item(_vec);
+				if(!item_res[_item]):
+					return
+				var _item_size = item_res[_item].get_size()
+				var _item_pos = Vector2(
+					_pos.x + (SLOT_WIDTH *.5) - (_item_size.x *.5),
+					_pos.y + (SLOT_HEIGHT *.5) - (_item_size.y *.5)
+				)
+				draw_texture(item_res[_item],_item_pos)
 
 func _highlight_slot():
 	var slot_pos = _get_slot_position(_get_slot_index())
 	highlight_slot_index(_get_slot_index() ,  Color.red)
-
 
 func _is_inside(slot_index:Vector2):
 	return (
@@ -146,13 +151,11 @@ func _is_inside(slot_index:Vector2):
 		slot_index.y < COL
 	)
 
-
 func _get_slot_index() -> Vector2:
 	return Vector2(
 		floor((rect_vector2.x - 0.5) / SLOT_WIDTH),
 		floor((rect_vector2.y - 0.5) / SLOT_HEIGHT)
 	);
-
 
 func _get_slot_position(slot_index_vector:Vector2) -> Vector2:
 	return Vector2(
@@ -185,7 +188,6 @@ func _input(event):
 				var _index = _get_slot_index()
 				emit_signal("slot_dbclick", _index);
 
-
 func drag_event(event):
 	if event is InputEventMouseMotion:
 		if(!_is_moviable_area()):
@@ -198,27 +200,39 @@ func drag_event(event):
 	if event is InputEventMouseMotion and dragging:
 		rect_global_position = event.position - rect_origin_vector2;
 
-
 func swap_item(index:Vector2):
 	var _index = index;
 	var _mouse_item;
-	if(dis.get_child_count() > 0):
-		_mouse_item = dis.get_child(0)
+	var _item = _get_item_by_name(get_slot_item(_index))
+	
+	if(_item):
+		_mouse_item = _item
+	else:
+		_mouse_item = _get_item_by_name(current_item)
+
 	var _item_pos = Vector2(_index.y,_index.x)
 	if(_slot_has_item(_index)):
 		if(!_mouse_item):
 			var _spr_item = Sprite.new();
 			_spr_item.name = get_slot_item(_index);
 			_spr_item.texture = item_res[get_slot_item(_index)]
-			add_child(_spr_item)
+			parent_node.add_child(_spr_item)
+			current_item = _spr_item.name
 			set_slot_item(_item_pos,NULL)
 		else:
 			var _temp = get_slot_item(_index)
 			set_slot_item(_item_pos,_mouse_item.name)
 			_mouse_item.texture = item_res[_temp]
 			_mouse_item.name = _temp
+			current_item = _mouse_item.name
 	elif(!_slot_has_item(_index) && _mouse_item):
 		set_slot_item(_item_pos,_mouse_item.name)
-		remove_child(_mouse_item)
+		parent_node.remove_child(_mouse_item)
 
-
+func _get_item_by_name(t_name):
+	if(str(t_name) == str(-4)): return false
+	var child = parent_node.get_children();
+	for c in child:
+		if t_name == c.name:
+			return c
+	return false

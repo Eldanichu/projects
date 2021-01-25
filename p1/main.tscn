@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addHP.gd" type="Script" id=1]
+[ext_resource path="res://components/gui_inv/gui_inv.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/CharProp/char_props.tscn" type="PackedScene" id=3]
 [ext_resource path="res://components/HealthBar/health_bar.tscn" type="PackedScene" id=4]
 
 [node name="Mir" type="Node2D"]
@@ -27,5 +29,17 @@ margin_left = 73.8162
 margin_top = 28.3511
 margin_right = 73.8199
 margin_bottom = 28.3511
+
+[node name="inventory" parent="." instance=ExtResource( 2 )]
+margin_left = 288.307
+margin_top = 154.324
+margin_right = 634.307
+margin_bottom = 458.324
+
+[node name="char_props" parent="." instance=ExtResource( 3 )]
+margin_left = 803.725
+margin_top = 194.778
+margin_right = 1039.72
+margin_bottom = 460.778
 [connection signal="addStats" from="button" to="GUI/health_bar" method="_on_button_addStats"]
 [connection signal="pressed" from="button" to="button" method="_on_button_pressed"]
