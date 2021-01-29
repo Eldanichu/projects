@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "CharStats",
+"language": "GDScript",
+"path": "res://Common/CharStats.gd"
+}, {
 "base": "Control",
 "class": "HealthyCtrl",
 "language": "GDScript",
@@ -20,20 +25,21 @@ _global_script_classes=[ {
 "path": "res://components/gui_inv/gui_inv.gd"
 }, {
 "base": "Node",
+"class": "MonStats",
+"language": "GDScript",
+"path": "res://Common/MonStats.gd"
+}, {
+"base": "Node",
 "class": "State",
 "language": "GDScript",
 "path": "res://Common/State.gd"
-}, {
-"base": "Node",
-"class": "Stats",
-"language": "GDScript",
-"path": "res://components/Stats.gd"
 } ]
 _global_script_class_icons={
+"CharStats": "",
 "HealthyCtrl": "res://Images/ui/00773.png",
 "Inventory": "res://Images/ui/inv.png",
-"State": "",
-"Stats": ""
+"MonStats": "",
+"State": ""
 }
 
 [application]
@@ -47,7 +53,7 @@ window/size/width=1366
 window/size/height=768
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
+window/stretch/aspect="expand"
 
 [node]
 
