@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "BigNumber",
+"language": "GDScript",
+"path": "res://Common/BigNumber.gd"
+}, {
 "base": "Node",
 "class": "CharStats",
 "language": "GDScript",
@@ -35,6 +40,7 @@ _global_script_classes=[ {
 "path": "res://Common/State.gd"
 } ]
 _global_script_class_icons={
+"BigNumber": "",
 "CharStats": "",
 "HealthyCtrl": "res://Images/ui/00773.png",
 "Inventory": "res://Images/ui/inv.png",
