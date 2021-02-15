@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://components/HealthBar/health_bar_ctrl.gd" type="Script" id=1]
 [ext_resource path="res://Images/ui/00773.png" type="Texture" id=2]
 [ext_resource path="res://Images/ui/health_bar_red.png" type="Texture" id=3]
 [ext_resource path="res://Images/ui/health_bar_blue.png" type="Texture" id=4]
 [ext_resource path="res://Fonts/sim_sun.tres" type="DynamicFont" id=5]
-[ext_resource path="res://Images/ui/controls/00734.png" type="Texture" id=6]
 
 [node name="health_bar" type="Control"]
 margin_left = -3.96851
@@ -48,7 +47,6 @@ margin_left = 22.7677
 margin_top = 114.985
 margin_right = 115.768
 margin_bottom = 133.985
-texture = ExtResource( 6 )
 expand = true
 __meta__ = {
 "_edit_group_": true,
@@ -93,10 +91,8 @@ margin_left = 22.7677
 margin_top = 135.985
 margin_right = 115.768
 margin_bottom = 154.985
-texture = ExtResource( 6 )
 expand = true
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 

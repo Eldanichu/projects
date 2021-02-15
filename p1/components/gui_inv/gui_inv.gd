@@ -8,8 +8,8 @@ export var _font:Font = preload("res://Fonts/sim_sun.tres")
 
 const ROW:int = 8
 const COL:int = 5
-const Y_OFFSET:float = 59.0
-const X_OFFSET:float = 27.0
+const Y_OFFSET:float = 3.0
+const X_OFFSET:float = 4.0
 
 const EMPTY_SLOT:Object = null
 const TOTAL_SLOTS:int = 50

@@ -70,6 +70,7 @@ _global_script_class_icons={
 
 config/name="P 1"
 run/main_scene="res://main.tscn"
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 
 [debug]
 
