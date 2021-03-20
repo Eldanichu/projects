@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Common/CharStats.gd"
 }, {
-"base": "ItemObject",
-"class": "Gear",
-"language": "GDScript",
-"path": "res://components/Item/Gear.gd"
-}, {
 "base": "Control",
 "class": "HealthyCtrl",
 "language": "GDScript",
@@ -57,9 +52,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BigNumber": "",
 "CharStats": "",
-"Gear": "",
 "HealthyCtrl": "res://Images/ui/00773.png",
-"Inventory": "res://Images/ui/inv.png",
+"Inventory": "",
 "ItemIcons": "",
 "ItemObject": "",
 "MonStats": "",

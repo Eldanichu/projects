@@ -33,17 +33,17 @@ __meta__ = {
 }
 
 [node name="inventory" parent="GUI" instance=ExtResource( 2 )]
-margin_left = 34.487
-margin_top = 332.978
-margin_right = 335.487
-margin_bottom = 522.978
+margin_left = 1050.07
+margin_top = 322.275
+margin_right = 1351.07
+margin_bottom = 512.275
 
 [node name="char_props" parent="GUI" instance=ExtResource( 3 )]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -745.847
-margin_top = 45.1898
-margin_right = -457.847
-margin_bottom = 356.19
+margin_left = -315.354
+margin_top = 10.7028
+margin_right = -27.3538
+margin_bottom = 321.703
 [connection signal="addStats" from="GUI/button" to="GUI/health_bar" method="_on_button_addStats"]
 [connection signal="pressed" from="GUI/button" to="GUI/button" method="_on_button_pressed"]

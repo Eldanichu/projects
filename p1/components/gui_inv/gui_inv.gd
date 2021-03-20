@@ -142,13 +142,13 @@ func drag_event(event) -> void:
 
 func set_slot_item(index:Vector2,item) -> void:
         if(!_is_inside(Vector2(index.x,index.y))): 
-                print_debug("out of index of inventory.")
+                print_debug("out of inventory range.")
                 return;
         slots[index.x][index.y] = item;
 
 func get_slot_item(index:Vector2)->Object:
         if(!_is_inside(Vector2(index.x,index.y))): 
-                print_debug("out of index of inventory.")
+                print_debug("out of inventory range.")
                 return EMPTY_SLOT;
         return slots[index.x][index.y];
 

@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Images/ui/inv.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/ui/inv.png" type="Texture" id=2]
 [ext_resource path="res://components/gui_inv/gui_inv.gd" type="Script" id=3]
+
 
 [node name="inventory" type="TextureRect"]
 margin_right = 301.0
