@@ -1,5 +1,5 @@
 extends Control
-class_name HealthyCtrl,"res://Images/ui/00773.png"
+class_name HealthyCtrl,"res://Assets/Images/ui/00773.png"
 
 onready var hp_bar:TextureProgress = $hp
 onready var l_hp:Label = $lhp/l_hp

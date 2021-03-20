@@ -1,5 +1,5 @@
 extends TextureRect
-class_name Inventory, "res://Images/ui/inv.png"
+class_name Inventory, "res://Assets/Images/ui/inv.png"
 
 signal slot_dbclick(slot_index)
 

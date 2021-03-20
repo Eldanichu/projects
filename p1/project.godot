@@ -52,8 +52,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BigNumber": "",
 "CharStats": "",
-"HealthyCtrl": "res://Images/ui/00773.png",
-"Inventory": "",
+"HealthyCtrl": "res://Assets/Images/ui/00773.png",
+"Inventory": "res://Assets/Images/ui/inv.png",
 "ItemIcons": "",
 "ItemObject": "",
 "MonStats": "",

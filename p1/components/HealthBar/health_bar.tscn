@@ -6,7 +6,6 @@
 [ext_resource path="res://Assets/Images/ui/health_bar_blue.png" type="Texture" id=4]
 [ext_resource path="res://Fonts/sim_sun.tres" type="DynamicFont" id=5]
 
-
 [node name="health_bar" type="Control"]
 margin_left = -3.96851
 margin_right = -3.96851
