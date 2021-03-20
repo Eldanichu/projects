@@ -27,69 +27,71 @@ var hover_item = {
     "obj":null
 }
 
-onready var slots:Array = []
+onready var slots:Array = [];
 onready var RECT_SIZE:Vector2 = get_rect().size;
 
 
 func _ready():
-        var item := ItemObject.new();
-        item.set_type("RING")
-        item.set_level(0);
-        item.set_icon("i83")
-        var g:= Gear.new();
-        g.spwan_item(item)
         _init_inv_slots();
         _debugger()
 
 func _process(_delta):
         mouse_pos = get_global_mouse_position();
-        rect_vector2 = mouse_pos - Vector2(rect_global_position.x + X_OFFSET, rect_global_position.y + Y_OFFSET)
-        rect_origin_vector2 = mouse_pos - Vector2(rect_global_position.x, rect_global_position.y)
-        update_hover_item_pos()
-        update()
+        rect_vector2 = mouse_pos - Vector2(rect_global_position.x + X_OFFSET, rect_global_position.y + Y_OFFSET);
+        rect_origin_vector2 = mouse_pos - Vector2(rect_global_position.x, rect_global_position.y);
+        update_hover_item_pos();
+        update();
 
 func _draw():
         _draw_item();
-        #_draw_slots();
-        #_draw_moviable_area()
-        #_draw_debug_info();
-        #highlight_slot_index(Vector2(1,1) ,  Color.yellow)
-        #_highlight_slot();
+        _draw_debug_info()
         
 func update_hover_item_pos():
     if(!hover_item.node):return;
     var _item = hover_item.node.get_child(0);
-    _item.rect_position = mouse_pos
+    _item.rect_position = mouse_pos;
 
 func _input(event):
-        #drag_event(event)
-        var _slot_index = _get_slot_index()
-        if(_is_inside(_slot_index) && _slot_has_item(_slot_index)):
-                hover = true
-        if(event is InputEventMouseButton):
-                if(event.button_index == BUTTON_LEFT):
-                        hover = false
-                        if(event.pressed):
-                                if(_is_inside(_slot_index)):
-                                        _slot_click(_slot_index)
-                        if(event.doubleclick):
-                                emit_signal("slot_dbclick", _slot_index);
+    if(event is InputEventMouseButton):
+            if(event.button_index == BUTTON_LEFT):
+                    on_slot_click(event);
+                    on_slot_dblclick(event)
+    on_slot_hover();
+
+func on_slot_hover():
+    hover = false;
+    var _slot_index = _get_slot_index();
+    if(_is_inside(_slot_index) && _slot_has_item(_slot_index)):
+            hover = true;
+
+func on_slot_click(event):
+    if(event.pressed):
+        var _slot_index = _get_slot_index();
+        if(_is_inside(_slot_index)):
+                _slot_click(_slot_index)
+
+func on_slot_dblclick(event):
+    if(event.doubleclick):
+        var _slot_index = _get_slot_index();
+        emit_signal("slot_dbclick", _slot_index);
 
 func _slot_click(slot_index:Vector2):
     var _slot_item = get_slot_item(slot_index);
-    if(_slot_item && hover_item.node):
-        var temp_item = _slot_item;
-        set_slot_item(slot_index, hover_item.obj)
-        remove_hover_item(hover_item.node);
-        hover_item.node = create_hover_item(temp_item)
-        hover_item.obj = temp_item;
-    elif(!hover_item.node):
-        hover_item.node = create_hover_item(_slot_item)
-        hover_item.obj = _slot_item;
-        set_slot_item(slot_index, EMPTY_SLOT)
-    elif(!_slot_item && hover_item.node):
-        set_slot_item(slot_index, hover_item.obj)
-        remove_hover_item(hover_item.node);
+    if(_slot_has_item(slot_index)):
+        if(hover_item.node):
+            var temp_item = _slot_item;
+            set_slot_item(slot_index, hover_item.obj)
+            remove_hover_item(hover_item.node);
+            hover_item.node = create_hover_item(temp_item)
+            hover_item.obj = temp_item;
+        else:
+            hover_item.node = create_hover_item(_slot_item)
+            hover_item.obj = _slot_item;
+            set_slot_item(slot_index, EMPTY_SLOT)
+    else:
+        if(hover_item.node):
+            set_slot_item(slot_index, hover_item.obj)
+            remove_hover_item(hover_item.node);
 
 func create_hover_item(item) -> Node:
     if(!item):
@@ -116,11 +118,13 @@ func remove_hover_item(item_obj):
         return;
     var _parent_node := get_parent();
     _parent_node.remove_child(item_obj)
+    reset_hover_item();
+
+func reset_hover_item():
     hover_item = {
         "node":null,
         "obj":null
     }
-    pass
 
 func drag_event(event) -> void:
         if event is InputEventMouseMotion:
@@ -148,11 +152,6 @@ func get_slot_item(index:Vector2)->Object:
                 return EMPTY_SLOT;
         return slots[index.x][index.y];
 
-func highlight_slot_index(index: Vector2, color: Color) -> void:
-        var slot_pos = _get_slot_position(index)
-        if( _is_inside( index ) ):
-                draw_rect(Rect2(slot_pos,SLOT_SIZE),color,false);
-
 func _init_inv_slots() -> void:
         var _col = []
         for _col_ in range(0,COL):
@@ -178,24 +177,6 @@ func _draw_item() -> void:
                             )
                             draw_texture(_slot_item.icon , _item_pos)
 
-func _draw_slots() -> void:
-        for col_ in range(0,COL):
-                for row_ in range(0,ROW):
-                        draw_rect(
-                                Rect2(
-                                        Vector2(
-                                        SLOT_WIDTH * row_ + X_OFFSET,
-                                        SLOT_HEIGHT * col_ + Y_OFFSET
-                                ),
-                                Vector2(SLOT_WIDTH,SLOT_HEIGHT)
-                        ),
-                                Color.white,
-                                false
-                        )
-
-func _highlight_slot() -> void:
-        highlight_slot_index(_get_slot_index() ,  Color.red)
-
 func _get_slot_index() -> Vector2:
         return Vector2(
                 floor((rect_vector2.x - 0.5) / SLOT_WIDTH),
@@ -207,10 +188,6 @@ func _get_slot_position(slot_index_vector:Vector2) -> Vector2:
                 SLOT_WIDTH * slot_index_vector.x + X_OFFSET , 
                 SLOT_HEIGHT * slot_index_vector.y + Y_OFFSET
         )
-
-func _draw_moviable_area() -> void:
-        var _rect = Rect2(Vector2(0,0),Vector2(RECT_SIZE.x, Y_OFFSET - 3))
-        draw_rect(_rect,Color(1,1,1,1),false)
 
 func _slot_has_item(index:Vector2) -> bool:
         var _slot = get_slot_item(index);
@@ -242,7 +219,7 @@ func _draw_debug_info():
         draw_string(_font,Vector2(0,-56),"rect postion:{0}".format([rect_vector2]),Color.white)
         draw_string(_font,Vector2(0,-116),"rect draggin:{0}".format([dragging]),Color.white)
         draw_string(_font,Vector2(0,-96),"rect_origin postion:{0}, inarea?->{1}".format([rect_origin_vector2,_is_moviable_area()]),Color.white)
-        draw_string(_font,Vector2(0,-76),"rect index:{0}".format([_get_slot_index()]),Color.white)
+        draw_string(_font,Vector2(0,-76),"is_hovering_item:{0}".format([hover]),Color.white)
 
 func _debugger():
         var itemdata := ItemIcons.new()
