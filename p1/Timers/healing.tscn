@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Timers/healing.gd" type="Script" id=1]
-
-[node name="healing" type="Timer"]
-process_mode = 0
-autostart = true
-script = ExtResource( 1 )
-[connection signal="timeout" from="." to="." method="_on_healing_timeout"]

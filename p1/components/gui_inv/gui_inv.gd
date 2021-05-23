@@ -1,9 +1,7 @@
 extends TextureRect
-class_name Inventory, "res://Assets/Images/ui/inv.png"
 
 signal slot_dbclick(slot_index)
 
-export var _font:Font = preload("res://Fonts/sim_sun.tres")
 
 const ROW:int = 8
 const COL:int = 5
@@ -138,8 +136,6 @@ func drag_event(event) -> void:
         if event is InputEventMouseMotion and dragging:
                 rect_global_position = event.position - rect_origin_vector2;
 
-
-
 func set_slot_item(index:Vector2,item) -> void:
         if(!_is_inside(Vector2(index.x,index.y))): 
                 print_debug("out of inventory range.")
@@ -215,13 +211,7 @@ func _is_moviable_area() -> bool:
 Drawing Debug Infomations
 """
 func _draw_debug_info():
-        draw_string(_font,Vector2(0,-30),"global postion:{0}".format([mouse_pos]),Color.white)
-        draw_string(_font,Vector2(0,-56),"rect postion:{0}".format([rect_vector2]),Color.white)
-        draw_string(_font,Vector2(0,-116),"rect draggin:{0}".format([dragging]),Color.white)
-        draw_string(_font,Vector2(0,-96),"rect_origin postion:{0}, inarea?->{1}".format([rect_origin_vector2,_is_moviable_area()]),Color.white)
-        draw_string(_font,Vector2(0,-76),"is_hovering_item:{0}".format([hover]),Color.white)
+pass
 
 func _debugger():
-        var itemdata := ItemIcons.new()
-        set_slot_item(Vector2(6,1), {"icon":itemdata.get_icon('i83'),"name":"i83"})
-        set_slot_item(Vector2(2,1), {"icon":itemdata.get_icon('i29'),"name":"i29"})
+pass
