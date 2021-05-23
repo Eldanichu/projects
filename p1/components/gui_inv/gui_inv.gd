@@ -211,7 +211,7 @@ func _is_moviable_area() -> bool:
 Drawing Debug Infomations
 """
 func _draw_debug_info():
-pass
+    pass
 
 func _debugger():
-pass
+    pass
