@@ -16,6 +16,7 @@
 #
 
 extends Node
+class_name LootTable
 
 var data = []
 

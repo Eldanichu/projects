@@ -12,21 +12,52 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "BigNumber",
 "language": "GDScript",
-"path": "res://Common/BigNumber.gd"
+"path": "res://Srcipts/common/big_number.gd"
 }, {
 "base": "Node",
-"class": "State",
+"class": "CustomClass",
 "language": "GDScript",
-"path": "res://Common/State.gd"
+"path": "res://Test/spec_class.gd"
+}, {
+"base": "Node",
+"class": "FileOperator",
+"language": "GDScript",
+"path": "res://UIs/file_operator/file_operator.gd"
+}, {
+"base": "Node",
+"class": "LootTable",
+"language": "GDScript",
+"path": "res://Srcipts/common/loot_table.gd"
+}, {
+"base": "TextureRect",
+"class": "Slot",
+"language": "GDScript",
+"path": "res://Srcipts/component/inventory/slot.gd"
+}, {
+"base": "TextureRect",
+"class": "SlotItem",
+"language": "GDScript",
+"path": "res://Srcipts/component/inventory/item.gd"
+}, {
+"base": "Node",
+"class": "Xstate",
+"language": "GDScript",
+"path": "res://Srcipts/common/x_state.gd"
 } ]
 _global_script_class_icons={
 "BigNumber": "",
-"State": ""
+"CustomClass": "",
+"FileOperator": "",
+"LootTable": "",
+"Slot": "",
+"SlotItem": "",
+"Xstate": ""
 }
 
 [application]
 
 config/name="P 1"
+run/main_scene="res://root.tscn"
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 
 [debug]
@@ -47,7 +78,7 @@ convert_text_resources_to_binary_on_export=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "godot-sqlite" )
+enabled=PoolStringArray( "res://addons/godot-sqlite/plugin.cfg" )
 
 [input]
 
