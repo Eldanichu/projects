@@ -18,7 +18,7 @@ func update_hover_item_pos():
   
 
 func _input(event):
-  if(event is InputEventMouseButton):
+  if(event is 3:03 PM 5/25/2021
     if(event.button_index == BUTTON_LEFT):
       on_slot_click(event);
       on_slot_dblclick(event)
