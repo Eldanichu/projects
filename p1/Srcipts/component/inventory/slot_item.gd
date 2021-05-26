@@ -2,8 +2,8 @@ extends Label
 class_name SlotItem
 
 
-func _init(text:String = '1'):
-	self.text = text;
+func _init(name:String = 'NULL'):
+	self.text = name;
 	self.align = Label.ALIGN_CENTER;
 	self.valign = Label.ALIGN_CENTER;
 	self.clip_text = true;

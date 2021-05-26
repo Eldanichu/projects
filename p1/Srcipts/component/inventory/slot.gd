@@ -6,45 +6,55 @@ signal slot_click;
 
 export var index:Vector2 = Vector2(0,0);
 export var offset:Vector2 = Vector2(0,0);
-export var isMouseHover:bool = false;
 
 const EMPTY_SLOT:Object = null;
 const WIDTH:float = 37.0;
 const HEIGHT:float = 38.0;
 const SIZE:Vector2 = Vector2(WIDTH,HEIGHT);
 
+onready var inventory := get_inventory();
+onready var tip:Tip = inventory.get_node("Tip");
 
-var hover_tip_delay:Timer = Timer.new(); 
+var MP:Vector2;
+var RECT_P:Vector2;
+var mouse_slot_index:Vector2;
+
+func _ready():
+	tip.visible = false;
+	connect("mouse_entered",self,"_mouse_enter_slot",[index])
+	connect("mouse_exited",self,"_mouse_exited_slot")
+
+func _mouse_enter_slot(index):
+	tip.visible = true;
+	mouse_slot_index = index;
+
+func _mouse_exited_slot():
+	tip.visible = false;
+
 
 func _gui_input(event:InputEvent):
-	if event is InputEventMouseMotion:
-		display_hover_tip_delay();
 	if (event is InputEventMouseButton):
 		if (event.button_index == BUTTON_LEFT):
-			isMouseHover = false
 			if event.doubleclick:
 				emit_signal("slot_dbclick",index);
 			elif event.pressed:
 				emit_signal("slot_click",index);
 
-func display_hover_tip_delay():
-	var inventory = get_parent();
-	var _tip_timer = inventory.get_node_or_null('hover_tip_delay')
-	if _tip_timer:
-		return;
-	if not _tip_timer:
-		inventory.add_child(hover_tip_delay);
-		hover_tip_delay.name = 'hover_tip_delay'
-		hover_tip_delay.wait_time = 2
-	hover_tip_delay.start()
-	yield(hover_tip_delay,"timeout")
-	if inventory.get_node('hover_tip_delay'):
-			inventory.remove_child(hover_tip_delay)
-	isMouseHover = true;
-	print('display tip')
-
 func _process(_delta):
+	MP = get_global_mouse_position();
+	RECT_P = MP - inventory.rect_position;
+	_update_tip_position();
 	update();
+
+func _update_tip_position():
+	tip.Position = Vector2(RECT_P.x + 12,RECT_P.y + 12)
+	if is_outside_window().x:
+		tip.Position = Vector2(RECT_P.x - tip.rect_size.x + 12,RECT_P.y + 12)
+	elif is_outside_window().y:
+		tip.Position = Vector2(RECT_P.x + 12,RECT_P.y - tip.rect_size.y + 12)
+	if is_outside_window().x && is_outside_window().y:
+		tip.Position = Vector2(RECT_P.x + 12,RECT_P.y + 12) - tip.rect_size
+
 
 func _draw() -> void:
 	render()
@@ -71,18 +81,30 @@ func get_item():
 	return _child
 
 func set_item(item:SlotItem):
-	var _childs = get_children();
-	if len(_childs):
-		for child in _childs:
-			self.remove_child(child);
-			child.queue_free();
+	self.remove_item(item);
 	self.add_child(item);
 	set_item_center(item);
 
+func remove_item(item:SlotItem):
+	var _childs = get_children();
+	if len(_childs):
+		for child in _childs:
+			if item.name == child.name:
+				self.remove_child(child);
+				child.queue_free();
+
 func set_item_center(item:SlotItem) -> void:
 	item.rect_size = SIZE
-	item.rect_position = SIZE * .5 - (item.rect_size * .5) 
+	item.rect_position = SIZE * .5 - (item.rect_size * .5) + index
+
+func get_inventory() -> TextureRect:
+	return get_tree().get_nodes_in_group('inventory_root')[0]
+
+func is_outside_window():
+	return {
+		'x':(RECT_P + MP).x >= OS.get_real_window_size().x,
+		'y':(RECT_P + MP).y >= OS.get_real_window_size().y
+	}
 
 func _exit_tree():
 	queue_free();
-	hover_tip_delay.queue_free();

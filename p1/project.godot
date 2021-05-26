@@ -37,7 +37,12 @@ _global_script_classes=[ {
 "base": "Label",
 "class": "SlotItem",
 "language": "GDScript",
-"path": "res://Srcipts/component/inventory/item.gd"
+"path": "res://Srcipts/component/inventory/slot_item.gd"
+}, {
+"base": "Control",
+"class": "Tip",
+"language": "GDScript",
+"path": "res://UIs/Tip/Tip.gd"
 }, {
 "base": "Node",
 "class": "Xstate",
@@ -51,6 +56,7 @@ _global_script_class_icons={
 "LootTable": "",
 "Slot": "",
 "SlotItem": "",
+"Tip": "",
 "Xstate": ""
 }
 

@@ -32,23 +32,37 @@ func _render_slots() -> void:
 			self.add_child(_slot);
 
 func _on_slot_click(p) -> void:
-	set_slot(p,SlotItem.new())
+	set_slot_item(p,SlotItem.new())
+	#remove_slot_item(p)
 	print(p,get_slot_item(p),slots[p.x][p.y])
 
 func get_slot(index:Vector2) -> Slot:
 	var _slot:Slot = get_node(str(index.x,',',index.y));
 	return _slot;
 
-func set_slot(index:Vector2,item:SlotItem) -> void:
+func set_slot_item(index:Vector2,item:SlotItem) -> void:
 	var _slot:Slot = get_slot(index)
-	if not _slot or get_slot_item(index):
+	if get_slot_item(index):
 		return
 	_slot.set_item(item)
 
 func get_slot_item(index:Vector2) -> SlotItem:
 	var _slot:Slot = get_slot(index);
-	if not _slot:
-		return null;
 	var _slot_item:SlotItem = _slot.get_item();
 	return _slot_item
+
+func remove_slot_item(index:Vector2):
+	var _slot:Slot = get_slot(index);
+	var _slot_item = get_slot_item(index)
+	if not _slot_item:
+		print('slot_item does not exists.');
+		return
+	_slot.remove_item(_slot_item);
+
+
+
+
+
+
+
 

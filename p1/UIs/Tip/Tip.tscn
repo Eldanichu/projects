@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UIs/Tip/Tip.gd" type="Script" id=1]
+
+[node name="Tip" type="Control"]
+margin_right = 207.0
+margin_bottom = 278.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Title = "Chest"
+Gold = "1756"
+BackgroundColor = Color( 0.34902, 0.337255, 0.337255, 1 )
+
+[node name="bg_color" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.145098, 0.145098, 0.145098, 0.698039 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="col_1" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="row_1" type="HBoxContainer" parent="col_1"]
+margin_right = 207.0
+margin_bottom = 29.0
+
+[node name="margin_container" type="MarginContainer" parent="col_1/row_1"]
+margin_right = 164.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 0
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+
+[node name="name" type="Label" parent="col_1/row_1/margin_container"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 164.0
+margin_bottom = 29.0
+text = "name"
+
+[node name="margin_container_2" type="MarginContainer" parent="col_1/row_1"]
+margin_left = 168.0
+margin_right = 207.0
+margin_bottom = 29.0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+
+[node name="gold" type="Label" parent="col_1/row_1/margin_container_2"]
+margin_top = 15.0
+margin_right = 24.0
+margin_bottom = 29.0
+custom_colors/font_color = Color( 0.886275, 0.85098, 0.0156863, 1 )
+text = "100"
+
+[node name="row_2" type="HBoxContainer" parent="col_1"]
+margin_top = 33.0
+margin_right = 207.0
+margin_bottom = 35.0
+
+[node name="color_rect" type="ColorRect" parent="col_1/row_2"]
+margin_right = 207.0
+margin_bottom = 2.0
+rect_min_size = Vector2( 0, 2 )
+size_flags_horizontal = 3
+color = Color( 0.266667, 0.266667, 0.266667, 1 )
+
+[node name="row_3" type="HBoxContainer" parent="col_1"]
+margin_top = 39.0
+margin_right = 207.0
+margin_bottom = 278.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

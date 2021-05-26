@@ -19,6 +19,7 @@ margin_right = 1336.0
 margin_bottom = 738.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -26,10 +27,44 @@ __meta__ = {
 [node name="row_1" type="HBoxContainer" parent="col_1"]
 margin_right = 1336.0
 margin_bottom = 20.0
+custom_constants/separation = 20
 
 [node name="class" type="Button" parent="col_1/row_1"]
 margin_right = 73.0
 margin_bottom = 20.0
 text = "class test"
 
+[node name="class_2" type="Button" parent="col_1/row_1"]
+margin_left = 93.0
+margin_right = 136.0
+margin_bottom = 20.0
+text = "clear"
+
+[node name="row_2" type="HBoxContainer" parent="col_1"]
+margin_top = 40.0
+margin_right = 640.0
+margin_bottom = 520.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="info_box" type="RichTextLabel" parent="col_1/row_2"]
+margin_right = 640.0
+margin_bottom = 480.0
+rect_min_size = Vector2( 640, 480 )
+focus_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_constants/shadow_offset_x = 15
+custom_constants/shadow_offset_y = 15
+custom_constants/line_separation = 2
+custom_constants/shadow_as_outline = 2
+bbcode_enabled = true
+tab_size = 2
+scroll_following = true
+selection_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="col_1/row_1/class" to="." method="_on_class_pressed"]
+[connection signal="pressed" from="col_1/row_1/class_2" to="." method="_on_class_2_pressed"]
