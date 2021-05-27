@@ -22,7 +22,6 @@ func _ready() -> void:
 	item2.ItemInfo.price = '300'
 	set_slot_item(Vector2(6,4),item2)
 
-
 func _process(_delta):
 	_update_mouse_hover_item();
 	update();
@@ -41,7 +40,6 @@ func _render_slots() -> void:
 			_slot.index = Vector2(row_,col_);
 			self.add_child(_slot);
 			_slot.connect("slot_click",self,"_on_slot_click");
-
 
 func _on_slot_click(p) -> void:
 	var ui = get_ui_root();
@@ -85,7 +83,6 @@ func _update_mouse_hover_item():
 	var _hover_item = get_mouse_hover_item();
 	if not _hover_item: return;
 	_hover_item.rect_position = get_global_mouse_position()
-	pass
 
 func get_mouse_hover_item():
 	var ui = get_ui_root();
