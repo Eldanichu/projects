@@ -15,15 +15,19 @@ __meta__ = {
 }
 
 [node name="UnitTest" parent="ui_frame" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_top = 13.3182
-margin_bottom = -16.6818
+margin_right = 655.0
+margin_bottom = 533.318
 
 [node name="inventroy" parent="ui_frame" groups=[
 "inventory_root",
 ] instance=ExtResource( 2 )]
-anchor_left = 1.00146
-anchor_right = 1.00146
-margin_left = -318.153
-margin_top = 553.955
-margin_right = -14.1531
-margin_bottom = 749.955
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -366.0
+margin_top = 64.0
+margin_right = -62.0
+margin_bottom = -508.0

@@ -1,14 +1,19 @@
 extends Label
-class_name SlotItem
+class_name ItemObject
+
+var ItemInfo:Dictionary = {
+	idx = '',
+	name = '',
+	type = '',
+	price = 0
+};
 
 
-func _init(name:String = 'NULL'):
-	self.text = name;
+func _ready():
+	self.text = ItemInfo.name;
 	self.align = Label.ALIGN_CENTER;
 	self.valign = Label.ALIGN_CENTER;
 	self.clip_text = true;
-	pass
-
 
 func _exit_tree():
 	queue_free();

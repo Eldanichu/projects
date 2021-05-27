@@ -24,20 +24,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UIs/file_operator/file_operator.gd"
 }, {
+"base": "Label",
+"class": "ItemObject",
+"language": "GDScript",
+"path": "res://Srcipts/component/inventory/ItemObject.gd"
+}, {
 "base": "Node",
 "class": "LootTable",
 "language": "GDScript",
 "path": "res://Srcipts/common/loot_table.gd"
 }, {
-"base": "Control",
+"base": "TextureRect",
 "class": "Slot",
 "language": "GDScript",
 "path": "res://Srcipts/component/inventory/slot.gd"
-}, {
-"base": "Label",
-"class": "SlotItem",
-"language": "GDScript",
-"path": "res://Srcipts/component/inventory/slot_item.gd"
 }, {
 "base": "Control",
 "class": "Tip",
@@ -53,9 +53,9 @@ _global_script_class_icons={
 "BigNumber": "",
 "CustomClass": "",
 "FileOperator": "",
+"ItemObject": "",
 "LootTable": "",
 "Slot": "",
-"SlotItem": "",
 "Tip": "",
 "Xstate": ""
 }
