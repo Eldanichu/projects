@@ -4,8 +4,8 @@ class_name Slot
 signal slot_dbclick;
 signal slot_click;
 
-export var index:Vector2 = Vector2(0,0);
-export var offset:Vector2 = Vector2(0,0);
+export(Vector2) var index:Vector2 = Vector2(0,0);
+export(Vector2) var offset:Vector2 = Vector2(0,0);
 
 const EMPTY_SLOT:Object = null;
 const WIDTH:float = 37.0;
@@ -41,7 +41,7 @@ func _mouse_exited_slot() -> void:
 	tip.hide();
 
 func set_tip_info(item:ItemObject):
-	var info = item.ItemInfo;
+	var info = item.get_item_info();
 	tip.Title = info.name;
 	tip.Price = str(info.price);
 

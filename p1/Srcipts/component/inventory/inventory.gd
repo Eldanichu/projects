@@ -13,13 +13,17 @@ func _ready() -> void:
 	_init_inv_slots();
 
 	var item = ItemObject.new()
-	item.ItemInfo.name = 'hp'
-	item.ItemInfo.price = '200'
+	item.set_item_info({
+		name = 'hp',
+		price = '200'
+	})
 	set_slot_item(Vector2(0,3),item)
 
 	var item2 = ItemObject.new()
-	item2.ItemInfo.name = 'mp'
-	item2.ItemInfo.price = '300'
+	item2.set_item_info({
+		name = 'mp',
+		price = '230'
+	})
 	set_slot_item(Vector2(6,4),item2)
 
 func _process(_delta):
@@ -41,36 +45,39 @@ func _render_slots() -> void:
 			self.add_child(_slot);
 			_slot.connect("slot_click",self,"_on_slot_click");
 
-func _on_slot_click(p) -> void:
-	var ui = get_ui_root();
-	var _item = get_slot_item(p);
-	var _hover_item = get_mouse_hover_item();
-	if _hover_item and not _item:
-		# create a hovering item instance for setting;
-		var _hover_item_ins = ItemObject.new();
-		_hover_item_ins.ItemInfo = hover_item_data;
-		set_slot_item(p, _hover_item_ins);
-		remove_hover_item();
-	elif _hover_item and _item:
-		# create a tempolary item and save its data;
-		var _temp_item = _item.duplicate(18);
-		var _temp_hover_item_ins = ItemObject.new();
-		_temp_hover_item_ins.ItemInfo = hover_item_data;
+func _on_slot_click(slot_index:Vector2) -> void:
+	move_and_swap(slot_index)
 
+func move_and_swap(slot_index:Vector2):
+	var _item = get_slot_item(slot_index);
+	var _hover_item = get_mouse_hover_item();
+	if _item:
+		if _hover_item:
+			# create a tempolary item and save its data.
+			var _temp_item = _item.duplicate(18);
+			var _temp_hover_item = ItemObject.new();
+			_temp_hover_item.set_item_info(hover_item_data);
+			remove_hover_item();
+			
+			add_hover_item(_temp_item, slot_index);
+			remove_slot_item(slot_index);
+			set_slot_item(slot_index, _temp_hover_item);
+		else:
+			add_hover_item(_item, slot_index);
+			remove_slot_item(slot_index);
+	elif not _item and _hover_item:
+		# create a hovering item instance for setting.
+		var _new_hover_item = ItemObject.new();
+		_new_hover_item.set_item_info(hover_item_data);
+		set_slot_item(slot_index, _new_hover_item);
 		remove_hover_item();
-		add_hover_item(_temp_item,p)
-		_temp_item.queue_free();
-		remove_slot_item(p)
-		set_slot_item(p, _temp_hover_item_ins);
-	elif _item and not _hover_item:
-		add_hover_item(_item, p)
-		remove_slot_item(p);
 
 func add_hover_item(item,index):
 	var ui = get_ui_root();
 	item.name = 'mouse_hover_item'
 	hover_item_data = get_slot_data(index);
 	ui.add_child(item.duplicate(18))
+	item.queue_free();
 
 func remove_hover_item():
 	var item = get_mouse_hover_item();
@@ -102,7 +109,7 @@ func set_slot_item(index:Vector2,item:ItemObject) -> void:
 	if not _slot:
 		return
 	_slot.set_item(item)
-	set_slot_data(index,item.ItemInfo);
+	set_slot_data(index,item.get_item_info());
 
 func get_slot_item(index:Vector2) -> ItemObject:
 	var _slot:Slot = get_slot(index);
