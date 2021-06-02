@@ -81,3 +81,19 @@ margin_right = 207.0
 margin_bottom = 278.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="margin_container" type="MarginContainer" parent="col_1/row_3"]
+margin_right = 207.0
+margin_bottom = 239.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="rich_label" type="RichTextLabel" parent="col_1/row_3/margin_container"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 202.0
+margin_bottom = 234.0
+size_flags_horizontal = 3

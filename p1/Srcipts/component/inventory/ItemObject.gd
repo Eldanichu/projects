@@ -18,7 +18,7 @@ func _ready():
 func set_item_info(data:Dictionary) -> void:
 	ItemInfo = data;
 
-func get_item_info() -> Dictionary: 
+func get_item_info() -> Dictionary:
 	return ItemInfo;
 
 func _exit_tree():

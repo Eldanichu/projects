@@ -19,5 +19,3 @@ func pprint(infos:Array=[]):
 
 func _on_class_2_pressed():
 	infobox.clear();
-
-

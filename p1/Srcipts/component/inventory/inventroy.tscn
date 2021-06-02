@@ -16,7 +16,6 @@ __meta__ = {
 }
 
 [node name="Tip" parent="." instance=ExtResource( 3 )]
-visible = false
 margin_left = 304.905
 margin_right = 447.905
 margin_bottom = 168.0

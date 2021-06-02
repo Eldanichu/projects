@@ -54,12 +54,13 @@ func _gui_input(event:InputEvent) -> void:
 				emit_signal("slot_click",index);
 
 func _process(_delta) -> void:
-	MP = get_global_mouse_position();
-	RECT_P = MP - inventory.rect_position;
 	_update_tip_position();
 	update();
 
 func _update_tip_position() -> void:
+	if not tip.visible: return;
+	MP = get_global_mouse_position();
+	RECT_P = MP - inventory.rect_position;
 	tip.Position = Vector2(RECT_P.x + TIP_OFFSET,RECT_P.y + TIP_OFFSET)
 	if is_outside_window().x:
 		tip.Position = Vector2(RECT_P.x - tip.rect_size.x + TIP_OFFSET,RECT_P.y + TIP_OFFSET)
@@ -76,7 +77,7 @@ func render() -> void:
 	var _color:Color = Color.white;
 	_color.a = .3
 	draw_rect(Rect2(index,rect_min_size),_color,false)
-	
+
 func _index2Postion(slot_index:Vector2) -> Vector2:
 	return Vector2(
 		WIDTH * slot_index.x + offset.x ,
@@ -96,12 +97,12 @@ func set_item(item:ItemObject) -> void:
 
 func remove_item(item:ItemObject) -> void:
 	var _childs = get_children();
-	if len(_childs):
-		for child in _childs:
-			if item.name == child.name:
-				self.remove_child(child);
-				child.queue_free();
-				tip.hide();
+	if not _childs.size():return;
+	for child in _childs:
+		if item.name == child.name:
+			self.remove_child(child);
+			child.queue_free();
+			tip.hide();
 
 func set_item_center(item:ItemObject) -> void:
 	item.rect_size = SIZE

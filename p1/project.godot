@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/common/big_number.gd"
 }, {
+"base": "Resource",
+"class": "Common",
+"language": "GDScript",
+"path": "res://Srcipts/common/commonFuncs.gd"
+}, {
+"base": "Timer",
+"class": "CoolDown",
+"language": "GDScript",
+"path": "res://Srcipts/component/timer/timer.gd"
+}, {
 "base": "Node",
 "class": "CustomClass",
 "language": "GDScript",
@@ -29,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/component/inventory/ItemObject.gd"
 }, {
-"base": "Node",
+"base": "Resource",
 "class": "LootTable",
 "language": "GDScript",
 "path": "res://Srcipts/common/loot_table.gd"
@@ -44,13 +54,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UIs/Tip/Tip.gd"
 }, {
-"base": "Node",
+"base": "Resource",
 "class": "Xstate",
 "language": "GDScript",
 "path": "res://Srcipts/common/x_state.gd"
 } ]
 _global_script_class_icons={
 "BigNumber": "",
+"Common": "",
+"CoolDown": "",
 "CustomClass": "",
 "FileOperator": "",
 "ItemObject": "",

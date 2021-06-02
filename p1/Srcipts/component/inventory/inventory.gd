@@ -9,8 +9,8 @@ onready var RECT_SIZE:Vector2 = get_rect().size;
 var hover_item_data:Dictionary = {}
 
 func _ready() -> void:
-	_render_slots();
 	_init_inv_slots();
+	_render_slots();
 
 	var item = ItemObject.new()
 	item.set_item_info({
@@ -35,7 +35,7 @@ func _init_inv_slots() -> void:
 	for c in COL:
 		_cols.append(0)
 	for r in ROW:
-		slots.append(_cols.duplicate(true))
+		slots.append(Common.copy_array_deep(_cols))
 
 func _render_slots() -> void:
 	for col_ in COL:
@@ -43,7 +43,7 @@ func _render_slots() -> void:
 			var _slot = Slot.new();
 			_slot.index = Vector2(row_,col_);
 			self.add_child(_slot);
-			_slot.connect("slot_click",self,"_on_slot_click");
+			_slot.connect("slot_click", self, "_on_slot_click");
 
 func _on_slot_click(slot_index:Vector2) -> void:
 	move_and_swap(slot_index)
@@ -54,11 +54,11 @@ func move_and_swap(slot_index:Vector2):
 	if _item:
 		if _hover_item:
 			# create a tempolary item and save its data.
-			var _temp_item = _item.duplicate(18);
+			var _temp_item = Common.copy_node(_item);
 			var _temp_hover_item = ItemObject.new();
 			_temp_hover_item.set_item_info(hover_item_data);
 			remove_hover_item();
-			
+
 			add_hover_item(_temp_item, slot_index);
 			remove_slot_item(slot_index);
 			set_slot_item(slot_index, _temp_hover_item);
@@ -76,7 +76,7 @@ func add_hover_item(item,index):
 	var ui = get_ui_root();
 	item.name = 'mouse_hover_item'
 	hover_item_data = get_slot_data(index);
-	ui.add_child(item.duplicate(18))
+	ui.add_child(Common.copy_node(item));
 	item.queue_free();
 
 func remove_hover_item():
@@ -136,6 +136,3 @@ func set_slot_data(index:Vector2,item_data):
 
 func remove_slot_data(index:Vector2):
 	slots[index.x][index.y] = 0
-
-
-
