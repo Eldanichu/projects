@@ -22,67 +22,67 @@ var data = []
 
 #adds item to database
 func add_item(item,weight):
-		data.append([item,weight])
+    data.append([item,weight])
 
 
 #removes item from database
 func remove_item(value):
-		data.erase(value)
+    data.erase(value)
 
 
 func create_from_array(array):
-		data = array
+    data = array
 
 
 #returns an item from the database from a roll based on the item weights
 func roll():
 
-		var roll_max = 0
+    var roll_max = 0
 
-		for i in data.size():
-				roll_max += data[i][1]
+    for i in data.size():
+        roll_max += data[i][1]
 
-		var roll = rand_range(0,roll_max)
+    var roll = rand_range(0,roll_max)
 
-		var result
-		var mini = 0
-		var maxi = 0
-		var last_maxi = 0
+    var result
+    var mini = 0
+    var maxi = 0
+    var last_maxi = 0
 
-		for i in data.size():
-				mini = last_maxi
+    for i in data.size():
+        mini = last_maxi
 
-				if(i!=data.size()):
-						maxi = mini + data[i][1]
+        if(i!=data.size()):
+            maxi = mini + data[i][1]
 
-				if(roll>mini && roll<maxi):
-						result = data[i][0]
+        if(roll>mini && roll<maxi):
+            result = data[i][0]
 
-				last_maxi += data[i][1]
+        last_maxi += data[i][1]
 
-		return(result)
+    return(result)
 
 
 #returns an array containing n amount of items
 func roll_n(n):
-		var result = []
-		for i in n:
-				result.append(roll())
-		return(result)
+    var result = []
+    for i in n:
+        result.append(roll())
+    return(result)
 
 
 #returns an array containing n amount of unique items. If n is the same size or larger than the table size, will return entire loot table
 func roll_n_unique(n):
-		var table = get_script().new()
-		table.create_from_array(data)
-		var result = []
+    var table = get_script().new()
+    table.create_from_array(data)
+    var result = []
 
-		if n >= data.size():
-				for i in data.size():
-						result.append(data[i][0])
-		else:
-				for i in n:
-						result.append(table.roll())
-						table.remove_item(result)
+    if n >= data.size():
+        for i in data.size():
+            result.append(data[i][0])
+    else:
+        for i in n:
+            result.append(table.roll())
+            table.remove_item(result)
 
-		return(result)
+    return(result)
