@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "Appender",
+"language": "GDScript",
+"path": "res://addons/gs_logger/appender.gd"
+}, {
+"base": "Reference",
 "class": "BigNumber",
 "language": "GDScript",
 "path": "res://Srcipts/common/big_number.gd"
@@ -18,6 +23,11 @@ _global_script_classes=[ {
 "class": "Common",
 "language": "GDScript",
 "path": "res://Srcipts/common/commonFuncs.gd"
+}, {
+"base": "Appender",
+"class": "ConsoleAppender",
+"language": "GDScript",
+"path": "res://addons/gs_logger/appenders/console_appender.gd"
 }, {
 "base": "Timer",
 "class": "CoolDown",
@@ -29,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Test/spec_class.gd"
 }, {
+"base": "Appender",
+"class": "FileAppender",
+"language": "GDScript",
+"path": "res://addons/gs_logger/appenders/file_appender.gd"
+}, {
 "base": "Node",
 "class": "FileOperator",
 "language": "GDScript",
@@ -39,15 +54,35 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/common/Globals.gd"
 }, {
+"base": "Layout",
+"class": "HtmlLayout",
+"language": "GDScript",
+"path": "res://addons/gs_logger/layouts/html_layout.gd"
+}, {
 "base": "Label",
 "class": "ItemObject",
 "language": "GDScript",
 "path": "res://Srcipts/component/inventory/ItemObject.gd"
 }, {
+"base": "Reference",
+"class": "Layout",
+"language": "GDScript",
+"path": "res://addons/gs_logger/layout.gd"
+}, {
 "base": "Resource",
 "class": "LootTable",
 "language": "GDScript",
 "path": "res://Srcipts/common/loot_table.gd"
+}, {
+"base": "Reference",
+"class": "Message",
+"language": "GDScript",
+"path": "res://addons/gs_logger/message.gd"
+}, {
+"base": "Layout",
+"class": "PatternLayout",
+"language": "GDScript",
+"path": "res://addons/gs_logger/layouts/pattern_layout.gd"
 }, {
 "base": "TextureRect",
 "class": "Slot",
@@ -59,22 +94,35 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UIs/Tip/Tip.gd"
 }, {
+"base": "Reference",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://addons/gs_logger/utils.gd"
+}, {
 "base": "Resource",
 "class": "Xstate",
 "language": "GDScript",
 "path": "res://Srcipts/common/x_state.gd"
 } ]
 _global_script_class_icons={
+"Appender": "",
 "BigNumber": "",
 "Common": "",
+"ConsoleAppender": "",
 "CoolDown": "",
 "CustomClass": "",
+"FileAppender": "",
 "FileOperator": "",
 "Globals": "",
+"HtmlLayout": "",
 "ItemObject": "",
+"Layout": "",
 "LootTable": "",
+"Message": "",
+"PatternLayout": "",
 "Slot": "",
 "Tip": "",
+"Utils": "",
 "Xstate": ""
 }
 
@@ -83,6 +131,10 @@ _global_script_class_icons={
 config/name="P 1"
 run/main_scene="res://root.tscn"
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
+
+[autoload]
+
+Logger="*res://addons/gs_logger/logger.gd"
 
 [debug]
 
@@ -102,7 +154,7 @@ convert_text_resources_to_binary_on_export=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot-sqlite/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot-sqlite/plugin.cfg", "res://addons/gs_logger/plugin.cfg" )
 
 [input]
 
