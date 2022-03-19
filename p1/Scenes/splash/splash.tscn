@@ -42,6 +42,7 @@ script = ExtResource( 3 )
 [node name="255-0" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
 
 [node name="screen" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -63,38 +64,34 @@ text = "Elenado"
 align = 1
 valign = 1
 
-[node name="bottom" type="HBoxContainer" parent="screen"]
+[node name="m_version" type="MarginContainer" parent="screen"]
 margin_top = 743.0
 margin_right = 1366.0
 margin_bottom = 768.0
-
-[node name="m_version" type="MarginContainer" parent="screen/bottom"]
-margin_right = 681.0
-margin_bottom = 25.0
 size_flags_horizontal = 3
+custom_constants/margin_right = 35
 custom_constants/margin_left = 35
 custom_constants/margin_bottom = 8
 
-[node name="version" type="Label" parent="screen/bottom/m_version"]
+[node name="bottom" type="HBoxContainer" parent="screen/m_version"]
 margin_left = 35.0
-margin_right = 681.0
+margin_right = 1331.0
 margin_bottom = 17.0
+
+[node name="version" type="Label" parent="screen/m_version/bottom"]
+margin_right = 646.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = ExtResource( 2 )
 text = "v1.0"
 valign = 2
 
-[node name="m_author" type="MarginContainer" parent="screen/bottom"]
-margin_left = 685.0
-margin_right = 1366.0
-margin_bottom = 25.0
-size_flags_horizontal = 3
-custom_constants/margin_right = 35
-custom_constants/margin_bottom = 8
-
-[node name="author" type="Label" parent="screen/bottom/m_author"]
-margin_right = 646.0
+[node name="author" type="Label" parent="screen/m_version/bottom"]
+margin_left = 650.0
+margin_right = 1296.0
 margin_bottom = 17.0
+size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = ExtResource( 2 )
 text = "Eldan"

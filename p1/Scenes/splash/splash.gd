@@ -24,7 +24,7 @@ func setup():
   Logger.debug('delay_timer is free')
   Logger.debug('starting outro')
   outro.play('fade_out')
-  
+
   yield(outro,"animation_finished")
   emit_signal("splash_end")
   pass

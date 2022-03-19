@@ -9,7 +9,7 @@ func _ready() -> void:
   splash = $splash
   yield(splash,"splash_end")
   create_game_sence()
-  pass 
+  pass
 
 func create_game_sence():
   Logger.debug('creating game sence')
