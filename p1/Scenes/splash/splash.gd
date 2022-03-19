@@ -7,7 +7,7 @@ var delay_timer:CoolDown
 signal splash_end()
 
 func _ready() -> void:
-  Logger.debug("current game version->"+Store.global.version)
+  Logger.debug("current game version->" + Store.global.version)
   intro = $intro
   outro = $outro
   setup()
@@ -30,3 +30,5 @@ func setup():
   emit_signal("splash_end")
   pass
 
+func _exit_tree() -> void:
+  queue_free()
