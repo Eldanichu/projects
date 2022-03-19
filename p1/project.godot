@@ -39,6 +39,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Test/spec_class.gd"
 }, {
+"base": "Node",
+"class": "Database",
+"language": "GDScript",
+"path": "res://Database/Database.gd"
+}, {
+"base": "Reference",
+"class": "Dicebag",
+"language": "GDScript",
+"path": "res://addons/dicebag-godot/Dicebag.gd"
+}, {
 "base": "Appender",
 "class": "FileAppender",
 "language": "GDScript",
@@ -58,11 +68,6 @@ _global_script_classes=[ {
 "class": "HtmlLayout",
 "language": "GDScript",
 "path": "res://addons/gs_logger/layouts/html_layout.gd"
-}, {
-"base": "Label",
-"class": "ItemObject",
-"language": "GDScript",
-"path": "res://Srcipts/component/inventory/ItemObject.gd"
 }, {
 "base": "Reference",
 "class": "Layout",
@@ -84,16 +89,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gs_logger/layouts/pattern_layout.gd"
 }, {
-"base": "TextureRect",
-"class": "Slot",
-"language": "GDScript",
-"path": "res://Srcipts/component/inventory/slot.gd"
-}, {
-"base": "Control",
-"class": "Tip",
-"language": "GDScript",
-"path": "res://UIs/Tip/Tip.gd"
-}, {
 "base": "Reference",
 "class": "Utils",
 "language": "GDScript",
@@ -111,26 +106,26 @@ _global_script_class_icons={
 "ConsoleAppender": "",
 "CoolDown": "",
 "CustomClass": "",
+"Database": "",
+"Dicebag": "",
 "FileAppender": "",
 "FileOperator": "",
 "Globals": "",
 "HtmlLayout": "",
-"ItemObject": "",
 "Layout": "",
 "LootTable": "",
 "Message": "",
 "PatternLayout": "",
-"Slot": "",
-"Tip": "",
 "Utils": "",
 "Xstate": ""
 }
 
 [application]
 
-config/name="P 1"
-run/main_scene="res://root.tscn"
-boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
+config/name="Elenado"
+run/main_scene="res://main.tscn"
+config/use_custom_user_dir=true
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 
 [autoload]
 
@@ -138,12 +133,19 @@ Logger="*res://addons/gs_logger/logger.gd"
 
 [debug]
 
+settings/stdout/verbose_stdout=true
 gdscript/completion/autocomplete_setters_and_getters=true
+gdscript/warnings/unused_class_variable=true
+gdscript/warnings/unsafe_property_access=true
+gdscript/warnings/unsafe_method_access=true
+gdscript/warnings/unsafe_cast=true
+gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
 window/size/width=1366
 window/size/height=768
+window/size/resizable=false
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
@@ -218,8 +220,6 @@ name_casing=2
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 quality/driver/fallback_to_gles2=true
 vram_compression/import_etc=true
-vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"
