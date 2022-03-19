@@ -27,7 +27,7 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ true, false ]
 }
 tracks/2/type = "value"
@@ -51,7 +51,7 @@ tracks/3/enabled = true
 tracks/3/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ true, false ]
 }
 
@@ -113,20 +113,18 @@ enabled_focus_mode = 0
 text = "退出游戏"
 
 [node name="color_rect" type="ColorRect" parent="."]
-visible = false
 margin_right = 1366.0
 margin_bottom = 768.0
-color = Color( 0, 0, 0, 0 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="blur" parent="." instance=ExtResource( 3 )]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 0.0
 margin_bottom = 0.0
-blur_amount = 0.0
+blur_amount = 4.0
 
 [node name="ani_fade_in" type="AnimationPlayer" parent="."]
 root_node = NodePath("../margin/container/menus")
