@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://main.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/splash/splash.tscn" type="PackedScene" id=5]
+
+[node name="main" type="Node"]
+script = ExtResource( 4 )
+
+[node name="splash" parent="." instance=ExtResource( 5 )]

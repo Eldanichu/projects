@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/rexlia-72.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Fonts/wc-12.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/splash/splash.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../255-0:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1.7411, 1.03527 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("opacity:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[node name="splash" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="255-0" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="screen" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+
+[node name="content" type="VBoxContainer" parent="screen"]
+margin_right = 1366.0
+margin_bottom = 739.0
+size_flags_vertical = 3
+
+[node name="label" type="Label" parent="screen/content"]
+margin_top = 325.0
+margin_right = 1366.0
+margin_bottom = 413.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 1 )
+text = "Elenado"
+align = 1
+valign = 1
+
+[node name="bottom" type="HBoxContainer" parent="screen"]
+margin_top = 743.0
+margin_right = 1366.0
+margin_bottom = 768.0
+
+[node name="m_version" type="MarginContainer" parent="screen/bottom"]
+margin_right = 681.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_constants/margin_left = 35
+custom_constants/margin_bottom = 8
+
+[node name="version" type="Label" parent="screen/bottom/m_version"]
+margin_left = 35.0
+margin_right = 681.0
+margin_bottom = 17.0
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 2 )
+text = "v1.0"
+valign = 2
+
+[node name="m_author" type="MarginContainer" parent="screen/bottom"]
+margin_left = 685.0
+margin_right = 1366.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 35
+custom_constants/margin_bottom = 8
+
+[node name="author" type="Label" parent="screen/bottom/m_author"]
+margin_right = 646.0
+margin_bottom = 17.0
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 2 )
+text = "Eldan"
+align = 2
+valign = 2
+
+[node name="intro" type="AnimationPlayer" parent="."]
+root_node = NodePath("../screen/content")
+anims/fade_in = SubResource( 1 )
+
+[node name="outro" type="AnimationPlayer" parent="."]
+anims/fade_out = SubResource( 2 )
+
+[node name="opacity" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
