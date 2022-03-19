@@ -14,5 +14,5 @@ func _ready() -> void:
 
 func create_game_sence():
   Logger.debug('creating game sence')
-  get_tree().change_scene(scene_start_path)
+  get_tree().change_scene_to(start)
   pass
