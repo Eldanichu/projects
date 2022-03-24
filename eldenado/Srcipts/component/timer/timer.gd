@@ -72,5 +72,5 @@ func set_reduce_amount(value:float):
 func set_ready(reday:bool):
   is_ready = reday
 
-func _exit_tree():
-  queue_free()
+func _exit_tree() -> void:
+  queue_free();

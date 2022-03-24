@@ -1,7 +1,5 @@
 extends Node2D
 
-
-
 func _ready() -> void:
   Logger.debug('ready')
   pass

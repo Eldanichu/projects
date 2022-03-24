@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Test/unit_test.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/chn-14.tres" type="DynamicFont" id=2]
+
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 2 )
+RichTextLabel/colors/default_color = Color( 1, 1, 1, 1 )
+RichTextLabel/colors/font_color_selected = Color( 0.49, 0.49, 0.49, 1 )
+RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+RichTextLabel/colors/selection_color = Color( 0.1, 0.1, 1, 0.8 )
+RichTextLabel/constants/shadow_as_outline = 1
 
 [node name="UnitTest" type="MarginContainer"]
 anchor_right = 1.0
@@ -56,7 +65,8 @@ margin_bottom = 480.0
 rect_min_size = Vector2( 640, 480 )
 focus_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
+size_flags_vertical = 3
+theme = SubResource( 1 )
 custom_constants/shadow_offset_x = 15
 custom_constants/shadow_offset_y = 15
 custom_constants/line_separation = 2

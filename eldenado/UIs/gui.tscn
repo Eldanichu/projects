@@ -10,16 +10,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="UnitTest" parent="ui_frame" instance=ExtResource( 1 )]
-visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 357.0
-margin_top = 152.0
-margin_right = 997.0
-margin_bottom = 672.0
+margin_left = 34.0
+margin_top = 23.0
+margin_right = 674.0
+margin_bottom = 543.0
 
 [node name="stats" parent="ui_frame" instance=ExtResource( 3 )]
-margin_left = 1158.91
-margin_top = 595.773
-margin_right = 1288.91
-margin_bottom = 721.773
+margin_left = 711.0
+margin_top = 59.0
+margin_right = 841.0
+margin_bottom = 185.0

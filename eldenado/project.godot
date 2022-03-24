@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gs_logger/appender.gd"
 }, {
+"base": "Node",
+"class": "ArrayUtil",
+"language": "GDScript",
+"path": "res://Srcipts/Utils/ArrayUtil.gd"
+}, {
 "base": "Reference",
 "class": "BigNumber",
 "language": "GDScript",
@@ -89,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gs_logger/message.gd"
 }, {
+"base": "Node",
+"class": "ObjectUtil",
+"language": "GDScript",
+"path": "res://Srcipts/Utils/ObjectUtil.gd"
+}, {
 "base": "Layout",
 "class": "PatternLayout",
 "language": "GDScript",
@@ -111,6 +121,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Appender": "",
+"ArrayUtil": "",
 "BigNumber": "",
 "Common": "",
 "ConsoleAppender": "",
@@ -126,6 +137,7 @@ _global_script_class_icons={
 "Layout": "",
 "LootTable": "",
 "Message": "",
+"ObjectUtil": "",
 "PatternLayout": "",
 "Settings": "",
 "Utils": "",

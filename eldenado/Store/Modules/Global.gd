@@ -1,4 +1,5 @@
 extends Node
 class_name Global
 
-var version = 'v1.0'
+const version = 'v1.0'
+const author = 'Eldan'

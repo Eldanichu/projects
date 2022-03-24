@@ -6,8 +6,14 @@ var delay_timer:CoolDown
 
 signal splash_end()
 
+onready var version:Label = $screen/m_version/bottom/version
+onready var author:Label = $screen/m_version/bottom/author
+
 func _ready() -> void:
   Logger.debug("current game version->" + Store.global.version)
+  version.set_text(Store.global.version)
+  author.set_text(Store.global.author)
+
   intro = $intro
   outro = $outro
   setup()
@@ -29,6 +35,3 @@ func setup():
   yield(outro,"animation_finished")
   emit_signal("splash_end")
   pass
-
-func _exit_tree() -> void:
-  queue_free()

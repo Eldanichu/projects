@@ -7,8 +7,8 @@
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
 tracks/0/type = "value"
-tracks/0/path = NodePath("../../../color_rect:color")
-tracks/0/interp = 1
+tracks/0/path = NodePath("../../../ani_fade_in/color_rect:color")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -19,8 +19,8 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../../../color_rect:visible")
-tracks/1/interp = 1
+tracks/1/path = NodePath("../../../ani_fade_in/color_rect:visible")
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -31,8 +31,8 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../../../blur:blur_amount")
-tracks/2/interp = 1
+tracks/2/path = NodePath("../../../ani_fade_in/blur:blur_amount")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -40,10 +40,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 4.0, 0.0 ]
+"values": [ 5.0, 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../../../blur:visible")
+tracks/3/path = NodePath("../../../ani_fade_in/blur:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -77,7 +77,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 custom_constants/separation = 20
 
-[node name="start" type="Button" parent="margin/container/menus"]
+[node name="start_game" type="Button" parent="margin/container/menus"]
 margin_right = 111.0
 margin_bottom = 40.0
 focus_mode = 0
@@ -85,7 +85,7 @@ custom_fonts/font = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "开始游戏"
 
-[node name="load" type="Button" parent="margin/container/menus"]
+[node name="load_game" type="Button" parent="margin/container/menus"]
 margin_top = 60.0
 margin_right = 111.0
 margin_bottom = 100.0
@@ -94,7 +94,7 @@ custom_fonts/font = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "读取游戏"
 
-[node name="settings" type="Button" parent="margin/container/menus"]
+[node name="game_settings" type="Button" parent="margin/container/menus"]
 margin_top = 120.0
 margin_right = 111.0
 margin_bottom = 160.0
@@ -103,7 +103,7 @@ custom_fonts/font = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "设置"
 
-[node name="quit" type="Button" parent="margin/container/menus"]
+[node name="quit_game" type="Button" parent="margin/container/menus"]
 margin_top = 180.0
 margin_right = 111.0
 margin_bottom = 220.0
@@ -112,20 +112,19 @@ custom_fonts/font = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "退出游戏"
 
-[node name="color_rect" type="ColorRect" parent="."]
-margin_right = 1366.0
-margin_bottom = 768.0
-color = Color( 0, 0, 0, 1 )
-
-[node name="blur" parent="." instance=ExtResource( 3 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 0.0
-margin_bottom = 0.0
-blur_amount = 4.0
-
 [node name="ani_fade_in" type="AnimationPlayer" parent="."]
 root_node = NodePath("../margin/container/menus")
 anims/fade_in = SubResource( 1 )
+
+[node name="blur" parent="ani_fade_in" instance=ExtResource( 3 )]
+blur_amount = 5.0
+
+[node name="color_rect" type="ColorRect" parent="ani_fade_in"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[connection signal="pressed" from="margin/container/menus/start_game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="margin/container/menus/load_game" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="margin/container/menus/game_settings" to="." method="_on_game_settings_pressed"]
+[connection signal="pressed" from="margin/container/menus/quit_game" to="." method="_on_quit_game_pressed"]
