@@ -1,4 +1,4 @@
-extends MarginContainer
+extends TextureProgress
 class_name TweenProgress
 
 export(int) var b_percent = 0 setget set_b_percent
@@ -6,8 +6,8 @@ export(String) var b_text = 0 setget set_b_text
 export(int,-64,64) var duration = 0.5
 export(Texture) var texture
 
-onready var pg:TextureProgress = $pg
-onready var lbl_text:Label = $pg/text
+onready var pg:TextureProgress = $"."
+onready var lbl_text:Label = $text
 onready var tween_pg:Tween = $tween_pg
 
 var tween_is_start = false

@@ -26,15 +26,15 @@ size_flags_vertical = 3
 
 [node name="top" type="HBoxContainer" parent="m/vbox"]
 margin_right = 1350.0
-margin_bottom = 45.0
+margin_bottom = 72.0
 size_flags_horizontal = 3
 
 [node name="stats" parent="m/vbox/top" instance=ExtResource( 1 )]
-margin_right = 15.0
-margin_bottom = 45.0
+margin_right = 300.0
+margin_bottom = 72.0
 
 [node name="vb_content" type="VBoxContainer" parent="m/vbox"]
-margin_top = 49.0
+margin_top = 76.0
 margin_right = 1350.0
 margin_bottom = 752.0
 size_flags_horizontal = 3
@@ -42,14 +42,14 @@ size_flags_vertical = 3
 
 [node name="panel_container" type="PanelContainer" parent="m/vbox/vb_content"]
 margin_right = 1350.0
-margin_bottom = 703.0
+margin_bottom = 676.0
 size_flags_vertical = 3
 
 [node name="h_box_container" type="HBoxContainer" parent="m/vbox/vb_content/panel_container"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 1343.0
-margin_bottom = 696.0
+margin_bottom = 669.0
 
 [node name="hp_desc" type="Button" parent="m/vbox/vb_content/panel_container/h_box_container"]
 margin_right = 42.0

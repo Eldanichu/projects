@@ -100,11 +100,16 @@ _global_script_classes=[ {
 "path": "res://addons/gs_logger/layouts/pattern_layout.gd"
 }, {
 "base": "Node",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Store/Modules/Player.gd"
+}, {
+"base": "Node",
 "class": "Settings",
 "language": "GDScript",
 "path": "res://Store/Modules/Settings.gd"
 }, {
-"base": "MarginContainer",
+"base": "TextureProgress",
 "class": "TweenProgress",
 "language": "GDScript",
 "path": "res://Srcipts/component/TweenTextureProgress/tween_progress.gd"
@@ -138,6 +143,7 @@ _global_script_class_icons={
 "Message": "",
 "ObjectUtil": "",
 "PatternLayout": "",
+"Player": "",
 "Settings": "",
 "TweenProgress": "",
 "Utils": "",
