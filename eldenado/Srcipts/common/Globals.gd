@@ -33,7 +33,7 @@ var warrior:Dictionary = {
   "mp_base":3.5,
 }
 
-func getClassHpMp(level:int,class_index:int = 0) -> Dictionary:
+func get_class_stats(level:int,class_index:int = 0) -> Dictionary:
   var max_hp;
   var max_mp;
   if class_index == ClassType.Warrior:

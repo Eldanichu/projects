@@ -10,7 +10,7 @@ func out():
 
 func get_a():
     return _a;
-    
+
 func set_a(a):
     pass
 

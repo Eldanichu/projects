@@ -23,7 +23,7 @@ func setup():
   intro.play('fade_in')
   yield(intro,"animation_finished")
   Logger.debug('intro is done')
-  delay_timer = CoolDown.new('screen_delay',2)
+  delay_timer = CoolDown.new('screen_delay',1)
   add_child(delay_timer)
   delay_timer.start()
   yield(delay_timer,"done")

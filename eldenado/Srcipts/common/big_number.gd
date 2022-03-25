@@ -69,6 +69,9 @@ const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m
 
 const MAX_MANTISSA = 1209600
 
+"""
+m:
+"""
 func _init(m,e=0):
   if typeof(m) == TYPE_STRING:
     var scientific = m.split("e")
