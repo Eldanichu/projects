@@ -6,40 +6,32 @@ var globals:Globals = Globals.new()
 
 func _ready() -> void:
   Logger.debug('game ready')
-  setup()
-
-
-func setup():
+  stats.level = 1
+  update_stats()
+  init_stats()
   stats.connect("exp_change",self,"_exp_change")
-  update_player()
 
-func update_player():
-  var level = Store.player.level
+func update_stats():
+  var level = stats.level
   var class_stats:Dictionary = globals.get_class_stats(level)
-  Store.player.hp_max = class_stats.max_hp
-  Store.player.mp_max = class_stats.max_mp
-  Store.player.hp = Store.player.hp_max
-  Store.player.mp = Store.player.mp_max
+  stats.hp_max = class_stats.max_hp
+  stats.mp_max = class_stats.max_mp
+  stats.iExp_max = globals.get_exp_by_level(level)
 
-  Store.player.exper_max = 100
+func init_stats():
+  stats.hp = stats.hp_max
+  stats.mp = stats.mp_max
+  stats.iExp = 0
 
-  self._update_ui()
-
-func _update_ui():
-  stats.hp_max = Store.player.hp_max
-  stats.mp_max = Store.player.mp_max
-  stats.hp = Store.player.hp
-  stats.mp = Store.player.mp
-  stats.iExp_max = Store.player.exper_max
-
-func update_exp():
-  stats.iExp = Store.player.exper
+func level_up():
+  stats.level = stats.level + 1
 
 func _exp_change(e,percent,income):
-  if percent >=100:
-    Store.player.level_up()
-    update_exp()
-  update_player()
+  if percent >= 100:
+    level_up()
+    update_stats()
+    init_stats()
+  pass
 
 func _exit_tree() -> void:
   queue_free()

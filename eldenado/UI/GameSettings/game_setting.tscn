@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Fonts/h3.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.172549, 0.172549, 0.172549, 1 )
+
+[node name="game_setting" type="Panel"]
+margin_right = 880.0
+margin_bottom = 505.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="container" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="row_title" type="HBoxContainer" parent="container"]
+margin_right = 880.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+
+[node name="margin" type="MarginContainer" parent="container/row_title"]
+margin_right = 74.0
+margin_bottom = 29.0
+size_flags_horizontal = 2
+size_flags_vertical = 3
+custom_constants/margin_right = 0
+custom_constants/margin_top = 3
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 3
+
+[node name="label" type="Label" parent="container/row_title/margin"]
+margin_left = 10.0
+margin_top = 3.0
+margin_right = 74.0
+margin_bottom = 26.0
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 1 )
+text = "游戏设置"
+valign = 1
+
+[node name="margin_container" type="MarginContainer" parent="container/row_title"]
+margin_left = 848.0
+margin_right = 880.0
+margin_bottom = 29.0
+custom_constants/margin_right = 12
+custom_constants/margin_top = 5
+
+[node name="button" type="Button" parent="container/row_title/margin_container"]
+margin_top = 5.0
+margin_right = 20.0
+margin_bottom = 25.0
+size_flags_vertical = 0
+text = "X"
+flat = true
+
+[node name="divider" type="ColorRect" parent="container"]
+margin_top = 29.0
+margin_right = 880.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 1 )

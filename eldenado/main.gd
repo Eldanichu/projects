@@ -1,6 +1,5 @@
 extends Node
 
-
 var splash
 const scene_start_path:String = "res://Scenes/start/start.tscn"
 var start:PackedScene = preload(scene_start_path)

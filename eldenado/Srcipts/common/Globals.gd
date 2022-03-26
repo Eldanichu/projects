@@ -3,6 +3,8 @@ class_name Globals
 
 const hp_const = 14;
 const mp_const = 13;
+const exp_const = 14
+const exp_factor = 1.1
 
 enum ClassType {
   Wizard = 1,
@@ -49,3 +51,10 @@ func get_class_stats(level:int,class_index:int = 0) -> Dictionary:
     "max_hp":max_hp,
     "max_mp":max_mp
   };
+
+
+func get_exp_by_level(level:int) -> int:
+  var time:int = level * 2 + 5
+  var exp_value:int = level * ( exp_const * exp_factor ) * time
+  return exp_value
+
