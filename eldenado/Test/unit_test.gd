@@ -5,17 +5,39 @@ onready var row:HBoxContainer = $col_1/row_2;
 var timer_count:int = 0
 var timer:CoolDown
 
+onready var stats = $m/vbox/top/stats
+var rnd = RandomNumberGenerator.new()
+
+func _on_hp_desc_pressed() -> void:
+  rnd.randomize()
+  stats.hp = stats.hp - rnd.randi_range(1,5)
+  pass
+
+
+func _on_hp_restore_pressed() -> void:
+  stats.hp = stats.hp_max
+  pass
+
+
+func _on_exp_inc_pressed() -> void:
+  rnd.randomize()
+  stats.iExp = stats.iExp + rnd.randi_range(10,1500)
+  pass
+
 func _ready() -> void:
-  Logger.debug(str(infobox.rect_size))
+  Logger.debug('test ready')
+
 
 func _on_class_pressed() -> void:
-  var sc = CustomClass.new();
-  sc._a = 'ddd'
-  callParam(sc)
-  timer = CoolDown.new("s1",1)
-  add_child(timer)
-  timer.connect("cooldown",self,"_on_cooldown")
-  timer.connect("done",self,"_on_timer_done")
+  find_node('label').value_b = 100.0
+  pass
+#  var sc = CustomClass.new();
+#  sc._a = 'ddd'
+#  callParam(sc)
+#  timer = CoolDown.new("s1",1)
+#  add_child(timer)
+#  timer.connect("cooldown",self,"_on_cooldown")
+#  timer.connect("done",self,"_on_timer_done")
 
 func callParam(b:CustomClass):
   pprint([b.a,b._a])

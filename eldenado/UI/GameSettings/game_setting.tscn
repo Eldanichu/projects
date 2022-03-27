@@ -1,14 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Fonts/h3.tres" type="DynamicFont" id=1]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.172549, 0.172549, 0.172549, 1 )
+[ext_resource path="res://Fonts/chn-14.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/GameSettings/game_setting.gd" type="Script" id=2]
+[ext_resource path="res://Themes/dialog_flat_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Assets/icons/settings.png" type="Texture" id=4]
 
 [node name="game_setting" type="Panel"]
-margin_right = 880.0
-margin_bottom = 505.0
-custom_styles/panel = SubResource( 1 )
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -440.0
+margin_top = -252.5
+margin_right = 440.0
+margin_bottom = 252.5
+theme = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="container" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -19,12 +27,12 @@ custom_constants/separation = 0
 
 [node name="row_title" type="HBoxContainer" parent="container"]
 margin_right = 880.0
-margin_bottom = 29.0
+margin_bottom = 33.0
 size_flags_horizontal = 3
 
 [node name="margin" type="MarginContainer" parent="container/row_title"]
-margin_right = 74.0
-margin_bottom = 29.0
+margin_right = 102.0
+margin_bottom = 33.0
 size_flags_horizontal = 2
 size_flags_vertical = 3
 custom_constants/margin_right = 0
@@ -32,33 +40,128 @@ custom_constants/margin_top = 3
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 3
 
-[node name="label" type="Label" parent="container/row_title/margin"]
+[node name="h_split_container" type="HSplitContainer" parent="container/row_title/margin"]
 margin_left = 10.0
 margin_top = 3.0
-margin_right = 74.0
-margin_bottom = 26.0
+margin_right = 102.0
+margin_bottom = 30.0
+
+[node name="texture_rect" type="TextureRect" parent="container/row_title/margin/h_split_container"]
+margin_top = 5.0
+margin_right = 16.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 16, 16 )
+size_flags_horizontal = 5
+size_flags_vertical = 4
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="container/row_title/margin/h_split_container"]
+margin_left = 28.0
+margin_right = 92.0
+margin_bottom = 27.0
 size_flags_vertical = 5
-custom_fonts/font = ExtResource( 1 )
 text = "游戏设置"
 valign = 1
 
 [node name="margin_container" type="MarginContainer" parent="container/row_title"]
 margin_left = 848.0
 margin_right = 880.0
-margin_bottom = 29.0
+margin_bottom = 33.0
+size_flags_horizontal = 10
+size_flags_vertical = 6
 custom_constants/margin_right = 12
 custom_constants/margin_top = 5
 
-[node name="button" type="Button" parent="container/row_title/margin_container"]
+[node name="close" type="Button" parent="container/row_title/margin_container"]
 margin_top = 5.0
 margin_right = 20.0
-margin_bottom = 25.0
+margin_bottom = 33.0
+focus_mode = 0
+size_flags_horizontal = 0
 size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+enabled_focus_mode = 0
 text = "X"
 flat = true
 
 [node name="divider" type="ColorRect" parent="container"]
-margin_top = 29.0
+margin_top = 33.0
 margin_right = 880.0
-margin_bottom = 30.0
+margin_bottom = 34.0
 rect_min_size = Vector2( 0, 1 )
+
+[node name="m" type="MarginContainer" parent="container"]
+margin_top = 34.0
+margin_right = 880.0
+margin_bottom = 469.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 8
+custom_constants/margin_top = 5
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="scroll_container" type="ScrollContainer" parent="container/m"]
+margin_left = 8.0
+margin_top = 5.0
+margin_right = 872.0
+margin_bottom = 427.0
+
+[node name="col_1" type="HBoxContainer" parent="container/m/scroll_container"]
+margin_right = 864.0
+margin_bottom = 422.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="row_1" type="VBoxContainer" parent="container/m/scroll_container/col_1"]
+margin_right = 88.0
+margin_bottom = 64.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="is_full_screen" type="CheckBox" parent="container/m/scroll_container/col_1/row_1"]
+margin_right = 88.0
+margin_bottom = 30.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "全屏"
+align = 1
+
+[node name="is_verticle_sync" type="CheckBox" parent="container/m/scroll_container/col_1/row_1"]
+margin_top = 34.0
+margin_right = 88.0
+margin_bottom = 64.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "垂直同步"
+align = 1
+
+[node name="row_2" type="VBoxContainer" parent="container/m/scroll_container/col_1"]
+margin_left = 434.0
+margin_right = 864.0
+margin_bottom = 422.0
+size_flags_horizontal = 3
+
+[node name="h_box_container" type="HBoxContainer" parent="container"]
+margin_left = 404.0
+margin_top = 469.0
+margin_right = 476.0
+margin_bottom = 505.0
+size_flags_horizontal = 6
+
+[node name="margin_container" type="MarginContainer" parent="container/h_box_container"]
+margin_right = 72.0
+margin_bottom = 36.0
+custom_constants/margin_bottom = 8
+
+[node name="save" type="Button" parent="container/h_box_container/margin_container"]
+margin_right = 72.0
+margin_bottom = 28.0
+text = "保存设置"
+
+[connection signal="pressed" from="container/row_title/margin_container/close" to="." method="_on_close_pressed"]
+[connection signal="toggled" from="container/m/scroll_container/col_1/row_1/is_full_screen" to="." method="_on_is_full_screen_toggled"]
+[connection signal="toggled" from="container/m/scroll_container/col_1/row_1/is_verticle_sync" to="." method="_on_is_verticle_sync_toggled"]
+[connection signal="pressed" from="container/h_box_container/margin_container/save" to="." method="_on_save_pressed"]

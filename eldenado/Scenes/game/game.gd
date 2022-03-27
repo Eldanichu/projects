@@ -1,15 +1,29 @@
 extends Control
 
 onready var stats = find_node('stats')
-
+onready var blur_bg = $blur
+onready var game_setting = $game_setting
 var globals:Globals = Globals.new()
 
 func _ready() -> void:
   Logger.debug('game ready')
+  hide_ui_without_game()
+  setup()
+
+func setup():
   stats.level = 1
   update_stats()
   init_stats()
   stats.connect("exp_change",self,"_exp_change")
+
+func hide_ui_without_game():
+  $game_setting.visible = false
+  blur_bg.visible = false
+
+func set_blur(show:bool = false):
+  blur_bg.set_visible(show)
+  get_tree().paused = show
+
 
 func update_stats():
   var level = stats.level
@@ -35,3 +49,8 @@ func _exp_change(e,percent,income):
 
 func _exit_tree() -> void:
   queue_free()
+
+
+func _on_game_setting_close() -> void:
+  set_blur(game_setting.visible)
+

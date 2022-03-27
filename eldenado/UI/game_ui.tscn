@@ -48,30 +48,3 @@ margin_left = 7.0
 margin_top = 7.0
 margin_right = 1343.0
 margin_bottom = 646.0
-
-[node name="hp_desc" type="Button" parent="m/vbox/vb_content/panel_container/h_box_container"]
-margin_right = 42.0
-margin_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "hp --"
-
-[node name="hp_restore" type="Button" parent="m/vbox/vb_content/panel_container/h_box_container"]
-margin_left = 46.0
-margin_right = 124.0
-margin_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "hp restore"
-
-[node name="exp_inc" type="Button" parent="m/vbox/vb_content/panel_container/h_box_container"]
-margin_left = 128.0
-margin_right = 186.0
-margin_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "exp inc"
-
-[connection signal="pressed" from="m/vbox/vb_content/panel_container/h_box_container/hp_desc" to="." method="_on_hp_desc_pressed"]
-[connection signal="pressed" from="m/vbox/vb_content/panel_container/h_box_container/hp_restore" to="." method="_on_hp_restore_pressed"]
-[connection signal="pressed" from="m/vbox/vb_content/panel_container/h_box_container/exp_inc" to="." method="_on_exp_inc_pressed"]
