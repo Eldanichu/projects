@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/bar-frame.png" type="Texture" id=1]
-[ext_resource path="res://Fonts/chn-14.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/ui/bar-frame.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/res/chn-14.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Srcipts/component/TweenTextureProgress/tween_progress.gd" type="Script" id=3]
 
 [node name="pg" type="TextureProgress"]

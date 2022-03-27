@@ -1,6 +1,8 @@
 extends Node
 class_name Player
 
+var player_name = "Eldan"
+var gold = 0
 var level = 1
 var class_type = 1
 
@@ -15,6 +17,8 @@ var iExp_max = 1
 
 func get_stats() -> Dictionary:
   return {
+    "player_name":player_name,
+    "gold":gold,
     "level":level,
     "class_type":class_type,
     "iExp":iExp

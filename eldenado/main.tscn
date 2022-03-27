@@ -4,6 +4,7 @@
 [ext_resource path="res://Scenes/splash/splash.tscn" type="PackedScene" id=5]
 
 [node name="main" type="Node"]
+pause_mode = 2
 script = ExtResource( 4 )
 
 [node name="splash" parent="." instance=ExtResource( 5 )]

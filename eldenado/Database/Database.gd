@@ -19,11 +19,10 @@ func _init() -> void:
 func load_monster():
   var table_name = "monster"
   db.query("select * from " + table_name + ";")
-  
+
   var rows = db.query_result
   for i in rows.size():
     monster.append(rows[i])
-  Logger.debug("result->"+JSON.print(monster))
 
 func get_monster() -> Array:
   return monster

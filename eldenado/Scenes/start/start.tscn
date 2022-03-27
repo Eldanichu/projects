@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/start/start.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/chn-25.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/res/chn-25.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Srcipts/component/Blur/blur.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/NewGame/new_game.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -65,14 +66,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="container" type="VBoxContainer" parent="margin"]
-margin_right = 1366.0
-margin_bottom = 768.0
+margin_right = 1280.0
+margin_bottom = 720.0
 
 [node name="menus" type="VBoxContainer" parent="margin/container"]
-margin_left = 627.0
-margin_top = 274.0
-margin_right = 738.0
-margin_bottom = 494.0
+margin_left = 584.0
+margin_top = 250.0
+margin_right = 695.0
+margin_bottom = 470.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
 custom_constants/separation = 20
@@ -117,14 +118,20 @@ root_node = NodePath("../margin/container/menus")
 anims/fade_in = SubResource( 1 )
 
 [node name="blur" parent="ani_fade_in" instance=ExtResource( 3 )]
-blur_amount = 5.0
+visible = false
+blur_amount = 0.0
 
 [node name="color_rect" type="ColorRect" parent="ani_fade_in"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0, 0, 0, 0 )
+
+[node name="new_game" parent="." instance=ExtResource( 4 )]
 
 [connection signal="pressed" from="margin/container/menus/start_game" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="margin/container/menus/load_game" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="margin/container/menus/game_settings" to="." method="_on_game_settings_pressed"]
 [connection signal="pressed" from="margin/container/menus/quit_game" to="." method="_on_quit_game_pressed"]
+[connection signal="cancel" from="new_game" to="." method="_on_new_game_cancel"]
+[connection signal="create" from="new_game" to="." method="_on_new_game_create"]
