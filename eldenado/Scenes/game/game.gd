@@ -5,36 +5,27 @@ onready var game_setting = $game_setting
 
 onready var stats = find_node('stats')
 
-var globals:Globals = Globals.new()
-
 func _ready() -> void:
   Logger.debug('game ready')
   setup()
 
 func setup():
   hide_ui_without_game()
-  stats.level = 1
-  update_stats()
-  init_stats()
-  stats.connect("exp_change",self,"_exp_change")
+  bind_events()
 
-
-func update_stats():
-  var level = stats.level
-  var class_stats:Dictionary = globals.get_class_stats(level,Store.player.class_type)
-  stats.hp_max = class_stats.max_hp
-  stats.mp_max = class_stats.max_mp
-  stats.iExp_max = globals.get_exp_by_level(level)
-
-func init_stats():
+func update_ui():
   stats.player_name = Store.player.player_name
+  stats.level = Store.player.level
   stats.class_type = Store.player.class_type
-  stats.hp = stats.hp_max
-  stats.mp = stats.mp_max
-  stats.iExp = 0
+  stats.hp_max = Store.player.hp_max
+  stats.hp = Store.player.hp
+  stats.mp_max = Store.player.mp_max
+  stats.mp = Store.player.mp
+  stats.iExp = Store.player.iExp
+  stats.iExp_max = Store.player.iExp_max
 
-func level_up():
-  stats.level = stats.level + 1
+func bind_events():
+  stats.connect("exp_change",self,"_exp_change")
 
 func hide_ui_without_game():
   game_setting.visible = false
@@ -55,9 +46,8 @@ func ui_keys_control():
 
 func _exp_change(e,percent,income):
   if percent >= 100:
-    level_up()
-    update_stats()
-    init_stats()
+    Store.player.level_up()
+    update_ui()
   pass
 
 func _input(event: InputEvent) -> void:

@@ -31,21 +31,3 @@ size_flags_horizontal = 3
 
 [node name="stats" parent="m/vbox/top" instance=ExtResource( 1 )]
 margin_bottom = 152.0
-
-[node name="vb_content" type="VBoxContainer" parent="m/vbox"]
-margin_top = 156.0
-margin_right = 1264.0
-margin_bottom = 704.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="panel_container" type="PanelContainer" parent="m/vbox/vb_content"]
-margin_right = 1264.0
-margin_bottom = 548.0
-size_flags_vertical = 3
-
-[node name="h_box_container" type="HBoxContainer" parent="m/vbox/vb_content/panel_container"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1257.0
-margin_bottom = 541.0
