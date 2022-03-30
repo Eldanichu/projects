@@ -1,19 +1,12 @@
 extends Node2D
 
-onready var game = $ctx/game
+onready var game = $window_ui/game_control
 
 var globals:Globals = Globals.new()
 
 func _ready() -> void:
   setup_stats()
   game.update_ui()
-  var cd = CoolDown.new("cd1",1)
-  add_child(cd)
-  cd.start()
-  yield(cd,"done")
-  Store.player.taken_damage(3)
-  game.update_ui()
-  pass # Replace with function body.
 
 func setup_stats():
   var level = Store.player.level

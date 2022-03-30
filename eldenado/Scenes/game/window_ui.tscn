@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/game/game_control.gd" type="Script" id=4]
+[ext_resource path="res://UI/game_ui.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI/GameSettings/game_setting.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Srcipts/component/Blur/blur.tscn" type="PackedScene" id=9]
+
+[node name="window_ui" type="CanvasLayer"]
+
+[node name="game_control" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="game_ui" parent="game_control" instance=ExtResource( 7 )]
+pause_mode = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="blur" parent="game_control" instance=ExtResource( 9 )]
+pause_mode = 2
+visible = false
+
+[node name="game_setting" parent="game_control" instance=ExtResource( 8 )]
+visible = false
+
+[connection signal="close" from="game_control/game_setting" to="game_control" method="_on_game_setting_close"]

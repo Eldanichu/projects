@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Fonts/res/chn-14.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/GameSettings/game_setting.gd" type="Script" id=2]
 [ext_resource path="res://Themes/dialog_flat_theme.tres" type="Theme" id=3]
-[ext_resource path="res://Assets/icons/settings.png" type="Texture" id=4]
 
 [node name="game_setting" type="Panel"]
 pause_mode = 2
@@ -53,7 +52,6 @@ margin_bottom = 21.0
 rect_min_size = Vector2( 16, 16 )
 size_flags_horizontal = 5
 size_flags_vertical = 4
-texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 

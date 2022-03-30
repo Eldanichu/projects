@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/game/game_node.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/game/window_ui.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Map/biqi.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Object/Player/Player.tscn" type="PackedScene" id=4]
+
+[node name="game_node" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="arena" parent="." instance=ExtResource( 3 )]
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( -112, 201 )
+
+[node name="window_ui" parent="." instance=ExtResource( 2 )]
