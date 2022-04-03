@@ -80,7 +80,7 @@ func set_logger_format(format : int):
   logger_format = format
   print("Logging Format is %s" % [_get_format_name(format)])
   print(" ")
-  
+
   for appender in logger_appenders:
     appender.logger_format = format
 
@@ -121,7 +121,7 @@ func warn(message : String, category : String = CATEGORY_GENERAL):
 #Function: error
 #	Log an Error Message.
 func error(message : String, category : String = CATEGORY_GENERAL):
-  _append(LOG_LEVEL_ERROR, message, category) 
+  _append(LOG_LEVEL_ERROR, message, category)
 
 
 #Function: fatal

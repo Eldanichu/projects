@@ -3,7 +3,7 @@ extends Control
 onready var new_game_dialog = find_node('new_game')
 
 var ani_menu_fade_in:AnimationPlayer
-var game:PackedScene = preload("res://Scenes/game/game.tscn")
+
 
 func _ready() -> void:
   new_game_dialog.visible = false
@@ -38,7 +38,7 @@ func _on_quit_game_pressed() -> void:
 func _on_new_game_create() -> void:
   ani_menu_fade_in.play_backwards("fade_in")
   yield(ani_menu_fade_in,"animation_finished")
-  get_tree().change_scene_to(game);
+#  get_tree().change_scene_to(game);
   pass # Replace with function body.
 
 
