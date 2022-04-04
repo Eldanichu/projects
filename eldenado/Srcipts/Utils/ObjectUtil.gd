@@ -11,3 +11,9 @@ static func is_null(obj):
   if _ref == null:
     return true
   return false
+
+static func entries(object:Dictionary,callback:FuncRef):
+  var keys = object.keys()
+  var values = object.values()
+  for i in range(0,keys.size()):
+    callback.call_func(keys[i],values[i])

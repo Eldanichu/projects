@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/CombatLog/CombatLog.gd" type="Script" id=1]
+[ext_resource path="res://Themes/logger.tres" type="Theme" id=2]
+
+[node name="logger" type="RichTextLabel"]
+margin_right = 463.0
+margin_bottom = 324.0
+focus_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+bbcode_enabled = true
+scroll_following = true
+selection_enabled = true
+script = ExtResource( 1 )
