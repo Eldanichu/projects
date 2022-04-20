@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/start/start.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/res/chn-25.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Srcipts/component/Blur/blur.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/NewGame/new_game.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
@@ -26,30 +25,6 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ true, false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../../../ani_fade_in/blur:blur_amount")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 5.0, 0.0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../../../ani_fade_in/blur:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -117,17 +92,13 @@ text = "退出游戏"
 root_node = NodePath("../margin/container/menus")
 anims/fade_in = SubResource( 1 )
 
-[node name="blur" parent="ani_fade_in" instance=ExtResource( 3 )]
-visible = false
-blur_amount = 0.0
-
 [node name="color_rect" type="ColorRect" parent="ani_fade_in"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="new_game" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [connection signal="pressed" from="margin/container/menus/start_game" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="margin/container/menus/load_game" to="." method="_on_load_game_pressed"]
