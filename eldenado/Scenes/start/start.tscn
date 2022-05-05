@@ -1,35 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/start/start.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/res/chn-25.tres" type="DynamicFont" id=2]
 [ext_resource path="res://UI/NewGame/new_game.tscn" type="PackedScene" id=4]
-
-[sub_resource type="Animation" id=1]
-resource_name = "fade_in"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../../../ani_fade_in/color_rect:color")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../../../ani_fade_in/color_rect:visible")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ true, false ]
-}
 
 [node name="start" type="Control"]
 anchor_right = 1.0
@@ -87,15 +60,6 @@ focus_mode = 0
 custom_fonts/font = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "退出游戏"
-
-[node name="ani_fade_in" type="AnimationPlayer" parent="."]
-root_node = NodePath("../margin/container/menus")
-anims/fade_in = SubResource( 1 )
-
-[node name="color_rect" type="ColorRect" parent="ani_fade_in"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
 
 [node name="new_game" parent="." instance=ExtResource( 4 )]
 visible = false

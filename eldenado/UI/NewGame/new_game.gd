@@ -11,7 +11,6 @@ func _on_set_class(pressed):
   var g:ButtonGroup = player_class.get_button_group()
   var selected = g.get_pressed_button()
   Store.player.class_type = Globals.ClassType[selected.name]
-  pass
 
 
 func _on_input_player_name_text_changed(new_text: String) -> void:
@@ -28,4 +27,3 @@ func _on_create_player_pressed() -> void:
 
 func _on_cancel_pressed() -> void:
   emit_signal("cancel")
-  pass # Replace with function body.

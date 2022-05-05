@@ -15,11 +15,19 @@ var mp_max = 1
 var iExp = 0
 var iExp_max = 1
 
+func setup_char_props():
+  var g:Globals = Globals.new()
+  var props = g.get_class_stats(level,class_type)
+  hp_max = props.max_hp
+  mp_max = props.max_mp
+
+
 func taken_damage(damge:int):
   hp = hp - damge
 
 func level_up():
   level = level + 1
+  setup_char_props()
   mp = mp_max
   hp = hp_max
   iExp = 0

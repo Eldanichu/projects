@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://UI/ui.gd" type="Script" id=1]
 [ext_resource path="res://UI/GameSettings/game_setting.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Srcipts/component/Blur/blur.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/Top/ui_top.tscn" type="PackedScene" id=4]
 
 [node name="ui" type="Control"]
@@ -17,10 +16,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="game_setting" parent="." instance=ExtResource( 2 )]
-visible = false
-
-[node name="blur" parent="." instance=ExtResource( 3 )]
-pause_mode = 2
 visible = false
 
 [connection signal="close" from="game_setting" to="." method="_on_game_setting_close"]
