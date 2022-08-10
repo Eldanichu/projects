@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/Utils/GameUtils.gd"
 }, {
+"base": "EditorVCSInterface",
+"class": "GitAPI",
+"language": "NativeScript",
+"path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
 "base": "Node",
 "class": "Global",
 "language": "GDScript",
@@ -152,6 +157,7 @@ _global_script_class_icons={
 "DropInfo": "",
 "FileAppender": "",
 "GameUtils": "",
+"GitAPI": "",
 "Global": "",
 "Globals": "",
 "HtmlLayout": "",
@@ -199,11 +205,17 @@ window/stretch/aspect="keep"
 
 [editor]
 
+version_control_autoload_on_startup=true
+version_control_plugin_name="GitAPI"
 convert_text_resources_to_binary_on_export=true
 
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/godot-sqlite/plugin.cfg", "res://addons/gs_logger/plugin.cfg" )
+
+[gdnative]
+
+singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
 
 [input]
 
@@ -273,6 +285,10 @@ ui_pause={
 
 name_num_separator=2
 name_casing=2
+
+[physics]
+
+common/physics_interpolation=true
 
 [rendering]
 
