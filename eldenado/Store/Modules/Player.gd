@@ -1,10 +1,11 @@
 extends Node
 class_name Player
 
-var player_name = "player_name"
+var player_name = "unnamed"
 var gold = 0
-var level = 0
-var class_type = 1
+var level = 1
+var c_class = 1
+var t_class = ""
 
 var hp = 0
 var hp_max = 1
@@ -12,31 +13,36 @@ var hp_max = 1
 var mp = 0
 var mp_max = 1
 
-var iExp = 0
-var iExp_max = 1
+var c_exp = 0
+var c_exp_max = 1
 
-func setup_char_props():
-  var g:Globals = Globals.new()
-  var props = g.get_class_stats(level,class_type)
-  hp_max = props.max_hp
-  mp_max = props.max_mp
+func setup():
+  pass
 
+func set_player_name(name:String):
+  player_name = name
 
-func taken_damage(damge:int):
-  hp = hp - damge
+func set_player_class(class_type):
+  c_class = class_type
+  t_class = Globals.ClassName[c_class]
 
-func level_up():
+func get_class_name():
+  return t_class
+
+func updateStats():
+  var _g = Globals.new()
+  var _stat = _g.get_class_stats(level,c_class)
+  hp_max = _stat.max_hp
+  mp_max = _stat.max_mp
+  var _exp = _g.get_exp_by_level(level)
+  c_exp_max = _exp
+
+func levelup():
   level = level + 1
-  setup_char_props()
-  mp = mp_max
+  updateStats()
   hp = hp_max
-  iExp = 0
+  mp = mp_max
+  c_exp = 0
 
-func get_stats() -> Dictionary:
-  return {
-    "player_name":player_name,
-    "gold":gold,
-    "level":level,
-    "class_type":class_type,
-    "iExp":iExp
-   }
+
+

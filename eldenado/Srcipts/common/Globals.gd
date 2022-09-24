@@ -12,6 +12,12 @@ enum ClassType {
   Warrior = 0
 }
 
+const ClassName = {
+  1 : "法师",
+  2 : "道士",
+  0 : "战士"
+}
+
 var wizard:Dictionary = {
   "hp_base":15,
   "hp_acc":1.8,

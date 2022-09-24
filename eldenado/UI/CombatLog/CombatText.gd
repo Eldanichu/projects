@@ -9,7 +9,7 @@ enum LogType {
   DAMAGE = 1,
   GET_ITEM = 2,
   ITEM_LOSS = 3
- }
+}
 
 func _init() -> void:
   self.texts = []
@@ -47,16 +47,16 @@ func indent_text(text,indent:int = 1) -> String:
 
 func img(url:String,width:float,height:float) -> String:
   var _str = "[img={width}x{height}]{url}[/img]".format(
-      {
-        "url":url,
-        "width":width,
-        "height":height
-      }
+    {
+      "url":url,
+      "width":width,
+      "height":height
+    }
     )
   return _str
 
 func append(text:String) -> CombatText:
-  self.texts.append(text)
+  self.texts.append(indent_text(text,1))
   return self
 
 func formatter(type:int,messages:Array) -> String:

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/AutoBattle/AutoBattle.gd" type="Script" id=2]
+[ext_resource path="res://Srcipts/component/TweenTextureProgress/tween_progress.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/ui/mana-bar.png" type="Texture" id=5]
+
+[node name="auto_battle" type="Timer"]
+autostart = true
+script = ExtResource( 2 )
+
+[node name="PlayerIndicator" parent="." instance=ExtResource( 3 )]
+step = 0.01
+duration = 0.0
+texture = ExtResource( 5 )
+
+[node name="EnemyIndicator" parent="." instance=ExtResource( 3 )]
+margin_left = 3.0
+margin_top = 39.0
+margin_right = 93.0
+margin_bottom = 62.0
+step = 0.01
+duration = 0.0

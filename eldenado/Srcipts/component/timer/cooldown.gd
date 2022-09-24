@@ -4,10 +4,8 @@ class_name CoolDown
 signal cooldown(value)
 signal done(ready)
 
-
 var is_ready:bool = false
 var reduce_amount:float = 0.0
-
 
 export(float) var cooldown:float = 0
 export(bool) var idle:bool = false

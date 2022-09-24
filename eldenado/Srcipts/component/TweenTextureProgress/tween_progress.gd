@@ -1,46 +1,64 @@
 extends TextureProgress
 class_name TweenProgress
 
-export(int) var b_percent = 0 setget set_b_percent
-export(String) var b_text = 0 setget set_b_text
-export(int,-64,64) var duration = 0.5
+onready var pg:TextureProgress = $"."
+onready var lbl_text:Label = get_node("%text")
+onready var tween_pg:Tween = get_node("%tween_pg")
+
+export(float) var v_val = 0 setget set_v_val
+export(float) var v_max = 100 setget set_v_max
+
+export(String) var t_val = "0" setget set_t_val
+export(String) var t_max = "0" setget set_t_max
+
+export(float,0,1) var duration = 0.5
 export(Texture) var texture
 
-onready var pg:TextureProgress = $"."
-onready var lbl_text:Label = $text
-onready var tween_pg:Tween = $tween_pg
-
 var tween_is_start = false
+var p_percent = 0
 
 func _ready() -> void:
-  pg.max_value = 100
-  pg.texture_progress = texture
+  setup()
 
-func set_b_percent(new_percent):
-  if b_percent <= 0:
-    b_percent = 0
+func _process(delta: float) -> void:
+  set_value_tween()
+
+func setup():
+  tween_pg.connect("tween_started",self,"_on_tween_pg_tween_started")
+  tween_pg.connect("tween_completed",self,"_on_tween_pg_tween_completed")
+  pg.texture_progress = texture
+  set_value_tween();
+
+func set_value_tween():
+  lbl_text.text = "{0}/{1}".format([t_val,t_max])
+  pg.max_value = v_max
+
+  if tween_is_start:
+    return
   tween_pg.interpolate_property(
     pg,"value",
-    b_percent,new_percent,
+    p_percent,v_val,
     duration,
     Tween.TRANS_SINE,
     Tween.EASE_IN
   )
-  b_percent = new_percent
-  if !tween_is_start:
-    tween_pg.start()
-  yield(tween_pg,"tween_started")
-  tween_is_start = true
-  yield(tween_pg,"tween_completed")
+  p_percent = v_val
+  tween_pg.start()
+
+func set_v_val(v):
+  v_val = v
+
+func set_v_max(v):
+  v_max = v
+
+func set_t_val(v):
+  t_val = v
+
+func set_t_max(v):
+  t_max = v
+
+func _on_tween_pg_tween_completed(object: Object, key: NodePath) -> void:
   tween_is_start = false
 
-func set_b_text(new_text):
-  lbl_text.text = new_text
-  pass
-
-# unused
-func get_delay() -> float:
-  var _delay = 0
-  if b_percent == 100:
-    _delay = duration + 0.5
-  return _delay
+func _on_tween_pg_tween_started(object: Object, key: NodePath) -> void:
+  tween_is_start = true

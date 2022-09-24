@@ -1,29 +1,27 @@
-extends Panel
+extends CanvasLayer
 
-onready var player_name = find_node('input_player_name')
-onready var player_class = find_node('class')
+onready var player_name = get_node('%input_name')
+onready var player_class = get_node('%class')
 
-signal create
+signal create(info)
 signal cancel
 
-
-func _on_set_class(pressed):
+func get_selected_class() -> int:
   var g:ButtonGroup = player_class.get_button_group()
   var selected = g.get_pressed_button()
-  Store.player.class_type = Globals.ClassType[selected.name]
-
-
-func _on_input_player_name_text_changed(new_text: String) -> void:
-  Store.player.player_name = new_text
+  return Globals.ClassType[selected.name]
 
 
 func _on_create_player_pressed() -> void:
   var _text = player_name.text
   if _text == null or _text.strip_escapes() == "":
     return
-  visible = false
-  emit_signal("create")
-
+  var _class_type = get_selected_class()
+  var info = {
+      "c_class":_class_type,
+      "c_name":_text
+   }
+  emit_signal("create",info)
 
 func _on_cancel_pressed() -> void:
   emit_signal("cancel")
