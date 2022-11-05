@@ -10,7 +10,8 @@ var reduce_amount:float = 0.0
 export(float) var cooldown:float = 0
 export(bool) var idle:bool = false
 
-func _init(id:String, p_cd:int = cooldown):
+func _init(id:String, p_cd:float = cooldown):
+  self.set_unique_name_in_owner(true)
   self.name = id
   if(p_cd > 0):
     cooldown = p_cd
@@ -19,6 +20,7 @@ func _init(id:String, p_cd:int = cooldown):
   var err = self.connect("timeout",self,"_on_timeout")
   if err != OK:
     Logger.error('timer event is not correct')
+
 
 func _process(delta):
   if has_remining():
@@ -31,7 +33,7 @@ func update():
   emit_signal("cooldown", "%.2f" % self.time_left)
 
 func has_remining():
-  return self.time_left < 0 or self.time_left == 0
+  return self.time_left <= 0.00
 
 func reduce_cooldown():
   if(reduce_amount > 0):
@@ -56,8 +58,8 @@ func restart():
 
 func finish():
   set_ready(true)
-  emit_signal("done",is_ready)
   self.stop()
+  emit_signal("done",is_ready)
 
 func isIdle() -> bool:
   return idle
