@@ -68,7 +68,7 @@ func roll_special_dice(num_sides = 6, advantage = true, num_dice = 2, num_result
 
 			if replace_id:
 				rolls[replace_id] = roll
-	
+
 	var result = 0
 
 	for i in range(0, num_rolls):
@@ -135,7 +135,7 @@ func table_create(id, rollable_table: Array) -> void:
 func table_roll(id):
 	if !tables[id]:
 		return
-	
+
 	var target_table = tables[id].active
 	var total_weight = 0
 	var num_entries = target_table.size()
@@ -167,5 +167,5 @@ func table_roll(id):
 func table_reset(id):
 	if !tables[id]:
 		return
-	
+
 	tables[id].active = tables[id].original.duplicate(true)

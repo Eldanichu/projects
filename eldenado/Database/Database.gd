@@ -9,27 +9,27 @@ var db_name = "res://Database/m1"
 var monster:Array = []
 
 func _init() -> void:
-  db = SQLite.new()
-  db.path = db_name
-  db.open_db()
-  load_monster()
-  pass
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	load_monster()
+	pass
 
 
 func load_monster():
-  var table_name = "monster"
-  db.query("select * from " + table_name + ";")
+	var table_name = "monster"
+	db.query("select * from " + table_name + ";")
 
-  var rows = db.query_result
-  for i in rows.size():
-    monster.append(rows[i])
+	var rows = db.query_result
+	for i in rows.size():
+		monster.append(rows[i])
 
 func get_monster() -> Array:
-  return monster
-  pass
+	return monster
+	pass
 
 func close():
-  db.close_db()
+	db.close_db()
 
 func _exit_tree() -> void:
-  db.close_db()
+	db.close_db()

@@ -5,11 +5,11 @@ var settings:Settings = Settings.new()
 var player:Player = Player.new()
 
 func free_all():
-  global.queue_free()
-  settings.queue_free()
-  player.queue_free()
+	global.queue_free()
+	settings.queue_free()
+	player.queue_free()
 
 
 func _exit_tree() -> void:
-  free_all()
-  queue_free()
+	free_all()
+	queue_free()
