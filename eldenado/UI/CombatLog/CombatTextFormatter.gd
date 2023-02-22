@@ -46,7 +46,12 @@ func invoke() -> void:
 func skill_cooldown() -> void:
   var ct = CombatText.new(format_text)
   ct.color_text('#f00')
-  var _str = "技能冷却剩于{value}秒".format({"value":ct.toString()})
+  var ct_str = ct.toString()
+  var _str
+  if is_object():
+    _str = "{from}冷却剩于{to}秒".format({"to":ct_str})
+  else:
+    _str = "技能冷却剩于{value}秒".format({"value":ct_str})
   ct.queue_free()
   text_res = _str
 

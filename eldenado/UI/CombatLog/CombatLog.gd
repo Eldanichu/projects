@@ -25,3 +25,4 @@ func println_code_string(combat_text_string:String):
 func clear_screen()->void:
   if line_number >= MAX_LINE:
     clear()
+    line_number = 1

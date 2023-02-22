@@ -2,6 +2,10 @@ extends Control
 
 onready var combat_log = get_node("%combat_log")
 onready var timer = AdjustableTimer.new(self)
+var gct := CombatTextFormatter.new()
+
+func _exit_tree() -> void:
+  gct.queue_free();
 
 func _on_append_text_pressed() -> void:
 	var combat_text := CombatTextFormatter.new()
@@ -18,7 +22,10 @@ func _on_Add_Timer_pressed() -> void:
 	timer.start_timer()
 
 func _on_timer_remaining(remains):
-	pass
+  gct.set_formatter(CombatTextFormatter.LogType.SKILL_COOLDOWN)
+  gct.set_text(str(remains))
+  combat_log.println_code_string(gct.get_string())
+  pass
 
 func _on_reduce_pressed() -> void:
 	var amount = float(get_node("%amount").text)
