@@ -21,3 +21,4 @@ mono_crash.*.json
 /visuals
 /audio
 /godot/debug/save
+.idea
