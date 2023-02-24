@@ -19,10 +19,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/Utils/ArrayUtil.gd"
 }, {
-"base": "AdjustableTimer",
+"base": "Node",
 "class": "BaseAttack",
 "language": "GDScript",
-"path": "res://Srcipts/component/adjustable-timer/BaseAttck.gd"
+"path": "res://Srcipts/Objects/BaseAttck.gd"
 }, {
 "base": "Reference",
 "class": "BigNumber",

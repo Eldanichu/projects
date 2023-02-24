@@ -1,4 +1,4 @@
-extends AdjustableTimer
+extends Node
 class_name BaseAttack
 
 var can_attack:bool = false
