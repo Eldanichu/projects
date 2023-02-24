@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/component/adjustable-timer/AdjustableTimer.gd"
 }, {
-"base": "Reference",
-"class": "Appender",
-"language": "GDScript",
-"path": "res://addons/gs_logger/appender.gd"
-}, {
 "base": "Node",
 "class": "ArrayUtil",
 "language": "GDScript",
@@ -44,11 +39,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/CombatLog/CombatTextFormatter.gd"
 }, {
-"base": "Appender",
-"class": "ConsoleAppender",
-"language": "GDScript",
-"path": "res://addons/gs_logger/appenders/console_appender.gd"
-}, {
 "base": "Timer",
 "class": "CoolDown",
 "language": "GDScript",
@@ -64,30 +54,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Database/Database.gd"
 }, {
-"base": "Reference",
-"class": "Dicebag",
-"language": "GDScript",
-"path": "res://addons/dicebag-godot/Dicebag.gd"
-}, {
 "base": "Resource",
 "class": "DropInfo",
 "language": "GDScript",
 "path": "res://Srcipts/DropInfo/index.gd"
 }, {
-"base": "Appender",
-"class": "FileAppender",
-"language": "GDScript",
-"path": "res://addons/gs_logger/appenders/file_appender.gd"
-}, {
 "base": "Node",
 "class": "GameUtils",
 "language": "GDScript",
 "path": "res://Srcipts/Utils/GameUtils.gd"
-}, {
-"base": "EditorVCSInterface",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
 "base": "Node",
 "class": "Global",
@@ -99,40 +74,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/common/Globals.gd"
 }, {
-"base": "Layout",
-"class": "HtmlLayout",
-"language": "GDScript",
-"path": "res://addons/gs_logger/layouts/html_layout.gd"
-}, {
 "base": "Node",
 "class": "Json",
 "language": "GDScript",
 "path": "res://Srcipts/Utils/JSON.gd"
-}, {
-"base": "Reference",
-"class": "Layout",
-"language": "GDScript",
-"path": "res://addons/gs_logger/layout.gd"
 }, {
 "base": "Resource",
 "class": "LootTable",
 "language": "GDScript",
 "path": "res://Srcipts/common/loot_table.gd"
 }, {
-"base": "Reference",
-"class": "Message",
-"language": "GDScript",
-"path": "res://addons/gs_logger/message.gd"
-}, {
 "base": "Node",
 "class": "ObjectUtil",
 "language": "GDScript",
 "path": "res://Srcipts/Utils/ObjectUtil.gd"
-}, {
-"base": "Layout",
-"class": "PatternLayout",
-"language": "GDScript",
-"path": "res://addons/gs_logger/layouts/pattern_layout.gd"
 }, {
 "base": "Node",
 "class": "Player",
@@ -154,11 +109,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/component/TweenTextureProgress/tween_progress.gd"
 }, {
-"base": "Reference",
-"class": "Utils",
-"language": "GDScript",
-"path": "res://addons/gs_logger/utils.gd"
-}, {
 "base": "Resource",
 "class": "Xstate",
 "language": "GDScript",
@@ -166,35 +116,25 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AdjustableTimer": "",
-"Appender": "",
 "ArrayUtil": "",
 "BaseAttack": "",
 "BigNumber": "",
 "CombatText": "",
 "CombatTextFormatter": "",
-"ConsoleAppender": "",
 "CoolDown": "",
 "CustomClass": "",
 "Database": "",
-"Dicebag": "",
 "DropInfo": "",
-"FileAppender": "",
 "GameUtils": "",
-"GitAPI": "",
 "Global": "",
 "Globals": "",
-"HtmlLayout": "",
 "Json": "",
-"Layout": "",
 "LootTable": "",
-"Message": "",
 "ObjectUtil": "",
-"PatternLayout": "",
 "Player": "",
 "Settings": "",
 "Stats": "",
 "TweenProgress": "",
-"Utils": "",
 "Xstate": ""
 }
 
@@ -237,11 +177,11 @@ convert_text_resources_to_binary_on_export=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot-sqlite/plugin.cfg", "res://addons/gs_logger/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [gdnative]
 
-singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
+singletons=[  ]
 
 [input]
 

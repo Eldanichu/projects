@@ -12,4 +12,4 @@ func _ready() -> void:
 func create_game_sence():
 	yield(splash,"splash_end")
 	get_tree().change_scene_to(start)
-	Logger.debug('creating game sence')
+	print_debug('creating game sence')

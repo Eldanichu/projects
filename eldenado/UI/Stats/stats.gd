@@ -28,41 +28,41 @@ export (String) var PlayerClass = "战士"
 
 
 func _ready() -> void:
-  setup()
+	setup()
 
 func _process(delta: float) -> void:
-  setup()
+	setup()
 
 func setup() -> void:
-  get_stats()
+	get_stats()
 
 
 func get_stats():
-  m_player_name.text = PlayerName
-  m_player_class.text = PlayerClass
-  m_gold.text = Gold
+	m_player_name.text = PlayerName
+	m_player_class.text = PlayerClass
+	m_gold.text = Gold
 
-  var p_hp = GameUtils.get_percent(Hp,MaxHp)
-  var p_mp = GameUtils.get_percent(Mp,MaxMp)
-  var p_exp = GameUtils.get_percent(Exp,MaxExp)
-  m_hp.set_v_max(100)
-  m_hp.set_v_val(p_hp)
+	var p_hp = GameUtils.get_percent(Hp,MaxHp)
+	var p_mp = GameUtils.get_percent(Mp,MaxMp)
+	var p_exp = GameUtils.get_percent(Exp,MaxExp)
+	m_hp.set_v_max(100)
+	m_hp.set_v_val(p_hp)
 
-  m_mp.set_v_max(100)
-  m_mp.set_v_val(p_mp)
+	m_mp.set_v_max(100)
+	m_mp.set_v_val(p_mp)
 
-  m_exp.set_v_max(100)
-  m_exp.set_v_val(p_exp)
+	m_exp.set_v_max(100)
+	m_exp.set_v_val(p_exp)
 
-  m_hp.set_t_max(MaxHp)
-  m_hp.set_t_val(Hp)
+	m_hp.set_t_max(MaxHp)
+	m_hp.set_t_val(Hp)
 
-  m_mp.set_t_max(MaxMp)
-  m_mp.set_t_val(Mp)
+	m_mp.set_t_max(MaxMp)
+	m_mp.set_t_val(Mp)
 
-  m_exp.set_t_max(MaxExp)
-  m_exp.set_t_val(Exp)
+	m_exp.set_t_max(MaxExp)
+	m_exp.set_t_val(Exp)
 
 
 func set_level(v) -> void:
-  Level = v
+	Level = v

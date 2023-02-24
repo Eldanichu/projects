@@ -11,66 +11,66 @@ export(float) var cooldown:float = 0
 export(bool) var idle:bool = false
 
 func _init(id:String, p_cd:float = cooldown):
-  self.set_unique_name_in_owner(true)
-  self.name = id
-  if(p_cd > 0):
-    cooldown = p_cd
-  self.set_wait_time(cooldown)
-  self.set_autostart(true)
-  var err = self.connect("timeout",self,"_on_timeout")
-  if err != OK:
-    Logger.error('timer event is not correct')
+	self.set_unique_name_in_owner(true)
+	self.name = id
+	if(p_cd > 0):
+		cooldown = p_cd
+	self.set_wait_time(cooldown)
+	self.set_autostart(true)
+	var err = self.connect("timeout",self,"_on_timeout")
+	if err != OK:
+		print_debug('timer event is not correct')
 
 
 func _process(delta):
-  if has_remining():
-    return
-  update()
+	if has_remining():
+		return
+	update()
 
 func update():
-  set_ready(false)
-  reduce_cooldown()
-  emit_signal("cooldown", "%.2f" % self.time_left)
+	set_ready(false)
+	reduce_cooldown()
+	emit_signal("cooldown", "%.2f" % self.time_left)
 
 func has_remining():
-  return self.time_left <= 0.00
+	return self.time_left <= 0.00
 
 func reduce_cooldown():
-  if(reduce_amount > 0):
-    var amount = time_left - reduce_amount
-    if amount >= 0:
-      self.set_wait_time(amount)
-      self.start()
-      reduce_amount = 0
+	if(reduce_amount > 0):
+		var amount = time_left - reduce_amount
+		if amount >= 0:
+			self.set_wait_time(amount)
+			self.start()
+			reduce_amount = 0
 
 func _on_timeout():
-  if !restart():
-    finish()
+	if !restart():
+		finish()
 
 func restart():
-  if not isIdle():
-    queue_free()
-    return false
-  if not is_ready or isIdle():
-    self.set_wait_time(cooldown)
-    self.start()
-    return true
+	if not isIdle():
+		queue_free()
+		return false
+	if not is_ready or isIdle():
+		self.set_wait_time(cooldown)
+		self.start()
+		return true
 
 func finish():
-  set_ready(true)
-  self.stop()
-  emit_signal("done",is_ready)
+	set_ready(true)
+	self.stop()
+	emit_signal("done",is_ready)
 
 func isIdle() -> bool:
-  return idle
+	return idle
 
 func set_reduce_amount(value:float):
-  if value == null or value <= 0:
-    reduce_amount = 0
-  reduce_amount = value
+	if value == null or value <= 0:
+		reduce_amount = 0
+	reduce_amount = value
 
 func set_ready(reday:bool):
-  is_ready = reday
+	is_ready = reday
 
 func _exit_tree() -> void:
-  queue_free();
+	queue_free();

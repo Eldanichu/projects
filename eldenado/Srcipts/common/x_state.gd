@@ -17,7 +17,7 @@ func _change_state(newState:String, newAction:String) -> void:
 		set_action(newAction)
 		states[get_state()] = get_action()
 
-func _transition(inst, params:Dictionary):
+func _transition(inst:Node, params:Dictionary):
 		print("transitioning..")
 		var action_func:String = states[get_state()]
 		var action_func_name:String = "_use" + action_func

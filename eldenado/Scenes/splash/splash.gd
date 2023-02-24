@@ -11,7 +11,7 @@ func _ready() -> void:
 	setup()
 
 func setup():
-	Logger.debug("current game version->" + Store.global.version)
+	print_debug("current game version->" + Store.global.version)
 	version.set_text(Store.global.version)
 	author.set_text(Store.global.author)
 	delay_timer = CoolDown.new('screen_delay',1)
@@ -19,6 +19,6 @@ func setup():
 	delay_timer.start()
 	yield(delay_timer,"done")
 	delay_timer.queue_free();
-	Logger.debug('delay_timer is free')
+	print_debug('delay_timer is free')
 	emit_signal("splash_end")
 	pass
