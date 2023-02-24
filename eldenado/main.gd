@@ -7,9 +7,9 @@ var start:PackedScene = preload(scene_start_path)
 onready var splash = get_node("%splash")
 
 func _ready() -> void:
-	create_game_sence()
+  create_game_sence()
 
 func create_game_sence():
-	yield(splash,"splash_end")
-	get_tree().change_scene_to(start)
-	print_debug('creating game sence')
+  yield(splash,"splash_end")
+  get_tree().change_scene_to(start)
+  print_debug('creating game sence')

@@ -49,11 +49,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Test/spec_class.gd"
 }, {
-"base": "Node",
-"class": "Database",
-"language": "GDScript",
-"path": "res://Database/Database.gd"
-}, {
 "base": "Resource",
 "class": "DropInfo",
 "language": "GDScript",
@@ -123,7 +118,6 @@ _global_script_class_icons={
 "CombatTextFormatter": "",
 "CoolDown": "",
 "CustomClass": "",
-"Database": "",
 "DropInfo": "",
 "GameUtils": "",
 "Global": "",
@@ -148,7 +142,6 @@ boot_splash/bg_color=Color( 0, 0, 0, 1 )
 
 [autoload]
 
-Logger="*res://addons/gs_logger/logger.gd"
 Store="*res://Store/Store.gd"
 
 [debug]
