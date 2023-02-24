@@ -16,41 +16,41 @@ var reduce_amount:float
 var timeout:bool = false
 
 func _init(node:Node) -> void:
-  self.timer_id = timer_id
-  _node = node
-  var isUnique = unique_timer();
-  print(isUnique)
-  if !isUnique:
-    attach_to_node(node)
+	self.timer_id = timer_id
+	_node = node
+	var isUnique = unique_timer();
+	print(isUnique)
+	if !isUnique:
+		attach_to_node(node)
 
 
 func _ready() -> void:
-  setup()
-  connect("timeout",self,"_on_timer_timeout")
-  pass
+	setup()
+	connect("timeout",self,"_on_timer_timeout")
+	pass
 
 func _process(delta: float) -> void:
-  if timeout:
-    return
-  emit_remains();
+	if timeout:
+		return
+	emit_remains();
 
 func setup()->void:
-  wait_time = Interval
-  reduce_amount = Interval
-  autostart = AutoStart
-  one_shot = once
+	wait_time = Interval
+	reduce_amount = Interval
+	autostart = AutoStart
+	one_shot = once
 
 func emit_remains()-> void:
-  remains = get_time_left();
-  if timeout:
-    remains = 0
-    wait_time = 0
-    stop()
-  emit_signal('remains',remains);
+	remains = get_time_left();
+	if timeout:
+		remains = 0
+		wait_time = 0
+		stop()
+	emit_signal('remains',remains);
 
 func _on_timer_timeout():
-  timeout = true
-  emit_remains()
+	timeout = true
+	emit_remains()
 
 func start_timer() -> void:
   var stopped = is_stopped()
