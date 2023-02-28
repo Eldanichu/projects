@@ -76,7 +76,42 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 50, 0 )
 size_flags_horizontal = 3
 
+[node name="v_box_container" type="VBoxContainer" parent="v_box_container/h_box_container/v_box_container"]
+margin_top = 112.0
+margin_right = 224.0
+margin_bottom = 180.0
+
+[node name="append_item" type="Button" parent="v_box_container/h_box_container/v_box_container/v_box_container"]
+margin_right = 224.0
+margin_bottom = 20.0
+text = "append item"
+
+[node name="roll_item" type="Button" parent="v_box_container/h_box_container/v_box_container/v_box_container"]
+margin_top = 24.0
+margin_right = 224.0
+margin_bottom = 44.0
+text = "roll item"
+
+[node name="h_box_container" type="HBoxContainer" parent="v_box_container/h_box_container/v_box_container/v_box_container"]
+margin_top = 48.0
+margin_right = 224.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+
+[node name="roll_amounts" type="Button" parent="v_box_container/h_box_container/v_box_container/v_box_container/h_box_container"]
+margin_right = 154.0
+margin_bottom = 20.0
+text = "Roll item with amount"
+
+[node name="text_edit" type="TextEdit" parent="v_box_container/h_box_container/v_box_container/v_box_container/h_box_container"]
+margin_left = 158.0
+margin_right = 224.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
 [connection signal="pressed" from="v_box_container/h_box_container/v_box_container/append_text" to="." method="_on_append_text_pressed"]
 [connection signal="pressed" from="v_box_container/h_box_container/v_box_container/Add Timer" to="." method="_on_Add_Timer_pressed"]
 [connection signal="pressed" from="v_box_container/h_box_container/v_box_container/Start Timer" to="." method="_on_Start_Timer_pressed"]
 [connection signal="pressed" from="v_box_container/h_box_container/v_box_container/h_box_container/reduce" to="." method="_on_reduce_pressed"]
+[connection signal="pressed" from="v_box_container/h_box_container/v_box_container/v_box_container/append_item" to="." method="_on_append_item_pressed"]
+[connection signal="pressed" from="v_box_container/h_box_container/v_box_container/v_box_container/roll_item" to="." method="_on_roll_item_pressed"]

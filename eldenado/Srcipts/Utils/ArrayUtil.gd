@@ -5,7 +5,7 @@ static func copy_deep(array:Array):
 	return array.duplicate(true)
 	pass
 
-static func join(array:Array, spliter:String = "",keep_last = false):
+static func join(array:Array, spliter:String = "",keep_last = false) -> String:
 	var _text = ""
 	for _t in array:
 		_text = str(_text , _t , spliter)

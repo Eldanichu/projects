@@ -79,10 +79,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/Utils/JSON.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
+"class": "LootItem",
+"language": "GDScript",
+"path": "res://Srcipts/common/Loot/LootItem.gd"
+}, {
+"base": "Reference",
 "class": "LootTable",
 "language": "GDScript",
-"path": "res://Srcipts/common/loot_table.gd"
+"path": "res://Srcipts/common/Loot/Loot.gd"
 }, {
 "base": "Node",
 "class": "ObjectUtil",
@@ -129,6 +134,7 @@ _global_script_class_icons={
 "Global": "",
 "Globals": "",
 "Json": "",
+"LootItem": "",
 "LootTable": "",
 "ObjectUtil": "",
 "Player": "",
