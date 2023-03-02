@@ -18,47 +18,47 @@ var tween_is_start = false
 var p_percent = 0
 
 func _ready() -> void:
-  setup()
+	setup()
 
 func _process(delta: float) -> void:
-  set_value_tween()
+	set_value_tween()
 
 func setup():
-  tween_pg.connect("tween_started",self,"_on_tween_pg_tween_started")
-  tween_pg.connect("tween_completed",self,"_on_tween_pg_tween_completed")
-  pg.texture_progress = texture
-  set_value_tween();
+	tween_pg.connect("tween_started",self,"_on_tween_pg_tween_started")
+	tween_pg.connect("tween_completed",self,"_on_tween_pg_tween_completed")
+	pg.texture_progress = texture
+	set_value_tween();
 
 func set_value_tween():
-  lbl_text.text = "{0}/{1}".format([t_val,t_max])
-  pg.max_value = v_max
+	lbl_text.text = "{0}/{1}".format([t_val,t_max])
+	pg.max_value = v_max
 
-  if tween_is_start:
-    return
-  tween_pg.interpolate_property(
-    pg,"value",
-    p_percent,v_val,
-    duration,
-    Tween.TRANS_SINE,
-    Tween.EASE_IN
-  )
-  p_percent = v_val
-  tween_pg.start()
+	if tween_is_start:
+		return
+	tween_pg.interpolate_property(
+		pg,"value",
+		p_percent,v_val,
+		duration,
+		Tween.TRANS_SINE,
+		Tween.EASE_IN
+	)
+	p_percent = v_val
+	tween_pg.start()
 
 func set_v_val(v):
-  v_val = v
+	v_val = v
 
 func set_v_max(v):
-  v_max = v
+	v_max = v
 
 func set_t_val(v):
-  t_val = v
+	t_val = v
 
 func set_t_max(v):
-  t_max = v
+	t_max = v
 
 func _on_tween_pg_tween_completed(object: Object, key: NodePath) -> void:
-  tween_is_start = false
+	tween_is_start = false
 
 func _on_tween_pg_tween_started(object: Object, key: NodePath) -> void:
-  tween_is_start = true
+	tween_is_start = true

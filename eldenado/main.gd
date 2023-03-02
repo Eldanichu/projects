@@ -1,15 +1,14 @@
 extends Node
 
-const scene_start_path:String = "res://Scenes/start/start.tscn"
 
-var start:PackedScene = preload(scene_start_path)
-
-onready var splash = get_node("%splash")
+onready var splash := find_node("splash")
+onready var start := find_node("start")
 
 func _ready() -> void:
-	create_game_sence()
 
-func create_game_sence():
-	yield(splash,"splash_end")
+	pass
 
-	print_debug('creating game sence')
+
+func _on_splash_splash_end() -> void:
+	start.visible = true
+	splash.queue_free()

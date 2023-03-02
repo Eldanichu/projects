@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/start/start.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/res/chn-25.tres" type="DynamicFont" id=2]
-[ext_resource path="res://UI/NewGame/new_game.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UI/GameSettings/game_setting.tscn" type="PackedScene" id=4]
 
 [node name="start" type="Control"]
 anchor_right = 1.0
@@ -62,17 +60,7 @@ custom_fonts/font = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "退出游戏"
 
-[node name="dlg_new_game" parent="." instance=ExtResource( 3 )]
-unique_name_in_owner = true
-visible = false
-
-[node name="dlg_game_setting" parent="." instance=ExtResource( 4 )]
-unique_name_in_owner = true
-visible = false
-
 [connection signal="pressed" from="margin/container/menus/start_game" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="margin/container/menus/load_game" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="margin/container/menus/game_settings" to="." method="_on_game_settings_pressed"]
 [connection signal="pressed" from="margin/container/menus/quit_game" to="." method="_on_quit_game_pressed"]
-[connection signal="cancel" from="dlg_new_game" to="." method="_on_dlg_new_game_cancel"]
-[connection signal="create" from="dlg_new_game" to="." method="_on_dlg_new_game_create"]

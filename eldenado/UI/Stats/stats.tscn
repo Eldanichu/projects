@@ -17,13 +17,8 @@ margin_right = 300.0
 margin_bottom = 95.0
 rect_min_size = Vector2( 300, 10 )
 script = ExtResource( 4 )
-Hp = 12
-MaxHp = 18
-Mp = 2
-MaxMp = 4
-Exp = 1
-MaxExp = 5
-PlayerName = "Player1"
+Level = 0
+PlayerName = "---"
 
 [node name="content" type="VBoxContainer" parent="."]
 margin_left = 7.0
