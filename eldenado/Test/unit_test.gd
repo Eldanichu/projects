@@ -2,8 +2,9 @@ extends Control
 
 onready var combat_log = get_node("%combat_log")
 onready var timer = AdjustableTimer.new(self)
+
 var gct := CombatTextFormatter.new()
-var ItemsDB = load("res://Srcipts/common/Loot/ItemDB.gd").new()
+var ItemsDB = load("res://DB/ItemDB.gd").new()
 
 var rand_gen := RandomNumberGenerator.new()
 var loot := LootTable.new()
@@ -32,18 +33,15 @@ func _on_timer_remaining(remains):
 	gct.set_formatter(CombatTextFormatter.LogType.SKILL_COOLDOWN)
 	gct.set_text(str(remains))
 	combat_log.println_code_string(gct.get_string())
-	pass
+
 
 func _on_reduce_pressed() -> void:
 	var amount = float(get_node("%amount").text)
 	timer.reduce_amount(amount,"%")
-	pass # Replace with function body.
 
 
 func _on_Start_Timer_pressed() -> void:
 	timer.restart()
-	pass # Replace with function body.
-
 
 func _on_append_item_pressed():
 	for i in range(0,9):
@@ -62,9 +60,8 @@ func _get_random_item():
 	var _random_item = inames[_item_index]
 	return _random_item
 
-
 func _on_roll_item_pressed():
 	var items = loot.roll(1)
 	var result = loot.get_rolled_result(items)
 	combat_log.append_bbcode(result)
-	pass # Replace with function body.
+

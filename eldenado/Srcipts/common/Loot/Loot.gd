@@ -97,13 +97,13 @@ func find_item_by_name(name:String) -> LootItem:
 		return null
 
 	for i in items:
-		if name.strip_escapes() == i._name.strip_escapes():
+		if StringUtil.trim(name) == StringUtil.trim(i._name):
 			_item = i
 			continue
 	return _item
 
 
 func get_item_random_tc_value(item:LootItem) -> float:
-	# pty / ( rv / 10 ) * (tc / 100)
+	# pty / ( rv / 10 ) * (1 - tc / 100)
 	var value = (item._pty / ( item._rv / 10 )) * (1 - item._tc / 100)
 	return value

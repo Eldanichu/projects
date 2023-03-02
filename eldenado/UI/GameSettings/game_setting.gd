@@ -9,23 +9,23 @@ var is_verticle_sync = false
 
 func _ready() -> void:
 
-  pass
+	pass
 
 func close_dialog():
-  visible = false
-  emit_signal("close")
+	visible = false
+	emit_signal("close")
 
 func _on_close_pressed() -> void:
-  close_dialog()
+	close_dialog()
 
 func _on_is_full_screen_toggled(button_pressed: bool) -> void:
-  is_full_screen = button_pressed
+	is_full_screen = button_pressed
 
 func _on_is_verticle_sync_toggled(button_pressed: bool) -> void:
-  is_verticle_sync = button_pressed
-  OS.set_use_vsync(is_verticle_sync)
+	is_verticle_sync = button_pressed
+	OS.set_use_vsync(is_verticle_sync)
 
 func _on_save_pressed() -> void:
-  OS.set_window_fullscreen(is_full_screen)
+	OS.set_window_fullscreen(is_full_screen)
 
-  close_dialog()
+	close_dialog()

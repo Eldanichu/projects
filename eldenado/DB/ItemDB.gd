@@ -2,8 +2,11 @@ extends Resource
 
 enum ITEM_TYPE{
 	COMMON = 9,
-	RARE = 4,
-	EPIC = 1,
+	MAGIC = 8,
+	RARE = 7,
+	SET = 6,
+	EPIC = 5,
+	LEGENDARY = 4,
 }
 
 ## [0] name | [1] pty | [2] tc | [3] rv

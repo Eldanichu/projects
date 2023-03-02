@@ -32,12 +32,12 @@ static func set_label_text(value:String,max_value:String, percent:String = "") -
 	b_max_value = BigNumber.new(max_value)
 
 	var text
-	if(Store.settings.useShortNumber):
-		oFormat["value"] = str(b_value.toAA())
-		oFormat["max_value"]=str(b_max_value.toAA())
-		text = s_text_format.format(oFormat)
-	else:
-		oFormat["value"] = str(b_value.toString())
-		oFormat["max_value"]=str(b_max_value.toString())
-		text = s_text_format.format(oFormat)
+#	if(Store.settings.useShortNumber):
+#		oFormat["value"] = str(b_value.toAA())
+#		oFormat["max_value"]=str(b_max_value.toAA())
+#		text = s_text_format.format(oFormat)
+#	else:
+	oFormat["value"] = str(b_value.toString())
+	oFormat["max_value"]=str(b_max_value.toString())
+	text = s_text_format.format(oFormat)
 	return text

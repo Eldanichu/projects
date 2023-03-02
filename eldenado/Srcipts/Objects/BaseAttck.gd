@@ -5,5 +5,5 @@ var can_attack:bool = false
 
 
 func _ready() -> void:
-  pass
+	pass
 

@@ -23,21 +23,14 @@ export (int,1) var Level = 1 setget set_level
 
 export (String) var Gold = "0"
 
-export (String) var PlayerName = "Player0"
-export (String) var PlayerClass = "战士"
+export (String) var PlayerName = ""
+export (String) var PlayerClass = ""
 
 
 func _ready() -> void:
-	setup()
+	update()
 
-func _process(delta: float) -> void:
-	setup()
-
-func setup() -> void:
-	get_stats()
-
-
-func get_stats():
+func update():
 	m_player_name.text = PlayerName
 	m_player_class.text = PlayerClass
 	m_gold.text = Gold
@@ -62,7 +55,6 @@ func get_stats():
 
 	m_exp.set_t_max(MaxExp)
 	m_exp.set_t_val(Exp)
-
 
 func set_level(v) -> void:
 	Level = v
