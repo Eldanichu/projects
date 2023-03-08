@@ -9,7 +9,6 @@ func free_all():
 	settings.queue_free()
 	player.queue_free()
 
-
 func _exit_tree() -> void:
 	free_all()
 	queue_free()

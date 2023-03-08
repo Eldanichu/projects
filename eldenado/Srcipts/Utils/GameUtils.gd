@@ -1,7 +1,6 @@
 extends Node
 class_name GameUtils
 
-
 static func get_percent(value:float,max_value:float) -> float:
 	var b_value:BigNumber = BigNumber.new(str(value))
 	var b_max_value:BigNumber = BigNumber.new(str(max_value))

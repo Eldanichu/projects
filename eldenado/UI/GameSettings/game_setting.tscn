@@ -4,9 +4,7 @@
 [ext_resource path="res://UI/GameSettings/game_setting.gd" type="Script" id=2]
 [ext_resource path="res://Themes/dialog_flat_theme.tres" type="Theme" id=3]
 
-[node name="dlg_game_setting" type="CanvasLayer"]
-
-[node name="game_setting" type="Panel" parent="."]
+[node name="game_setting" type="Panel"]
 pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
@@ -19,19 +17,19 @@ margin_bottom = 252.5
 theme = ExtResource( 3 )
 script = ExtResource( 2 )
 
-[node name="container" type="VBoxContainer" parent="game_setting"]
+[node name="container" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
 
-[node name="row_title" type="HBoxContainer" parent="game_setting/container"]
+[node name="row_title" type="HBoxContainer" parent="container"]
 margin_right = 312.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 
-[node name="m1" type="MarginContainer" parent="game_setting/container/row_title"]
+[node name="m1" type="MarginContainer" parent="container/row_title"]
 margin_right = 102.0
 margin_bottom = 33.0
 size_flags_horizontal = 2
@@ -41,13 +39,13 @@ custom_constants/margin_top = 3
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 3
 
-[node name="h_split_container" type="HSplitContainer" parent="game_setting/container/row_title/m1"]
+[node name="h_split_container" type="HSplitContainer" parent="container/row_title/m1"]
 margin_left = 10.0
 margin_top = 3.0
 margin_right = 102.0
 margin_bottom = 30.0
 
-[node name="texture_rect" type="TextureRect" parent="game_setting/container/row_title/m1/h_split_container"]
+[node name="texture_rect" type="TextureRect" parent="container/row_title/m1/h_split_container"]
 margin_top = 5.0
 margin_right = 16.0
 margin_bottom = 21.0
@@ -57,7 +55,7 @@ size_flags_vertical = 4
 expand = true
 stretch_mode = 5
 
-[node name="label" type="Label" parent="game_setting/container/row_title/m1/h_split_container"]
+[node name="label" type="Label" parent="container/row_title/m1/h_split_container"]
 margin_left = 28.0
 margin_right = 92.0
 margin_bottom = 27.0
@@ -65,7 +63,7 @@ size_flags_vertical = 5
 text = "游戏设置"
 valign = 1
 
-[node name="m2" type="MarginContainer" parent="game_setting/container/row_title"]
+[node name="m2" type="MarginContainer" parent="container/row_title"]
 margin_left = 280.0
 margin_right = 312.0
 margin_bottom = 33.0
@@ -74,7 +72,7 @@ size_flags_vertical = 6
 custom_constants/margin_right = 12
 custom_constants/margin_top = 5
 
-[node name="close" type="Button" parent="game_setting/container/row_title/m2"]
+[node name="close" type="Button" parent="container/row_title/m2"]
 margin_top = 5.0
 margin_right = 20.0
 margin_bottom = 33.0
@@ -86,13 +84,13 @@ enabled_focus_mode = 0
 text = "X"
 flat = true
 
-[node name="divider" type="ColorRect" parent="game_setting/container"]
+[node name="divider" type="ColorRect" parent="container"]
 margin_top = 33.0
 margin_right = 312.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 0, 1 )
 
-[node name="m" type="MarginContainer" parent="game_setting/container"]
+[node name="m" type="MarginContainer" parent="container"]
 margin_top = 34.0
 margin_right = 312.0
 margin_bottom = 469.0
@@ -103,25 +101,25 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 8
 custom_constants/margin_bottom = 8
 
-[node name="scroll_container" type="ScrollContainer" parent="game_setting/container/m"]
+[node name="scroll_container" type="ScrollContainer" parent="container/m"]
 margin_left = 8.0
 margin_top = 5.0
 margin_right = 304.0
 margin_bottom = 427.0
 
-[node name="col_1" type="HBoxContainer" parent="game_setting/container/m/scroll_container"]
+[node name="col_1" type="HBoxContainer" parent="container/m/scroll_container"]
 margin_right = 296.0
 margin_bottom = 422.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="left" type="VBoxContainer" parent="game_setting/container/m/scroll_container/col_1"]
+[node name="left" type="VBoxContainer" parent="container/m/scroll_container/col_1"]
 margin_right = 88.0
 margin_bottom = 64.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 
-[node name="is_full_screen" type="CheckBox" parent="game_setting/container/m/scroll_container/col_1/left"]
+[node name="is_full_screen" type="CheckBox" parent="container/m/scroll_container/col_1/left"]
 margin_right = 88.0
 margin_bottom = 30.0
 focus_mode = 0
@@ -129,7 +127,7 @@ enabled_focus_mode = 0
 text = "全屏"
 align = 1
 
-[node name="is_verticle_sync" type="CheckBox" parent="game_setting/container/m/scroll_container/col_1/left"]
+[node name="is_verticle_sync" type="CheckBox" parent="container/m/scroll_container/col_1/left"]
 margin_top = 34.0
 margin_right = 88.0
 margin_bottom = 64.0
@@ -138,30 +136,30 @@ enabled_focus_mode = 0
 text = "垂直同步"
 align = 1
 
-[node name="right" type="VBoxContainer" parent="game_setting/container/m/scroll_container/col_1"]
+[node name="right" type="VBoxContainer" parent="container/m/scroll_container/col_1"]
 margin_left = 150.0
 margin_right = 296.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="bottom" type="HBoxContainer" parent="game_setting/container"]
+[node name="bottom" type="HBoxContainer" parent="container"]
 margin_left = 120.0
 margin_top = 469.0
 margin_right = 192.0
 margin_bottom = 505.0
 size_flags_horizontal = 6
 
-[node name="m" type="MarginContainer" parent="game_setting/container/bottom"]
+[node name="m" type="MarginContainer" parent="container/bottom"]
 margin_right = 72.0
 margin_bottom = 36.0
 custom_constants/margin_bottom = 8
 
-[node name="save" type="Button" parent="game_setting/container/bottom/m"]
+[node name="save" type="Button" parent="container/bottom/m"]
 margin_right = 72.0
 margin_bottom = 28.0
 text = "保存设置"
 
-[connection signal="pressed" from="game_setting/container/row_title/m2/close" to="game_setting" method="_on_close_pressed"]
-[connection signal="toggled" from="game_setting/container/m/scroll_container/col_1/left/is_full_screen" to="game_setting" method="_on_is_full_screen_toggled"]
-[connection signal="toggled" from="game_setting/container/m/scroll_container/col_1/left/is_verticle_sync" to="game_setting" method="_on_is_verticle_sync_toggled"]
-[connection signal="pressed" from="game_setting/container/bottom/m/save" to="game_setting" method="_on_save_pressed"]
+[connection signal="pressed" from="container/row_title/m2/close" to="." method="_on_close_pressed"]
+[connection signal="toggled" from="container/m/scroll_container/col_1/left/is_full_screen" to="." method="_on_is_full_screen_toggled"]
+[connection signal="toggled" from="container/m/scroll_container/col_1/left/is_verticle_sync" to="." method="_on_is_verticle_sync_toggled"]
+[connection signal="pressed" from="container/bottom/m/save" to="." method="_on_save_pressed"]
