@@ -10,25 +10,21 @@ onready var m_hp:TweenProgress = get_node('%hp')
 onready var m_mp:TweenProgress = get_node('%mp')
 onready var m_exp:TweenProgress = get_node('%c_exp')
 
-export (int) var Hp = 0
-export (int) var MaxHp = 0
+export (int,0) var Hp = 0
+export (int,0) var MaxHp = 0
 
-export (int) var Mp = 0
-export (int) var MaxMp = 0
+export (int,0) var Mp = 0
+export (int,0) var MaxMp = 0
 
-export (int) var Exp = 0
-export (int) var MaxExp = 0
+export (int,0) var Exp = 0
+export (int,0) var MaxExp = 0
 
-export (int,1) var Level = 1 setget set_level
+export (int,1) var Level = 1
 
 export (String) var Gold = "0"
 
 export (String) var PlayerName = ""
 export (String) var PlayerClass = ""
-
-
-func _ready() -> void:
-	update()
 
 func update():
 	m_player_name.text = PlayerName
@@ -55,6 +51,3 @@ func update():
 
 	m_exp.set_t_max(MaxExp)
 	m_exp.set_t_val(Exp)
-
-func set_level(v) -> void:
-	Level = v

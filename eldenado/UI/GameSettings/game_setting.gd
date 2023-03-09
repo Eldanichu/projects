@@ -1,19 +1,12 @@
 extends Panel
 
-signal close
-
 onready var resolution_options:OptionButton = find_node('resolution_options')
 
 var is_full_screen = false
 var is_verticle_sync = false
 
-func _ready() -> void:
-
-	pass
-
 func close_dialog():
 	visible = false
-	emit_signal("close")
 
 func _on_close_pressed() -> void:
 	close_dialog()

@@ -3,15 +3,18 @@
 [ext_resource path="res://UI/Notification/notice.gd" type="Script" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0, 0, 0 )
+resource_name = "notify"
+content_margin_left = 1.0
+content_margin_right = 1.0
+bg_color = Color( 0.266667, 0.266667, 0.266667, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0, 0, 0, 1 )
+border_color = Color( 0.164706, 0.164706, 0.164706, 0.678431 )
 border_blend = true
-shadow_color = Color( 0, 0, 0, 0.168627 )
-shadow_size = 2
+shadow_color = Color( 0, 0, 0, 0.176471 )
+shadow_size = 1
 shadow_offset = Vector2( 2, 2 )
 
 [node name="notify" type="Control"]
@@ -22,28 +25,18 @@ script = ExtResource( 1 )
 duration = 0.6
 delay = 2
 
-[node name="h_flow_container" type="VBoxContainer" parent="."]
+[node name="panel_container" type="PanelContainer" parent="."]
 margin_right = 190.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="panel" type="Panel" parent="h_flow_container"]
-margin_right = 190.0
-margin_bottom = 40.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
 custom_styles/panel = SubResource( 1 )
 
-[node name="v_box_container" type="VBoxContainer" parent="h_flow_container/panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="msg" type="Label" parent="h_flow_container/panel/v_box_container"]
-margin_right = 190.0
-margin_bottom = 40.0
+[node name="msg" type="Label" parent="panel_container"]
+margin_left = 1.0
+margin_top = 2.0
+margin_right = 189.0
+margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "This is a message!"

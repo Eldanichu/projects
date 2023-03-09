@@ -1,29 +1,24 @@
 extends Control
 
-onready var dlg_new_game := $"../../gui/dialogs/new_game"
+export(NodePath) var UI
 
-
-func _ready() -> void:
-
-	pass
+var dl_new_game := preload("res://UI/NewGame/new_game.tscn")
+var dl_game_settings := preload("res://UI/GameSettings/game_setting.tscn")
 
 func _on_start_game_pressed() -> void:
-	print("start")
-	dlg_new_game.visible = true
+	var _dl = dl_new_game.instance()
+	UI.add_child(_dl)
+	_dl.connect("create_game",self,"game_creation")
 
 func _on_load_game_pressed() -> void:
 	pass
 
-
 func _on_game_settings_pressed() -> void:
-	pass
-
+	var _dl = dl_game_settings.instance()
+	UI.add_child(_dl)
 
 func _on_quit_game_pressed() -> void:
-	pass
+	get_tree().quit()
 
-func _exit_tree() -> void:
-	queue_free()
-
-
-
+func game_creation(res):
+	print(res)

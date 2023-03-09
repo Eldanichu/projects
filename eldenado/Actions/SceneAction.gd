@@ -1,15 +1,20 @@
 extends Node
 
+var n := Notifer.new(self)
+var splash := preload("res://Scenes/splash/splash.tscn")
+var game_start := preload("res://Scenes/start/start.tscn")
 
-onready var splash := $"../game_menu/splash"
-onready var start := $"../game_menu/start"
-var notice := preload("res://UI/Notification/notice.tscn")
-
+onready var UI := $"../UI"
 
 func _ready() -> void:
-	pass
+	var _splash := splash.instance()
+	UI.add_child(_splash)
+	yield(_splash,"splash_end")
+	_splash.queue_free()
+	start_game()
 
-func _on_splash_splash_end() -> void:
-	start.visible = true
-	splash.queue_free()
 
+func start_game():
+	var _game_start := game_start.instance()
+	_game_start.UI = UI
+	UI.add_child(_game_start)

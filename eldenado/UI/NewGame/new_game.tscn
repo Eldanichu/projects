@@ -128,6 +128,7 @@ margin_bottom = 301.0
 size_flags_horizontal = 4
 
 [node name="create_player" type="Button" parent="margin_container/v_box_container/h_box_container"]
+unique_name_in_owner = true
 margin_right = 72.0
 margin_bottom = 28.0
 text = "创建角色"

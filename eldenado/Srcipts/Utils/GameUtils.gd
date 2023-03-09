@@ -12,7 +12,6 @@ static func get_percent(value:float,max_value:float) -> float:
 	var percent = b_value.divide(b_max_value).toFloat()
 	return percent * 100
 
-
 static func set_label_text(value:String,max_value:String, percent:String = "") -> String:
 	var b_value:BigNumber = BigNumber.new(value,1)
 	var b_max_value:BigNumber = BigNumber.new(max_value,1)
@@ -40,3 +39,6 @@ static func set_label_text(value:String,max_value:String, percent:String = "") -
 	oFormat["max_value"]=str(b_max_value.toString())
 	text = s_text_format.format(oFormat)
 	return text
+
+static func quit(node:Node):
+	node.get_tree().quit()
