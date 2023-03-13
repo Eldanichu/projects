@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
-"base": "Node",
+"base": "Resource",
 "class": "Global",
 "language": "GDScript",
 "path": "res://Store/Modules/Global.gd"
@@ -99,12 +99,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/Utils/ObjectUtil.gd"
 }, {
-"base": "Node",
+"base": "Resource",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Store/Modules/Player.gd"
 }, {
-"base": "Node",
+"base": "Resource",
 "class": "Settings",
 "language": "GDScript",
 "path": "res://Store/Modules/Settings.gd"
@@ -173,6 +173,7 @@ boot_splash/bg_color=Color( 0, 0, 0, 1 )
 [autoload]
 
 Store="*res://Store/Store.gd"
+Event="*res://Store/Modules/Event.gd"
 
 [debug]
 

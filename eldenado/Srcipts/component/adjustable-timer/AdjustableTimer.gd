@@ -39,6 +39,7 @@ func setup()->void:
 	reduce_amount = Interval
 	autostart = AutoStart
 	one_shot = once
+	process_mode = 1
 
 func emit_remains()-> void:
 	remains = get_time_left();

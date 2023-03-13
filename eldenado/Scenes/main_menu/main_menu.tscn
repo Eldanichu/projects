@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/start/start.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/res/chn-25.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/res/chn-25.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scenes/main_menu/main_menu.gd" type="Script" id=2]
 
-[node name="start" type="Control"]
+[node name="main_menu" type="Control"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="margin" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -30,7 +30,7 @@ custom_constants/separation = 20
 margin_right = 111.0
 margin_bottom = 40.0
 focus_mode = 0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
 text = "开始游戏"
 
@@ -39,7 +39,7 @@ margin_top = 60.0
 margin_right = 111.0
 margin_bottom = 100.0
 focus_mode = 0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
 text = "读取游戏"
 
@@ -48,7 +48,7 @@ margin_top = 120.0
 margin_right = 111.0
 margin_bottom = 160.0
 focus_mode = 0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
 text = "设置"
 
@@ -57,7 +57,7 @@ margin_top = 180.0
 margin_right = 111.0
 margin_bottom = 220.0
 focus_mode = 0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
 text = "退出游戏"
 

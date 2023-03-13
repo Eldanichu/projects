@@ -6,8 +6,8 @@
 [ext_resource path="res://Fonts/res/chn-bold.tres" type="DynamicFont" id=4]
 
 [node name="logger" type="RichTextLabel"]
-margin_right = 463.0
-margin_bottom = 324.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 focus_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

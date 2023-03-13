@@ -1,5 +1,5 @@
-extends Node
+extends Resource
 class_name Settings
 
 
-var useShortNumber = false
+var use_short_number = false
