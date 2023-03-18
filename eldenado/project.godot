@@ -99,7 +99,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/Utils/ObjectUtil.gd"
 }, {
-"base": "Resource",
+"base": "Node2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Store/Modules/Player.gd"

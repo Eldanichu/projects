@@ -13,9 +13,9 @@ enum CLASS_TYPE {
 }
 
 const CLASS_NAME := {
-	"1" : "法师",
-	"2" : "道士",
-	"0" : "战士"
+	1 : "法师",
+	2 : "道士",
+	0 : "战士"
 }
 
 const wizard:Dictionary = {

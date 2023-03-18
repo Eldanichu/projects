@@ -32,13 +32,14 @@ func _ready() -> void:
 	start_animation()
 	dispose()
 
+
 func setup()->void:
 	rnd.randomize()
 	notify_id = str(rnd.randi_range(1000,9999))
 	add_child(fade_in)
 	var styles = panel.get_stylebox("notify")
 	_shadow_offset = styles.get_offset().x
-	_msg.text = msg
+	_msg.text = str(msg)
 	screen_size = OS.get_window_size()
 	control_size = Vector2(rect_size.x - _shadow_offset, rect_size.y - _shadow_offset)
 	positions = [

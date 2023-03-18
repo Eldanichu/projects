@@ -19,18 +19,10 @@ func start_game():
 	var _main_menu := main_menu.instance()
 	_main_menu.UI = UI
 	UI.add_child(_main_menu)
-	Event.connect("create_game",self, "create_game")
+	Event.connect("create_game",self, "create_game",[_main_menu])
 
-func create_game(res:Dictionary):
-	var _success = res["success"]
-	if !_success:
-		return
+func create_game(res:Dictionary,menu):
+	menu.queue_free()
 	var _game := game.instance()
+	_game.setup(res)
 	MAIN.add_child(_game)
-	free_ui()
-
-func free_ui():
-	var _main_menu := UI.get_node("main_menu")
-	if !_main_menu:
-		return
-	_main_menu.queue_free()

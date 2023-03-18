@@ -15,6 +15,11 @@ func _ready():
 func _exit_tree() -> void:
 	gct.queue_free();
 
+func _input(event):
+	if event as InputEventMouseButton:
+		if event.is_pressed():
+			pass
+
 func _on_append_text_pressed() -> void:
 	var combat_text := CombatTextFormatter.new()
 	combat_text.set_formatter(CombatTextFormatter.LogType.MAKE_DAMAGE)

@@ -22,6 +22,7 @@ margin_right = 190.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 script = ExtResource( 1 )
+side = 0
 duration = 0.6
 delay = 2
 

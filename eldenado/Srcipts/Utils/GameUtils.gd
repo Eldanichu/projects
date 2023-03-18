@@ -40,5 +40,8 @@ static func set_label_text(value:String,max_value:String, percent:String = "") -
 	text = s_text_format.format(oFormat)
 	return text
 
+static func set_z_index(control_node:CanvasItem,z_index:int):
+	VisualServer.canvas_item_set_z_index(control_node.get_canvas_item(),z_index)
+
 static func quit(node:Node):
 	node.get_tree().quit()

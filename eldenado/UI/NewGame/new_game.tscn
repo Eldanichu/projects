@@ -44,10 +44,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 
-[node name="h_split_container" type="HSplitContainer" parent="margin_container/v_box_container/scroll_container/v_box_container"]
+[node name="h_split_container" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container"]
 margin_right = 256.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
+custom_constants/separation = 10
 
 [node name="player_name" type="Label" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container"]
 margin_right = 50.0
@@ -57,16 +58,18 @@ text = "角色名"
 
 [node name="input_name" type="LineEdit" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container"]
 unique_name_in_owner = true
-margin_left = 62.0
+margin_left = 60.0
 margin_right = 256.0
 margin_bottom = 23.0
+size_flags_horizontal = 3
 theme = SubResource( 1 )
 
-[node name="h_split_container_2" type="HSplitContainer" parent="margin_container/v_box_container/scroll_container/v_box_container"]
+[node name="h_split_container_2" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container"]
 margin_top = 43.0
 margin_right = 256.0
 margin_bottom = 71.0
 size_flags_horizontal = 3
+custom_constants/separation = 10
 
 [node name="tag_class" type="Label" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2"]
 margin_top = 2.0
@@ -74,12 +77,14 @@ margin_right = 50.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 50, 0 )
 text = "职业"
+align = 2
 
 [node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2"]
-margin_left = 62.0
+margin_left = 60.0
 margin_right = 256.0
 margin_bottom = 28.0
-custom_constants/separation = 5
+size_flags_horizontal = 3
+custom_constants/separation = 10
 
 [node name="Warrior" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
 margin_right = 42.0
@@ -91,8 +96,8 @@ group = ExtResource( 3 )
 text = "战士"
 
 [node name="Wizard" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
-margin_left = 47.0
-margin_right = 89.0
+margin_left = 52.0
+margin_right = 94.0
 margin_bottom = 28.0
 focus_mode = 0
 toggle_mode = true
@@ -101,8 +106,8 @@ group = ExtResource( 3 )
 text = "法师"
 
 [node name="Taos" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
-margin_left = 94.0
-margin_right = 136.0
+margin_left = 104.0
+margin_right = 146.0
 margin_bottom = 28.0
 focus_mode = 0
 toggle_mode = true
@@ -121,21 +126,22 @@ enabled_focus_mode = 0
 group = ExtResource( 3 )
 
 [node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container"]
-margin_left = 69.0
+margin_left = 81.0
 margin_top = 273.0
-margin_right = 187.0
+margin_right = 175.0
 margin_bottom = 301.0
-size_flags_horizontal = 4
+size_flags_horizontal = 6
+custom_constants/separation = 10
 
 [node name="create_player" type="Button" parent="margin_container/v_box_container/h_box_container"]
 unique_name_in_owner = true
-margin_right = 72.0
+margin_right = 42.0
 margin_bottom = 28.0
-text = "创建角色"
+text = "创建"
 
 [node name="cancel" type="Button" parent="margin_container/v_box_container/h_box_container"]
-margin_left = 76.0
-margin_right = 118.0
+margin_left = 52.0
+margin_right = 94.0
 margin_bottom = 28.0
 text = "放弃"
 
