@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name ArrayUtil
 
 static func copy_deep(array:Array):

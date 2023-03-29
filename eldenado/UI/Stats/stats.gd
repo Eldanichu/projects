@@ -10,7 +10,7 @@ onready var m_hp:TweenProgress = get_node('%hp')
 onready var m_mp:TweenProgress = get_node('%mp')
 onready var m_exp:TweenProgress = get_node('%c_exp')
 
-export (int,0) var Hp = 0 
+export (int,0) var Hp = 0
 export (int,0) var MaxHp = 0
 
 export (int,0) var Mp = 0

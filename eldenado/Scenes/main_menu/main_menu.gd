@@ -12,9 +12,7 @@ func _on_start_game_pressed() -> void:
 	UI.add_child(_dl)
 
 func _on_load_game_pressed() -> void:
-	for i in range(1,10):
-		n.spawn(i)
-	
+	pass
 
 func _on_game_settings_pressed() -> void:
 	var _dl = dl_game_settings.instance()

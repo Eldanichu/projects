@@ -145,8 +145,5 @@ margin_right = 94.0
 margin_bottom = 28.0
 text = "放弃"
 
-[connection signal="toggled" from="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container/Warrior" to="." method="_on_set_class"]
-[connection signal="toggled" from="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container/Wizard" to="." method="_on_set_class"]
-[connection signal="toggled" from="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container/Taos" to="." method="_on_set_class"]
 [connection signal="pressed" from="margin_container/v_box_container/h_box_container/create_player" to="." method="_on_create_player_pressed"]
 [connection signal="pressed" from="margin_container/v_box_container/h_box_container/cancel" to="." method="_on_cancel_pressed"]

@@ -1,6 +1,6 @@
 extends RichTextLabel
 
-export var MAX_LINE = 500
+export var MAX_LINE = 5000
 
 onready var logger = $"."
 

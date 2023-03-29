@@ -1,5 +1,4 @@
-extends Reference
-
+extends Resource
 class_name LootItem
 
 var _name:String = ""
@@ -10,12 +9,7 @@ var _rate:float = 0.0
 var _is_always:bool = false setget set_always
 
 func _init():
-	self._name = _name
-	self._pty = _pty
-	self._tc = _tc
-	self._rv = _rv
-	self._rate = _rate
-	self._is_always = _is_always
+	pass
 
 func set_pty(value:float):
 	_pty = value

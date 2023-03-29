@@ -1,6 +1,7 @@
 extends Node
 
-var global:Global = Global.new()
+var player:Player = Player.new()
+var game_var:GameVars = GameVars.new()
 var settings:Settings = Settings.new()
 
 func free_all():

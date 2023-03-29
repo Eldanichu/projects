@@ -1,4 +1,4 @@
-extends Reference
+extends Resource
 class_name StringUtil
 
 static func isEmptyOrNull(arg:String) -> bool:

@@ -15,7 +15,7 @@ func _ready() -> void:
 	if !_is_valid_attack():
 		queue_free()
 	add_child(attack_timer)
-	
+
 func from(_cast):
 	cast = _cast
 	return self

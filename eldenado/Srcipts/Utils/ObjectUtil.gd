@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name ObjectUtil
 
 static func get_ref(obj):

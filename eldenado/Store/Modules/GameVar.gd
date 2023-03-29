@@ -1,5 +1,5 @@
 extends Resource
-class_name Global
+class_name GameVars
 
 
 const version = 'v1.0'

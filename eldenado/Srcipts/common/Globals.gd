@@ -6,13 +6,13 @@ const mp_const = 13;
 const exp_const = 14
 const exp_factor = 1.1
 
-enum CLASS_TYPE {
+const CLASS_TYPE:Dictionary = {
 	Wizard = 1,
 	Taos = 2,
 	Warrior = 0
 }
 
-const CLASS_NAME := {
+const CLASS_NAME:Dictionary = {
 	1 : "法师",
 	2 : "道士",
 	0 : "战士"
@@ -39,6 +39,38 @@ const warrior:Dictionary = {
 	"hp_acc":4.5,
 	"hp_cc":20,
 	"mp_base":3.5,
+}
+
+const ITEM_QTY:Dictionary = {
+	COMMON = 9,
+	MAGIC = 8,
+	RARE = 7,
+	SET = 6,
+	EPIC = 5,
+	LEGENDARY = 4
+}
+
+const ITEM_TYPE:Dictionary = {
+	CONSUMABLE = 31,
+	POSION = 2,
+
+	HELM = 2,
+	WEAPON = 3,
+	SHIELD = 13,
+	CHEST = 10,
+
+	AMULET = 4,
+	BRACE = 5,
+	RING = 6,
+
+	BELT = 11,
+	BOOT = 12,
+	SPELL_ITEM = 32,
+	ATTACH = 33,
+
+	SPELL = 24,
+	TASK = 0,
+	SCROLL = 30
 }
 
 func get_class_stats(level:int,class_index:int = 0) -> Dictionary:

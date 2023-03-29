@@ -1,29 +1,37 @@
 extends Node2D
 
-onready var stat := $gmae_ui/control/v_box_container/top_container/stats
+onready var stat := $"%stats"
+onready var logger := $"%logger"
+onready var map := $gmae_ui/control/v_box_container/center_container_2/Maps
 
-var player:Player
+var db:DB
+var player:PlayerObj
 var _player_info
 
-func _ready() -> void:
-	pass
-
-func _process(delta):
-	stat.update()
-
 func setup(player_info:Dictionary):
-	print('created game', player_info)
+	load_game_data()
 	_player_info = player_info
+
+func load_game_data():
+	db = DB.new(self)
+	db.connect("db_ready",self,"_on_db_ready")
+
+func _on_db_ready():
+	load_maps()
 	create_player()
-	
+
+func load_maps():
+	var maps = db.get_data("map")
+	map.MapData = maps.data
+	map.load_data()
+
 func create_player():
-	player = Player.new()
+	player = PlayerObj.new()
 	add_child(player)
-	player.connect("update_stats",self,"update_panel",[player])
+	player.connect("update_stats",self,"update_panel")
 	player.setup(_player_info)
 
-func update_panel(stats:Array,player:Player):
-	yield(self,"ready")
+func update_panel(stats:Array):
 	var _class = Globals.CLASS_NAME[player.class_type]
 	stat.PlayerClass = _class
 	stat.PlayerName = player.player_name
@@ -34,3 +42,4 @@ func update_panel(stats:Array,player:Player):
 	stat.Exp = stats[4]
 	stat.MaxExp = stats[5]
 	stat.Level = stats[6]
+	stat.update()

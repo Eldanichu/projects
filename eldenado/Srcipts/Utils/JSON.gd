@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name Json
 
 static func parse(json_str:String) -> Dictionary:

@@ -11,11 +11,11 @@ func _ready() -> void:
 	setup()
 
 func setup():
-	print_debug("current game version->" + Store.global.version)
+	print_debug("current game version->" + Store.game_var.version)
 
-	version.set_text(Store.global.version)
-	author.set_text(Store.global.author)
-	delay_timer = CoolDown.new('screen_delay',1)
+	version.set_text(Store.game_var.version)
+	author.set_text(Store.game_var.author)
+	delay_timer = CoolDown.new('screen_delay',0.5)
 	add_child(delay_timer)
 	delay_timer.start()
 	yield(delay_timer,"done")

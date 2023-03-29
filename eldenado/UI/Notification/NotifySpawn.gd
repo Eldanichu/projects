@@ -25,7 +25,7 @@ func keep_in_screen(n):
 	var screen_size = OS.get_window_size()
 	if offset >= screen_size.y - n.rect_size.y || !has_instance():
 		n.y_offset = margin
-	
+
 func has_instance() -> bool:
 	var instance := parent_node.get_children()
 	var has_notify = false

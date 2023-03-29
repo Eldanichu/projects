@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name GameUtils
 
 static func get_percent(value:float,max_value:float) -> float:
