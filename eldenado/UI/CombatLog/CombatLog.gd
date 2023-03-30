@@ -1,14 +1,10 @@
-extends RichTextLabel
+extends PanelContainer
 
 export var MAX_LINE = 5000
 
-onready var logger = $"."
+onready var logger = $"%logger"
 
 var line_number = 1
-
-func _ready() -> void:
-	pass
-
 
 func println(combat_text:CombatText):
 	clear_screen()
@@ -24,5 +20,5 @@ func println_code_string(combat_text_string:String):
 
 func clear_screen()->void:
 	if line_number >= MAX_LINE:
-		clear()
+		logger.clear()
 		line_number = 1

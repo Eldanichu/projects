@@ -17,7 +17,7 @@ var mp_max := 1
 var expr := 0
 var expr_max := 1
 
-var _g = Globals.new()
+var _g = Globals
 
 func setup(player_info):
 	if level == 0:
