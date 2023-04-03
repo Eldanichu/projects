@@ -629,11 +629,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/asserts/GdUnitVector3AssertImpl.gd"
 }, {
-"base": "EditorVCSInterface",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://addons/godot-git-plugin/git_api.gdns"
-}, {
 "base": "Resource",
 "class": "Globals",
 "language": "GDScript",
@@ -949,7 +944,6 @@ _global_script_class_icons={
 "GdUnitVector2AssertImpl": "",
 "GdUnitVector3Assert": "",
 "GdUnitVector3AssertImpl": "",
-"GitAPI": "",
 "Globals": "",
 "GodotGdErrorMonitor": "",
 "IntFuzzer": "",
@@ -1031,7 +1025,7 @@ convert_text_resources_to_binary_on_export=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/gdUnit3/plugin.cfg", "res://addons/orphan_import_file_cleaner/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/orphan_import_file_cleaner/plugin.cfg" )
 
 [gdnative]
 
@@ -1119,4 +1113,3 @@ common/physics_interpolation=true
 
 quality/driver/fallback_to_gles2=true
 vram_compression/import_etc=true
-environment/default_environment="res://default_env.tres"

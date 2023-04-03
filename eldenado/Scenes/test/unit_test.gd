@@ -3,8 +3,6 @@ extends Control
 onready var combat_log = get_node("%combat_log")
 onready var timer = ATimer.new(self)
 
-var loot := LootTable.new()
-
 func _ready():
 	pass
 
