@@ -1025,7 +1025,7 @@ convert_text_resources_to_binary_on_export=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/orphan_import_file_cleaner/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/gdUnit3/plugin.cfg", "res://addons/orphan_import_file_cleaner/plugin.cfg" )
 
 [gdnative]
 
