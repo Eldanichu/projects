@@ -5,31 +5,37 @@
 [ext_resource path="res://UI/TweenTextureProgress/tween_progress.gd" type="Script" id=3]
 [ext_resource path="res://Assets/ui/hp-bar.png" type="Texture" id=4]
 
-
 [node name="pg" type="TextureProgress"]
-margin_right = 90.0
-margin_bottom = 23.0
-rect_min_size = Vector2( 90, 23 )
+margin_right = 50.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 50, 20 )
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 7
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 4 )
 nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
 texture = ExtResource( 4 )
-
-[node name="text" type="Label" parent="."]
-unique_name_in_owner = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 2 )
-text = "0/100"
-align = 1
-valign = 3
 
 [node name="tween_pg" type="Tween" parent="."]
 unique_name_in_owner = true
+
+[node name="h_box_container" type="HBoxContainer" parent="."]
+margin_right = 50.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="text" type="Label" parent="h_box_container"]
+unique_name_in_owner = true
+margin_right = 50.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = ExtResource( 2 )
+text = "0/100"
+align = 1

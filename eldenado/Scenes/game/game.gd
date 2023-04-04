@@ -6,11 +6,11 @@ onready var map := $gmae_ui/control/v_box_container/center_container_2/Maps
 
 var db:DB
 var player:PlayerObj
-var _player_info
+var player_info:Dictionary
 
-func setup(player_info:Dictionary):
+func setup(_player_info:Dictionary):
 	load_game_data()
-	_player_info = player_info
+	player_info = _player_info
 
 func load_game_data():
 	db = DB.new(self)
@@ -24,22 +24,19 @@ func load_maps():
 	var maps = db.get_data("map")
 	map.MapData = maps.data
 	map.load_data()
+	map.connect("map_entering",self,"_map_entering")
 
 func create_player():
 	player = PlayerObj.new()
 	add_child(player)
-	player.connect("update_stats",self,"update_panel")
-	player.setup(_player_info)
+	player.connect("update_stats",self,"update_stat_panel")
+	player.setup(player_info)
 
-func update_panel(stats:Array):
-	var _class = Globals.CLASS_NAME[player.class_type]
-	stat.PlayerClass = _class
-	stat.PlayerName = player.player_name
-	stat.Hp = stats[0]
-	stat.MaxHp = stats[1]
-	stat.Mp = stats[2]
-	stat.MaxMp = stats[3]
-	stat.Exp = stats[4]
-	stat.MaxExp = stats[5]
-	stat.Level = stats[6]
+func _map_entering(e):
+	print(e)
+
+func update_stat_panel(stats:Dictionary):
+	stat.player_name = player_info.player_name
+	for stat_key in stats:
+		stat[stat_key] = stats[stat_key]
 	stat.update()

@@ -7,15 +7,30 @@ var player_name := ""
 var class_type := 1
 var gold := 0
 var level := 0
-
 var hp := 0
 var hp_max := 1
-
 var mp := 0
 var mp_max := 1
-
 var expr := 0
 var expr_max := 1
+
+# critical strength
+var crit_strength = 1.1
+# critical chance
+var crit_chance = 30
+
+# mag = magic spells
+var crit_mag_strength = 1.1
+var crit_mag_chance = 40
+
+var ac = 0
+var ac_mac = 0
+var mc = 0
+var mc_max = 0
+var dc = 0
+var dc_max = 0
+var sc = 0
+var sc_max = 0
 
 var _g = Globals
 
@@ -24,27 +39,20 @@ func setup(player_info):
 		update_constants(player_info)
 		level_up()
 
-func update():
-	pass
-
 func level_up():
 	level = level + 1
 	var _class_info = _g.get_class_stats(level,class_type)
 	var _exp_value = _g.get_exp_by_level(level)
-	expr_max = _exp_value
 	hp_max = _class_info["max_hp"]
 	mp_max = _class_info["max_mp"]
 	hp = hp_max
 	mp = mp_max
 	expr = 0
-	var stats = [
-		hp,
-		hp_max,mp,
-		mp_max,
-		expr,
-		expr_max,
-		level
-	]
+	expr_max = _exp_value
+	gold = 2000
+	var stats = {}
+	for s in _g.char_display_stat:
+		stats[s] = self[s]
 	emit_signal("update_stats",stats)
 
 func update_constants(player_info):

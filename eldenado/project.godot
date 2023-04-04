@@ -109,6 +109,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/asserts/DefaultValueProvider.gd"
 }, {
+"base": "GdUnitTestSuite",
+"class": "DropItemTest",
+"language": "GDScript",
+"path": "res://Test/DB/DropItemTest.gd"
+}, {
 "base": "GdUnitArgumentMatcher",
 "class": "EqualsArgumentMatcher",
 "language": "GDScript",
@@ -660,11 +665,6 @@ _global_script_classes=[ {
 "path": "res://addons/gdUnit3/src/core/LocalTime.gd"
 }, {
 "base": "Resource",
-"class": "LootTable",
-"language": "GDScript",
-"path": "res://Srcipts/Loot/loot.gd"
-}, {
-"base": "Resource",
 "class": "Notifer",
 "language": "GDScript",
 "path": "res://UI/Notification/NotifySpawn.gd"
@@ -840,6 +840,7 @@ _global_script_class_icons={
 "ControlUtil": "",
 "DB": "",
 "DefaultValueProvider": "",
+"DropItemTest": "",
 "EqualsArgumentMatcher": "",
 "Fuzzer": "",
 "FuzzerTool": "",
@@ -950,7 +951,6 @@ _global_script_class_icons={
 "JUnitXmlReport": "",
 "Json": "",
 "LocalTime": "",
-"LootTable": "",
 "Notifer": "",
 "ObjectUtil": "",
 "Player": "",

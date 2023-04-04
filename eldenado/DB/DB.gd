@@ -40,3 +40,13 @@ func setup():
 func get_data(node_id:String):
 	var _node = root.get_node(node_id)
 	return _node
+
+func get_data_collection(data:Dictionary):
+	var _data = data
+	var keys = _data.keys()
+	var res = []
+	for k in keys:
+		var item:Array = _data[k]
+		item.append(k)
+		res.append(_data[k])
+	return res

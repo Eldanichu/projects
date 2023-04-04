@@ -92,7 +92,9 @@ static func get_random(chance:int):
 	_r.randomize()
 	var n = _r.randf()
 	var _c = 1.0 / (chance * 1.0)
-	var res = -1
+	var res = 0
 	if n < _c:
 		 res = n
 	return res
+
+

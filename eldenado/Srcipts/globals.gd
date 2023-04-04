@@ -41,6 +41,33 @@ const warrior:Dictionary = {
 	"mp_base":3.5,
 }
 
+const char_display_stat:Array = [
+	"hp",
+	"hp_max",
+	"mp",
+	"mp_max",
+	"expr",
+	"expr_max",
+	"level",
+	"gold",
+	"class_type",
+]
+
+const char_panel_stat:Array = [
+	"crit_strength",
+	"crit_chance",
+	"crit_mag_strength",
+	"crit_mag_chance",
+	"ac",
+	"ac_mac",
+	"mc",
+	"mc_max",
+	"dc",
+	"dc_max",
+	"sc",
+	"sc_max"
+]
+
 const ITEM_QTY:Dictionary = {
 	COMMON = 9,
 	MAGIC = 8,

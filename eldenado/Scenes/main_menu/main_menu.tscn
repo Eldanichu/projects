@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Fonts/res/chn-25.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scenes/main_menu/main_menu.gd" type="Script" id=2]
+[ext_resource path="res://Themes/windows classic.tres" type="Theme" id=3]
 
 [node name="main_menu" type="Control"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
 script = ExtResource( 2 )
 
 [node name="margin" type="MarginContainer" parent="."]
@@ -18,16 +20,16 @@ margin_right = 1280.0
 margin_bottom = 720.0
 
 [node name="menus" type="VBoxContainer" parent="margin/container"]
-margin_left = 584.0
+margin_left = 582.0
 margin_top = 250.0
-margin_right = 695.0
+margin_right = 697.0
 margin_bottom = 470.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
 custom_constants/separation = 20
 
 [node name="start_game" type="Button" parent="margin/container/menus"]
-margin_right = 111.0
+margin_right = 115.0
 margin_bottom = 40.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
@@ -36,7 +38,7 @@ text = "开始游戏"
 
 [node name="load_game" type="Button" parent="margin/container/menus"]
 margin_top = 60.0
-margin_right = 111.0
+margin_right = 115.0
 margin_bottom = 100.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
@@ -45,7 +47,7 @@ text = "读取游戏"
 
 [node name="game_settings" type="Button" parent="margin/container/menus"]
 margin_top = 120.0
-margin_right = 111.0
+margin_right = 115.0
 margin_bottom = 160.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
@@ -54,7 +56,7 @@ text = "设置"
 
 [node name="quit_game" type="Button" parent="margin/container/menus"]
 margin_top = 180.0
-margin_right = 111.0
+margin_right = 115.0
 margin_bottom = 220.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
