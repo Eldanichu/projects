@@ -1,0 +1,138 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Themes/border_bottom.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Themes/windows classic.tres" type="Theme" id=2]
+[ext_resource path="res://UI/Components/Tips/TItem/t_item.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/res/chn-14.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/Fonts/res/chn-bold.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Assets/Themes/scroll_hidden.tres" type="Theme" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="Theme" id=3]
+RichTextLabel/colors/default_color = Color( 1, 1, 1, 1 )
+RichTextLabel/fonts/italics_font = ExtResource( 5 )
+RichTextLabel/fonts/normal_font = ExtResource( 4 )
+RichTextLabel/styles/focus = SubResource( 1 )
+RichTextLabel/styles/normal = SubResource( 2 )
+
+[node name="t_item" type="MarginContainer"]
+rect_min_size = Vector2( 255, 320 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="color_rect" type="ColorRect" parent="."]
+margin_right = 255.0
+margin_bottom = 320.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.513726, 0.513726, 0.513726, 0.188235 )
+
+[node name="margin_container" type="MarginContainer" parent="."]
+margin_right = 255.0
+margin_bottom = 320.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="v_box_container" type="VBoxContainer" parent="margin_container"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 247.0
+margin_bottom = 312.0
+
+[node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container"]
+margin_right = 239.0
+margin_bottom = 19.0
+
+[node name="title" type="Label" parent="margin_container/v_box_container/h_box_container"]
+unique_name_in_owner = true
+margin_right = 239.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_styles/normal = ExtResource( 1 )
+text = "Title"
+
+[node name="props" type="VBoxContainer" parent="margin_container/v_box_container"]
+margin_top = 23.0
+margin_right = 239.0
+margin_bottom = 304.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="scroll_container" type="ScrollContainer" parent="margin_container/v_box_container/props"]
+unique_name_in_owner = true
+margin_right = 239.0
+margin_bottom = 281.0
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+scroll_horizontal_enabled = false
+
+[node name="v_box_container" type="VBoxContainer" parent="margin_container/v_box_container/props/scroll_container"]
+margin_right = 239.0
+margin_bottom = 378.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="text" type="RichTextLabel" parent="margin_container/v_box_container/props/scroll_container/v_box_container"]
+unique_name_in_owner = true
+margin_right = 239.0
+margin_bottom = 378.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 3 )
+bbcode_text = "Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+这是一段很长很长的文字...........................这是一段很长很长的文字"
+tab_size = 2
+text = "Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+Attack:0-5
+这是一段很长很长的文字...........................这是一段很长很长的文字"
+fit_content_height = true
+deselect_on_focus_loss_enabled = false
