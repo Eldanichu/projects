@@ -2,7 +2,7 @@ extends Node2D
 
 onready var stat := $"%stats"
 onready var logger := $"%logger"
-onready var map := $gmae_ui/control/v_box_container/center_container_2/Maps
+onready var map := $"%Maps"
 
 var db:DB
 var player:PlayerObj

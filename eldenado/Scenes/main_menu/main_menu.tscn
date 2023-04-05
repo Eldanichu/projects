@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Fonts/res/chn-25.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/res/chn-25.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scenes/main_menu/main_menu.gd" type="Script" id=2]
-[ext_resource path="res://Themes/windows classic.tres" type="Theme" id=3]
+[ext_resource path="res://Assets/Themes/windows classic.tres" type="Theme" id=3]
+
 
 [node name="main_menu" type="Control"]
 show_behind_parent = true

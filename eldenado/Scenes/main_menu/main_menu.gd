@@ -2,8 +2,8 @@ extends Control
 
 export(NodePath) var UI
 
-var dl_new_game := preload("res://UI/NewGame/new_game.tscn")
-var dl_game_settings := preload("res://UI/GameSettings/game_setting.tscn")
+var dl_new_game := preload("res://UI/Panels/NewGame/new_game.tscn")
+var dl_game_settings := preload("res://UI/Panels/GameSettings/game_setting.tscn")
 
 var n := Notifer.new(self)
 

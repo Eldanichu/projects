@@ -1,0 +1,153 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/Panels/NewGame/new_game.gd" type="Script" id=2]
+[ext_resource path="res://UI/Panels/NewGame/btn_class_group.tres" type="ButtonGroup" id=3]
+[ext_resource path="res://Assets/Themes/windows classic.tres" type="Theme" id=4]
+
+
+[node name="new_game" type="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -138.0
+margin_top = -160.5
+margin_right = 138.0
+margin_bottom = 160.5
+theme = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="margin_container" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="v_box_container" type="VBoxContainer" parent="margin_container"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 266.0
+margin_bottom = 311.0
+
+[node name="scroll_container" type="ScrollContainer" parent="margin_container/v_box_container"]
+margin_right = 256.0
+margin_bottom = 268.0
+size_flags_vertical = 3
+
+[node name="v_box_container" type="VBoxContainer" parent="margin_container/v_box_container/scroll_container"]
+margin_right = 256.0
+margin_bottom = 268.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="h_split_container" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container"]
+margin_right = 256.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_constants/separation = 10
+
+[node name="player_name" type="Label" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container"]
+margin_top = 3.0
+margin_right = 50.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 50, 0 )
+text = "角色名"
+
+[node name="input_name" type="LineEdit" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container"]
+unique_name_in_owner = true
+margin_left = 60.0
+margin_right = 256.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+
+[node name="h_split_container_2" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container"]
+margin_top = 49.0
+margin_right = 256.0
+margin_bottom = 78.0
+size_flags_horizontal = 3
+custom_constants/separation = 10
+
+[node name="tag_class" type="Label" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2"]
+margin_top = 3.0
+margin_right = 50.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 50, 0 )
+text = "职业"
+align = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2"]
+margin_left = 60.0
+margin_right = 256.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_constants/separation = 10
+
+[node name="Warrior" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
+margin_right = 48.0
+margin_bottom = 29.0
+focus_mode = 0
+theme = ExtResource( 4 )
+toggle_mode = true
+enabled_focus_mode = 0
+group = ExtResource( 3 )
+text = "战士"
+
+[node name="Wizard" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
+margin_left = 58.0
+margin_right = 106.0
+margin_bottom = 29.0
+focus_mode = 0
+theme = ExtResource( 4 )
+toggle_mode = true
+enabled_focus_mode = 0
+group = ExtResource( 3 )
+text = "法师"
+
+[node name="Taos" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
+margin_left = 116.0
+margin_right = 164.0
+margin_bottom = 29.0
+focus_mode = 0
+theme = ExtResource( 4 )
+toggle_mode = true
+enabled_focus_mode = 0
+group = ExtResource( 3 )
+text = "道士"
+
+[node name="class" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
+unique_name_in_owner = true
+visible = false
+margin_left = 141.0
+margin_right = 153.0
+margin_bottom = 28.0
+focus_mode = 0
+enabled_focus_mode = 0
+group = ExtResource( 3 )
+
+[node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container"]
+margin_left = 75.0
+margin_top = 272.0
+margin_right = 181.0
+margin_bottom = 301.0
+size_flags_horizontal = 6
+custom_constants/separation = 10
+
+[node name="create_player" type="Button" parent="margin_container/v_box_container/h_box_container"]
+unique_name_in_owner = true
+margin_right = 48.0
+margin_bottom = 29.0
+theme = ExtResource( 4 )
+text = "创建"
+
+[node name="cancel" type="Button" parent="margin_container/v_box_container/h_box_container"]
+margin_left = 58.0
+margin_right = 106.0
+margin_bottom = 29.0
+theme = ExtResource( 4 )
+text = "放弃"
+
+[connection signal="pressed" from="margin_container/v_box_container/h_box_container/create_player" to="." method="_on_create_player_pressed"]
+[connection signal="pressed" from="margin_container/v_box_container/h_box_container/cancel" to="." method="_on_cancel_pressed"]

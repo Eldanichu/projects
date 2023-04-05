@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Themes/windows classic.tres" type="Theme" id=1]
+[ext_resource path="res://UI/Components/BattleLog/BattleLog.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/res/chn-14.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/Fonts/res/chn-bold.tres" type="DynamicFont" id=4]
+
+[node name="battle_log" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="logger" type="RichTextLabel" parent="."]
+pause_mode = 2
+unique_name_in_owner = true
+margin_left = 3.0
+margin_top = 2.0
+margin_right = 1277.0
+margin_bottom = 717.0
+focus_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 3 )
+custom_fonts/bold_italics_font = ExtResource( 3 )
+custom_fonts/italics_font = ExtResource( 3 )
+custom_fonts/bold_font = ExtResource( 4 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "This is RichCode
+这是富文本框"
+tab_size = 2
+text = "This is RichCode
+这是富文本框"
+scroll_following = true
+selection_enabled = true
