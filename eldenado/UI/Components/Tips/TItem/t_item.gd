@@ -14,14 +14,14 @@ onready var _scroll := $"%scroll_container"
 
 class Properties:
 	var node
-	
-	
+
+
 	func _init(_node):
 		node = _node
 		pass
-		
+
 	func build():
-		
+
 		pass
 
 func _ready():
@@ -66,4 +66,4 @@ func calc_scroll_total():
 
 func scroll_smoth(e):
 	_scroll.scroll_vertical = e
-	
+

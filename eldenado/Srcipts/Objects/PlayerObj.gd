@@ -34,9 +34,16 @@ var sc_max = 0
 
 var _g = Globals
 
-func setup(player_info):
+var p
+
+func setup(_player_info):
+	p = _player_info
+	new_player()
+
+func new_player():
 	if level == 0:
-		update_constants(player_info)
+		update_constants()
+		gold = 2000
 		level_up()
 
 func level_up():
@@ -49,13 +56,29 @@ func level_up():
 	mp = mp_max
 	expr = 0
 	expr_max = _exp_value
-	gold = 2000
 	var stats = {}
 	for s in _g.char_display_stat:
 		stats[s] = self[s]
+	emit_stats_change(stats)
+
+func update_constants():
+	class_type = p.class_type
+	player_name = p.player_name
+
+	#replace node name to player name
+	name = "player_node[{0}]".format([player_name])
+
+func emit_stats_change(stats:Dictionary):
+	var _stats = stats
 	emit_signal("update_stats",stats)
 
-func update_constants(player_info):
-	class_type = player_info.class_type
-	player_name = player_info.player_name
-	name = "player_node[{0}]".format([player_name])
+func is_dead():
+	if hp <= 0:
+		hp = 0
+		return true
+	return false
+
+func make_damage(_hp):
+	if !is_dead():
+		hp = hp - _hp
+		emit_stats_change({"hp":hp})

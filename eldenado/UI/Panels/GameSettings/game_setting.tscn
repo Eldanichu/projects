@@ -5,7 +5,6 @@
 [ext_resource path="res://Assets/Themes/windows classic.tres" type="Theme" id=3]
 [ext_resource path="res://Assets/ui/windows/window_close.png" type="Texture" id=4]
 
-
 [node name="game_setting" type="Panel"]
 pause_mode = 2
 anchor_left = 0.5
@@ -28,12 +27,12 @@ custom_constants/separation = 0
 
 [node name="row_title" type="HBoxContainer" parent="container"]
 margin_right = 312.0
-margin_bottom = 28.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 
 [node name="m1" type="MarginContainer" parent="container/row_title"]
-margin_right = 66.0
-margin_bottom = 28.0
+margin_right = 127.0
+margin_bottom = 23.0
 size_flags_horizontal = 2
 size_flags_vertical = 3
 custom_constants/margin_right = 0
@@ -44,21 +43,21 @@ custom_constants/margin_bottom = 3
 [node name="h_split_container" type="HBoxContainer" parent="container/row_title/m1"]
 margin_left = 10.0
 margin_top = 3.0
-margin_right = 66.0
-margin_bottom = 25.0
+margin_right = 127.0
+margin_bottom = 20.0
 
-[node name="label" type="Label" parent="container/row_title/m1/h_split_container"]
-margin_right = 56.0
-margin_bottom = 22.0
+[node name="settings" type="Label" parent="container/row_title/m1/h_split_container"]
+margin_right = 117.0
+margin_bottom = 17.0
 size_flags_vertical = 5
-text = "游戏设置"
+text = "TAG_GAME_SETTINGS"
 valign = 1
 
 [node name="m2" type="MarginContainer" parent="container/row_title"]
 margin_left = 284.0
-margin_top = 4.0
+margin_top = 2.0
 margin_right = 312.0
-margin_bottom = 23.0
+margin_bottom = 21.0
 size_flags_horizontal = 10
 size_flags_vertical = 6
 custom_constants/margin_right = 12
@@ -74,7 +73,7 @@ texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 1 )
 
 [node name="m" type="MarginContainer" parent="container"]
-margin_top = 28.0
+margin_top = 23.0
 margin_right = 312.0
 margin_bottom = 468.0
 size_flags_horizontal = 3
@@ -88,59 +87,59 @@ custom_constants/margin_bottom = 8
 margin_left = 8.0
 margin_top = 5.0
 margin_right = 304.0
-margin_bottom = 432.0
+margin_bottom = 437.0
 
 [node name="col_1" type="HBoxContainer" parent="container/m/scroll_container"]
 margin_right = 296.0
-margin_bottom = 427.0
+margin_bottom = 432.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="left" type="VBoxContainer" parent="container/m/scroll_container/col_1"]
-margin_right = 97.0
+margin_right = 227.0
 margin_bottom = 62.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 
 [node name="is_full_screen" type="CheckBox" parent="container/m/scroll_container/col_1/left"]
-margin_right = 97.0
+margin_right = 227.0
 margin_bottom = 29.0
 focus_mode = 0
 enabled_focus_mode = 0
-text = "全屏"
+text = "TAG_SETTING_FULLSCREEN"
 align = 1
 
 [node name="is_verticle_sync" type="CheckBox" parent="container/m/scroll_container/col_1/left"]
 margin_top = 33.0
-margin_right = 97.0
+margin_right = 227.0
 margin_bottom = 62.0
 focus_mode = 0
 enabled_focus_mode = 0
-text = "垂直同步"
+text = "TAG_SETTING_VSYNC"
 align = 1
 
 [node name="right" type="VBoxContainer" parent="container/m/scroll_container/col_1"]
-margin_left = 150.0
+margin_left = 231.0
 margin_right = 296.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="bottom" type="HBoxContainer" parent="container"]
-margin_left = 116.0
+margin_left = 112.0
 margin_top = 468.0
-margin_right = 196.0
+margin_right = 199.0
 margin_bottom = 505.0
 size_flags_horizontal = 6
 
 [node name="m" type="MarginContainer" parent="container/bottom"]
-margin_right = 80.0
+margin_right = 87.0
 margin_bottom = 37.0
 custom_constants/margin_bottom = 8
 
 [node name="save" type="Button" parent="container/bottom/m"]
-margin_right = 80.0
+margin_right = 87.0
 margin_bottom = 29.0
-text = "保存设置"
+text = "TAG_SAVE"
 
 [connection signal="pressed" from="container/row_title/m2/close" to="." method="_on_close_pressed"]
 [connection signal="toggled" from="container/m/scroll_container/col_1/left/is_full_screen" to="." method="_on_is_full_screen_toggled"]

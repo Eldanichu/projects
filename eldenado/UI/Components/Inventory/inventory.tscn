@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Themes/scroll_hidden.tres" type="Theme" id=2]
+
+[node name="scroll_container" type="ScrollContainer"]
+margin_right = 265.0
+margin_bottom = 190.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="margin_container" type="MarginContainer" parent="."]
+margin_right = 265.0
+margin_bottom = 190.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="grid_container" type="GridContainer" parent="margin_container"]
+margin_right = 265.0
+margin_bottom = 190.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 1
+custom_constants/hseparation = 1
+columns = 8

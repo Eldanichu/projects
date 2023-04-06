@@ -1012,10 +1012,11 @@ gdscript/warnings/unsafe_call_argument=true
 
 window/size/width=1280
 window/size/height=720
+window/size/resizable=false
 window/dpi/allow_hidpi=true
 mouse_cursor/tooltip_position_offset=Vector2( 20, 20 )
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
+window/stretch/aspect="expand"
 
 [editor]
 
@@ -1098,6 +1099,12 @@ ui_pause={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[locale]
+
+test="zh_CN"
+translations=PoolStringArray( "res://Locale/text.en.translation", "res://Locale/text.zh_CN.translation" )
+locale_filter=[ 1, [ "en", "zh_CN" ] ]
 
 [node]
 

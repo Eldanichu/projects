@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Fonts/ttf/wheaton-capitals.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://Assets/ui/mana-bar.png" type="Texture" id=2]
-[ext_resource path="res://Assets/ui/exp-bar.png" type="Texture" id=3]
+[ext_resource path="res://Assets/ui/bars/01061t.png" type="Texture" id=2]
+[ext_resource path="res://Assets/ui/bars/01065.png" type="Texture" id=3]
 [ext_resource path="res://UI/Panels/Stats/stats.gd" type="Script" id=4]
 [ext_resource path="res://UI/Components/TweenTextureProgress/tween_progress.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Fonts/res/chn-14.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/Fonts/res/h3.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Assets/ui/bars/01062t.png" type="Texture" id=8]
+[ext_resource path="res://Assets/ui/bars/01064t.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -23,21 +25,21 @@ script = ExtResource( 4 )
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 293.0
-margin_bottom = 128.0
+margin_bottom = 125.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="h_box_container_2" type="HBoxContainer" parent="content"]
 margin_right = 286.0
-margin_bottom = 47.0
+margin_bottom = 44.0
 
 [node name="h_box_container" type="VBoxContainer" parent="content/h_box_container_2"]
-margin_right = 156.0
-margin_bottom = 47.0
+margin_right = 115.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 
 [node name="name_class" type="HBoxContainer" parent="content/h_box_container_2/h_box_container"]
-margin_right = 156.0
+margin_right = 115.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
@@ -53,53 +55,53 @@ valign = 1
 [node name="class_type" type="Label" parent="content/h_box_container_2/h_box_container/name_class"]
 unique_name_in_owner = true
 margin_left = 68.0
-margin_top = 1.0
-margin_right = 96.0
-margin_bottom = 21.0
+margin_top = 3.0
+margin_right = 92.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 6 )
 text = "职业"
 
 [node name="gold_spliter" type="HBoxContainer" parent="content/h_box_container_2/h_box_container"]
 margin_top = 27.0
-margin_right = 156.0
-margin_bottom = 47.0
+margin_right = 115.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 
 [node name="label" type="Label" parent="content/h_box_container_2/h_box_container/gold_spliter"]
-margin_right = 28.0
-margin_bottom = 20.0
+margin_right = 58.0
+margin_bottom = 17.0
 custom_fonts/font = ExtResource( 6 )
-text = "金币"
+text = "TAG_GOLD"
 
 [node name="gold" type="Label" parent="content/h_box_container_2/h_box_container/gold_spliter"]
 unique_name_in_owner = true
-margin_left = 32.0
-margin_top = 3.0
-margin_right = 156.0
-margin_bottom = 17.0
+margin_left = 62.0
+margin_top = 1.0
+margin_right = 115.0
+margin_bottom = 15.0
 size_flags_horizontal = 3
 
 [node name="level" type="HBoxContainer" parent="content/h_box_container_2"]
-margin_left = 160.0
+margin_left = 119.0
 margin_right = 286.0
-margin_bottom = 47.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
 
 [node name="lbl_level" type="Label" parent="content/h_box_container_2/level"]
-margin_top = 11.0
-margin_right = 31.0
-margin_bottom = 36.0
+margin_top = 9.0
+margin_right = 113.0
+margin_bottom = 34.0
 custom_fonts/font = SubResource( 1 )
-text = "Lv:"
+text = "TAG_LEVEL"
 
 [node name="lbl_level_value" type="Label" parent="content/h_box_container_2/level"]
 unique_name_in_owner = true
-margin_left = 35.0
-margin_top = 11.0
-margin_right = 85.0
-margin_bottom = 36.0
+margin_left = 117.0
+margin_top = 9.0
+margin_right = 167.0
+margin_bottom = 34.0
 rect_min_size = Vector2( 50, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "1"
@@ -108,9 +110,9 @@ __meta__ = {
 }
 
 [node name="bars" type="VBoxContainer" parent="content"]
-margin_top = 51.0
+margin_top = 48.0
 margin_right = 286.0
-margin_bottom = 121.0
+margin_bottom = 118.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 5
@@ -121,17 +123,21 @@ __meta__ = {
 [node name="hp" parent="content/bars" instance=ExtResource( 5 )]
 unique_name_in_owner = true
 margin_right = 286.0
+texture = ExtResource( 2 )
+under = ExtResource( 3 )
 
 [node name="mp" parent="content/bars" instance=ExtResource( 5 )]
 unique_name_in_owner = true
 margin_top = 25.0
 margin_right = 286.0
 margin_bottom = 45.0
-texture = ExtResource( 2 )
+texture = ExtResource( 8 )
+under = ExtResource( 3 )
 
 [node name="c_exp" parent="content/bars" instance=ExtResource( 5 )]
 unique_name_in_owner = true
 margin_top = 50.0
 margin_right = 286.0
 margin_bottom = 70.0
-texture = ExtResource( 3 )
+texture = ExtResource( 9 )
+under = ExtResource( 3 )

@@ -13,9 +13,9 @@ const CLASS_TYPE:Dictionary = {
 }
 
 const CLASS_NAME:Dictionary = {
-	1 : "法师",
-	2 : "道士",
-	0 : "战士"
+	1 : "TAG_CLASS_WIZARD",
+	2 : "TAG_CLASS_TAO",
+	0 : "TAG_CLASS_WARRIOR"
 }
 
 const wizard:Dictionary = {

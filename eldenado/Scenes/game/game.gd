@@ -34,6 +34,7 @@ func create_player():
 
 func _map_entering(e):
 	print(e)
+	player.make_damage(1)
 
 func update_stat_panel(stats:Dictionary):
 	stat.player_name = player_info.player_name

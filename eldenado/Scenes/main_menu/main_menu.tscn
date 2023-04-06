@@ -4,7 +4,6 @@
 [ext_resource path="res://Scenes/main_menu/main_menu.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Themes/windows classic.tres" type="Theme" id=3]
 
-
 [node name="main_menu" type="Control"]
 show_behind_parent = true
 anchor_right = 1.0
@@ -21,48 +20,48 @@ margin_right = 1280.0
 margin_bottom = 720.0
 
 [node name="menus" type="VBoxContainer" parent="margin/container"]
-margin_left = 582.0
+margin_left = 509.0
 margin_top = 250.0
-margin_right = 697.0
+margin_right = 770.0
 margin_bottom = 470.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
 custom_constants/separation = 20
 
 [node name="start_game" type="Button" parent="margin/container/menus"]
-margin_right = 115.0
+margin_right = 261.0
 margin_bottom = 40.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
-text = "开始游戏"
+text = "TAG_START_GAME"
 
 [node name="load_game" type="Button" parent="margin/container/menus"]
 margin_top = 60.0
-margin_right = 115.0
+margin_right = 261.0
 margin_bottom = 100.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
-text = "读取游戏"
+text = "TAG_LOAD_GAME"
 
 [node name="game_settings" type="Button" parent="margin/container/menus"]
 margin_top = 120.0
-margin_right = 115.0
+margin_right = 261.0
 margin_bottom = 160.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
-text = "设置"
+text = "TAG_GAME_SETTINGS"
 
 [node name="quit_game" type="Button" parent="margin/container/menus"]
 margin_top = 180.0
-margin_right = 115.0
+margin_right = 261.0
 margin_bottom = 220.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
-text = "退出游戏"
+text = "TAG_QUIT_GAME"
 
 [connection signal="pressed" from="margin/container/menus/start_game" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="margin/container/menus/load_game" to="." method="_on_load_game_pressed"]

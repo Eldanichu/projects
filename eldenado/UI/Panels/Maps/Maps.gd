@@ -5,6 +5,7 @@ signal map_entering(map)
 export(Array) var MapData = []
 
 onready var map_panel = $"%map_panel"
+onready var tabs := $"%tabs"
 
 class MapButton:
 	var parent:Node
@@ -41,6 +42,12 @@ class MapButton:
 		_btn.connect("pressed", parent, event_func, [self])
 
 		target.add_child(_btn)
+
+func _ready() -> void:
+	var map_tab_name := tr("TAG_MAPS").split("_")
+
+	for tab_index in range(tabs.get_tab_count()):
+		tabs.set_tab_title(tab_index, map_tab_name[tab_index])
 
 func load_data():
 	var _size = MapData.size()

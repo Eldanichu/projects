@@ -1,0 +1,29 @@
+keys,en,zh_CN
+TAG_START_GAME,Start,开始游戏
+TAG_GAME_SETTINGS,Settings,设置
+TAG_QUIT_GAME,Quit,退出游戏
+TAG_LOAD_GAME,Load,读取游戏
+TAG_PLAYER_NAME,Player Name,角色名
+TAG_PLAYER_CLASS,Player Class,职业
+TAG_CREATE_GAME,Create Game,创建游戏
+TAG_CANCEL,Cancel,取消
+TAG_SAVE,Save,保存
+TAG_CLOSE,Close,关闭
+TAG_SETTING_FULLSCREEN,Full Screen,全屏
+TAG_SETTING_VSYNC,Vertical Sync,垂直同步
+TAG_MAPS,Map_Ladder,地图_幻镜
+TAG_MAP,Map,地图
+TAG_HP,health,生命
+TAG_MP,mana,魔法
+TAG_DC,DC,攻击
+TAG_SC,SC,道术
+TAG_MC,MC,魔法防御
+TAG_AC,AC,攻击防御
+TAG_CRIT_ATK,Critical Damage,暴击伤害
+TAG_CRIT_INC,Critical Chance,暴击率
+TAG_ATTACK,Attack,攻击
+TAG_GOLD,Gold,金币
+TAG_LEVEL,Lv,等级
+TAG_CLASS_WIZARD,Wizard,法师
+TAG_CLASS_TAO,Taoist,道士
+TAG_CLASS_WARRIOR,Warrior,战士

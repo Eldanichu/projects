@@ -11,31 +11,34 @@ size_flags_vertical = 3
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
 
-[node name="tab_container" type="TabContainer" parent="."]
+[node name="tabs" type="TabContainer" parent="."]
+unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="map" type="Tabs" parent="tab_container"]
+[node name="maps" type="Tabs" parent="tabs"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 35.0
 margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="scroll_container" type="ScrollContainer" parent="tab_container/map"]
+[node name="scroll_container" type="ScrollContainer" parent="tabs/maps"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -8.0
+margin_bottom = -36.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="margin_container" type="MarginContainer" parent="tab_container/map/scroll_container"]
-margin_right = 1272.0
-margin_bottom = 684.0
+[node name="margin_container" type="MarginContainer" parent="tabs/maps/scroll_container"]
+margin_right = 1264.0
+margin_bottom = 645.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 8
@@ -43,11 +46,20 @@ custom_constants/margin_top = 8
 custom_constants/margin_left = 8
 custom_constants/margin_bottom = 8
 
-[node name="map_panel" type="HFlowContainer" parent="tab_container/map/scroll_container/margin_container"]
+[node name="map_panel" type="HFlowContainer" parent="tabs/maps/scroll_container/margin_container"]
 unique_name_in_owner = true
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 1264.0
-margin_bottom = 676.0
+margin_right = 1256.0
+margin_bottom = 637.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
+
+[node name="mirrors" type="Tabs" parent="tabs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
