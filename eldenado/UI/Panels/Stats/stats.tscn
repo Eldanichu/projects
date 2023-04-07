@@ -25,17 +25,17 @@ script = ExtResource( 4 )
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 293.0
-margin_bottom = 125.0
+margin_bottom = 106.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="h_box_container_2" type="HBoxContainer" parent="content"]
 margin_right = 286.0
-margin_bottom = 44.0
+margin_bottom = 25.0
 
 [node name="h_box_container" type="VBoxContainer" parent="content/h_box_container_2"]
 margin_right = 115.0
-margin_bottom = 44.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 
 [node name="name_class" type="HBoxContainer" parent="content/h_box_container_2/h_box_container"]
@@ -61,47 +61,25 @@ margin_bottom = 20.0
 custom_fonts/font = ExtResource( 6 )
 text = "职业"
 
-[node name="gold_spliter" type="HBoxContainer" parent="content/h_box_container_2/h_box_container"]
-margin_top = 27.0
-margin_right = 115.0
-margin_bottom = 44.0
-size_flags_horizontal = 3
-
-[node name="label" type="Label" parent="content/h_box_container_2/h_box_container/gold_spliter"]
-margin_right = 58.0
-margin_bottom = 17.0
-custom_fonts/font = ExtResource( 6 )
-text = "TAG_GOLD"
-
-[node name="gold" type="Label" parent="content/h_box_container_2/h_box_container/gold_spliter"]
-unique_name_in_owner = true
-margin_left = 62.0
-margin_top = 1.0
-margin_right = 115.0
-margin_bottom = 15.0
-size_flags_horizontal = 3
-
 [node name="level" type="HBoxContainer" parent="content/h_box_container_2"]
 margin_left = 119.0
 margin_right = 286.0
-margin_bottom = 44.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
 
 [node name="lbl_level" type="Label" parent="content/h_box_container_2/level"]
-margin_top = 9.0
 margin_right = 113.0
-margin_bottom = 34.0
+margin_bottom = 25.0
 custom_fonts/font = SubResource( 1 )
 text = "TAG_LEVEL"
 
 [node name="lbl_level_value" type="Label" parent="content/h_box_container_2/level"]
 unique_name_in_owner = true
 margin_left = 117.0
-margin_top = 9.0
 margin_right = 167.0
-margin_bottom = 34.0
+margin_bottom = 25.0
 rect_min_size = Vector2( 50, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "1"
@@ -110,9 +88,9 @@ __meta__ = {
 }
 
 [node name="bars" type="VBoxContainer" parent="content"]
-margin_top = 48.0
+margin_top = 29.0
 margin_right = 286.0
-margin_bottom = 118.0
+margin_bottom = 99.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 5

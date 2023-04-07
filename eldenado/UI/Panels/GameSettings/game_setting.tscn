@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/ui/windows/window_close_hover.png" type="Texture" id=1]
 [ext_resource path="res://UI/Panels/GameSettings/game_setting.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Themes/windows classic.tres" type="Theme" id=3]
+[ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=3]
 [ext_resource path="res://Assets/ui/windows/window_close.png" type="Texture" id=4]
 
 [node name="game_setting" type="Panel"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Themes/border_bottom.tres" type="StyleBox" id=1]
-[ext_resource path="res://Assets/Themes/windows classic.tres" type="Theme" id=2]
+[ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=2]
 [ext_resource path="res://UI/Components/Tips/TItem/t_item.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Fonts/res/chn-14.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Assets/Fonts/res/chn-bold.tres" type="DynamicFont" id=5]

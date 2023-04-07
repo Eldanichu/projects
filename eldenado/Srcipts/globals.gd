@@ -49,7 +49,6 @@ const char_display_stat:Array = [
 	"expr",
 	"expr_max",
 	"level",
-	"gold",
 	"class_type",
 ]
 

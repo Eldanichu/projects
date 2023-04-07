@@ -17,3 +17,7 @@ static func entries(object:Dictionary,callback:FuncRef):
 	var values = object.values()
 	for i in range(0,keys.size()):
 		callback.call_func(keys[i],values[i])
+
+static func is_null_or_empty(obj:Dictionary):
+	var _keys = obj.keys()
+	return _keys.size()

@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Fonts/res/chn-14.tres" type="DynamicFont" id=14]
+
+[resource]
+Button/fonts/font = ExtResource( 14 )
+CheckBox/fonts/font = ExtResource( 14 )
+CheckButton/fonts/font = ExtResource( 14 )
+Label/fonts/font = ExtResource( 14 )
+TabContainer/fonts/font = ExtResource( 14 )
+Tabs/fonts/font = ExtResource( 14 )
+TextEdit/fonts/font = ExtResource( 14 )

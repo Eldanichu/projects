@@ -2,6 +2,7 @@ extends Node
 class_name PlayerObj
 
 signal update_stats(stats)
+const _g = Globals
 
 var player_name := ""
 var class_type := 1
@@ -32,9 +33,11 @@ var dc_max = 0
 var sc = 0
 var sc_max = 0
 
-var _g = Globals
+var p := {}
 
-var p
+var equipment := {}
+var inventory := {}
+var skill := {}
 
 func setup(_player_info):
 	p = _player_info

@@ -2,23 +2,27 @@
 
 [ext_resource path="res://UI/Panels/NewGame/new_game.gd" type="Script" id=2]
 [ext_resource path="res://UI/Panels/NewGame/btn_class_group.tres" type="ButtonGroup" id=3]
-[ext_resource path="res://Assets/Themes/windows classic.tres" type="Theme" id=4]
+[ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=4]
 
 [node name="new_game" type="Panel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -138.0
-margin_top = -160.5
-margin_right = 138.0
-margin_bottom = 160.5
+margin_left = -160.0
+margin_top = -160.0
+margin_right = 140.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource( 4 )
 script = ExtResource( 2 )
 
 [node name="margin_container" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -27,23 +31,24 @@ custom_constants/margin_bottom = 10
 [node name="v_box_container" type="VBoxContainer" parent="margin_container"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 281.0
-margin_bottom = 311.0
+margin_right = 603.0
+margin_bottom = 310.0
 
 [node name="scroll_container" type="ScrollContainer" parent="margin_container/v_box_container"]
-margin_right = 271.0
-margin_bottom = 268.0
+margin_right = 593.0
+margin_bottom = 267.0
 size_flags_vertical = 3
+scroll_horizontal_enabled = false
 
 [node name="v_box_container" type="VBoxContainer" parent="margin_container/v_box_container/scroll_container"]
-margin_right = 275.0
-margin_bottom = 256.0
+margin_right = 593.0
+margin_bottom = 267.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="h_split_container" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container"]
-margin_right = 275.0
+margin_right = 593.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
@@ -58,13 +63,13 @@ text = "TAG_PLAYER_NAME"
 [node name="input_name" type="LineEdit" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container"]
 unique_name_in_owner = true
 margin_left = 111.0
-margin_right = 275.0
+margin_right = 593.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="h_split_container_2" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container"]
 margin_top = 44.0
-margin_right = 275.0
+margin_right = 593.0
 margin_bottom = 73.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
@@ -79,42 +84,45 @@ align = 2
 
 [node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2"]
 margin_left = 111.0
-margin_right = 275.0
+margin_right = 593.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 
 [node name="Warrior" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
-margin_right = 48.0
+margin_right = 170.0
 margin_bottom = 29.0
 focus_mode = 0
+size_flags_horizontal = 3
 theme = ExtResource( 4 )
 toggle_mode = true
 enabled_focus_mode = 0
 group = ExtResource( 3 )
-text = "战士"
+text = "TAG_CLASS_WARRIOR"
 
 [node name="Wizard" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
-margin_left = 58.0
-margin_right = 106.0
+margin_left = 180.0
+margin_right = 339.0
 margin_bottom = 29.0
 focus_mode = 0
+size_flags_horizontal = 3
 theme = ExtResource( 4 )
 toggle_mode = true
 enabled_focus_mode = 0
 group = ExtResource( 3 )
-text = "法师"
+text = "TAG_CLASS_WIZARD"
 
 [node name="Taos" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
-margin_left = 116.0
-margin_right = 164.0
+margin_left = 349.0
+margin_right = 482.0
 margin_bottom = 29.0
 focus_mode = 0
+size_flags_horizontal = 3
 theme = ExtResource( 4 )
 toggle_mode = true
 enabled_focus_mode = 0
 group = ExtResource( 3 )
-text = "道士"
+text = "TAG_CLASS_TAO"
 
 [node name="class" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
 unique_name_in_owner = true
@@ -127,9 +135,10 @@ enabled_focus_mode = 0
 group = ExtResource( 3 )
 
 [node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container"]
-margin_top = 272.0
-margin_right = 271.0
-margin_bottom = 301.0
+margin_left = 161.0
+margin_top = 271.0
+margin_right = 432.0
+margin_bottom = 300.0
 size_flags_horizontal = 6
 custom_constants/separation = 10
 
