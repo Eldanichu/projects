@@ -5,7 +5,7 @@ var splash := preload("res://Scenes/splash/splash.tscn")
 var main_menu := preload("res://Scenes/main_menu/main_menu.tscn")
 var game := preload("res://Scenes/game/game.tscn")
 
-onready var UI := $"../UI"
+onready var UI := $"%UI"
 onready var MAIN := $".."
 
 func _ready() -> void:
