@@ -43,7 +43,7 @@ size_flags_vertical = 3
 custom_constants/separation = 11
 
 [node name="v_box_container" type="VBoxContainer" parent="gmae_ui/ui/margin_container/h_box_container"]
-margin_right = 300.0
+margin_right = 277.0
 margin_bottom = 704.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -52,17 +52,16 @@ custom_constants/separation = 5
 
 [node name="stats" parent="gmae_ui/ui/margin_container/h_box_container/v_box_container" instance=ExtResource( 1 )]
 unique_name_in_owner = true
-margin_right = 300.0
 margin_bottom = 126.0
 size_flags_stretch_ratio = 0.22
 
 [node name="game_panel" parent="gmae_ui/ui/margin_container/h_box_container/v_box_container" instance=ExtResource( 4 )]
 margin_top = 131.0
-margin_right = 300.0
+margin_right = 277.0
 margin_bottom = 704.0
 
 [node name="windows" type="Control" parent="gmae_ui/ui/margin_container/h_box_container"]
-margin_left = 311.0
+margin_left = 288.0
 margin_right = 1264.0
 margin_bottom = 704.0
 size_flags_horizontal = 3
@@ -76,4 +75,3 @@ margin_left = -348.0
 margin_right = 0.0
 
 [node name="character" parent="gmae_ui/ui/margin_container/h_box_container/windows" instance=ExtResource( 5 )]
-margin_right = 300.0

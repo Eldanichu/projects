@@ -16,10 +16,6 @@ func load_game_data():
 	db = DB.new(self)
 	db.connect("db_ready",self,"_on_db_ready")
 
-func _on_db_ready():
-	load_maps()
-	create_player()
-
 func load_maps():
 	var maps = db.get_data("map")
 	map.MapData = maps.data
@@ -29,14 +25,24 @@ func load_maps():
 func create_player():
 	player = PlayerObj.new()
 	add_child(player)
-	player.connect("update_stats",self,"update_stat_panel")
+	player.connect("update_stats",self,"_update_stat_panel")
 	player.setup(player_info)
+
+
+
+"""
+ Events
+
+"""
+func _on_db_ready():
+	load_maps()
+	create_player()
 
 func _map_entering(e):
 	print(e)
 	player.make_damage(1)
 
-func update_stat_panel(stats:Dictionary):
+func _update_stat_panel(stats:Dictionary):
 	stat.player_name = player_info.player_name
 	for stat_key in stats:
 		stat[stat_key] = stats[stat_key]
