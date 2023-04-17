@@ -6,7 +6,6 @@ func _ready() -> void:
 	pass
 
 
-
 func drop(mon_name:String):
 	var _items = mon_items[mon_name]
 	if !_items || !_items.size():

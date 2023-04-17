@@ -36,8 +36,8 @@ func update():
 	m_hp.t_max = hp_max
 	m_hp.t_val = hp
 
-	m_mp.set_t_max(mp_max)
-	m_mp.set_t_val(mp)
+	m_mp.t_max = mp_max
+	m_mp.t_val = mp
 
-	m_exp.set_t_max(expr_max)
-	m_exp.set_t_val(expr)
+	m_exp.t_max = expr_max
+	m_exp.t_val = expr

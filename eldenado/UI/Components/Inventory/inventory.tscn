@@ -4,16 +4,18 @@
 [ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=3]
 
 [node name="imventory" type="Control"]
-margin_right = 348.0
-margin_bottom = 229.0
+anchor_right = 0.272
+anchor_bottom = 0.318
+margin_right = -0.160034
+margin_bottom = 0.0399933
 rect_min_size = Vector2( 348, 220 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 3 )
 
 [node name="panel_container" type="PanelContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 348.0
+margin_bottom = 229.0
 rect_min_size = Vector2( 348, 230 )
 size_flags_horizontal = 3
 

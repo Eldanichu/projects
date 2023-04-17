@@ -46,13 +46,13 @@ margin_right = 129.0
 margin_bottom = 93.0
 text = "TAG_GAME_ENCHANT"
 
-[node name="button_4" type="Button" parent="margin_container/v_box_container"]
+[node name="forge" type="Button" parent="margin_container/v_box_container"]
 margin_top = 105.0
 margin_right = 129.0
 margin_bottom = 128.0
 text = "TAG_GAME_FORGE"
 
-[node name="button_5" type="Button" parent="margin_container/v_box_container"]
+[node name="gem" type="Button" parent="margin_container/v_box_container"]
 margin_top = 140.0
 margin_right = 129.0
 margin_bottom = 163.0

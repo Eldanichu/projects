@@ -21,10 +21,12 @@ func setup():
 		"item":ResourceLoader.load_interactive("res://DB/Items.gd"),
 		"drop_item":ResourceLoader.load_interactive("res://DB/DropItem.gd"),
 		"monster":ResourceLoader.load_interactive("res://DB/Monster.gd"),
+		"monster_group":ResourceLoader.load_interactive("res://DB/MonsterGroup.gd"),
 	}
 
 	var data_keys:Array = data.keys()
 	var data_counts = data_keys.size()
+
 	for o in data_keys:
 		var res = data[o]
 		if res.poll() == 18 && res.has_method("get_resource"):
@@ -34,6 +36,7 @@ func setup():
 				var _node = src.new()
 				_node.name = o
 				root.add_child(_node)
+
 	yield(parent, "ready")
 	emit_signal("db_ready")
 
