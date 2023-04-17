@@ -17,7 +17,7 @@ _data = [ Vector2( 0, 21.8182 ), 0.0, 0.0, 0, 0, Vector2( 1, 52.7273 ), 0.0, 0.0
 curve = SubResource( 4 )
 
 [sub_resource type="Curve" id=6]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.4, 0.211364 ), -0.734266, -0.734266, 0, 0, Vector2( 1, 0.0113636 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.3 ), 0.0, 0.0, 0, 0, Vector2( 0.4, 0.211364 ), -0.734266, -0.734266, 0, 0, Vector2( 1, 0.0113636 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=7]
 curve = SubResource( 6 )
@@ -39,16 +39,16 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 50.0
 damping_curve = SubResource( 5 )
-scale = 0.01
 scale_random = 0.1
 scale_curve = SubResource( 7 )
 color = Color( 1, 1, 1, 0.552941 )
 color_ramp = SubResource( 3 )
 
 [node name="poision_rain" type="Particles2D"]
+position = Vector2( 35, 32 )
 amount = 96
 lifetime = 0.5
-speed_scale = 0.4
+speed_scale = 0.7
 explosiveness = 0.5
 visibility_rect = Rect2( -32, -32, 64, 64 )
 local_coords = false

@@ -3,16 +3,17 @@
 [ext_resource path="res://Assets/Fonts/res/chn-bold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/Components/TweenTextureProgress/tween_progress.gd" type="Script" id=3]
 
-[node name="progress_bar_anim" type="MarginContainer"]
-margin_right = 50.0
+[node name="progress_bar_anim" type="Control"]
+margin_right = 60.0
 margin_bottom = 20.0
+rect_min_size = Vector2( 60, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
 [node name="pg" type="TextureProgress" parent="."]
-margin_right = 50.0
-margin_bottom = 20.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 50, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -24,8 +25,8 @@ stretch_margin_bottom = 2
 
 [node name="text" type="Label" parent="."]
 unique_name_in_owner = true
-margin_right = 50.0
-margin_bottom = 20.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 7
 size_flags_vertical = 7
 theme_type_variation = "lbl_value"
@@ -33,6 +34,7 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "0/100"
 align = 1
+valign = 1
 
 [node name="tween_pg" type="Tween" parent="."]
 unique_name_in_owner = true

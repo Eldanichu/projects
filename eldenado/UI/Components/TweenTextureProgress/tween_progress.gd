@@ -1,9 +1,9 @@
-extends MarginContainer
+extends Control
 class_name TweenProgress
 
 export(String) var t_val = "0" setget set_t_val
 export(String) var t_max = "1" setget set_t_max
-export(float,0,1) var duration = 0.5
+export(float,0,1) var duration = 0.2
 export(Texture) var texture
 export(Texture) var under
 export(Color) var value_color = Color.white
@@ -41,15 +41,14 @@ func update_progress():
 
 	var _percent = _t_val / _t_max * 100
 
-	tween_pg.stop_all()
 	tween_pg.interpolate_property(
 		pg,
 		"value",
 		pg.value,
 		_percent,
 		duration,
-		Tween.TRANS_SINE,
-		Tween.EASE_IN
+		Tween.TRANS_QUINT,
+		Tween.EASE_IN_OUT
 	)
 	tween_pg.start()
 

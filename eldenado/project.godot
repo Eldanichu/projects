@@ -109,11 +109,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/asserts/DefaultValueProvider.gd"
 }, {
-"base": "GdUnitTestSuite",
-"class": "DropItemTest",
-"language": "GDScript",
-"path": "res://Test/DB/DropItemTest.gd"
-}, {
 "base": "GdUnitArgumentMatcher",
 "class": "EqualsArgumentMatcher",
 "language": "GDScript",
@@ -724,11 +719,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/Utils/RandomUtil.gd"
 }, {
-"base": "GdUnitTestSuite",
-"class": "RandomUtilTest",
-"language": "GDScript",
-"path": "res://Test/Srcipts/Utils/RandomUtilTest.gd"
-}, {
 "base": "Reference",
 "class": "Result",
 "language": "GDScript",
@@ -774,7 +764,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/core/TimeUnit.gd"
 }, {
-"base": "MarginContainer",
+"base": "Control",
 "class": "TweenProgress",
 "language": "GDScript",
 "path": "res://UI/Components/TweenTextureProgress/tween_progress.gd"
@@ -840,7 +830,6 @@ _global_script_class_icons={
 "ControlUtil": "",
 "DB": "",
 "DefaultValueProvider": "",
-"DropItemTest": "",
 "EqualsArgumentMatcher": "",
 "Fuzzer": "",
 "FuzzerTool": "",
@@ -963,7 +952,6 @@ _global_script_class_icons={
 "RPCGdUnitTestSuite": "",
 "RPCMessage": "",
 "RandomUtil": "",
-"RandomUtilTest": "",
 "Result": "",
 "RichTextEffectBackground": "",
 "RichTextLabelExt": "",
