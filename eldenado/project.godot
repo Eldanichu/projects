@@ -1107,4 +1107,4 @@ common/physics_interpolation=true
 [rendering]
 
 quality/driver/fallback_to_gles2=true
-vram_compression/import_etc=true
+vram_compression/import_etc2=false
