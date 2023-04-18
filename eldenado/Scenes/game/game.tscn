@@ -35,9 +35,14 @@ margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Maps" parent="canvas_layer/h_box_container/h_box_container" instance=ExtResource( 7 )]
+[node name="control" type="Control" parent="canvas_layer/h_box_container/h_box_container"]
+margin_bottom = 720.0
+
+[node name="Maps" parent="canvas_layer/h_box_container/h_box_container/control" instance=ExtResource( 7 )]
 unique_name_in_owner = true
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 999.0
-margin_bottom = 720.0
+margin_right = 423.0
+margin_bottom = 347.0
+
+[connection signal="switch_panel" from="canvas_layer/h_box_container/v_box_container/game_panel" to="." method="_on_game_panel_switch_panel"]

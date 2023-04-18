@@ -3,17 +3,12 @@ class_name ATimer
 
 signal remains(reamins)
 
-
 export var timer_id:String
 export var Interval:float = 60
-export var RecduceAmount:float = 0
-export var AutoStart:bool = false
-export var once:bool = false
 
-var _node
+var _node:Node
 var remains:float
-var reduce_amount:float
-var timeout:bool = false
+var reduce_amount:float = 0
 
 func _init(node:Node) -> void:
 	self.timer_id = timer_id
@@ -26,64 +21,49 @@ func _init(node:Node) -> void:
 
 func _ready() -> void:
 	setup()
-	connect("timeout",self,"_on_timer_timeout")
+	connect("timeout",self,"_timeout")
 	pass
 
 func _process(delta: float) -> void:
-	if timeout:
+	if self.is_stopped():
 		return
 	emit_remains();
 
 func setup()->void:
-	wait_time = Interval
+	self.wait_time = Interval
 	reduce_amount = Interval
-	autostart = AutoStart
-	one_shot = once
-	process_mode = 1
+	self.autostart = false
+	self.one_shot = false
+	self.process_mode = 1
 
 func emit_remains()-> void:
-	remains = get_time_left();
-	if timeout:
-		remains = 0
-		wait_time = 0
-		stop()
-	emit_signal('remains',remains);
+	remains = self.get_time_left();
+	self.emit_signal('remains',remains);
 
-func _on_timer_timeout():
-	timeout = true
+func _timeout():
 	emit_remains()
 
 func start_timer() -> void:
-	var stopped = is_stopped()
-	if stopped:
-		restart()
-
-func restart() -> void:
-	var stopped = is_stopped()
-	if stopped:
+		self.stop()
 		setup()
-		reduce_amount = Interval
-		timeout = false
-		start(Interval)
-		return
-	stop()
-	start(reduce_amount)
+		self.start(Interval)
 
 func reduce_amount(amount:float,type:String = "N")->void:
-	if timeout:
+	if self.is_stopped():
 		return
+
 	var current_remains := remains
+
 	if type == "%":
 		reduce_amount = current_remains * (1 - (amount * 0.01))
 	elif type == "N":
 		reduce_amount = current_remains - amount
+
 	if reduce_amount <= 0:
-		reduce_amount = 0
-		timeout = true
-		emit_remains()
-	print(reduce_amount)
+		reduce_amount = 1e-18
+	emit_remains()
 	wait_time = reduce_amount
-	restart()
+	start()
 
 func unique_timer() -> bool:
 	var parent = get_parent()

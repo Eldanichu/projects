@@ -25,13 +25,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="hp" parent="v_box_container" instance=ExtResource( 1 )]
+unique_name_in_owner = true
 margin_right = 240.0
+t_val = "1"
 texture = ExtResource( 2 )
+value_color = Color( 0.909804, 0.909804, 0.909804, 1 )
 
 [node name="act" parent="v_box_container" instance=ExtResource( 1 )]
+unique_name_in_owner = true
 margin_top = 24.0
 margin_right = 240.0
 margin_bottom = 44.0
-t_val = "15"
-t_max = "24"
+t_val = "1"
 texture = ExtResource( 3 )
+use_tween = false
+value_color = Color( 0.92549, 0.92549, 0.92549, 1 )

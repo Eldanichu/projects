@@ -49,3 +49,8 @@ func _update_stats(stats:Dictionary):
 	for stat_key in stats:
 		stat[stat_key] = stats[stat_key]
 	stat.update()
+
+
+func _on_game_panel_switch_panel(panel_name) -> void:
+	if panel_name == "battle":
+		map.visible = !map.visible

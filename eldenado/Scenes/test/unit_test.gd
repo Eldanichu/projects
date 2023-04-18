@@ -16,18 +16,11 @@ func _on_append_text_pressed() -> void:
 
 
 func _on_Add_Timer_pressed() -> void:
-	timer.timer_id = 'myTimer-1'
-	timer.connect("remains",self,"_on_timer_remaining")
-	timer.connect("timeout",self,"_on_timer_remaining")
-	timer.start_timer()
-
-func _on_timer_remaining(remains):
-	combat_log.println_code_string(remains)
+	pass
 
 
 func _on_reduce_pressed() -> void:
-	var amount = float(get_node("%amount").text)
-	timer.reduce_amount(amount,"%")
+		pass
 
 
 func _on_Start_Timer_pressed() -> void:

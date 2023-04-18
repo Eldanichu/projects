@@ -44,48 +44,57 @@ size_flags_vertical = 3
 
 [node name="h_box_container" type="HBoxContainer" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container"]
 margin_right = 197.0
-margin_bottom = 249.0
+margin_bottom = 243.0
 size_flags_vertical = 3
 
 [node name="v_box_container_2" type="VBoxContainer" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/h_box_container"]
-margin_right = 161.0
-margin_bottom = 249.0
+margin_right = 155.0
+margin_bottom = 243.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.15
 custom_constants/separation = 0
 
 [node name="e_amulet" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/h_box_container/v_box_container_2" groups=["equipments"] instance=ExtResource( 1 )]
+margin_right = 38.0
+margin_bottom = 38.0
 
 [node name="e_brace0" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/h_box_container/v_box_container_2" groups=["equipments"] instance=ExtResource( 1 )]
-margin_top = 83.0
-margin_bottom = 115.0
+margin_top = 81.0
+margin_right = 38.0
+margin_bottom = 119.0
 
 [node name="e_ring0" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/h_box_container/v_box_container_2" groups=["equipments"] instance=ExtResource( 1 )]
-margin_top = 166.0
-margin_bottom = 198.0
+margin_top = 162.0
+margin_right = 38.0
+margin_bottom = 200.0
 
 [node name="v_box_container" type="VBoxContainer" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/h_box_container"]
-margin_left = 165.0
+margin_left = 159.0
 margin_right = 197.0
-margin_bottom = 249.0
+margin_bottom = 243.0
 size_flags_stretch_ratio = 0.15
 
 [node name="e_weapon" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/h_box_container/v_box_container" groups=["equipments"] instance=ExtResource( 1 )]
+margin_right = 38.0
+margin_bottom = 38.0
 
 [node name="e_chest" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/h_box_container/v_box_container" groups=["equipments"] instance=ExtResource( 1 )]
-margin_top = 63.0
-margin_bottom = 95.0
+margin_top = 61.0
+margin_right = 38.0
+margin_bottom = 99.0
 
 [node name="e_brace1" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/h_box_container/v_box_container" groups=["equipments"] instance=ExtResource( 1 )]
-margin_top = 126.0
-margin_bottom = 158.0
+margin_top = 123.0
+margin_right = 38.0
+margin_bottom = 161.0
 
 [node name="e_ring1" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/h_box_container/v_box_container" groups=["equipments"] instance=ExtResource( 1 )]
-margin_top = 189.0
-margin_bottom = 221.0
+margin_top = 185.0
+margin_right = 38.0
+margin_bottom = 223.0
 
 [node name="attachments" type="HBoxContainer" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container"]
-margin_top = 253.0
+margin_top = 247.0
 margin_right = 197.0
 margin_bottom = 285.0
 grow_horizontal = 2
@@ -95,23 +104,28 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="e_consumble" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/attachments" groups=["equipments"] instance=ExtResource( 1 )]
+margin_right = 38.0
+margin_bottom = 38.0
 size_flags_vertical = 6
 
 [node name="e_belt" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/attachments" groups=["equipments"] instance=ExtResource( 1 )]
-margin_left = 57.0
-margin_right = 89.0
+margin_left = 54.0
+margin_right = 92.0
+margin_bottom = 38.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
 [node name="e_boot" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/attachments" groups=["equipments"] instance=ExtResource( 1 )]
-margin_left = 107.0
-margin_right = 139.0
+margin_left = 104.0
+margin_right = 142.0
+margin_bottom = 38.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
 [node name="e_attachment" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/attachments" groups=["equipments"] instance=ExtResource( 1 )]
-margin_left = 165.0
+margin_left = 159.0
 margin_right = 197.0
+margin_bottom = 38.0
 size_flags_horizontal = 10
 size_flags_vertical = 6
 

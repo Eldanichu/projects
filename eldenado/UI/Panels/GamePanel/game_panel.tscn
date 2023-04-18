@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/Panels/GamePanel/game_panel.gd" type="Script" id=2]
 
 [node name="game_panel" type="Control"]
 margin_right = 145.0
@@ -9,6 +10,7 @@ rect_min_size = Vector2( 145, 180 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="margin_container" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -29,30 +31,30 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 12
 
-[node name="char" type="Button" parent="margin_container/v_box_container"]
+[node name="char" type="Button" parent="margin_container/v_box_container" groups=["game_func_btn"]]
 margin_right = 129.0
 margin_bottom = 23.0
 text = "TAG_GAME_CHAR"
 
-[node name="battle" type="Button" parent="margin_container/v_box_container"]
+[node name="battle" type="Button" parent="margin_container/v_box_container" groups=["game_func_btn"]]
 margin_top = 35.0
 margin_right = 129.0
 margin_bottom = 58.0
 text = "TAG_GAME_BATTLE"
 
-[node name="enchant" type="Button" parent="margin_container/v_box_container"]
+[node name="enchant" type="Button" parent="margin_container/v_box_container" groups=["game_func_btn"]]
 margin_top = 70.0
 margin_right = 129.0
 margin_bottom = 93.0
 text = "TAG_GAME_ENCHANT"
 
-[node name="forge" type="Button" parent="margin_container/v_box_container"]
+[node name="forge" type="Button" parent="margin_container/v_box_container" groups=["game_func_btn"]]
 margin_top = 105.0
 margin_right = 129.0
 margin_bottom = 128.0
 text = "TAG_GAME_FORGE"
 
-[node name="gem" type="Button" parent="margin_container/v_box_container"]
+[node name="gem" type="Button" parent="margin_container/v_box_container" groups=["game_func_btn"]]
 margin_top = 140.0
 margin_right = 129.0
 margin_bottom = 163.0

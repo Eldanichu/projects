@@ -1,16 +1,6 @@
 extends Control
 class_name Stats
 
-onready var m_player_name:Label = get_node('%player_name')
-onready var m_player_class:Label = get_node('%class_type')
-onready var m_level:Label = get_node('%lbl_level_value')
-
-onready var m_hp:TweenProgress = get_node('%hp')
-onready var m_mp:TweenProgress = get_node('%mp')
-onready var m_exp:TweenProgress = get_node('%c_exp')
-
-const FULL = 100
-
 export (int,0) var hp = 0
 export (int,0) var hp_max = 0
 
@@ -24,6 +14,18 @@ export (int,1) var level = 1
 
 export (String) var player_name = ""
 export (String) var class_type = ""
+
+export(Dictionary) var stats = {}
+
+onready var m_player_name:Label = get_node('%player_name')
+onready var m_player_class:Label = get_node('%class_type')
+onready var m_level:Label = get_node('%lbl_level_value')
+
+onready var m_hp:TweenProgress = get_node('%hp')
+onready var m_mp:TweenProgress = get_node('%mp')
+onready var m_exp:TweenProgress = get_node('%c_exp')
+
+const FULL = 100
 
 func update():
 	m_player_name.text = player_name
@@ -41,3 +43,4 @@ func update():
 
 	m_exp.t_max = expr_max
 	m_exp.t_val = expr
+
