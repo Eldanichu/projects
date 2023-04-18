@@ -7,7 +7,10 @@ var hp:int = 0
 var atk_interval:float = 2
 var action_timer := ATimer.new(self)
 
+var mon := MonObj.new()
+
 func _ready() -> void:
+	add_child(mon)
 	hp_bar.t_max = 100
 	act_bar.t_max = 100
 	action_timer.connect("timeout",self,"_attack")

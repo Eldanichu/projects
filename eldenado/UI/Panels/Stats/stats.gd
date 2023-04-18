@@ -15,7 +15,6 @@ export (int,1) var level = 1
 export (String) var player_name = ""
 export (String) var class_type = ""
 
-export(Dictionary) var stats = {}
 
 onready var m_player_name:Label = get_node('%player_name')
 onready var m_player_class:Label = get_node('%class_type')
@@ -27,7 +26,7 @@ onready var m_exp:TweenProgress = get_node('%c_exp')
 
 const FULL = 100
 
-func update():
+func update_ui():
 	m_player_name.text = player_name
 	m_player_class.text = Globals.CLASS_NAME[class_type]
 
@@ -43,4 +42,3 @@ func update():
 
 	m_exp.t_max = expr_max
 	m_exp.t_val = expr
-

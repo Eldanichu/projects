@@ -41,15 +41,16 @@ func _on_db_ready():
 	create_player()
 
 func _map_entering(e):
-	print(e)
-	player.make_damage(1)
+	var map_name = e.name
+	var mon_ids = RandomUtil.get_map_monsters(db, map_name)
+	print(mon_ids)
+	
 
 func _update_stats(stats:Dictionary):
 	stat.player_name = player_info.player_name
 	for stat_key in stats:
 		stat[stat_key] = stats[stat_key]
-	stat.update()
-
+	stat.update_ui()
 
 func _on_game_panel_switch_panel(panel_name) -> void:
 	if panel_name == "battle":

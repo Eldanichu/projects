@@ -6,6 +6,9 @@ var imgs = {
 	"005":preload("res://Assets/Monsters/Images/005.png"),
 	"006":preload("res://Assets/Monsters/Images/006.png"),
 	"007":preload("res://Assets/Monsters/Images/007.png"),
+	"009":preload("res://Assets/Monsters/Images/009.png"),
+	"011":preload("res://Assets/Monsters/Images/011.png"),
+	"012":preload("res://Assets/Monsters/Images/012.png")
 }
 
 """

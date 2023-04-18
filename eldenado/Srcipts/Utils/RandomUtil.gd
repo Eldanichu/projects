@@ -97,4 +97,24 @@ static func get_random(chance:int):
 		 res = n
 	return res
 
+static func get_items_random(count:int, array:Array) -> Array:
+	var size = array.size()
+	var _r = RandomNumberGenerator.new()
+	var copy = array.duplicate(true)
+	var res = []
+	for i in range(count):
+		_r.randomize()
+		var n = _r.randi() % size
+		res.append(copy[n])
+	return res
 
+static func get_map_monsters(db:DB,map_name:String) -> Array:
+	var monster_group:Node = db.get_data('monster_group')
+	if not monster_group or not monster_group["data"]:
+		return []
+	var data:Dictionary = monster_group.data
+	if not data.has(map_name):
+		return []
+	var group = data.get(map_name)
+	var mon_ids = get_items_random(6,group)
+	return mon_ids

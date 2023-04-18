@@ -38,5 +38,6 @@ margin_right = 240.0
 margin_bottom = 44.0
 t_val = "1"
 texture = ExtResource( 3 )
+show_value = false
 use_tween = false
 value_color = Color( 0.92549, 0.92549, 0.92549, 1 )

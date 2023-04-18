@@ -6,6 +6,7 @@
 [ext_resource path="res://UI/Panels/Maps/Maps.tscn" type="PackedScene" id=7]
 
 [node name="game" type="Node2D"]
+position = Vector2( 1083, 365 )
 script = ExtResource( 2 )
 
 [node name="canvas_layer" type="CanvasLayer" parent="."]
@@ -42,7 +43,7 @@ margin_bottom = 720.0
 unique_name_in_owner = true
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 423.0
-margin_bottom = 347.0
+margin_right = 150.0
+margin_bottom = 220.0
 
 [connection signal="switch_panel" from="canvas_layer/h_box_container/v_box_container/game_panel" to="." method="_on_game_panel_switch_panel"]

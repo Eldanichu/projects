@@ -1,6 +1,6 @@
 extends Node
 
-const monster_groups:Dictionary = {
+const data:Dictionary = {
 	"1-E":[
 		"003",
 		"004",
