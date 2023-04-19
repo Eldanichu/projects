@@ -2,7 +2,10 @@ extends Control
 
 onready var hp_bar = $"%hp"
 onready var act_bar = $"%act"
+onready var mon_img := $"%image"
+onready var p_bleeding := preload("res://Particles/bleeding.tscn")
 
+var bleeding:Particles2D
 var hp:int = 0
 var atk_interval:float = 2
 var action_timer := ATimer.new(self)
@@ -17,12 +20,18 @@ func _ready() -> void:
 	action_timer.connect("remains" ,self,"_attack_cd")
 	action_timer.Interval = atk_interval
 	action_timer.start_timer()
+	bleeding = p_bleeding.instance()
+#	add_child(bleeding)
+#	bleeding.position = (rect_size - mon_img.texture.get_size()) * .5
+	
 
 func _attack():
 	var p = GameUtils.get_percent(atk_interval,atk_interval)
 	act_bar.t_val = p
 	action_timer.start_timer()
 	print("attacks",RandomUtil.get_random(3))
+	bleeding.emitting = true
+
 	pass
 
 func _attack_cd(sec):

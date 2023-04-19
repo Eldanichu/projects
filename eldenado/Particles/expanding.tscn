@@ -48,7 +48,9 @@ hue_variation_random = 0.39
 
 [node name="particles_2d" type="Particles2D"]
 position = Vector2( 1, 4 )
+emitting = false
 amount = 32
+one_shot = true
 speed_scale = 1.2
 explosiveness = 0.9
 local_coords = false

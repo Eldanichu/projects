@@ -63,7 +63,6 @@ amount = 40
 lifetime = 0.4
 one_shot = true
 explosiveness = 0.5
-visibility_rect = Rect2( -100.093, -100.093, 200, 200 )
 local_coords = false
 process_material = SubResource( 1 )
 texture = SubResource( 8 )

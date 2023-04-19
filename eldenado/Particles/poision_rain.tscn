@@ -58,9 +58,10 @@ color = Color( 1, 1, 1, 0.552941 )
 color_ramp = SubResource( 3 )
 
 [node name="poision_rain" type="Particles2D"]
-position = Vector2( 35, 32 )
+emitting = false
 amount = 96
 lifetime = 0.6
+one_shot = true
 speed_scale = 0.6
 explosiveness = 0.5
 local_coords = false
