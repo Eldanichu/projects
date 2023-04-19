@@ -44,7 +44,7 @@ func _map_entering(e):
 	var map_name = e.name
 	var mon_ids = RandomUtil.get_map_monsters(db, map_name)
 	print(mon_ids)
-	
+
 
 func _update_stats(stats:Dictionary):
 	stat.player_name = player_info.player_name

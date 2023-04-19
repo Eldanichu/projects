@@ -4,7 +4,7 @@ class_name MonObj
 
 var mon_items:Dictionary = {}
 var mon_stat:Dictionary = {
-	
+
 }
 
 func _ready() -> void:
