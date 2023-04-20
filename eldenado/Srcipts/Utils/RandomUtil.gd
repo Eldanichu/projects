@@ -97,6 +97,16 @@ static func get_random(chance:int):
 		 res = n
 	return res
 
+static func get_random_digit(chance:int):
+	var _r = RandomNumberGenerator.new()
+	_r.randomize()
+	var n = _r.randf()
+	var _c = chance * 1.0
+	var res = 0
+	if n < _c:
+		 res = n
+	return res
+
 static func get_items_random(count:int, array:Array) -> Array:
 	var size = array.size()
 	var _r = RandomNumberGenerator.new()
