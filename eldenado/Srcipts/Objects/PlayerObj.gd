@@ -2,86 +2,164 @@ extends Node
 class_name PlayerObj
 
 signal update_stats(stats)
+signal player_died()
+signal player_levelup()
+
 const _g = Globals
 
-var player_name := ""
-var class_type := 1
-var gold := 0
-var level := 0
-var hp := 0
-var hp_max := 1
-var mp := 0
-var mp_max := 1
-var expr := 0
-var expr_max := 1
+class AttackPower:
+	const _RATE_ATK:float = 2.5
+	const _RATE_CRIT_ATK:float = 25.0
+	const _NO_DAMAGE_CRIT_MOD = 0.85
 
-# critical strength
-var crit_strength = 1.1
-# critical chance
-var crit_chance = 30
+	const _MAX_ATK_INC = 0.7
+	const _MAX_ATK_DMG_INC = 10
 
-# mag = magic spells
-var crit_mag_strength = 1.1
-var crit_mag_chance = 40
+	const _DEFAULT_CRIT = 1.1
+	const _MAX_CRIT_ATK_INC = 0
+	const _MAX_CRIT_ATK_DMG_INC = 0
 
-var ac = 0
-var ac_mac = 0
-var mc = 0
-var mc_max = 0
-var dc = 0
-var dc_max = 0
-var sc = 0
-var sc_max = 0
+	var r := RandomNumberGenerator.new()
+	var v_min:int
+	var v_max:int
+	var _ATK_INC = 0
+	var _ATK_DMG_INC = 0
+	var _CRIT_ATK_DMG_INC = 0
+	var _CRIT_ATK_INC = 0
 
-var p := {}
+	var damage:int = 0
+
+	func _init(
+		_v_min:int,
+		_v_max:int
+	) -> void:
+		r.randomize()
+		v_min = _v_min
+		v_max = _v_max
+
+	func cap_value(value):
+		return max(0, value)
+
+	func attack() -> bool:
+		return is_hit(_RATE_ATK - cap_value(_ATK_INC))
+
+	func crit() -> bool:
+		return is_hit(_RATE_CRIT_ATK - cap_value(_CRIT_ATK_INC))
+
+	func atk_damage():
+		if !attack():
+			return
+		var _damge_mod = max(1, cap_value(_ATK_DMG_INC))
+		damage = (damage + get_damage()) * _damge_mod
+
+	func no_damage_mod():
+		if damage != 0:
+			return
+		damage = round(v_min * _NO_DAMAGE_CRIT_MOD) + damage
+
+	func crit_damage():
+		if crit():
+			print("critical")
+			no_damage_mod()
+			var _crit_mod = _DEFAULT_CRIT + cap_value(_CRIT_ATK_DMG_INC)
+			damage = round(damage * _crit_mod)
+
+	func fix_reversed_damage():
+		if v_min > v_max:
+			v_min = round((v_min - v_max) + 0.5)
+
+	func is_hit(rate:float) -> bool:
+		var n = r.randf()
+		var _c = 1.0 / (rate * 1.0)
+		return n < _c
+
+	func get_damage() -> int:
+		fix_reversed_damage()
+		var _v = r.randi_range(v_max, v_min)
+		return _v
+
+	func calc() -> int:
+		atk_damage()
+		crit_damage()
+		return damage
+
+var stats:Dictionary = {
+	player_name = "",
+	class_type = 1,
+	gold = 0,
+	level = 0,
+	hp = 0,
+	hp_max = 1,
+	mp = 0,
+	mp_max = 1,
+	expr = 0,
+	expr_max = 1,
+
+	# critical strength
+	crit_strength = 1.1,
+	# critical chance
+	crit_chance = 30,
+
+	# mag = magic spells
+	crit_mag_strength = 1.1,
+	crit_mag_chance = 40,
+	ac = 0,
+	ac_mac = 0,
+	mc = 0,
+	mc_max = 0,
+	dc = 0,
+	dc_max = 0,
+	sc = 0,
+	sc_max = 0
+} setget set_stat
 
 var equipment := {}
 var inventory := {}
 var skill := {}
 
 func setup(_player_info):
-	p = _player_info
+	stats.merge(_player_info, true)
 	new_player()
 
 func new_player():
-	if level == 0:
-		update_constants()
-		gold = 2000
+	if stats.level == 0:
+		stats.gold = 2000
 		level_up()
 
 func level_up():
-	level = level + 1
-	var _class_info = _g.get_class_stats(level,class_type)
-	var _exp_value = _g.get_exp_by_level(level)
-	hp_max = _class_info["max_hp"]
-	mp_max = _class_info["max_mp"]
-	hp = hp_max
-	mp = mp_max
-	expr = 0
-	expr_max = _exp_value
-	var stats = {}
+	stats.level = stats.level + 1
+	var _class_info = _g.get_class_stats(stats.level,stats.class_type)
+	var _exp_value = _g.get_exp_by_level(stats.level)
+	stats.hp_max = _class_info["max_hp"]
+	stats.mp_max = _class_info["max_mp"]
+	stats.hp = stats.hp_max
+	stats.mp = stats.mp_max
+	stats.expr = 0
+	stats.expr_max = _exp_value
+	var _stats = {}
 	for s in _g.char_display_stat:
-		stats[s] = self[s]
-	emit_stats_change(stats)
-
-func update_constants():
-	class_type = p.class_type
-	player_name = p.player_name
+		_stats[s] = stats[s]
+	emit_stats_change(_stats)
+	emit_signal("player_levelup")
 
 	#replace node name to player name
-	name = "player_node[{0}]".format([player_name])
+	name = "player_node[{0}]".format([stats.player_name])
 
 func emit_stats_change(stats:Dictionary):
 	var _stats = stats
-	emit_signal("update_stats",stats)
+	emit_signal("update_stats", _stats)
+
+func set_stat(_stat:Dictionary):
+	stats.merge(_stat, true)
 
 func is_dead():
-	if hp <= 0:
-		hp = 0
+	if stats.hp <= 0:
+		stats.hp = 0
 		return true
+		emit_signal("player_died")
 	return false
 
-func make_damage(_hp):
+func take_damage(damages):
 	if !is_dead():
-		hp = hp - _hp
-		emit_stats_change({"hp":hp})
+		stats.hp = stats.hp - damages
+		emit_stats_change({"hp":stats.hp})

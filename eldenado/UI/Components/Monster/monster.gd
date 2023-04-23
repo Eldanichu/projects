@@ -5,32 +5,35 @@ onready var act_bar = $"%act"
 onready var mon_img := $"%image"
 
 var bleeding:Particles2D
-var hp:int = 0
-var atk_interval:float = 2
 var action_timer := ATimer.new(self)
 
-var mon := MonObj.new()
+var mon:MonObj
+var mon_stat:Dictionary
 
 func _ready() -> void:
-	add_child(mon)
+	setup()
 	hp_bar.t_max = 100
 	act_bar.t_max = 100
+
+func setup():
+	if !is_instance_valid(mon):
+		print("[monster](setup) monster was not instanced")
+		return
+	add_child(mon)
+	mon_stat = mon.mon_stat
+	action_timer.Interval = mon_stat.atk_speed
 	action_timer.connect("timeout",self,"_attack")
 	action_timer.connect("remains" ,self,"_attack_cd")
-	action_timer.Interval = atk_interval
 	action_timer.start_timer()
-
 
 func _attack():
-	var p = GameUtils.get_percent(atk_interval,atk_interval)
+	var p = GameUtils.get_percent(mon_stat.atk_speed,mon_stat.atk_speed)
 	act_bar.t_val = p
 	action_timer.start_timer()
-	print("attacks",RandomUtil.get_random(3))
-	bleeding.emitting = true
-
+	print("attacks",mon.attack())
 	pass
 
 func _attack_cd(sec):
-	var p = GameUtils.get_percent(sec,atk_interval)
+	var p = GameUtils.get_percent(sec,mon_stat.atk_speed)
 	act_bar.t_val = str(p)
 	pass

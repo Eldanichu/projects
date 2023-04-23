@@ -48,6 +48,14 @@ func start_timer() -> void:
 		setup()
 		self.start(Interval)
 
+func pause():
+	self.stop()
+
+func resume():
+	if remains <= 0.0:
+		start_timer()
+	self.start(remains)
+
 func reduce_amount(amount:float,type:String = "N")->void:
 	if self.is_stopped():
 		return

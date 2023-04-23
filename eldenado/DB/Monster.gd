@@ -1,6 +1,6 @@
 extends Node
 
-var imgs = {
+var textures:Dictionary = {
 	"003":preload("res://Assets/Monsters/Images/003.png"),
 	"004":preload("res://Assets/Monsters/Images/004.png"),
 	"005":preload("res://Assets/Monsters/Images/005.png"),

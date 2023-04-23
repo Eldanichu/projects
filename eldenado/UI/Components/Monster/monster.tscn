@@ -7,29 +7,23 @@
 [ext_resource path="res://Assets/Monsters/Images/011.png" type="Texture" id=5]
 
 [node name="monster" type="Control"]
-margin_right = 240.0
-margin_bottom = 320.0
-rect_min_size = Vector2( 240, 320 )
+margin_right = 150.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 150, 220 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource( 4 )
-
-[node name="image" type="TextureRect" parent="."]
-unique_name_in_owner = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 5 )
-expand = true
-stretch_mode = 4
 
 [node name="v_box_container" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -276.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="hp" parent="v_box_container" instance=ExtResource( 1 )]
 unique_name_in_owner = true
-margin_right = 240.0
+margin_right = 150.0
+size_flags_vertical = 1
 t_val = "1"
 texture = ExtResource( 2 )
 value_color = Color( 0.909804, 0.909804, 0.909804, 1 )
@@ -37,10 +31,22 @@ value_color = Color( 0.909804, 0.909804, 0.909804, 1 )
 [node name="act" parent="v_box_container" instance=ExtResource( 1 )]
 unique_name_in_owner = true
 margin_top = 24.0
-margin_right = 240.0
+margin_right = 150.0
 margin_bottom = 44.0
+size_flags_vertical = 1
 t_val = "1"
 texture = ExtResource( 3 )
 show_value = false
 use_tween = false
 value_color = Color( 0.92549, 0.92549, 0.92549, 1 )
+
+[node name="image" type="TextureRect" parent="v_box_container"]
+unique_name_in_owner = true
+margin_top = 48.0
+margin_right = 150.0
+margin_bottom = 220.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 4

@@ -9,6 +9,12 @@ var db:DB
 var player:PlayerObj
 var player_info:Dictionary
 
+func _ready() -> void:
+	pass
+
+func _process(delta: float) -> void:
+	pass
+
 func setup(_player_info:Dictionary):
 	load_game_data()
 	player_info = _player_info
@@ -44,13 +50,14 @@ func _map_entering(e):
 	var map_name = e.name
 	var mon_ids = RandomUtil.get_map_monsters(db, map_name)
 	print(mon_ids)
+	for _mon_id in mon_ids:
+		var mon = MonObj.new()
+		mon.get_instance(db, _mon_id)
 
 
-func _update_stats(stats:Dictionary):
-	stat.player_name = player_info.player_name
-	for stat_key in stats:
-		stat[stat_key] = stats[stat_key]
-	stat.update_ui()
+func _update_stats(_stat:Dictionary):
+	_stat.merge(player_info, true)
+	stat.update_ui(_stat)
 
 func _on_game_panel_switch_panel(panel_name) -> void:
 	if panel_name == "battle":
