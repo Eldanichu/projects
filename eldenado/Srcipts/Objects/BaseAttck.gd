@@ -6,15 +6,12 @@ var cooldown = -1
 var cast = null
 var target = null
 
-var attack_timer := AdjustableTimer.new(self)
 
 func _init():
 	return self
 
 func _ready() -> void:
-	if !_is_valid_attack():
-		queue_free()
-	add_child(attack_timer)
+	pass
 
 func from(_cast):
 	cast = _cast
@@ -25,17 +22,15 @@ func to(_target):
 	return self
 
 func cd(value):
-	cooldown = value
-	attack_timer.Interval = cooldown
-	attack_timer.start_timer()
+
 	return self
 
 func cdr_percent(value):
-	attack_timer.reduce_amount(value,"%")
+
 	return self
 
 func cdr_value(value):
-	attack_timer.reduce_amount(value,"N")
+
 	return self
 
 

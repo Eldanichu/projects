@@ -11,6 +11,11 @@ func _input(event):
 		if event.is_pressed():
 			pass
 
+func _draw() -> void:
+
+	update()
+	pass
+
 func _on_Add_Timer_pressed() -> void:
 	timer.Interval = 2
 	timer.connect("remains",self,"_timer_remaining")
@@ -32,7 +37,6 @@ func _on_pause_timer_pressed() -> void:
 
 func _on_append_item_pressed():
 	pass
-
 
 func _on_roll_item_pressed():
 	pass

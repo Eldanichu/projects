@@ -1,6 +1,6 @@
 extends Node2D
 
-const QUEUE_SIZE = 10
+const QUEUE_SIZE = 24
 const QUENED_KEYS = [
 	KEY_0,
 	KEY_1,
@@ -18,7 +18,7 @@ const QUENED_KEYS = [
 class Quene:
 
 	var keys:Array = []
-	var size:int = 10
+	var size:int = 32
 	var current_key
 	var last_two:Array = []
 
@@ -29,15 +29,22 @@ class Quene:
 	func push(key):
 		current_key = key
 		last_two.append(key)
-		print(keys)
-		if lasts_are_dupe() || queue_size() >= size:
-			last_two = []
+		if lasts_are_dupe():
+			reset_last()
 			reset_queue()
-			return
+		if queue_size() >= size:
+			reset_queue()
 		keys.append(key)
+		print(keys)
+
+	func get_keys():
+		return keys
 
 	func queue_size():
 		return keys.size()
+
+	func reset_last():
+		last_two = []
 
 	func reset_queue():
 		keys = []
@@ -55,15 +62,30 @@ class Quene:
 	func stop_record():
 		pass
 
-var queue_timer = Timer.new()
+var queue_timer = ATimer.new(self)
 var q := Quene.new(QUEUE_SIZE)
 
 func _ready() -> void:
+	queue_timer.Interval = 3
+	queue_timer.connect("timeout", self, "_match_keys")
 	pass
+
+func _start_match():
+	if q.queue_size() <= 5:
+		return
+	queue_timer.stop()
+	queue_timer.start_timer()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		var key = event.scancode
 		if QUENED_KEYS.has(key) && event.pressed:
 			q.push(key)
-	pass
+			_start_match()
+
+func _match_keys():
+	var keys = q.get_keys()
+	print("macth keys")
+	q.reset_queue()
+	q.reset_last()
+	queue_timer.stop()

@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/Panels/Stats/stats.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/game/game.gd" type="Script" id=2]
 [ext_resource path="res://Assets/ui/panel/battle.png" type="Texture" id=3]
 [ext_resource path="res://UI/Panels/GamePanel/game_panel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/Components/Inventory/inventory.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/Panels/Character/character.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/Panels/Maps/Maps.tscn" type="PackedScene" id=7]
 
 [node name="game" type="Node2D"]
@@ -38,18 +40,45 @@ margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="control" type="Control" parent="game_ui/h_box_container/h_box_container"]
+[node name="v1" type="VBoxContainer" parent="game_ui/h_box_container/h_box_container"]
 margin_right = 999.0
 margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Maps" parent="game_ui/h_box_container/h_box_container/control" instance=ExtResource( 7 )]
+[node name="h_box_container" type="HBoxContainer" parent="game_ui/h_box_container/h_box_container/v1"]
+margin_right = 999.0
+margin_bottom = 358.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Maps" parent="game_ui/h_box_container/h_box_container/v1/h_box_container" instance=ExtResource( 7 )]
 unique_name_in_owner = true
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 150.0
-margin_bottom = 711.0
+margin_bottom = 358.0
+size_flags_horizontal = 2
+
+[node name="h_box_container_2" type="HBoxContainer" parent="game_ui/h_box_container/h_box_container/v1"]
+margin_top = 362.0
+margin_right = 999.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="character" parent="game_ui/h_box_container/h_box_container/v1/h_box_container_2" instance=ExtResource( 6 )]
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="imventory" parent="game_ui/h_box_container/h_box_container/v1/h_box_container_2" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 651.0
+margin_right = 999.0
+margin_bottom = 220.0
+size_flags_horizontal = 10
+size_flags_vertical = 2
 
 [node name="battle_ui" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -61,7 +90,7 @@ position = Vector2( 809, 400 )
 texture = ExtResource( 3 )
 
 [node name="battle_ui" type="Control" parent="battle_ui"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [connection signal="switch_panel" from="game_ui/h_box_container/v_box_container/game_panel" to="." method="_on_game_panel_switch_panel"]
