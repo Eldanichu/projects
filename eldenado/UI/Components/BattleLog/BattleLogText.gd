@@ -1,47 +1,60 @@
 extends Resource
-class_name BattleLog
+class_name BattleLogText
 
 var formats:Array = []
 var text_result:String
+var b setget ,bold
+var i setget ,italics
+var u setget ,underline
+var color setget color
+var text setget set_text,to_string
 
-func _init(text:String = "") -> void:
-	self.text_result = text
+func set_text(text):
+	self.text_result = str(text)
+	return self
 
-func color_text(color:String) -> BattleLog:
+func to_string() -> String:
+	self.text_result = resolve_formats()
+	return self.text_result
+
+func color(color:Color) -> BattleLogText:
 	#  "[color={color}]"
-	append_format("color", color)
+	"""
+	var color = Color(1, 1, 1, 0.5)
+	var s1 = color.to_html() 
+	
+	# Returns -> "7fffffff"
+	"""
+	var _c = "#{0}".format([color.to_html()])
+	append_format("color", _c)
 	return self
 
 """
 this method requires set font to RichText
 """
-func bold_text() -> BattleLog:
+func bold() -> BattleLogText:
 	append_format("b")
 	return self
 
 """
 this method requires set font to RichText
 """
-func italics_text() -> BattleLog:
+func italics() -> BattleLogText:
 	append_format("i")
 	return self
 
-func underline_text() -> BattleLog:
+func underline() -> BattleLogText:
 	append_format("u")
 	return self
 
-func img(url:String,width:float,height:float) -> BattleLog:
+func img(url:String,width:float,height:float) -> BattleLogText:
 	var _str = "[img={width}x{height}]{url}"
 	append_format("img")
 	return self
 
-func indent_text(indents:int = 1) -> BattleLog:
+func indent(indents:int = 1) -> BattleLogText:
 	append_format("indent",str(indents))
 	return self
-
-func toString() -> String:
-	self.text_result = resolve_formats()
-	return self.text_result
 
 func append_format(type:String,value:String = "") -> void:
 	formats.append({"type":type,"value":value})

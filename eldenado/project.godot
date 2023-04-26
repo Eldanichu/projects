@@ -40,7 +40,7 @@ _global_script_classes=[ {
 "path": "res://Srcipts/Objects/BaseAttck.gd"
 }, {
 "base": "Resource",
-"class": "BattleLog",
+"class": "BattleLogText",
 "language": "GDScript",
 "path": "res://UI/Components/BattleLog/BattleLogText.gd"
 }, {
@@ -826,7 +826,7 @@ _global_script_class_icons={
 "AnyClazzArgumentMatcher": "",
 "ArrayUtil": "",
 "BaseAttack": "",
-"BattleLog": "",
+"BattleLogText": "",
 "BigNumber": "",
 "CallBackValueProvider": "",
 "ChainedArgumentMatcher": "",
