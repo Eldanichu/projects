@@ -21,8 +21,8 @@ func color(color:Color) -> BattleLogText:
 	#  "[color={color}]"
 	"""
 	var color = Color(1, 1, 1, 0.5)
-	var s1 = color.to_html() 
-	
+	var s1 = color.to_html()
+
 	# Returns -> "7fffffff"
 	"""
 	var _c = "#{0}".format([color.to_html()])

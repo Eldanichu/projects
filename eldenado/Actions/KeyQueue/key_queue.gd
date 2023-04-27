@@ -20,7 +20,8 @@ class Quene:
 	var keys:Array = []
 	var size:int = 32
 	var current_key
-	var last_two:Array = []
+	var last_key
+	var last_key_counts = 0
 
 	func _init(_size:int) -> void:
 		size = _size
@@ -28,14 +29,15 @@ class Quene:
 
 	func push(key):
 		current_key = key
-		last_two.append(key)
-		if lasts_are_dupe():
-			reset_last()
-			reset_queue()
-		if queue_size() >= size:
-			reset_queue()
-		keys.append(key)
+		if last_key != current_key:
+			keys.append(key)
+			last_key_counts = 0
+		if last_key == current_key:
+			last_key_counts = last_key_counts +1
+		print(current_key,"----", last_key,"count:",last_key_counts)
 		print(keys)
+
+		last_key = current_key
 
 	func get_keys():
 		return keys
@@ -43,23 +45,10 @@ class Quene:
 	func queue_size():
 		return keys.size()
 
-	func reset_last():
-		last_two = []
-
 	func reset_queue():
 		keys = []
 
 	func lasts_are_dupe():
-		var count = 0
-		for i in range(last_two.size()):
-			if last_two[i] == current_key && i<=1:
-				count = count + 1
-		return count >= 2
-
-	func start_record():
-		pass
-
-	func stop_record():
 		pass
 
 var queue_timer = ATimer.new(self)

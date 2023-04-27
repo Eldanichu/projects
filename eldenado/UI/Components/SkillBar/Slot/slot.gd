@@ -1,16 +1,28 @@
 extends MarginContainer
-class_name SkillSlot
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var slot_label = $"%label"
+
+var _is_mouse_in = false
+var slot_key:int = 1 setget set_slot_key
+var skill_id:String
+
+func update():
+	slot_label.text = str(slot_key)
+
+func set_slot_key(n):
+	slot_key = n
+	if is_inside_tree():
+		update()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_pressed() && _is_mouse_in:
+			print(slot_key)
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _on_slot_mouse_entered() -> void:
+	_is_mouse_in = true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_slot_mouse_exited() -> void:
+	_is_mouse_in = false

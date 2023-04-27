@@ -14,12 +14,12 @@ func println(text):
 		_text = text.to_string()
 	elif text is String:
 		_text = text
-	
+
 	var line_text = "{0}\n".format([_text])
 	logger.append_bbcode(line_text)
 	ln_inc()
 
-func get_format():
+func get_format() -> BattleLogText:
 	return BattleLogText.new()
 
 func clear()->void:

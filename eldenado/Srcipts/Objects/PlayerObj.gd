@@ -18,7 +18,7 @@ class AttackPower:
 	var r := RandomNumberGenerator.new()
 	var v_min:int
 	var v_max:int
-	
+
 	var ATK_RATE = 45
 	var CRIT_ATK_RATE = 10
 	var ATK_RATE_INC = 0
@@ -82,7 +82,7 @@ class AttackPower:
 		fix_reversed_damage()
 		var _v = r.randi_range(v_max, v_min)
 		return _v
-	
+
 	func is_crit_damage():
 		return _is_crit
 

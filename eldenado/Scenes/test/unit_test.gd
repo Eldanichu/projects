@@ -53,7 +53,7 @@ func _on_RandomTest_pressed():
 	var crit_chance_max = 80.0
 	var p = min(crit_chance / crit_chance_max * 100, crit_chance_max)
 	var c = (p / 100.0) * 100
-	
+
 	var hit_times = 100
 	for i in range(hit_times):
 		r.randomize()
@@ -89,7 +89,7 @@ func _on_CharecterTest_pressed():
 	var attack = player.attack()
 	var crit_attack = attack[1]
 	var dmg = attack[0]
-	
+
 	var dmg_text = combat_log.format
 	if crit_attack:
 		var color = Color.green
