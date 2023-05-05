@@ -1,5 +1,9 @@
 extends Node2D
 
+export(float,0.2,5) var match_delay = 1
+
+export(int,2,20) var min_keys_for_matching = 5
+
 const QUEUE_SIZE = 24
 const QUENED_KEYS = [
 	KEY_0,
@@ -12,20 +16,19 @@ const QUENED_KEYS = [
 	KEY_7,
 	KEY_8,
 	KEY_9,
-	KEY_0,
+	KEY_0
 ]
 
 class Quene:
 
 	var keys:Array = []
-	var size:int = 32
+	var size:int
 	var current_key
 	var last_key
 	var last_key_counts = 0
 
 	func _init(_size:int) -> void:
 		size = _size
-		pass
 
 	func push(key):
 		current_key = key
@@ -33,7 +36,9 @@ class Quene:
 			keys.append(key)
 			last_key_counts = 0
 		if last_key == current_key:
-			last_key_counts = last_key_counts +1
+			last_key_counts = last_key_counts + 1
+			if last_key_counts < 2:
+				keys.append(key)
 		print(current_key,"----", last_key,"count:",last_key_counts)
 		print(keys)
 
@@ -48,19 +53,15 @@ class Quene:
 	func reset_queue():
 		keys = []
 
-	func lasts_are_dupe():
-		pass
-
 var queue_timer = ATimer.new(self)
 var q := Quene.new(QUEUE_SIZE)
 
 func _ready() -> void:
-	queue_timer.Interval = 3
+	queue_timer.Interval = match_delay
 	queue_timer.connect("timeout", self, "_match_keys")
-	pass
 
 func _start_match():
-	if q.queue_size() <= 5:
+	if q.queue_size() <= min_keys_for_matching:
 		return
 	queue_timer.stop()
 	queue_timer.start_timer()
@@ -76,5 +77,4 @@ func _match_keys():
 	var keys = q.get_keys()
 	print("macth keys")
 	q.reset_queue()
-	q.reset_last()
 	queue_timer.stop()

@@ -34,28 +34,33 @@ custom_constants/separation = 12
 [node name="char" type="Button" parent="margin_container/v_box_container" groups=["game_func_btn"]]
 margin_right = 129.0
 margin_bottom = 23.0
+size_flags_vertical = 3
 text = "TAG_GAME_CHAR"
 
 [node name="battle" type="Button" parent="margin_container/v_box_container" groups=["game_func_btn"]]
 margin_top = 35.0
 margin_right = 129.0
 margin_bottom = 58.0
+size_flags_vertical = 3
 text = "TAG_GAME_BATTLE"
 
 [node name="enchant" type="Button" parent="margin_container/v_box_container" groups=["game_func_btn"]]
 margin_top = 70.0
 margin_right = 129.0
 margin_bottom = 93.0
+size_flags_vertical = 3
 text = "TAG_GAME_ENCHANT"
 
 [node name="forge" type="Button" parent="margin_container/v_box_container" groups=["game_func_btn"]]
 margin_top = 105.0
 margin_right = 129.0
 margin_bottom = 128.0
+size_flags_vertical = 3
 text = "TAG_GAME_FORGE"
 
 [node name="gem" type="Button" parent="margin_container/v_box_container" groups=["game_func_btn"]]
 margin_top = 140.0
 margin_right = 129.0
-margin_bottom = 163.0
+margin_bottom = 164.0
+size_flags_vertical = 3
 text = "TAG_GAME_GEMS"

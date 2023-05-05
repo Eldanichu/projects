@@ -8,7 +8,10 @@ var player := PlayerObj.new()
 var r := RandomNumberGenerator.new()
 
 func _ready():
+	r.randomize()
 	combat_log.clear()
+	var fi = MouseFloatItem.new();
+	add_child(fi)
 	pass
 
 func _input(event):
@@ -56,7 +59,6 @@ func _on_RandomTest_pressed():
 
 	var hit_times = 100
 	for i in range(hit_times):
-		r.randomize()
 		var n = r.randf() * 100 + 1
 		var hit = n < c
 		if hit:

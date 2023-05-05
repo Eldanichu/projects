@@ -24,10 +24,10 @@ static func get_random_digit(chance:int):
 static func get_items_random(count:int, array:Array) -> Array:
 	var size = array.size()
 	var _r = RandomNumberGenerator.new()
+	_r.randomize()
 	var copy = array.duplicate(true)
 	var res = []
 	for i in range(count):
-		_r.randomize()
 		var n = _r.randi() % size
 		res.append(copy[n])
 	return res

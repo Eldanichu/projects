@@ -1,7 +1,12 @@
 extends Node
 
-## [1] tc | [2] rv | [3] use_type | [4]
-export var data:Dictionary = {
+"""
+[1] TC
+[2] RARE_VALUE
+[3] USE_TYPE
+[4]
+"""
+const data:Dictionary = {
 	"posion_hp_0"   : [ 1, 9, 2  ],
 	"posion_hp_1"   : [ 5, 9, 2  ],
 	"posion_hp_2"   : [ 10, 9, 2 ],

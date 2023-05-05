@@ -129,6 +129,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/Fuzzers.gd"
 }, {
+"base": "Node",
+"class": "GameInstance",
+"language": "GDScript",
+"path": "res://main.gd"
+}, {
 "base": "Resource",
 "class": "GameUtils",
 "language": "GDScript",
@@ -664,6 +669,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/Objects/MonObj.gd"
 }, {
+"base": "Node",
+"class": "MouseFloatItem",
+"language": "GDScript",
+"path": "res://UI/Components/BasicSlot/mouse_float_item.gd"
+}, {
 "base": "Resource",
 "class": "Notifer",
 "language": "GDScript",
@@ -748,6 +758,11 @@ _global_script_classes=[ {
 "class": "SignalHandler",
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/core/event/SignalHandler.gd"
+}, {
+"base": "MarginContainer",
+"class": "SkillSlot",
+"language": "GDScript",
+"path": "res://UI/Components/BasicSlot/basic_slot.gd"
 }, {
 "base": "Control",
 "class": "Stats",
@@ -839,6 +854,7 @@ _global_script_class_icons={
 "Fuzzer": "",
 "FuzzerTool": "",
 "Fuzzers": "",
+"GameInstance": "",
 "GameUtils": "",
 "GameVars": "",
 "GdAssertMessages": "",
@@ -946,6 +962,7 @@ _global_script_class_icons={
 "Json": "",
 "LocalTime": "",
 "MonObj": "",
+"MouseFloatItem": "",
 "Notifer": "",
 "ObjectUtil": "",
 "Player": "",
@@ -963,6 +980,7 @@ _global_script_class_icons={
 "RichTextLabelExt": "",
 "Settings": "",
 "SignalHandler": "",
+"SkillSlot": "",
 "Stats": "",
 "StringFuzzer": "",
 "StringUtil": "",

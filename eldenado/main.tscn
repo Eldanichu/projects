@@ -9,12 +9,22 @@
 script = ExtResource( 4 )
 
 [node name="key_queue" parent="." instance=ExtResource( 3 )]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="SceneAction" parent="." instance=ExtResource( 1 )]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="UI" type="CanvasLayer" parent="."]
+pause_mode = 2
 unique_name_in_owner = true
 
-[node name="battle_bg" type="Sprite" parent="."]
-position = Vector2( 627, 362 )
+[node name="game_bg" type="Sprite" parent="UI"]
+position = Vector2( 640, 400 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
