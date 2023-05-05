@@ -7,6 +7,10 @@ var chances:Array = []
 var player := PlayerObj.new()
 var r := RandomNumberGenerator.new()
 
+var mouse_position:Vector2 = Vector2.ZERO
+var points:PoolVector2Array = []
+
+
 func _ready():
 	r.randomize()
 	combat_log.clear()
@@ -14,16 +18,42 @@ func _ready():
 	add_child(fi)
 	pass
 
-func _input(event):
+func poly_rect(position:Vector2) -> PoolVector2Array:
+	var size = 5
+	var offset = 5
+	position = position - Vector2(size + offset, size + offset)
+	return PoolVector2Array([
+		Vector2(position.x, position.y),
+		Vector2(position.x + size, position.y),
+		Vector2(position.x + size, position.y + size),
+		Vector2(position.x, position.y + size),
+		Vector2(position.x, position.y),
+	])
+
+func check_points():
+	draw_polyline_colors(poly_rect(mouse_position),PoolColorArray([Color.white]),1)
+	for i in range(points.size()):
+		var is_in_c = Geometry.is_point_in_circle(mouse_position,points[i], 5)
+		var c = Color.yellow
+		if is_in_c:
+			c = Color.red
+		draw_circle(points[i], 5, c)
+
+func _input(event:InputEvent):
+	if event as InputEventMouseMotion:
+		mouse_position = event.position
+		check_points()
+
 	if event as InputEventMouseButton:
-		if event.is_pressed():
-			pass
+		if event.is_pressed() && event.button_index == 1:
+			points.append(Vector2(event.position)) 
+	update()
 
 func _draw() -> void:
-
-	update()
-	pass
-
+#	draw_string(load("res://Assets/Fonts/res/chn-14.tres"),Vector2(300,600),str(points))
+	draw_polyline_colors(points,PoolColorArray([Color.white]),1)
+	check_points()
+		
 func _on_Add_Timer_pressed() -> void:
 	timer.Interval = 2
 	timer.connect("remains",self,"_timer_remaining")

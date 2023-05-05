@@ -13,6 +13,7 @@ var position:Vector2 = Vector2.ZERO
 func _ready() -> void:
 	if !item.id:
 		queue_free()
+		return
 	var root = get_tree().get_root()
 	texture.texture = load("res://Assets/Items/00312.png")
 	add_child(texture)
