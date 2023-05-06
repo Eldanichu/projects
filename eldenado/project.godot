@@ -754,6 +754,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Store/Modules/Settings.gd"
 }, {
+"base": "Reference",
+"class": "ShapeUtil",
+"language": "GDScript",
+"path": "res://Srcipts/Utils/ShapeUtil.gd"
+}, {
 "base": "Resource",
 "class": "SignalHandler",
 "language": "GDScript",
@@ -979,6 +984,7 @@ _global_script_class_icons={
 "RichTextEffectBackground": "",
 "RichTextLabelExt": "",
 "Settings": "",
+"ShapeUtil": "",
 "SignalHandler": "",
 "SkillSlot": "",
 "Stats": "",

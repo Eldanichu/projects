@@ -1,17 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Skill/CiSha/1@01415.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Skill/CiSha/2@01415.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Skill/CiSha/0@01415.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Skill/CiSha/3@01415.png" type="Texture" id=4]
-
-[sub_resource type="Curve" id=2]
-min_value = -360.0
-max_value = 360.0
-_data = [ Vector2( 0, 22.0909 ), 0.0, -70.0364, 0, 0, Vector2( 0.658879, 87.5454 ), 456.051, 456.051, 0, 0, Vector2( 1, 120.273 ), 278.086, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=3]
-curve = SubResource( 2 )
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.408377, 0.759162, 1 )
@@ -20,12 +12,6 @@ colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.858696, 0.597656, 0.984676, 1, 0
 [sub_resource type="GradientTexture" id=5]
 gradient = SubResource( 4 )
 
-[sub_resource type="Curve" id=6]
-_data = [ Vector2( 0, 0.384091 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.775 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=7]
-curve = SubResource( 6 )
-
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
@@ -33,20 +19,16 @@ flag_disable_z = true
 direction = Vector3( 0, -200, 0 )
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 255.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel = 20.0
-angle = 32.0
-angle_curve = SubResource( 3 )
-scale_curve = SubResource( 7 )
+angle = -160.0
 color = Color( 1, 1, 1, 0.552941 )
 color_ramp = SubResource( 5 )
 
 [sub_resource type="AnimatedTexture" id=8]
 flags = 4
 frames = 4
-fps = 30.0
+fps = 5.0
 frame_0/texture = ExtResource( 3 )
 frame_1/texture = ExtResource( 1 )
 frame_1/delay_sec = 0.0
@@ -59,10 +41,9 @@ frame_3/delay_sec = 0.0
 position = Vector2( 1, 0 )
 z_as_relative = false
 emitting = false
-amount = 40
-lifetime = 0.4
+amount = 64
 one_shot = true
-explosiveness = 0.5
+speed_scale = 2.0
 local_coords = false
 process_material = SubResource( 1 )
 texture = SubResource( 8 )

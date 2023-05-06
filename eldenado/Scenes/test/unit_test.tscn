@@ -90,6 +90,13 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 50, 0 )
 size_flags_horizontal = 3
 
+[node name="polygon_2d" type="Polygon2D" parent="."]
+position = Vector2( 440, 453 )
+color = Color( 1, 1, 1, 0 )
+texture_scale = Vector2( 1.2, 1 )
+invert_border = 1.0
+polygon = PoolVector2Array( -50, -50, -50, 50, 50, 50, 50, -50 )
+
 [connection signal="pressed" from="v_box_container/h_box_container/v_box_container/Add Timer" to="." method="_on_Add_Timer_pressed"]
 [connection signal="pressed" from="v_box_container/h_box_container/v_box_container/pause_timer" to="." method="_on_pause_timer_pressed"]
 [connection signal="pressed" from="v_box_container/h_box_container/v_box_container/Restart Timer" to="." method="_on_Restart_Timer_pressed"]

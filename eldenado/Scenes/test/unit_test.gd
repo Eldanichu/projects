@@ -3,6 +3,8 @@ extends Control
 onready var combat_log = get_node("%combat_log")
 onready var timer = ATimer.new(self)
 
+onready var p = $polygon_2d
+
 var chances:Array = []
 var player := PlayerObj.new()
 var r := RandomNumberGenerator.new()
@@ -10,28 +12,29 @@ var r := RandomNumberGenerator.new()
 var mouse_position:Vector2 = Vector2.ZERO
 var points:PoolVector2Array = []
 
-
 func _ready():
 	r.randomize()
 	combat_log.clear()
 	var fi = MouseFloatItem.new();
+	fi.item.id = "00394"
+	fi.item.appr = "00394"
 	add_child(fi)
-	pass
+#	p.rotate(deg2rad(45))
 
 func poly_rect(position:Vector2) -> PoolVector2Array:
-	var size = 5
-	var offset = 5
+	var size = 100
+	var offset = -(size * 0.5)
 	position = position - Vector2(size + offset, size + offset)
-	return PoolVector2Array([
+	var polygon = PoolVector2Array([
 		Vector2(position.x, position.y),
 		Vector2(position.x + size, position.y),
 		Vector2(position.x + size, position.y + size),
 		Vector2(position.x, position.y + size),
 		Vector2(position.x, position.y),
 	])
+	return polygon
 
 func check_points():
-	draw_polyline_colors(poly_rect(mouse_position),PoolColorArray([Color.white]),1)
 	for i in range(points.size()):
 		var is_in_c = Geometry.is_point_in_circle(mouse_position,points[i], 5)
 		var c = Color.yellow
@@ -42,18 +45,25 @@ func check_points():
 func _input(event:InputEvent):
 	if event as InputEventMouseMotion:
 		mouse_position = event.position
-		check_points()
+		p.position = mouse_position
+#	if event as InputEventMouseButton:
+#		if event.button_index == 4:
+#			p.scale = p.scale - Vector2(0.1,0.1)
+#		elif event.button_index == 5:
+#			p.scale = p.scale + Vector2(0.1,0.1)
 
-	if event as InputEventMouseButton:
-		if event.is_pressed() && event.button_index == 1:
-			points.append(Vector2(event.position)) 
+#	if event as InputEventMouseButton:
+#		if event.is_pressed() && event.button_index == 1:
+#			points.append(Vector2(event.position))
 	update()
 
 func _draw() -> void:
+	var tv:PoolVector2Array = ShapeUtil.get_polygon2D_points(p)
+	draw_polyline_colors(tv,[Color.white],1)
+#	draw_polyline_colors(poly_rect(mouse_position),PoolColorArray([Color.white]),1)
 #	draw_string(load("res://Assets/Fonts/res/chn-14.tres"),Vector2(300,600),str(points))
-	draw_polyline_colors(points,PoolColorArray([Color.white]),1)
-	check_points()
-		
+#	draw_polygon(points,[Color.white])
+
 func _on_Add_Timer_pressed() -> void:
 	timer.Interval = 2
 	timer.connect("remains",self,"_timer_remaining")
