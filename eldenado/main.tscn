@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Actions/SceneAction.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/ui/panel/battle_bg.png" type="Texture" id=2]
 [ext_resource path="res://Actions/KeyQueue/key_queue.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main.gd" type="Script" id=4]
 
@@ -21,10 +20,3 @@ __meta__ = {
 [node name="UI" type="CanvasLayer" parent="."]
 pause_mode = 2
 unique_name_in_owner = true
-
-[node name="game_bg" type="Sprite" parent="UI"]
-position = Vector2( 640, 400 )
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}

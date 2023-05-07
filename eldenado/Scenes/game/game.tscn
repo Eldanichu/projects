@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/Panels/Stats/stats.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/game/game.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://UI/Panels/Character/character.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/Panels/Maps/Maps.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/Panels/BattlePanel/BattlePanel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/ui/panel/battle_bg.png" type="Texture" id=9]
 
 [node name="game" type="Node2D"]
 pause_mode = 2
@@ -16,74 +17,79 @@ script = ExtResource( 2 )
 [node name="game_ui" type="CanvasLayer" parent="."]
 pause_mode = 2
 
-[node name="h_box_container" type="HBoxContainer" parent="game_ui"]
+[node name="game_bg" type="Sprite" parent="game_ui"]
+position = Vector2( 716, 305 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="h_box_container" type="VBoxContainer" parent="game_ui"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="v_box_container" type="VBoxContainer" parent="game_ui/h_box_container"]
-margin_right = 277.0
-margin_bottom = 720.0
+[node name="v_box_container" type="HBoxContainer" parent="game_ui/h_box_container"]
+margin_right = 1280.0
+margin_bottom = 113.0
+size_flags_stretch_ratio = 0.0
 
 [node name="stats" parent="game_ui/h_box_container/v_box_container" instance=ExtResource( 1 )]
 unique_name_in_owner = true
-margin_bottom = 119.0
+margin_right = 260.0
 size_flags_stretch_ratio = 0.2
 
 [node name="game_panel" parent="game_ui/h_box_container/v_box_container" instance=ExtResource( 4 )]
-margin_top = 123.0
-margin_right = 277.0
-margin_bottom = 720.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 264.0
+margin_right = 1280.0
+margin_bottom = 113.0
 
 [node name="h_box_container" type="HBoxContainer" parent="game_ui/h_box_container"]
-margin_left = 281.0
+margin_top = 117.0
 margin_right = 1280.0
 margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="v1" type="VBoxContainer" parent="game_ui/h_box_container/h_box_container"]
-margin_right = 999.0
-margin_bottom = 720.0
+margin_right = 1280.0
+margin_bottom = 603.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="h_box_container_2" type="HBoxContainer" parent="game_ui/h_box_container/h_box_container/v1"]
-margin_right = 999.0
-margin_bottom = 358.0
+margin_right = 1280.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 2
 
 [node name="character" parent="game_ui/h_box_container/h_box_container/v1/h_box_container_2" instance=ExtResource( 6 )]
+visible = false
+margin_right = 260.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
 [node name="imventory" parent="game_ui/h_box_container/h_box_container/v1/h_box_container_2" instance=ExtResource( 5 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 651.0
-margin_right = 999.0
-margin_bottom = 220.0
+visible = false
+margin_left = 760.0
+margin_right = 1280.0
+margin_bottom = 340.0
 size_flags_horizontal = 10
 size_flags_vertical = 2
 
-[node name="h_box_container" type="HBoxContainer" parent="game_ui/h_box_container/h_box_container/v1"]
-margin_top = 362.0
-margin_right = 999.0
-margin_bottom = 720.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Maps" parent="game_ui/h_box_container/h_box_container/v1/h_box_container" instance=ExtResource( 7 )]
+[node name="Maps" parent="game_ui/h_box_container/h_box_container/v1/h_box_container_2" instance=ExtResource( 7 )]
 unique_name_in_owner = true
+visible = false
 anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 150.0
-margin_bottom = 358.0
-size_flags_horizontal = 2
+margin_left = 940.0
+margin_right = 1280.0
+size_flags_horizontal = 10
+size_flags_vertical = 2
 
 [node name="battle_ui" type="CanvasLayer" parent="."]
 pause_mode = 2
 layer = 2
+visible = false
 
 [node name="battle" type="Control" parent="battle_ui"]
 unique_name_in_owner = true

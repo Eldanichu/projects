@@ -36,12 +36,12 @@ margin_right = 263.0
 margin_bottom = 25.0
 
 [node name="h_box_container" type="VBoxContainer" parent="content/h_box_container_2"]
-margin_right = 92.0
+margin_right = 143.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 
 [node name="name_class" type="HBoxContainer" parent="content/h_box_container_2/h_box_container"]
-margin_right = 92.0
+margin_right = 143.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
@@ -64,7 +64,7 @@ custom_fonts/font = ExtResource( 6 )
 text = "职业"
 
 [node name="level" type="HBoxContainer" parent="content/h_box_container_2"]
-margin_left = 96.0
+margin_left = 147.0
 margin_right = 263.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
@@ -72,15 +72,15 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
 
 [node name="lbl_level" type="Label" parent="content/h_box_container_2/level"]
-margin_right = 113.0
+margin_right = 31.0
 margin_bottom = 25.0
 custom_fonts/font = SubResource( 1 )
-text = "TAG_LEVEL"
+text = "Lv:"
 
 [node name="lbl_level_value" type="Label" parent="content/h_box_container_2/level"]
 unique_name_in_owner = true
-margin_left = 117.0
-margin_right = 167.0
+margin_left = 35.0
+margin_right = 85.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 50, 0 )
 custom_fonts/font = SubResource( 1 )
