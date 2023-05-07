@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Themes/scroll_hidden.tres" type="Theme" id=2]
 
 [node name="imventory" type="PanelContainer"]
@@ -7,34 +8,37 @@ margin_right = 348.0
 margin_bottom = 229.0
 rect_min_size = Vector2( 520, 340 )
 size_flags_horizontal = 3
+theme = ExtResource( 1 )
 
 [node name="v_box_container" type="VBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 513.0
-margin_bottom = 333.0
+margin_left = 12.4527
+margin_top = 12.0
+margin_right = 508.0
+margin_bottom = 328.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="h_box_container" type="HBoxContainer" parent="v_box_container"]
-margin_right = 506.0
-margin_bottom = 20.0
+margin_right = 495.0
+margin_bottom = 23.0
 
 [node name="sort" type="Button" parent="v_box_container/h_box_container"]
-margin_right = 111.0
-margin_bottom = 20.0
+margin_right = 95.0
+margin_bottom = 23.0
 text = "TAG_BAG_SORT"
 
 [node name="margin_container" type="MarginContainer" parent="v_box_container"]
-margin_top = 24.0
-margin_right = 506.0
-margin_bottom = 308.0
+margin_top = 27.0
+margin_right = 495.0
+margin_bottom = 295.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="scrollbar" type="ScrollContainer" parent="v_box_container/margin_container"]
-margin_right = 506.0
-margin_bottom = 284.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 490.0
+margin_bottom = 263.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
@@ -47,20 +51,20 @@ custom_constants/hseparation = 1
 columns = 10
 
 [node name="h_box_container_2" type="HBoxContainer" parent="v_box_container"]
-margin_top = 312.0
-margin_right = 506.0
-margin_bottom = 326.0
+margin_top = 299.0
+margin_right = 495.0
+margin_bottom = 316.0
 
 [node name="TAG_GOLD" type="Label" parent="v_box_container/h_box_container_2"]
-margin_right = 70.0
-margin_bottom = 14.0
+margin_right = 58.0
+margin_bottom = 17.0
 text = "TAG_GOLD"
 
 [node name="gold" type="Label" parent="v_box_container/h_box_container_2"]
 unique_name_in_owner = true
-margin_left = 74.0
-margin_right = 112.0
-margin_bottom = 14.0
+margin_left = 62.0
+margin_right = 92.0
+margin_bottom = 17.0
 size_flags_horizontal = 2
 size_flags_vertical = 7
 text = "GOLD"

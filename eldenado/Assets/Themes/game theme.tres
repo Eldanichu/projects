@@ -1,15 +1,68 @@
-[gd_resource type="Theme" load_steps=3 format=2]
+[gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Fonts/res/chn-bold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Themes/panel_bg.tres" type="StyleBox" id=2]
+[ext_resource path="res://Assets/ui/button/button_normal.PNG" type="Texture" id=3]
+[ext_resource path="res://Assets/ui/button/button_active.PNG" type="Texture" id=4]
+[ext_resource path="res://Assets/ui/panel/01413.PNG" type="Texture" id=5]
 [ext_resource path="res://Assets/Fonts/res/chn-14.tres" type="DynamicFont" id=14]
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 3 )
+region_rect = Rect2( 1, 1, 35, 15 )
+margin_left = 5.0
+margin_right = 5.0
+margin_top = 3.0
+margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 4 )
+region_rect = Rect2( 1, 1, 35, 15 )
+margin_left = 5.0
+margin_right = 5.0
+margin_top = 3.0
+margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 126, 68 )
+margin_left = 12.4527
+margin_right = 12.0
+margin_top = 12.0
+margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0.312279, 0.951632, 35.3409, 15.9355 )
+margin_left = 15.0
+margin_right = 15.0
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0.653137, 0.461536, 35.4694, 16.064 )
+margin_left = 15.0
+margin_right = 15.0
 
 [resource]
 Button/fonts/font = ExtResource( 14 )
+Button/styles/focus = SubResource( 4 )
+Button/styles/hover = SubResource( 4 )
+Button/styles/normal = SubResource( 4 )
+Button/styles/pressed = SubResource( 5 )
 CheckBox/fonts/font = ExtResource( 14 )
 CheckButton/fonts/font = ExtResource( 14 )
 Label/fonts/font = ExtResource( 14 )
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5
+PanelContainer/styles/panel = SubResource( 3 )
 RichTextLabel/fonts/bold_font = ExtResource( 1 )
 RichTextLabel/fonts/normal_font = ExtResource( 14 )
+RichTextLabel/styles/normal = ExtResource( 2 )
 TabContainer/fonts/font = ExtResource( 14 )
+TabContainer/styles/panel = ExtResource( 2 )
+TabContainer/styles/tab_bg = SubResource( 1 )
+TabContainer/styles/tab_fg = SubResource( 2 )
 Tabs/fonts/font = ExtResource( 14 )
 TextEdit/fonts/font = ExtResource( 14 )

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://UI/Panels/Stats/stats.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/game/game.gd" type="Script" id=2]
-[ext_resource path="res://Assets/ui/panel/battle.png" type="Texture" id=3]
+[ext_resource path="res://Assets/ui/panel/game_bg.png" type="Texture" id=3]
 [ext_resource path="res://UI/Panels/GamePanel/game_panel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/Components/Inventory/inventory.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/Panels/Character/character.tscn" type="PackedScene" id=6]
@@ -14,57 +14,62 @@
 pause_mode = 2
 script = ExtResource( 2 )
 
-[node name="game_ui" type="CanvasLayer" parent="."]
-pause_mode = 2
-
-[node name="game_bg" type="Sprite" parent="game_ui"]
-position = Vector2( 716, 305 )
-texture = ExtResource( 9 )
+[node name="game_bg" type="Sprite" parent="."]
+position = Vector2( 611, 349 )
+scale = Vector2( 0.841733, 0.841733 )
+texture = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="game_ui" type="CanvasLayer" parent="."]
+pause_mode = 2
+
 [node name="h_box_container" type="VBoxContainer" parent="game_ui"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_left = 11.83
+margin_top = 12.0
+margin_right = 1268.0
+margin_bottom = 708.0
 
 [node name="v_box_container" type="HBoxContainer" parent="game_ui/h_box_container"]
-margin_right = 1280.0
-margin_bottom = 113.0
+margin_right = 1256.0
+margin_bottom = 123.0
 size_flags_stretch_ratio = 0.0
 
 [node name="stats" parent="game_ui/h_box_container/v_box_container" instance=ExtResource( 1 )]
 unique_name_in_owner = true
 margin_right = 260.0
+margin_bottom = 123.0
 size_flags_stretch_ratio = 0.2
 
 [node name="game_panel" parent="game_ui/h_box_container/v_box_container" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+unique_name_in_owner = true
 margin_left = 264.0
-margin_right = 1280.0
-margin_bottom = 113.0
+margin_top = 0.0
+margin_right = 1256.0
+margin_bottom = 123.0
 
 [node name="h_box_container" type="HBoxContainer" parent="game_ui/h_box_container"]
-margin_top = 117.0
-margin_right = 1280.0
-margin_bottom = 720.0
+margin_top = 127.0
+margin_right = 1256.0
+margin_bottom = 696.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="v1" type="VBoxContainer" parent="game_ui/h_box_container/h_box_container"]
-margin_right = 1280.0
-margin_bottom = 603.0
+margin_right = 1256.0
+margin_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="h_box_container_2" type="HBoxContainer" parent="game_ui/h_box_container/h_box_container/v1"]
-margin_right = 1280.0
+margin_right = 1256.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
 [node name="character" parent="game_ui/h_box_container/h_box_container/v1/h_box_container_2" instance=ExtResource( 6 )]
 visible = false
+margin_left = 0.0
 margin_right = 260.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -91,15 +96,17 @@ pause_mode = 2
 layer = 2
 visible = false
 
+[node name="battle_bg" type="Sprite" parent="battle_ui"]
+position = Vector2( 639.5, 361 )
+scale = Vector2( 5.98598, 7.54167 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="battle" type="Control" parent="battle_ui"]
 unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="battle_bg" type="Sprite" parent="battle_ui/battle"]
-position = Vector2( 640, 400 )
-texture = ExtResource( 3 )
-
 [node name="battle_panel" parent="battle_ui/battle" instance=ExtResource( 8 )]
-
-[connection signal="switch_panel" from="game_ui/h_box_container/v_box_container/game_panel" to="." method="_on_game_panel_switch_panel"]

@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Fonts/ttf/wheaton-capitals.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://Assets/ui/bars/01061t.png" type="Texture" id=2]
-[ext_resource path="res://Assets/ui/bars/01065.png" type="Texture" id=3]
+[ext_resource path="res://Assets/ui/bars/bar_red.PNG" type="Texture" id=2]
+[ext_resource path="res://Assets/ui/bars/bar_yellow.PNG" type="Texture" id=3]
 [ext_resource path="res://UI/Panels/Stats/stats.gd" type="Script" id=4]
 [ext_resource path="res://UI/Components/TweenTextureProgress/tween_progress.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Fonts/res/chn-14.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/Fonts/res/h3.tres" type="DynamicFont" id=7]
-[ext_resource path="res://Assets/ui/bars/01062t.png" type="Texture" id=8]
-[ext_resource path="res://Assets/ui/bars/01064t.png" type="Texture" id=9]
+[ext_resource path="res://Assets/ui/bars/bar_blue.PNG" type="Texture" id=8]
+[ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -21,27 +21,28 @@ margin_bottom = 113.0
 rect_min_size = Vector2( 260, 10 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 10 )
 script = ExtResource( 4 )
 
 [node name="content" type="VBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 270.0
-margin_bottom = 106.0
+margin_left = 12.4527
+margin_top = 12.0
+margin_right = 265.0
+margin_bottom = 111.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="h_box_container_2" type="HBoxContainer" parent="content"]
-margin_right = 263.0
+margin_right = 252.0
 margin_bottom = 25.0
 
 [node name="h_box_container" type="VBoxContainer" parent="content/h_box_container_2"]
-margin_right = 143.0
+margin_right = 137.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 
 [node name="name_class" type="HBoxContainer" parent="content/h_box_container_2/h_box_container"]
-margin_right = 143.0
+margin_right = 137.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
@@ -64,8 +65,8 @@ custom_fonts/font = ExtResource( 6 )
 text = "职业"
 
 [node name="level" type="HBoxContainer" parent="content/h_box_container_2"]
-margin_left = 147.0
-margin_right = 263.0
+margin_left = 141.0
+margin_right = 252.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -91,7 +92,7 @@ __meta__ = {
 
 [node name="bars" type="VBoxContainer" parent="content"]
 margin_top = 29.0
-margin_right = 263.0
+margin_right = 252.0
 margin_bottom = 99.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -102,22 +103,19 @@ __meta__ = {
 
 [node name="hp" parent="content/bars" instance=ExtResource( 5 )]
 unique_name_in_owner = true
-margin_right = 263.0
+margin_right = 252.0
 texture = ExtResource( 2 )
-under = ExtResource( 3 )
 
 [node name="mp" parent="content/bars" instance=ExtResource( 5 )]
 unique_name_in_owner = true
 margin_top = 25.0
-margin_right = 263.0
+margin_right = 252.0
 margin_bottom = 45.0
 texture = ExtResource( 8 )
-under = ExtResource( 3 )
 
 [node name="c_exp" parent="content/bars" instance=ExtResource( 5 )]
 unique_name_in_owner = true
 margin_top = 50.0
-margin_right = 263.0
+margin_right = 252.0
 margin_bottom = 70.0
-texture = ExtResource( 9 )
-under = ExtResource( 3 )
+texture = ExtResource( 3 )

@@ -4,6 +4,8 @@ onready var stat := $"%stats"
 onready var logger := $"%logger"
 onready var map := $"%Maps"
 onready var inv := $"%imventory"
+onready var game_panel := $"%game_panel"
+
 
 var db:DB
 var player:PlayerObj
@@ -45,6 +47,10 @@ func create_player():
 func _on_db_ready():
 	load_maps()
 	create_player()
+	bind_events()
+
+func bind_events():
+	pass
 
 func _map_entering(e):
 	var map_name = e.name

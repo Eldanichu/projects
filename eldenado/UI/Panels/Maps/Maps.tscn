@@ -15,18 +15,21 @@ script = ExtResource( 1 )
 
 [node name="tabs" type="TabContainer" parent="."]
 unique_name_in_owner = true
-margin_right = 340.0
-margin_bottom = 340.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 335.0
+margin_bottom = 335.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tab_align = 0
 
 [node name="maps" type="Tabs" parent="tabs"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 35.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 7.72908
+margin_top = 34.2449
+margin_right = -8.18863
+margin_bottom = -7.15253
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -37,8 +40,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="margin_container" type="MarginContainer" parent="tabs/maps/scroll_container"]
-margin_right = 332.0
-margin_bottom = 301.0
+margin_right = 314.082
+margin_bottom = 288.603
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 8
@@ -50,8 +53,8 @@ custom_constants/margin_bottom = 8
 unique_name_in_owner = true
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 324.0
-margin_bottom = 293.0
+margin_right = 306.0
+margin_bottom = 280.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 
