@@ -18,7 +18,6 @@ var mon_stat:Dictionary = {
 func get_instance(db:DB, mon_id:String):
 	var _mon
 	var monster:Node = db.get_data("monster")
-	var textures = monster["textures"]
 	var data:Dictionary = monster.data
 	if not data.has(mon_id):
 		_mon = null
@@ -27,14 +26,13 @@ func get_instance(db:DB, mon_id:String):
 	for i in range(props.size()):
 		var key = _stat_keys[i]
 		if key == "appr":
-			if props[i] in textures:
-				mon_stat[key] = textures[props[i]]
+			mon_stat[key] = "res://Assets/Monsters/Images/{0}.png".format([props[i]])
 		else:
 			mon_stat[key] = props[i]
 	set_drops(db)
 	_mon = self
 	print("mon instance->",mon_stat)
-	print("test atteck->",attack())
+#	print("test atteck->",attack())
 
 func set_drops(db:DB):
 	var mon_drop:Node = db.get_data("drop_item")

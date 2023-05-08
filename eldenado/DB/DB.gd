@@ -5,17 +5,14 @@ signal db_ready()
 
 onready var root = get_tree().get_root()
 
-var parent:Node
 var count = 0
 
-func _init(_node:Node) -> void:
+func _ready() -> void:
 	name = "DB"
-	parent = _node
-	_node.add_child(self)
 	setup()
 
 func setup():
-	yield(self, "ready")
+	print("loding..DB")
 	var data:Dictionary = {
 		"map":ResourceLoader.load_interactive("res://DB/MapData.gd"),
 		"item":ResourceLoader.load_interactive("res://DB/Items.gd"),
@@ -35,13 +32,12 @@ func setup():
 			if src.has_method("new"):
 				var _node = src.new()
 				_node.name = o
-				root.add_child(_node)
+				add_child(_node)
 
-	yield(parent, "ready")
 	emit_signal("db_ready")
 
 func get_data(node_id:String):
-	var _node = root.get_node(node_id)
+	var _node = get_node(node_id)
 	return _node
 
 func get_data_collection(data:Dictionary):

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/Panels/GamePanel/game_panel.gd" type="Script" id=2]
 
 [node name="panel_container" type="PanelContainer"]
 margin_left = 8.0
@@ -10,6 +11,7 @@ margin_bottom = 55.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="v_box_container" type="HBoxContainer" parent="."]
 margin_left = 12.4527

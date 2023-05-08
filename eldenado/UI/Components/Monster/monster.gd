@@ -21,6 +21,7 @@ func setup():
 		return
 	add_child(mon)
 	mon_stat = mon.mon_stat
+	mon_img.texture = load(mon_stat.appr)
 	action_timer.Interval = mon_stat.atk_speed
 	action_timer.connect("timeout",self,"_attack")
 	action_timer.connect("remains" ,self,"_attack_cd")

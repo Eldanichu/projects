@@ -64,10 +64,12 @@ size_flags_vertical = 3
 
 [node name="h_box_container_2" type="HBoxContainer" parent="game_ui/h_box_container/h_box_container/v1"]
 margin_right = 1256.0
+margin_bottom = 340.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
 [node name="character" parent="game_ui/h_box_container/h_box_container/v1/h_box_container_2" instance=ExtResource( 6 )]
+unique_name_in_owner = true
 visible = false
 margin_left = 0.0
 margin_right = 260.0
@@ -75,6 +77,7 @@ size_flags_horizontal = 2
 size_flags_vertical = 2
 
 [node name="imventory" parent="game_ui/h_box_container/h_box_container/v1/h_box_container_2" instance=ExtResource( 5 )]
+unique_name_in_owner = true
 visible = false
 margin_left = 760.0
 margin_right = 1280.0
@@ -84,15 +87,15 @@ size_flags_vertical = 2
 
 [node name="Maps" parent="game_ui/h_box_container/h_box_container/v1/h_box_container_2" instance=ExtResource( 7 )]
 unique_name_in_owner = true
-visible = false
 anchor_right = 0.0
-margin_left = 940.0
-margin_right = 1280.0
+margin_left = 916.0
+margin_right = 1256.0
 size_flags_horizontal = 10
 size_flags_vertical = 2
 
 [node name="battle_ui" type="CanvasLayer" parent="."]
 pause_mode = 2
+unique_name_in_owner = true
 layer = 2
 visible = false
 
@@ -104,9 +107,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="battle" type="Control" parent="battle_ui"]
+[node name="battle_panel" parent="battle_ui" instance=ExtResource( 8 )]
 unique_name_in_owner = true
-anchor_right = 1.0
-anchor_bottom = 1.0
 
-[node name="battle_panel" parent="battle_ui/battle" instance=ExtResource( 8 )]
+[connection signal="switch_panel" from="game_ui/h_box_container/v_box_container/game_panel" to="." method="_on_game_panel_switch_panel"]

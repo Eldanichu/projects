@@ -1,29 +1,31 @@
 extends Node2D
 
 onready var stat := $"%stats"
-onready var logger := $"%logger"
 onready var map := $"%Maps"
 onready var inv := $"%imventory"
 onready var game_panel := $"%game_panel"
 
+onready var battle := $"%battle_ui"
+onready var battle_panel := $"%battle_panel"
 
 var db:DB
 var player:PlayerObj
 var player_info:Dictionary
 
 func _ready() -> void:
-	pass
+	load_game_data()
 
 func _process(delta: float) -> void:
 	pass
 
 func setup(_player_info:Dictionary):
-	load_game_data()
 	player_info = _player_info
 
 func load_game_data():
-	db = DB.new(self)
+	db = DB.new()
 	db.connect("db_ready",self,"_on_db_ready")
+	add_child(db)
+
 
 func load_maps():
 	if !map:
@@ -37,6 +39,8 @@ func create_player():
 	player = PlayerObj.new()
 	add_child(player)
 	player.connect("update_stats",self,"_update_stats")
+	if !player_info:
+		return
 	player.setup(player_info)
 
 
@@ -45,6 +49,7 @@ func create_player():
 
 """
 func _on_db_ready():
+	print("db ready")
 	load_maps()
 	create_player()
 	bind_events()
@@ -53,13 +58,15 @@ func bind_events():
 	pass
 
 func _map_entering(e):
+	battle.visible = true
 	var map_name = e.name
 	var mon_ids = RandomUtil.get_map_monsters(db, map_name)
-	print(mon_ids)
+	var monsters = []
 	for _mon_id in mon_ids:
 		var mon = MonObj.new()
 		mon.get_instance(db, _mon_id)
-
+		monsters.append(mon)
+	battle_panel.monsters = monsters
 
 func _update_stats(_stat:Dictionary):
 	_stat.merge(player_info, true)
