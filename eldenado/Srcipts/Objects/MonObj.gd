@@ -8,10 +8,12 @@ var mon_stat:Dictionary = {
 	"atk_speed":1,
 	"dc":0,
 	"dc_max":0,
-	"hp":0,
 	"ac":0,
 	"ac_max":0,
+	"hp":0,
 	"appr":null,
+	"hp_max":0,
+	"atk_interval":0,
 	"mp":0,
 } setget set_stat
 
@@ -46,14 +48,18 @@ func set_drops(db:DB):
 func set_stat(stat:Dictionary):
 	mon_stat.merge(stat, true)
 
-func can_attack():
-	var _c1 = get_chance()
-	var chance = RandomUtil.get_random_digit(_c1)
+func alive() -> bool:
+	return mon_stat.hp > 0
 
+func hit():
+	var _c1:float = get_chance()
+	var chance = RandomUtil.get_random_digit(_c1)
 	return chance > 0
 
 func attack():
-	if !can_attack():
+	if not alive():
+		return -1
+	if not hit():
 		return 0
 	return get_power()
 
@@ -64,15 +70,14 @@ func get_power():
 
 	return n
 
-func get_chance():
+func get_chance() -> float:
 	var _ac = mon_stat.ac + mon_stat.ac_max * 1.0
 	var _dc = mon_stat.dc + mon_stat.dc_max * 1.0
 	var _speed_time:float = mon_stat.atk_speed / 1000.0
 	var _level_speed_mod:float = mon_stat.level / mon_stat.atk_speed * 1.0
 	var _c2:float = (_speed_time + _level_speed_mod) * 1.0
 	var _c1 = _ac / max(1, _dc) * _c2 * 1.0
-	print("mon attck chance->",_c1)
-	return _c1
+	return _c1 * 1.0
 
 func drop():
 	var _items = mon_items

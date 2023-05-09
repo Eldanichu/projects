@@ -1130,7 +1130,6 @@ name_casing=2
 
 [physics]
 
-2d/physics_engine="GodotPhysics"
 common/physics_interpolation=true
 
 [rendering]

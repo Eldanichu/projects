@@ -18,5 +18,4 @@ __meta__ = {
 }
 
 [node name="UI" type="CanvasLayer" parent="."]
-pause_mode = 2
 unique_name_in_owner = true

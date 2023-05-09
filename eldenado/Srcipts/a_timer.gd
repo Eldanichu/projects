@@ -22,7 +22,7 @@ func _init(node:Node) -> void:
 func _ready() -> void:
 	setup()
 	connect("timeout",self,"_timeout")
-	pass
+
 
 func _process(delta: float) -> void:
 	if self.is_stopped():
@@ -34,7 +34,7 @@ func setup()->void:
 	reduce_amount = Interval
 	self.autostart = false
 	self.one_shot = false
-	self.process_mode = 1
+	self.process_mode = 0
 
 func emit_remains()-> void:
 	remains = self.get_time_left();

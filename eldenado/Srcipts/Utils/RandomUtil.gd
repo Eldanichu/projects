@@ -11,15 +11,15 @@ static func get_random(chance:int):
 		 res = n
 	return res
 
-static func get_random_digit(chance:int):
+static func get_random_digit(chance:float):
 	var _r = RandomNumberGenerator.new()
 	_r.randomize()
 	var n = _r.randf()
 	var _c = chance * 1.0
-	var res = 0
+	var res = 0.0
 	if n < _c:
 		 res = n
-	return res
+	return float(res)
 
 static func get_items_random(count:int, array:Array) -> Array:
 	var size = array.size()
@@ -27,7 +27,8 @@ static func get_items_random(count:int, array:Array) -> Array:
 	_r.randomize()
 	var copy = array.duplicate(true)
 	var res = []
-	for i in range(count):
+	var c = _r.randi() % count + 1
+	for i in range(c):
 		var n = _r.randi() % size
 		res.append(copy[n])
 	return res
@@ -40,5 +41,5 @@ static func get_map_monsters(db:DB, map_name:String) -> Array:
 	if not data.has(map_name):
 		return []
 	var group = data.get(map_name)
-	var mon_ids = get_items_random(6,group)
+	var mon_ids = get_items_random(group.n,group.g)
 	return mon_ids
