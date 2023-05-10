@@ -9,6 +9,7 @@ export(Texture) var under
 export(bool) var show_value = true
 export(bool) var use_tween = true
 export(Color) var value_color = Color.white
+export(int,7,72) var font_size = 14
 
 onready var pg:TextureProgress = $"%pg"
 onready var lbl_text:Label = $"%text"
@@ -22,6 +23,9 @@ func setup():
 	pg.texture_under = under
 	lbl_text.visible = show_value
 	lbl_text.set("custom_colors/font_color",value_color)
+	lbl_text.set("custom_fonts/font/size",font_size)
+	update_progress()
+
 
 func update_values():
 	lbl_text.text = "{0}/{1}".format([t_val,t_max])

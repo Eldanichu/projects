@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UI/Components/BattleLog/BattleLog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=2]
 [ext_resource path="res://UI/Panels/BattlePanel/BattlePanel.gd" type="Script" id=3]
 [ext_resource path="res://DB/Monster.gd" type="Script" id=4]
+[ext_resource path="res://Assets/ui/panel/battle_bg.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 214, 96 )
+margin_left = 15.0
+margin_right = 15.0
+margin_top = 15.0
+margin_bottom = 15.0
 
 [node name="battle_panel" type="Control"]
 pause_mode = 2
@@ -10,65 +20,54 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 2 )
 script = ExtResource( 3 )
 
-[node name="margin_container" type="MarginContainer" parent="."]
+[node name="panel_container" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
 
-[node name="h_box_container" type="HBoxContainer" parent="margin_container"]
-margin_right = 1280.0
-margin_bottom = 720.0
+[node name="margin_container" type="MarginContainer" parent="panel_container"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 1265.0
+margin_bottom = 705.0
 
-[node name="v_box_container" type="VBoxContainer" parent="margin_container/h_box_container"]
-margin_right = 260.0
-margin_bottom = 720.0
-rect_min_size = Vector2( 260, 0 )
+[node name="h_box_container" type="HBoxContainer" parent="panel_container/margin_container"]
+margin_right = 1250.0
+margin_bottom = 690.0
 
-[node name="control" type="Control" parent="margin_container/h_box_container/v_box_container"]
-margin_right = 260.0
-margin_bottom = 123.0
-rect_min_size = Vector2( 260, 123 )
-
-[node name="player_panel" type="PanelContainer" parent="margin_container/h_box_container/v_box_container"]
-margin_top = 127.0
-margin_right = 260.0
-margin_bottom = 720.0
+[node name="v_box_container_2" type="VBoxContainer" parent="panel_container/margin_container/h_box_container"]
+margin_right = 1250.0
+margin_bottom = 690.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="v_box_container_2" type="VBoxContainer" parent="margin_container/h_box_container"]
-margin_left = 264.0
-margin_right = 1280.0
-margin_bottom = 720.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="panel_monsters" type="PanelContainer" parent="panel_container/margin_container/h_box_container/v_box_container_2"]
+margin_right = 1250.0
+margin_bottom = 143.0
+rect_min_size = Vector2( 0, 143 )
 
-[node name="panel" type="PanelContainer" parent="margin_container/h_box_container/v_box_container_2"]
-margin_right = 1016.0
-margin_bottom = 125.0
-rect_min_size = Vector2( 0, 125 )
-script = ExtResource( 4 )
-
-[node name="monsters" type="HFlowContainer" parent="margin_container/h_box_container/v_box_container_2/panel"]
+[node name="monsters" type="HFlowContainer" parent="panel_container/margin_container/h_box_container/v_box_container_2/panel_monsters"]
 unique_name_in_owner = true
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1009.0
-margin_bottom = 118.0
+margin_left = 9.0
+margin_top = 9.0
+margin_right = 1241.0
+margin_bottom = 134.0
 rect_clip_content = true
 script = ExtResource( 4 )
 
-[node name="h_box_container" type="HBoxContainer" parent="margin_container/h_box_container/v_box_container_2"]
-margin_top = 129.0
-margin_right = 1016.0
-margin_bottom = 720.0
+[node name="h_box_container" type="HBoxContainer" parent="panel_container/margin_container/h_box_container/v_box_container_2"]
+margin_top = 147.0
+margin_right = 1250.0
+margin_bottom = 690.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="battle_log" parent="margin_container/h_box_container/v_box_container_2/h_box_container" instance=ExtResource( 1 )]
+[node name="battle_log" parent="panel_container/margin_container/h_box_container/v_box_container_2/h_box_container" instance=ExtResource( 1 )]
 unique_name_in_owner = true
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1016.0
-margin_bottom = 591.0
+margin_right = 1250.0
+margin_bottom = 543.0

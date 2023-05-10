@@ -3,9 +3,10 @@ extends Node2D
 onready var stat := $"%stats"
 onready var map := $"%Maps"
 onready var inv := $"%imventory"
+
+onready var idel := $"%idel"
 onready var game_panel := $"%game_panel"
 
-onready var battle := $"%battle_ui"
 onready var battle_panel := $"%battle_panel"
 
 var db:DB
@@ -58,7 +59,7 @@ func bind_events():
 	pass
 
 func _map_entering(e):
-	battle.visible = true
+	set_battle(true)
 	var map_name = e.name
 	var mon_ids = RandomUtil.get_map_monsters(db, map_name)
 	var monsters = []
@@ -75,3 +76,7 @@ func _update_stats(_stat:Dictionary):
 func _on_game_panel_switch_panel(panel_name) -> void:
 	if panel_name == "battle":
 		map.visible = !map.visible
+
+func set_battle(battle:bool):
+	idel.visible = !battle
+	battle_panel.visible = battle
