@@ -52,7 +52,6 @@ func set_mon_stats():
 	var p = GameUtils.get_percent(mon_stat.atk_interval, mon_stat.atk_interval)
 	act_bar.t_val = p
 
-
 func _attack():
 	var p = GameUtils.get_percent(mon_stat.atk_interval, mon_stat.atk_interval)
 	act_bar.t_val = p
@@ -69,6 +68,9 @@ func _attack_cd(sec):
 	var p = GameUtils.get_percent(sec,mon_stat.atk_interval)
 	act_bar.t_val = str(p)
 	pass
+
+func take_damage(damage):
+	mon_stat.hp = mon_stat.hp - damage
 
 func wait():
 	action_timer.stop()

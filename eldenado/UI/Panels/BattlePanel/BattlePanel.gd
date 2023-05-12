@@ -1,15 +1,22 @@
 extends Control
 
+signal battle_end()
+
 onready var inst_monsters := $"%monsters"
 onready var logger := $"%battle_log"
 
 const GROUP_BATTLE_MONSTER = "battle_monster"
 
 var monster := preload("res://UI/Components/Monster/monster.tscn")
+
+var player:PlayerObj setget set_player
 var monsters:Array = [] setget set_monsters
 
 func _ready() -> void:
 	logger.clear()
+
+func _process(delta: float) -> void:
+	pass
 
 func _group_add(mon:Node):
 	mon.add_to_group(GROUP_BATTLE_MONSTER)
@@ -18,9 +25,10 @@ func _group_call(method_name:String):
 	get_tree().call_group(GROUP_BATTLE_MONSTER, method_name)
 
 func set_monsters(_monsters):
-	var mon_size = _monsters.size();
+	monsters = _monsters
+	var mon_size = monsters.size();
 	for i in range(mon_size):
-		var mon_obj = _monsters[i]
+		var mon_obj = monsters[i]
 		var mon = monster.instance()
 		mon.mon = mon_obj
 		inst_monsters.add_child(mon)
@@ -28,9 +36,12 @@ func set_monsters(_monsters):
 	bind_events()
 	wait_to_palyer()
 
+func set_player(_player:PlayerObj):
+	player = _player
+	_group_call("start")
+
 func wait_to_palyer():
 	_group_call("wait")
-	_group_call("start")
 
 func bind_events():
 	var mons := get_tree().get_nodes_in_group(GROUP_BATTLE_MONSTER)
@@ -62,6 +73,21 @@ func _on_dead():
 
 func _drop(drops):
 	pass
-#	var _mons = inst_monsters.get_children()
-#	for mon_tscn in _mons:
-#		mon_tscn.wait()
+
+func _monster_count():
+	return inst_monsters.get_child_count()
+
+func won():
+	var _mon_remains = _monster_count()
+	if _mon_remains <= 0:
+		pass
+	emit_battle_end()
+
+func fail():
+	var _mon_remains = _monster_count()
+	if _mon_remains > 0:
+		pass
+	emit_battle_end()
+
+func emit_battle_end():
+	emit_signal("battle_end")

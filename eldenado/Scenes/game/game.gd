@@ -67,6 +67,7 @@ func _map_entering(e):
 		var mon = MonObj.new()
 		mon.get_instance(db, _mon_id)
 		monsters.append(mon)
+	battle_panel.set_player(player)
 	battle_panel.monsters = monsters
 
 func _update_stats(_stat:Dictionary):
