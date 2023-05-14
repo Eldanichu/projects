@@ -2,10 +2,10 @@ extends Node
 class_name PlayerObj
 
 signal update_stats(stats)
-signal player_died()
-signal player_levelup()
+signal die()
+signal levelup()
 
-const _g = Globals
+const _g:Globals = Globals
 
 class AttackPower:
 	const _NO_DAMAGE_CRIT_MOD = 1
@@ -75,7 +75,6 @@ class AttackPower:
 		var n = r.randf() * 100 + 1
 		var c = (p / 100.0) * 100
 		var hit = n < c
-		print(p,"----",hit)
 		return hit
 
 	func get_damage() -> int:
@@ -112,13 +111,13 @@ var stats:Dictionary = {
 	crit_mag_strength = 1.1,
 	crit_mag_chance = 40,
 	ac = 0,
-	ac_mac = 0,
-	mc = 0,
-	mc_max = 0,
-	dc = 0,
-	dc_max = 0,
-	sc = 0,
-	sc_max = 0
+	mac = 0,
+	mc = 1.0,
+	mc_max = 2.0,
+	dc = 1.0,
+	dc_max = 2.0,
+	sc = 1.0,
+	sc_max = 2.0
 } setget set_stat
 
 var equipment := {}
@@ -136,6 +135,7 @@ func new_player():
 
 func level_up():
 	stats.level = stats.level + 1
+	var _class = stats.class_type
 	var _class_info = _g.get_class_stats(stats.level,stats.class_type)
 	var _exp_value = _g.get_exp_by_level(stats.level)
 	stats.hp_max = _class_info["max_hp"]
@@ -144,11 +144,22 @@ func level_up():
 	stats.mp = stats.mp_max
 	stats.expr = 0
 	stats.expr_max = _exp_value
+	
+	if _class == Globals.CLASS_TYPE.Taos:
+		stats.sc_max = stats.sc_max + Globals.taos.sc_base
+		stats.sc = stats.sc + Globals.taos.sc_rate
+	if _class == Globals.CLASS_TYPE.Warrior:
+		stats.dc_max = stats.dc_max + Globals.warrior.dc_base
+		stats.dc = stats.dc + Globals.warrior.dc_rate
+	if _class == Globals.CLASS_TYPE.Wizard:
+		stats.mc_max = stats.mc_max + Globals.wizard.mc_base
+		stats.mc = stats.mc + Globals.wizard.mc_rate
+	
 	var _stats = {}
 	for s in _g.char_display_stat:
 		_stats[s] = stats[s]
 	emit_stats_change(_stats)
-	emit_signal("player_levelup")
+	emit_signal("levelup")
 
 	#replace node name to player name
 	name = "player_node[{0}]".format([stats.player_name])
@@ -159,13 +170,16 @@ func emit_stats_change(stats:Dictionary):
 
 func set_stat(_stat:Dictionary):
 	stats.merge(_stat, true)
+	emit_stats_change(stats)
 
 func is_dead():
+	var dead = false
 	if stats.hp <= 0:
 		stats.hp = 0
-		return true
-		emit_signal("player_died")
-	return false
+		dead = true
+		emit_signal("die")
+		emit_stats_change(stats)
+	return dead
 
 func attack():
 	var power = AttackPower.new(stats.dc, stats.dc_max);
@@ -175,6 +189,10 @@ func attack():
 	return [dmg, power.is_crit_damage()]
 
 func take_damage(damages):
-	if !is_dead():
-		stats.hp = stats.hp - damages
-		emit_stats_change({"hp":stats.hp})
+	stats.hp = stats.hp - damages
+	is_dead()
+	emit_stats_change(stats)
+
+func give_exp(value):
+	stats.expr = stats.expr + value
+	emit_stats_change(stats)

@@ -46,20 +46,19 @@ size_flags_vertical = 3
 
 [node name="panel_monsters" type="PanelContainer" parent="panel_container/margin_container/h_box_container/v_box_container_2"]
 margin_right = 1250.0
-margin_bottom = 143.0
-rect_min_size = Vector2( 0, 143 )
+margin_bottom = 180.0
+rect_min_size = Vector2( 0, 180 )
 
 [node name="monsters" type="HFlowContainer" parent="panel_container/margin_container/h_box_container/v_box_container_2/panel_monsters"]
 unique_name_in_owner = true
 margin_left = 9.0
 margin_top = 9.0
 margin_right = 1241.0
-margin_bottom = 134.0
-rect_clip_content = true
+margin_bottom = 171.0
 script = ExtResource( 4 )
 
 [node name="h_box_container" type="HBoxContainer" parent="panel_container/margin_container/h_box_container/v_box_container_2"]
-margin_top = 147.0
+margin_top = 184.0
 margin_right = 1250.0
 margin_bottom = 690.0
 size_flags_horizontal = 3
@@ -70,4 +69,4 @@ unique_name_in_owner = true
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1250.0
-margin_bottom = 543.0
+margin_bottom = 506.0

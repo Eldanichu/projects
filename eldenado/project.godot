@@ -789,11 +789,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/core/TimeUnit.gd"
 }, {
-"base": "Control",
-"class": "TweenProgress",
-"language": "GDScript",
-"path": "res://UI/Components/TweenTextureProgress/tween_progress.gd"
-}, {
 "base": "Reference",
 "class": "ValueProvider",
 "language": "GDScript",
@@ -991,7 +986,6 @@ _global_script_class_icons={
 "StringFuzzer": "",
 "StringUtil": "",
 "TimeUnit": "",
-"TweenProgress": "",
 "ValueProvider": "",
 "Vector2Fuzzer": "",
 "Vector3Fuzzer": "",

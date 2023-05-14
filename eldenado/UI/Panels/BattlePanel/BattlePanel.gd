@@ -1,6 +1,14 @@
 extends Control
 
+signal battle_start()
 signal battle_end()
+
+enum BATTLE_STATUS {
+	WIN = 1,
+	FAIL = 0,
+	FIGHT = -1,
+	IDEL = -4
+}
 
 onready var inst_monsters := $"%monsters"
 onready var logger := $"%battle_log"
@@ -12,11 +20,15 @@ var monster := preload("res://UI/Components/Monster/monster.tscn")
 var player:PlayerObj setget set_player
 var monsters:Array = [] setget set_monsters
 
-func _ready() -> void:
-	logger.clear()
-
-func _process(delta: float) -> void:
-	pass
+var battle_state = BATTLE_STATUS.IDEL
+var battle_result = {
+	"exp":0,
+	"gold":0
+}
+	
+	
+func _process(delta):
+	process_battle_result()
 
 func _group_add(mon:Node):
 	mon.add_to_group(GROUP_BATTLE_MONSTER)
@@ -34,11 +46,12 @@ func set_monsters(_monsters):
 		inst_monsters.add_child(mon)
 		_group_add(mon)
 	bind_events()
+	logger.clear()
 	wait_to_palyer()
+	emit_battle_start()
 
 func set_player(_player:PlayerObj):
 	player = _player
-	_group_call("start")
 
 func wait_to_palyer():
 	_group_call("wait")
@@ -51,10 +64,31 @@ func bind_events():
 		o.connect("dead",self,"_on_dead")
 		o.connect("drop",self,"_drop")
 
+func attack_monster():
+	if battle_state != BATTLE_STATUS.FIGHT:
+		return
+	_group_call("start")
+	var node_mon = inst_monsters.get_children()
+	var alive_mons:Array = []
+	for mon in node_mon:
+		if not mon.mon.is_dead():
+			alive_mons.append(mon)
+	
+	var targets = RandomUtil.get_items_random(1,alive_mons)
+	for m in targets:
+		var player_attack = player.attack()
+		var power = player_attack[0]
+		var text:BattleLogText = logger.format
+		text.text = "你对{0}造成{1}点伤害".format([m.mon_stat.name,power])
+		logger.println(text)
+		m.take_damage(power)
+#	logger.println(logger.format.set_text(str(_monster_count())))
+
 func _on_spawned():
 	pass
 
 func _on_attack(o):
+	_group_call("wait")
 	var dmg = int(o.damage);
 	if dmg <= 0:
 		return
@@ -64,11 +98,11 @@ func _on_attack(o):
 	var damage_text:BattleLogText = logger.format
 	damage_text.text = dmg
 	damage_text.color = Color.red
-
+	player.take_damage(dmg)
 	logger.println("{0}对你造或{1}点伤害".format([name_text.to_string(),damage_text.to_string()]))
 
-
-func _on_dead():
+func _on_dead(_exp):
+	battle_result.exp = _exp + battle_result.exp
 	pass
 
 func _drop(drops):
@@ -77,17 +111,41 @@ func _drop(drops):
 func _monster_count():
 	return inst_monsters.get_child_count()
 
-func won():
+func process_battle_result():
+	if not is_instance_valid(player) || battle_state == BATTLE_STATUS.IDEL:
+		return
 	var _mon_remains = _monster_count()
 	if _mon_remains <= 0:
-		pass
-	emit_battle_end()
+		battle_state = BATTLE_STATUS.WIN
+		emit_battle_end()
+	if player.is_dead():
+		battle_state = BATTLE_STATUS.FAIL
+		kill_all_monsters()
+		emit_battle_end()
 
-func fail():
-	var _mon_remains = _monster_count()
-	if _mon_remains > 0:
-		pass
-	emit_battle_end()
+func kill_all_monsters():
+	var node_mon = inst_monsters.get_children()
+	for mon in node_mon:
+		mon.queue_free()
+
+func emit_battle_start():
+	battle_state = BATTLE_STATUS.FIGHT
+	var text:BattleLogText = logger.format
+	text.text = "********战斗开始********"
+	logger.println(text)
+	emit_signal("battle_start")
 
 func emit_battle_end():
-	emit_signal("battle_end")
+	battle_state = BATTLE_STATUS.IDEL
+	var text:BattleLogText = logger.format
+	text.text = "********战斗结束********"
+	logger.println(text)
+	var result_text = logger.format
+	result_text.text = "金币{gold}\n经验值{exp}点".format({
+		"gold":battle_result.gold,
+		"exp":logger.format.color(Color.green).set_text(battle_result.exp).to_string(),
+	})
+	player.give_exp(battle_result.exp)
+	logger.println(result_text)
+#	emit_signal("battle_end")
+	

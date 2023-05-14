@@ -663,7 +663,7 @@ func debug() -> void:
 	s += root.get_children() as String + "\n"
 	# get_node("/root").print_stray_nodes()
 	get_node("/root").print_tree_pretty()
-	print(s)
+
 
 
 # `arg` is possible key in `args`

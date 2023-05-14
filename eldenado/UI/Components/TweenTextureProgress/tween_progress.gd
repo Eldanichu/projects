@@ -1,8 +1,7 @@
 extends Control
-class_name TweenProgress
 
 export(String) var t_val = "0" setget set_t_val
-export(String) var t_max = "1" setget set_t_max
+export(String) var t_max = "100" setget set_t_max
 var duration = 0.2
 export(Texture) var texture
 export(Texture) var under
@@ -24,9 +23,8 @@ func setup():
 	lbl_text.visible = show_value
 	lbl_text.set("custom_colors/font_color",value_color)
 	lbl_text.set("custom_fonts/font/size",font_size)
-	update_progress()
-
-
+	value_change()
+	
 func update_values():
 	lbl_text.text = "{0}/{1}".format([t_val,t_max])
 

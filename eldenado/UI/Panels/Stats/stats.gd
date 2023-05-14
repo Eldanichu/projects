@@ -1,6 +1,10 @@
 extends Control
 class_name Stats
 
+signal command(type)
+
+export(bool) var show_command:bool = false
+
 onready var stats:Dictionary = {
 	player_name = $"%player_name",
 	class_type = $"%class_type",
@@ -10,19 +14,27 @@ onready var stats:Dictionary = {
 	expr = $"%c_exp"
 }
 
+onready var com_panel = $"%command"
+
 const GLOBAL_VAR = {
 	"class_type":"CLASS_NAME"
 }
 
+func _ready():
+	var buttons = com_panel.get_children()
+	for button in buttons:
+		button.connect("pressed",self, "_on_command",[button.name])
+
+func _process(delta):
+	com_panel.visible = show_command
+
+func _on_command(type):
+	emit_signal("command",type)
+
 func update_ui(_stat):
-	for control in stats:
-		var _control = stats[control]
-		if _control is Label:
-			if control in GLOBAL_VAR:
-				var G_VAR = GLOBAL_VAR[control]
-				_control.text = Globals[G_VAR][_stat[control]]
-			else:
-				_control.text = str(_stat[control])
+	stats.player_name.text = _stat.player_name
+	stats.class_type.text = Globals.CLASS_NAME[_stat.class_type]
+	stats.level.text = str(_stat.level)
 
 	stats.hp.t_max = _stat.hp_max
 	stats.hp.t_val = _stat.hp

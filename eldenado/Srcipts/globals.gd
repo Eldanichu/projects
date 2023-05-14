@@ -23,7 +23,9 @@ const wizard:Dictionary = {
 	"hp_acc":1.8,
 	"mp_base":5,
 	"mp_acc":2,
-	"mp_rate":2.2
+	"mp_rate":2.2,
+	"mc_base":0.24,
+	"mc_rate":0.12
 }
 
 const taos:Dictionary = {
@@ -31,7 +33,9 @@ const taos:Dictionary = {
 	"hp_acc":2.5,
 	"mp_base":5,
 	"mp_acc":8,
-	"mp_rate":2.2
+	"mp_rate":2.2,
+	"sc_base":0.24,
+	"sc_rate":0.15
 }
 
 const warrior:Dictionary = {
@@ -39,6 +43,8 @@ const warrior:Dictionary = {
 	"hp_acc":4.5,
 	"hp_cc":20,
 	"mp_base":3.5,
+	"dc_base":0.23,
+	"dc_rate":0.11
 }
 
 const char_display_stat:Array = [
@@ -53,18 +59,15 @@ const char_display_stat:Array = [
 ]
 
 const char_panel_stat:Array = [
-	"crit_strength",
-	"crit_chance",
-	"crit_mag_strength",
-	"crit_mag_chance",
-	"ac",
-	"ac_mac",
-	"mc",
-	"mc_max",
-	"dc",
-	"dc_max",
-	"sc",
-	"sc_max"
+	["ac","","防御"],
+	["mac","","魔御"],
+	["dc-dc_max","","攻击"],
+	["mc-mc_max","","魔法"],
+	["sc-sc_max","","道术"],
+	["crit_strength","","暴击强度"],
+	["crit_chance","%","暴击率"],
+	["crit_mag_strength","","魔法暴击强度"],
+	["crit_mag_chance","%","魔法暴击率"],
 ]
 
 const ITEM_QTY:Dictionary = {
@@ -101,11 +104,12 @@ const ITEM_TYPE:Dictionary = {
 }
 
 static func get_class_stats(level:int,class_index:int = 0) -> Dictionary:
-	var max_hp;
-	var max_mp;
+	var max_hp
+	var max_mp
+	
 	if class_index == CLASS_TYPE.Warrior:
-		max_hp = hp_const + (int(level / warrior.hp_base + warrior.hp_acc + level / warrior.hp_cc) * level);
-		max_mp = round(level * warrior.mp_base);
+		max_hp = hp_const + (int(level / warrior.hp_base + warrior.hp_acc + level / warrior.hp_cc) * level)
+		max_mp = round(level * warrior.mp_base)
 	elif class_index == CLASS_TYPE.Wizard:
 		max_hp = hp_const + (int(level / wizard.hp_base + wizard.hp_acc) * level);
 		max_mp = round(mp_const + (int(level / wizard.mp_base + wizard.mp_acc) * wizard.mp_rate * level))

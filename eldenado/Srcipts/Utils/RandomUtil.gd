@@ -23,6 +23,8 @@ static func get_random_digit(chance:float):
 
 static func get_items_random(count:int, array:Array) -> Array:
 	var size = array.size()
+	if size == 0:
+		return []
 	var _r = RandomNumberGenerator.new()
 	_r.randomize()
 	var copy = array.duplicate(true)

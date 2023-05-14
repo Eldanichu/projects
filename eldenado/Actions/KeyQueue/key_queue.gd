@@ -66,8 +66,8 @@ func _start_match():
 	queue_timer.stop()
 	queue_timer.start_timer()
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
+func _input(event) -> void:
+	if event as InputEventKey:
 		var key = event.scancode
 		if QUENED_KEYS.has(key) && event.pressed:
 			q.push(key)

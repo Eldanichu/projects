@@ -31,24 +31,24 @@ custom_constants/margin_bottom = 10
 [node name="v_box_container" type="VBoxContainer" parent="margin_container"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 603.0
+margin_right = 479.0
 margin_bottom = 310.0
 
 [node name="scroll_container" type="ScrollContainer" parent="margin_container/v_box_container"]
-margin_right = 593.0
-margin_bottom = 267.0
+margin_right = 469.0
+margin_bottom = 273.0
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="v_box_container" type="VBoxContainer" parent="margin_container/v_box_container/scroll_container"]
-margin_right = 593.0
-margin_bottom = 267.0
+margin_right = 469.0
+margin_bottom = 273.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="h_split_container" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container"]
-margin_right = 593.0
+margin_right = 469.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
@@ -63,35 +63,37 @@ text = "TAG_PLAYER_NAME"
 [node name="input_name" type="LineEdit" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container"]
 unique_name_in_owner = true
 margin_left = 111.0
-margin_right = 593.0
+margin_right = 469.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="h_split_container_2" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container"]
 margin_top = 44.0
-margin_right = 593.0
-margin_bottom = 73.0
+margin_right = 469.0
+margin_bottom = 67.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 
 [node name="tag_class" type="Label" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2"]
-margin_top = 6.0
+margin_top = 3.0
 margin_right = 101.0
-margin_bottom = 23.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 50, 0 )
 text = "TAG_PLAYER_CLASS"
 align = 2
 
-[node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2"]
+[node name="class_buttons" type="HBoxContainer" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2"]
+unique_name_in_owner = true
 margin_left = 111.0
-margin_right = 593.0
-margin_bottom = 29.0
+margin_right = 469.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 
-[node name="Warrior" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
-margin_right = 170.0
-margin_bottom = 29.0
+[node name="Warrior" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/class_buttons"]
+unique_name_in_owner = true
+margin_right = 124.0
+margin_bottom = 23.0
 focus_mode = 0
 size_flags_horizontal = 3
 theme = ExtResource( 4 )
@@ -100,10 +102,10 @@ enabled_focus_mode = 0
 group = ExtResource( 3 )
 text = "TAG_CLASS_WARRIOR"
 
-[node name="Wizard" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
-margin_left = 180.0
-margin_right = 339.0
-margin_bottom = 29.0
+[node name="Wizard" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/class_buttons"]
+margin_left = 134.0
+margin_right = 250.0
+margin_bottom = 23.0
 focus_mode = 0
 size_flags_horizontal = 3
 theme = ExtResource( 4 )
@@ -112,10 +114,10 @@ enabled_focus_mode = 0
 group = ExtResource( 3 )
 text = "TAG_CLASS_WIZARD"
 
-[node name="Taos" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
-margin_left = 349.0
-margin_right = 482.0
-margin_bottom = 29.0
+[node name="Taos" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/class_buttons"]
+margin_left = 260.0
+margin_right = 358.0
+margin_bottom = 23.0
 focus_mode = 0
 size_flags_horizontal = 3
 theme = ExtResource( 4 )
@@ -124,35 +126,25 @@ enabled_focus_mode = 0
 group = ExtResource( 3 )
 text = "TAG_CLASS_TAO"
 
-[node name="class" type="Button" parent="margin_container/v_box_container/scroll_container/v_box_container/h_split_container_2/h_box_container"]
-unique_name_in_owner = true
-visible = false
-margin_left = 141.0
-margin_right = 153.0
-margin_bottom = 28.0
-focus_mode = 0
-enabled_focus_mode = 0
-group = ExtResource( 3 )
-
 [node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container"]
-margin_left = 161.0
-margin_top = 271.0
-margin_right = 432.0
+margin_left = 133.0
+margin_top = 277.0
+margin_right = 336.0
 margin_bottom = 300.0
 size_flags_horizontal = 6
 custom_constants/separation = 10
 
 [node name="create_player" type="Button" parent="margin_container/v_box_container/h_box_container"]
 unique_name_in_owner = true
-margin_right = 154.0
-margin_bottom = 29.0
+margin_right = 115.0
+margin_bottom = 23.0
 theme = ExtResource( 4 )
 text = "TAG_CREATE_GAME"
 
 [node name="cancel" type="Button" parent="margin_container/v_box_container/h_box_container"]
-margin_left = 164.0
-margin_right = 271.0
-margin_bottom = 29.0
+margin_left = 125.0
+margin_right = 203.0
+margin_bottom = 23.0
 theme = ExtResource( 4 )
 text = "TAG_CANCEL"
 

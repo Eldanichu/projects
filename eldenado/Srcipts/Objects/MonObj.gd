@@ -1,7 +1,10 @@
 extends Node
 class_name MonObj
 
+signal die()
+
 var mon_items:Array = []
+
 var mon_stat:Dictionary = {
 	"name":null,
 	"level":0,
@@ -12,9 +15,11 @@ var mon_stat:Dictionary = {
 	"ac_max":0,
 	"hp":0,
 	"appr":null,
+	"exp":0,
+	# following are extra
 	"hp_max":0,
 	"atk_interval":0,
-	"mp":0,
+	"mp":0
 } setget set_stat
 
 func get_instance(db:DB, mon_id:String):
@@ -48,8 +53,18 @@ func set_drops(db:DB):
 func set_stat(stat:Dictionary):
 	mon_stat.merge(stat, true)
 
-func alive() -> bool:
-	return mon_stat.hp > 0
+func take_damge(value):
+	mon_stat.hp = mon_stat.hp - value
+	is_dead()
+
+func is_dead():
+	var dead = false
+	if mon_stat.hp <= 0:
+		mon_stat.hp = 0
+		dead = true
+		emit_signal("die")
+
+	return dead
 
 func hit():
 	var _c1:float = get_chance()
@@ -57,7 +72,7 @@ func hit():
 	return chance > 0
 
 func attack():
-	if not alive():
+	if is_dead():
 		return -1
 	if not hit():
 		return 0
