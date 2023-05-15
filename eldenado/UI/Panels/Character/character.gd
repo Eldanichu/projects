@@ -24,7 +24,7 @@ func _ready():
 func update_stats(stats):
 	player_stats = stats
 	update_tabs()
-	
+
 func update_tabs():
 	if !is_inside_tree():
 		return

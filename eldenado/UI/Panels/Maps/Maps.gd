@@ -1,6 +1,6 @@
 extends Control
 
-signal map_entering(map)
+signal map_click(map)
 
 export(Array) var MapData = []
 
@@ -65,4 +65,4 @@ func load_data():
 		._new()
 
 func map_click(e):
-	emit_signal("map_entering", e)
+	emit_signal("map_click", e)

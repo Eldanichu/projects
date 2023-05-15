@@ -1,7 +1,6 @@
 extends Control
 class_name Stats
 
-signal command(type)
 
 export(bool) var show_command:bool = false
 
@@ -21,15 +20,18 @@ const GLOBAL_VAR = {
 }
 
 func _ready():
-	var buttons = com_panel.get_children()
-	for button in buttons:
-		button.connect("pressed",self, "_on_command",[button.name])
+	bind_events()
 
 func _process(delta):
 	com_panel.visible = show_command
 
+func bind_events():
+	var buttons = com_panel.get_children()
+	for button in buttons:
+		button.connect("pressed",self, "_on_command",[button.name])
+
 func _on_command(type):
-	emit_signal("command",type)
+	Event.emit_signal("battle_command",type)
 
 func update_ui(_stat):
 	stats.player_name.text = _stat.player_name

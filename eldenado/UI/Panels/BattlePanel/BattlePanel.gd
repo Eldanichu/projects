@@ -25,15 +25,14 @@ var battle_result = {
 	"exp":0,
 	"gold":0
 }
-	
-	
+
 func _process(delta):
 	process_battle_result()
 
 func _group_add(mon:Node):
 	mon.add_to_group(GROUP_BATTLE_MONSTER)
 
-func _group_call(method_name:String):
+func monster_group(method_name:String):
 	get_tree().call_group(GROUP_BATTLE_MONSTER, method_name)
 
 func set_monsters(_monsters):
@@ -54,59 +53,16 @@ func set_player(_player:PlayerObj):
 	player = _player
 
 func wait_to_palyer():
-	_group_call("wait")
+	monster_group("wait")
 
 func bind_events():
+	Event.connect("player_attack",self,"_on_player_attack")
 	var mons := get_tree().get_nodes_in_group(GROUP_BATTLE_MONSTER)
 	for o in mons:
-		o.connect("spawned",self,"_on_spawned")
-		o.connect("on_attack",self,"_on_attack")
-		o.connect("dead",self,"_on_dead")
-		o.connect("drop",self,"_drop")
-
-func attack_monster():
-	if battle_state != BATTLE_STATUS.FIGHT:
-		return
-	_group_call("start")
-	var node_mon = inst_monsters.get_children()
-	var alive_mons:Array = []
-	for mon in node_mon:
-		if not mon.mon.is_dead():
-			alive_mons.append(mon)
-	
-	var targets = RandomUtil.get_items_random(1,alive_mons)
-	for m in targets:
-		var player_attack = player.attack()
-		var power = player_attack[0]
-		var text:BattleLogText = logger.format
-		text.text = "你对{0}造成{1}点伤害".format([m.mon_stat.name,power])
-		logger.println(text)
-		m.take_damage(power)
-#	logger.println(logger.format.set_text(str(_monster_count())))
-
-func _on_spawned():
-	pass
-
-func _on_attack(o):
-	_group_call("wait")
-	var dmg = int(o.damage);
-	if dmg <= 0:
-		return
-	var name_text:BattleLogText = logger.format
-	name_text.text = o.name
-	name_text.color = Color.greenyellow
-	var damage_text:BattleLogText = logger.format
-	damage_text.text = dmg
-	damage_text.color = Color.red
-	player.take_damage(dmg)
-	logger.println("{0}对你造或{1}点伤害".format([name_text.to_string(),damage_text.to_string()]))
-
-func _on_dead(_exp):
-	battle_result.exp = _exp + battle_result.exp
-	pass
-
-func _drop(drops):
-	pass
+		o.connect("spawned",self,"_on_monster_spawned")
+		o.connect("on_attack",self,"_on_monster_attack")
+		o.connect("dead",self,"_on_monster_dead")
+		o.connect("drop",self,"_on_monster_drop")
 
 func _monster_count():
 	return inst_monsters.get_child_count()
@@ -119,6 +75,7 @@ func process_battle_result():
 		battle_state = BATTLE_STATUS.WIN
 		emit_battle_end()
 	if player.is_dead():
+		kill_all_monsters()
 		battle_state = BATTLE_STATUS.FAIL
 		kill_all_monsters()
 		emit_battle_end()
@@ -147,5 +104,59 @@ func emit_battle_end():
 	})
 	player.give_exp(battle_result.exp)
 	logger.println(result_text)
-#	emit_signal("battle_end")
-	
+
+"""
+Player Events
+"""
+func _on_player_attack():
+	if battle_state != BATTLE_STATUS.FIGHT:
+		return
+	monster_group("start")
+	var targets = get_random_target()
+	for target in targets:
+		var player_attack = player.attack()
+		var power = player_attack[0]
+		var text:BattleLogText = logger.format
+		text.text = "你对{0}造成{1}点伤害".format([
+			target.stat.name,
+			power
+		])
+		logger.println(text)
+		target.take_damage(power)
+
+func get_random_target():
+	var node_mon = inst_monsters.get_children()
+	var alive_mons:Array = []
+	for mon in node_mon:
+		if not mon.mon.is_dead():
+			alive_mons.append(mon)
+	var res = RandomUtil.get_items_random(1, alive_mons)
+	return res
+
+"""
+Monster Events
+"""
+func _on_monster_spawned():
+	pass
+
+func _on_monster_attack(o):
+#	monster_group("wait")
+	var dmg = int(o.damage);
+	if dmg <= 0:
+		return
+	var name_text:BattleLogText = logger.format
+	name_text.text = o.name
+	name_text.color = Color.greenyellow
+	var damage_text:BattleLogText = logger.format
+	damage_text.text = dmg
+	damage_text.color = Color.red
+	player.take_damage(dmg)
+	logger.println("{0}对你造或{1}点伤害".format([name_text.to_string(),damage_text.to_string()]))
+
+func _on_monster_dead(_exp):
+	battle_result.exp = _exp + battle_result.exp
+	pass
+
+func _on_monster_drop(drops):
+	print("monster drop item->",drops)
+	pass

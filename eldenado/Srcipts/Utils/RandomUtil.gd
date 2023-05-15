@@ -1,6 +1,13 @@
 extends Resource
 class_name RandomUtil
 
+static func between(_min,_max):
+	var _r = RandomNumberGenerator.new()
+	_r.randomize()
+	var res = _r.randi_range(_min,_max)
+
+	return res
+
 static func get_random(chance:int):
 	var _r = RandomNumberGenerator.new()
 	_r.randomize()

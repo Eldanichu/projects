@@ -6,7 +6,12 @@ extends Node
 Game
 """
 signal create_game(result)
+signal battle_command(type)
 
+"""
+Player
+"""
+signal player_attack()
 
 """
 Audio
@@ -23,4 +28,4 @@ const BUTTON_AUDIO:Dictionary = {
 	MENU_BUTTON = "menu_button_pressed",
 	LINK = "link_pressed",
 }
-	
+

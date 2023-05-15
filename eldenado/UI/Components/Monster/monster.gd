@@ -13,7 +13,6 @@ onready var mon_name := $"%mon_name"
 onready var anim := $anim
 
 var stylebox = preload("res://Assets/Themes/panel_border.tres")
-var bleeding:Particles2D
 var action_timer := ATimer.new(self)
 
 var mon:MonObj
@@ -23,6 +22,7 @@ var r := RandomNumberGenerator.new()
 var tansform := get_transform()
 var shake_period := 5.0
 var shake_time := 0.0
+var shke_strength = 2
 var origin
 var taking_damage = false
 
@@ -72,7 +72,7 @@ func set_mon_stats():
 	mon_stat = mon.mon_stat
 	mon_img.texture = load(mon_stat.appr)
 	mon_name.text = mon_stat.name
-	
+
 	mon_stat.atk_interval = mon_stat.atk_speed * 1.0 / 1000
 	action_timer.Interval = mon_stat.atk_interval
 	mon_stat.hp_max = mon_stat.hp
@@ -103,8 +103,8 @@ func shake(delta):
 	var last_p = origin
 	if shake_time <= shake_period:
 		var p = rect_position
-		var tp = Vector2(rect_position) - Vector2(r.randi_range(5,-5), 0)
-		tansform.x = lerp(p, tp, 3.0)
+		var tp = Vector2(rect_position) - Vector2(r.randi_range(shke_strength, -shke_strength), 0)
+		tansform.x = lerp(p, tp, 1.0)
 		rect_position.x = tansform.x.x
 		last_p = rect_position.x
 	else:
@@ -117,6 +117,7 @@ func take_damage(damage):
 	taking_damage = true
 	mon.take_damge(damage)
 	hp_bar.t_val = mon_stat.hp
+	yield(get_tree(),"idle_frame")
 	origin = get_position()
 #	set_border_color()
 #	yield(get_tree().create_timer(1,0),"timeout")

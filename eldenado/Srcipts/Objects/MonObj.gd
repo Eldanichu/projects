@@ -53,17 +53,21 @@ func set_drops(db:DB):
 func set_stat(stat:Dictionary):
 	mon_stat.merge(stat, true)
 
+func calculate_coming_damage(value):
+	var _v = (value - RandomUtil.between(mon_stat.ac, mon_stat.ac_max))
+
+	return _v
+
 func take_damge(value):
-	mon_stat.hp = mon_stat.hp - value
-	is_dead()
+	mon_stat.hp = mon_stat.hp - calculate_coming_damage(value)
+	if is_dead():
+		emit_signal("die")
 
 func is_dead():
 	var dead = false
 	if mon_stat.hp <= 0:
 		mon_stat.hp = 0
 		dead = true
-		emit_signal("die")
-
 	return dead
 
 func hit():

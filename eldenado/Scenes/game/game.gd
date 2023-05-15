@@ -15,10 +15,8 @@ var player:PlayerObj
 var player_info:Dictionary
 
 func _ready() -> void:
-	stat.connect("command",self,"_on_command")
-	battle_panel.connect("battle_start",self,"_on_battle_start")
-	battle_panel.connect("battle_end",self,"_on_battle_end")
 	load_game_data()
+	bind_events()
 
 func _process(delta: float) -> void:
 	pass
@@ -31,6 +29,10 @@ func load_game_data():
 	db.connect("db_ready",self,"_on_db_ready")
 	add_child(db)
 
+func bind_events():
+	Event.connect("battle_command",self,"_on_battle_command")
+	battle_panel.connect("battle_start",self,"_on_battle_start")
+	battle_panel.connect("battle_end",self,"_on_battle_end")
 
 func load_maps():
 	if !map:
@@ -38,11 +40,11 @@ func load_maps():
 	var maps = db.get_data("map")
 	map.MapData = maps.data
 	map.load_data()
-	map.connect("map_entering",self,"_map_entering")
+	map.connect("map_click",self,"_on_map_click")
 
 func create_player():
 	player = PlayerObj.new()
-	player.connect("update_stats",self,"_update_stats")
+	player.connect("stats_change",self,"_on_player_stats_change")
 	player.connect("die",self,"_on_player_die")
 	player.connect("levelup",self,"_on_player_levelup")
 	add_child(player)
@@ -55,21 +57,16 @@ func update_ui():
 
 """
  Events
-
 """
 func _on_db_ready():
 	print("[game] -> DB ready")
 	load_maps()
 	create_player()
-	bind_events()
 	update_ui()
-	
+	# ******test
 	stat.show_command = true
 
-func bind_events():
-	pass
-
-func _map_entering(e):
+func _on_map_click(e):
 	Event.emit_signal(Event.BUTTON_AUDIO.MENU_BUTTON)
 	var map_name = e.name
 	var mon_ids = RandomUtil.get_map_monsters(db, map_name)
@@ -81,7 +78,7 @@ func _map_entering(e):
 	battle_panel.monsters = monsters
 	battle_panel.set_player(player)
 
-func _update_stats(_stat:Dictionary):
+func _on_player_stats_change(_stat:Dictionary):
 	_stat.merge(player_info, true)
 	stat.update_ui(_stat)
 	update_ui()
@@ -94,12 +91,11 @@ func _on_player_levelup():
 	Event.emit_signal("level_up")
 	pass
 
-func _on_command(type):
+func _on_battle_command(type):
 	if type == "attack":
-		battle_panel.attack_monster()
+		Event.emit_signal("player_attack")
 	if type == "level_up":
 		player.level_up()
-
 
 func _on_game_panel_switch_panel(panel_name) -> void:
 	Event.emit_signal(Event.BUTTON_AUDIO.MENU_BUTTON)

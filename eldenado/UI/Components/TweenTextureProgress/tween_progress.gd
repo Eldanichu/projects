@@ -24,7 +24,7 @@ func setup():
 	lbl_text.set("custom_colors/font_color",value_color)
 	lbl_text.set("custom_fonts/font/size",font_size)
 	value_change()
-	
+
 func update_values():
 	lbl_text.text = "{0}/{1}".format([t_val,t_max])
 
