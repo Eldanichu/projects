@@ -15,10 +15,10 @@ onready var logger := $"%battle_log"
 
 const GROUP_BATTLE_MONSTER = "battle_monster"
 
-var monster := preload("res://UI/Components/Monster/monster.tscn")
+var pkg_monster := preload("res://UI/Components/Monster/monster.tscn")
 
 var player:PlayerObj setget set_player
-var monsters:Array = [] setget set_monsters
+var mon_objs:Array = [] setget set_monsters
 
 var battle_state = BATTLE_STATUS.IDEL
 var battle_result = {
@@ -35,15 +35,15 @@ func _group_add(mon:Node):
 func monster_group(method_name:String):
 	get_tree().call_group(GROUP_BATTLE_MONSTER, method_name)
 
-func set_monsters(_monsters):
-	monsters = _monsters
-	var mon_size = monsters.size();
-	for i in range(mon_size):
-		var mon_obj = monsters[i]
-		var mon = monster.instance()
-		mon.mon = mon_obj
-		inst_monsters.add_child(mon)
-		_group_add(mon)
+func set_monsters(_mon_obj:Array):
+	mon_objs = _mon_obj
+	var mon_objs_size = mon_objs.size();
+	for i in range(mon_objs_size):
+		var mon_obj = mon_objs[i]
+		var pkg_mon = pkg_monster.instance()
+		pkg_mon.mon_obj = mon_obj
+		inst_monsters.add_child(pkg_mon)
+		_group_add(pkg_mon)
 	bind_events()
 	logger.clear()
 	wait_to_palyer()
@@ -118,7 +118,7 @@ func _on_player_attack():
 		var power = player_attack[0]
 		var text:BattleLogText = logger.format
 		text.text = "你对{0}造成{1}点伤害".format([
-			target.stat.name,
+			target.mon_stat.name,
 			power
 		])
 		logger.println(text)
@@ -127,9 +127,9 @@ func _on_player_attack():
 func get_random_target():
 	var node_mon = inst_monsters.get_children()
 	var alive_mons:Array = []
-	for mon in node_mon:
-		if not mon.mon.is_dead():
-			alive_mons.append(mon)
+	for node in node_mon:
+		if not node.mon_obj.is_dead():
+			alive_mons.append(node)
 	var res = RandomUtil.get_items_random(1, alive_mons)
 	return res
 

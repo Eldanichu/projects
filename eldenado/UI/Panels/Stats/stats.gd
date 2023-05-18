@@ -1,6 +1,5 @@
 extends Control
-class_name Stats
-
+class_name Stats, "res://Assets/ui/bars/empty.png"
 
 export(bool) var show_command:bool = false
 
@@ -14,6 +13,8 @@ onready var stats:Dictionary = {
 }
 
 onready var com_panel = $"%command"
+onready var active_skills = $"%active_skills"
+onready var default_attack = $"%default_attack"
 
 const GLOBAL_VAR = {
 	"class_type":"CLASS_NAME"

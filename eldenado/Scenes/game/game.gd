@@ -70,12 +70,12 @@ func _on_map_click(e):
 	Event.emit_signal(Event.BUTTON_AUDIO.MENU_BUTTON)
 	var map_name = e.name
 	var mon_ids = RandomUtil.get_map_monsters(db, map_name)
-	var monsters = []
+	var mon_objs:Array = []
 	for _mon_id in mon_ids:
 		var mon = MonObj.new()
 		mon.get_instance(db, _mon_id)
-		monsters.append(mon)
-	battle_panel.monsters = monsters
+		mon_objs.append(mon)
+	battle_panel.mon_objs = mon_objs
 	battle_panel.set_player(player)
 
 func _on_player_stats_change(_stat:Dictionary):
@@ -85,7 +85,7 @@ func _on_player_stats_change(_stat:Dictionary):
 
 func _on_player_die():
 	set_battle(false)
-	pass
+	player.revive()
 
 func _on_player_levelup():
 	Event.emit_signal("level_up")

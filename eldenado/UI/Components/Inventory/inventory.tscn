@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Themes/scroll_hidden.tres" type="Theme" id=2]
+[ext_resource path="res://UI/Components/Inventory/inventory.gd" type="Script" id=3]
 
 [node name="imventory" type="PanelContainer"]
 margin_right = 348.0
@@ -9,17 +10,18 @@ margin_bottom = 229.0
 rect_min_size = Vector2( 520, 340 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="v_box_container" type="VBoxContainer" parent="."]
-margin_left = 12.4527
-margin_top = 12.0
-margin_right = 508.0
-margin_bottom = 328.0
+margin_left = 9.0
+margin_top = 9.0
+margin_right = 511.0
+margin_bottom = 331.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="h_box_container" type="HBoxContainer" parent="v_box_container"]
-margin_right = 495.0
+margin_right = 502.0
 margin_bottom = 23.0
 
 [node name="sort" type="Button" parent="v_box_container/h_box_container"]
@@ -29,16 +31,14 @@ text = "TAG_BAG_SORT"
 
 [node name="margin_container" type="MarginContainer" parent="v_box_container"]
 margin_top = 27.0
-margin_right = 495.0
-margin_bottom = 295.0
+margin_right = 502.0
+margin_bottom = 301.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="scrollbar" type="ScrollContainer" parent="v_box_container/margin_container"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 490.0
-margin_bottom = 263.0
+margin_right = 502.0
+margin_bottom = 274.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
@@ -51,9 +51,9 @@ custom_constants/hseparation = 1
 columns = 10
 
 [node name="h_box_container_2" type="HBoxContainer" parent="v_box_container"]
-margin_top = 299.0
-margin_right = 495.0
-margin_bottom = 316.0
+margin_top = 305.0
+margin_right = 502.0
+margin_bottom = 322.0
 
 [node name="TAG_GOLD" type="Label" parent="v_box_container/h_box_container_2"]
 margin_right = 58.0

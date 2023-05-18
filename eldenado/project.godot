@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/Objects/BaseAttck.gd"
 }, {
-"base": "MarginContainer",
+"base": "Control",
 "class": "BasicSlot",
 "language": "GDScript",
 "path": "res://UI/Components/BasicSlot/basic_slot.gd"
@@ -836,7 +836,7 @@ _global_script_class_icons={
 "AnyClazzArgumentMatcher": "",
 "ArrayUtil": "",
 "BaseAttack": "",
-"BasicSlot": "",
+"BasicSlot": "res://Assets/ui/panel/00670.PNG",
 "BattleLogText": "",
 "BigNumber": "",
 "CallBackValueProvider": "",
@@ -982,7 +982,7 @@ _global_script_class_icons={
 "Settings": "",
 "ShapeUtil": "",
 "SignalHandler": "",
-"Stats": "",
+"Stats": "res://Assets/ui/bars/empty.png",
 "StringFuzzer": "",
 "StringUtil": "",
 "TimeUnit": "",

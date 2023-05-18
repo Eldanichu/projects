@@ -29,7 +29,7 @@ func _on_press():
 
 func _on_timing(time_left):
 	progress.value = GameUtils.get_percent(time_left, interval)
-	
+
 
 func _on_timeout():
 	timer.stop()

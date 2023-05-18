@@ -15,7 +15,7 @@ onready var anim := $anim
 var stylebox = preload("res://Assets/Themes/panel_border.tres")
 var action_timer := ATimer.new(self)
 
-var mon:MonObj
+var mon_obj:MonObj
 var mon_stat:Dictionary
 
 var r := RandomNumberGenerator.new()
@@ -35,18 +35,18 @@ func set_border_color(color:Color = Color.green):
 	add_stylebox_override("panel",stylebox.duplicate())
 
 func _process(delta: float) -> void:
-	if not is_instance_valid(mon):
+	if not is_instance_valid(mon_obj):
 		return
 
 	if taking_damage:
 		shake(delta)
 
 func setup():
-	if !is_instance_valid(mon):
+	if !is_instance_valid(mon_obj):
 		print("[monster](setup) monster was not instanced")
 		return
 	bind_event()
-	add_child(mon)
+	add_child(mon_obj)
 	set_mon_stats()
 	emit_signal("spawned")
 	action_timer.connect("timeout",self,"_attack")
@@ -56,20 +56,20 @@ func setup():
 
 func bind_event():
 	anim.connect("animation_finished",self,"_on_disapper")
-	mon.connect("die",self,"_on_monster_die")
+	mon_obj.connect("die",self,"_on_monster_die")
 
 func _on_disapper(anim_name):
-	mon.queue_free()
+	mon_obj.queue_free()
 	queue_free()
 
 func _on_monster_die():
-	emit_signal("dead",mon.mon_stat.exp)
+	emit_signal("dead",mon_stat.exp)
 	anim.play("disapper")
-	var drops = mon.drop()
+	var drops = mon_obj.drop()
 	emit_signal("drop",drops)
 
 func set_mon_stats():
-	mon_stat = mon.mon_stat
+	mon_stat = mon_obj.mon_stat
 	mon_img.texture = load(mon_stat.appr)
 	mon_name.text = mon_stat.name
 
@@ -86,7 +86,7 @@ func _attack():
 	var p = GameUtils.get_percent(mon_stat.atk_interval, mon_stat.atk_interval)
 	act_bar.t_val = p
 	action_timer.start_timer()
-	var atk = mon.attack()
+	var atk = mon_obj.attack()
 	emit_signal("on_attack",{
 		"name": mon_stat.name,
 		"damage": atk
@@ -115,7 +115,7 @@ func shake(delta):
 
 func take_damage(damage):
 	taking_damage = true
-	mon.take_damge(damage)
+	mon_obj.take_damge(damage)
 	hp_bar.t_val = mon_stat.hp
 	yield(get_tree(),"idle_frame")
 	origin = get_position()

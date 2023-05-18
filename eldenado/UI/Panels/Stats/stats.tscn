@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Fonts/ttf/wheaton-capitals.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/ui/bars/mp.png" type="Texture" id=2]
@@ -12,7 +12,18 @@
 [ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=10]
 [ext_resource path="res://Assets/ui/bars/empty.png" type="Texture" id=11]
 [ext_resource path="res://Assets/ui/bars/hp.png" type="Texture" id=12]
-[ext_resource path="res://UI/Components/progress_button/progress_button.tscn" type="PackedScene" id=13]
+[ext_resource path="res://UI/Components/BasicSlot/basic_slot.tscn" type="PackedScene" id=13]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 0.576471 )
+shadow_color = Color( 0, 0, 0, 0.286275 )
+shadow_size = 2
+shadow_offset = Vector2( -1, 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 14
@@ -86,20 +97,76 @@ size_flags_vertical = 3
 
 [node name="command" type="HBoxContainer" parent="content/bars/h_box_container/command_panel"]
 unique_name_in_owner = true
-margin_right = 1134.0
-margin_bottom = 19.0
+margin_left = 382.0
+margin_right = 752.0
+margin_bottom = 32.0
+size_flags_horizontal = 6
 
-[node name="attack" parent="content/bars/h_box_container/command_panel/command" instance=ExtResource( 13 )]
-margin_right = 60.0
-margin_bottom = 19.0
-text = "Attack"
-interval = 0.2
+[node name="active_skills" type="HBoxContainer" parent="content/bars/h_box_container/command_panel/command"]
+unique_name_in_owner = true
+margin_right = 284.0
+margin_bottom = 32.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
 
-[node name="level_up" parent="content/bars/h_box_container/command_panel/command" instance=ExtResource( 13 )]
-margin_left = 64.0
-margin_right = 124.0
-margin_bottom = 19.0
-text = "LevelUp"
+[node name="slot_1" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+slot_type = 0
+
+[node name="slot_2" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+margin_left = 36.0
+margin_right = 68.0
+slot_type = 0
+
+[node name="slot_3" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+margin_left = 72.0
+margin_right = 104.0
+slot_type = 0
+
+[node name="slot_4" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+margin_left = 108.0
+margin_right = 140.0
+slot_type = 0
+
+[node name="slot_5" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+margin_left = 144.0
+margin_right = 176.0
+slot_type = 0
+
+[node name="slot_6" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+margin_left = 180.0
+margin_right = 212.0
+slot_type = 0
+
+[node name="slot_7" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+margin_left = 216.0
+margin_right = 248.0
+slot_type = 0
+
+[node name="slot_8" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+margin_left = 252.0
+margin_right = 284.0
+slot_type = 0
+
+[node name="v_separator" type="VSeparator" parent="content/bars/h_box_container/command_panel/command"]
+margin_left = 288.0
+margin_right = 298.0
+margin_bottom = 32.0
+custom_constants/separation = 10
+custom_styles/separator = SubResource( 2 )
+
+[node name="default_attack" type="HBoxContainer" parent="content/bars/h_box_container/command_panel/command"]
+unique_name_in_owner = true
+margin_left = 302.0
+margin_right = 370.0
+margin_bottom = 32.0
+
+[node name="slot_9" parent="content/bars/h_box_container/command_panel/command/default_attack" instance=ExtResource( 13 )]
+slot_type = 0
+
+[node name="slot_10" parent="content/bars/h_box_container/command_panel/command/default_attack" instance=ExtResource( 13 )]
+margin_left = 36.0
+margin_right = 68.0
+slot_type = 0
 
 [node name="right" type="VBoxContainer" parent="content/bars/h_box_container"]
 margin_left = 1202.0

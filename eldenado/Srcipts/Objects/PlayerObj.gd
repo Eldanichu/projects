@@ -184,6 +184,12 @@ func is_dead():
 		dead = true
 	return dead
 
+func revive():
+	if not is_dead():
+		return
+	stats.hp = stats.hp_max
+	stats.mp = stats.mp_max
+
 func attack():
 	var power = AttackPower.new(stats.dc, stats.dc_max);
 	power.CRIT_ATK_RATE = stats.crit_chance
