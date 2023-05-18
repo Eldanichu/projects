@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/ui/windows/window_close_hover.png" type="Texture" id=1]
 [ext_resource path="res://UI/Panels/GameSettings/game_setting.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=3]
 [ext_resource path="res://Assets/ui/windows/window_close.png" type="Texture" id=4]
 
-[node name="game_setting" type="Panel"]
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.3, 0.3, 0.3, 1 )
+
+[node name="game_setting" type="PanelContainer"]
 pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
@@ -18,130 +21,142 @@ margin_bottom = 252.5
 theme = ExtResource( 3 )
 script = ExtResource( 2 )
 
-[node name="container" type="VBoxContainer" parent="."]
+[node name="v_box_container" type="VBoxContainer" parent="."]
+margin_left = 9.0
+margin_top = 9.0
+margin_right = 303.0
+margin_bottom = 496.0
+
+[node name="tab_container" type="TabContainer" parent="v_box_container"]
+margin_right = 294.0
+margin_bottom = 460.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tab_align = 0
+
+[node name="General" type="VBoxContainer" parent="v_box_container/tab_container"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 7.72908
+margin_top = 26.2449
+margin_right = -8.18863
+margin_bottom = -7.15253
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
 
-[node name="row_title" type="HBoxContainer" parent="container"]
-margin_right = 312.0
-margin_bottom = 23.0
-size_flags_horizontal = 3
-
-[node name="m1" type="MarginContainer" parent="container/row_title"]
-margin_right = 127.0
-margin_bottom = 23.0
-size_flags_horizontal = 2
-size_flags_vertical = 3
-custom_constants/margin_right = 0
-custom_constants/margin_top = 3
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 3
-
-[node name="h_split_container" type="HBoxContainer" parent="container/row_title/m1"]
-margin_left = 10.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 20.0
-
-[node name="settings" type="Label" parent="container/row_title/m1/h_split_container"]
-margin_right = 117.0
-margin_bottom = 17.0
-size_flags_vertical = 5
-text = "TAG_GAME_SETTINGS"
-valign = 1
-
-[node name="m2" type="MarginContainer" parent="container/row_title"]
-margin_left = 284.0
-margin_top = 2.0
-margin_right = 312.0
-margin_bottom = 21.0
+[node name="row_title" type="HBoxContainer" parent="v_box_container/tab_container/General"]
+margin_left = 262.0
+margin_right = 278.0
+margin_bottom = 14.0
 size_flags_horizontal = 10
-size_flags_vertical = 6
-custom_constants/margin_right = 12
-custom_constants/margin_top = 5
 
-[node name="close" type="TextureButton" parent="container/row_title/m2"]
-margin_top = 5.0
+[node name="close" type="TextureButton" parent="v_box_container/tab_container/General/row_title"]
+modulate = Color( 0.58, 0.58, 0.58, 1 )
 margin_right = 16.0
-margin_bottom = 19.0
+margin_bottom = 14.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 1 )
 
-[node name="m" type="MarginContainer" parent="container"]
-margin_top = 23.0
-margin_right = 312.0
-margin_bottom = 474.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_right = 8
-custom_constants/margin_top = 5
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 8
+[node name="h_separator" type="HSeparator" parent="v_box_container/tab_container/General"]
+margin_top = 14.0
+margin_right = 278.0
+margin_bottom = 21.0
+custom_constants/separation = 7
 
-[node name="scroll_container" type="ScrollContainer" parent="container/m"]
-margin_left = 8.0
-margin_top = 5.0
-margin_right = 304.0
-margin_bottom = 443.0
-
-[node name="col_1" type="HBoxContainer" parent="container/m/scroll_container"]
-margin_right = 296.0
-margin_bottom = 438.0
+[node name="scroll_container" type="ScrollContainer" parent="v_box_container/tab_container/General"]
+margin_top = 21.0
+margin_right = 278.0
+margin_bottom = 426.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="left" type="VBoxContainer" parent="container/m/scroll_container/col_1"]
-margin_right = 173.0
-margin_bottom = 50.0
-size_flags_horizontal = 2
-size_flags_vertical = 0
+[node name="left" type="VBoxContainer" parent="v_box_container/tab_container/General/scroll_container"]
+margin_right = 278.0
+margin_bottom = 405.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 8
 
-[node name="is_full_screen" type="CheckBox" parent="container/m/scroll_container/col_1/left"]
-margin_right = 173.0
+[node name="is_full_screen" type="CheckBox" parent="v_box_container/tab_container/General/scroll_container/left"]
+unique_name_in_owner = true
+margin_right = 278.0
 margin_bottom = 23.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "TAG_SETTING_FULLSCREEN"
 align = 1
 
-[node name="is_verticle_sync" type="CheckBox" parent="container/m/scroll_container/col_1/left"]
-margin_top = 27.0
-margin_right = 173.0
-margin_bottom = 50.0
+[node name="is_verticle_sync" type="CheckBox" parent="v_box_container/tab_container/General/scroll_container/left"]
+unique_name_in_owner = true
+margin_top = 31.0
+margin_right = 278.0
+margin_bottom = 54.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "TAG_SETTING_VSYNC"
 align = 1
 
-[node name="right" type="VBoxContainer" parent="container/m/scroll_container/col_1"]
-margin_left = 177.0
-margin_right = 296.0
+[node name="Control" type="VBoxContainer" parent="v_box_container/tab_container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.72908
+margin_top = 26.2449
+margin_right = -8.18863
+margin_bottom = -7.15253
+
+[node name="title" type="PanelContainer" parent="v_box_container/tab_container/Control"]
+margin_right = 278.0
+margin_bottom = 17.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="title_row" type="HBoxContainer" parent="v_box_container/tab_container/Control/title"]
+margin_right = 278.0
+margin_bottom = 17.0
+
+[node name="label" type="Label" parent="v_box_container/tab_container/Control/title/title_row"]
+margin_right = 90.0
+margin_bottom = 17.0
 size_flags_horizontal = 3
-size_flags_vertical = 0
+text = "Action"
+align = 1
 
-[node name="bottom" type="HBoxContainer" parent="container"]
-margin_left = 124.0
-margin_top = 474.0
-margin_right = 188.0
-margin_bottom = 505.0
-size_flags_horizontal = 6
+[node name="key_name" type="Label" parent="v_box_container/tab_container/Control/title/title_row"]
+margin_left = 94.0
+margin_right = 184.0
+margin_bottom = 17.0
+size_flags_horizontal = 7
+text = "Key"
+align = 1
 
-[node name="m" type="MarginContainer" parent="container/bottom"]
-margin_right = 64.0
-margin_bottom = 31.0
-custom_constants/margin_bottom = 8
+[node name="margin_container" type="MarginContainer" parent="v_box_container/tab_container/Control/title/title_row"]
+margin_left = 188.0
+margin_right = 278.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
 
-[node name="save" type="Button" parent="container/bottom/m"]
+[node name="skill_keys" type="VBoxContainer" parent="v_box_container/tab_container/Control"]
+unique_name_in_owner = true
+margin_top = 21.0
+margin_right = 278.0
+margin_bottom = 21.0
+
+[node name="bottom" type="VBoxContainer" parent="v_box_container"]
+margin_left = 230.0
+margin_top = 464.0
+margin_right = 294.0
+margin_bottom = 487.0
+size_flags_horizontal = 10
+
+[node name="save" type="Button" parent="v_box_container/bottom"]
 margin_right = 64.0
 margin_bottom = 23.0
 text = "TAG_SAVE"
 
-[connection signal="pressed" from="container/row_title/m2/close" to="." method="_on_close_pressed"]
-[connection signal="toggled" from="container/m/scroll_container/col_1/left/is_full_screen" to="." method="_on_is_full_screen_toggled"]
-[connection signal="toggled" from="container/m/scroll_container/col_1/left/is_verticle_sync" to="." method="_on_is_verticle_sync_toggled"]
-[connection signal="pressed" from="container/bottom/m/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="v_box_container/tab_container/General/row_title/close" to="." method="_on_close_pressed"]
+[connection signal="toggled" from="v_box_container/tab_container/General/scroll_container/left/is_full_screen" to="." method="_on_is_full_screen_toggled"]
+[connection signal="toggled" from="v_box_container/tab_container/General/scroll_container/left/is_verticle_sync" to="." method="_on_is_verticle_sync_toggled"]
+[connection signal="pressed" from="v_box_container/bottom/save" to="." method="_on_save_pressed"]
