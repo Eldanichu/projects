@@ -13,11 +13,10 @@ func _ready() -> void:
 	chk_fullscreen.pressed = Store.settings.fullscreen
 	chk_v_sync.pressed = Store.settings.v_sync
 	load_skill_keys()
-	pass
 
 func load_skill_keys():
 	if not is_instance_valid(Store) and not "settings" in Store:
-		print("Game Setting Class is not in AutoLoad.")
+		print("Game Store Class is not in AutoLoad.")
 		return
 	var settings = Store.settings
 	var _kbs = settings.key_bindings
@@ -29,18 +28,13 @@ func load_skill_keys():
 			continue
 		var inst_skill_key = skill_key.instance()
 		inst_skill_key.name = o
-		inst_skill_key.get_node("button").connect("button_up",self,"_on_binding_key",[o])
-		inst_skill_key.get_node("label").text = o
+		inst_skill_key._label = o
+		if item["key"]:
+			inst_skill_key._key_name = item.key
 		if item["key_code"] == -1:
-			inst_skill_key.get_node("key_name").text = "-"
+			inst_skill_key._key_name = "-"
 		skill_keys.add_child(inst_skill_key)
-		print(_kbs[o])
-	pass
-
-func _on_binding_key(node_name):
-	var node := skill_keys.get_node(node_name)
-	print(node_name,node)
-	pass
+	print("game key bindings->",_kbs)
 
 func close_dialog():
 	queue_free()

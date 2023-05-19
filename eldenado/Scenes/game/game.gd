@@ -64,7 +64,7 @@ func _on_db_ready():
 	create_player()
 	update_ui()
 	# ******test
-	stat.show_command = true
+#	stat.show_command = true
 
 func _on_map_click(e):
 	Event.emit_signal(Event.BUTTON_AUDIO.MENU_BUTTON)

@@ -124,13 +124,13 @@ func _on_player_attack():
 		logger.println(text)
 		target.take_damage(power)
 
-func get_random_target():
+func get_random_target(value = 1):
 	var node_mon = inst_monsters.get_children()
 	var alive_mons:Array = []
 	for node in node_mon:
 		if not node.mon_obj.is_dead():
 			alive_mons.append(node)
-	var res = RandomUtil.get_items_random(1, alive_mons)
+	var res = RandomUtil.get_items_random(value, alive_mons)
 	return res
 
 """

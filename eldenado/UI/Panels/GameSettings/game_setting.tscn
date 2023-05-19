@@ -35,7 +35,6 @@ size_flags_vertical = 3
 tab_align = 0
 
 [node name="General" type="VBoxContainer" parent="v_box_container/tab_container"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.72908
@@ -101,6 +100,7 @@ text = "TAG_SETTING_VSYNC"
 align = 1
 
 [node name="Control" type="VBoxContainer" parent="v_box_container/tab_container"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.72908
@@ -121,7 +121,7 @@ margin_bottom = 17.0
 margin_right = 90.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
-text = "Action"
+text = "  Action"
 align = 1
 
 [node name="key_name" type="Label" parent="v_box_container/tab_container/Control/title/title_row"]
@@ -129,7 +129,7 @@ margin_left = 94.0
 margin_right = 184.0
 margin_bottom = 17.0
 size_flags_horizontal = 7
-text = "Key"
+text = "         Key"
 align = 1
 
 [node name="margin_container" type="MarginContainer" parent="v_box_container/tab_container/Control/title/title_row"]

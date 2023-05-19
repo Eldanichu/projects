@@ -109,40 +109,40 @@ margin_bottom = 32.0
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="slot_1" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+[node name="Skill 1" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
 slot_type = 0
 
-[node name="slot_2" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+[node name="Skill 2" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
 margin_left = 36.0
 margin_right = 68.0
 slot_type = 0
 
-[node name="slot_3" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+[node name="Skill 3" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
 margin_left = 72.0
 margin_right = 104.0
 slot_type = 0
 
-[node name="slot_4" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+[node name="Skill 4" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
 margin_left = 108.0
 margin_right = 140.0
 slot_type = 0
 
-[node name="slot_5" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+[node name="Skill 5" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
 margin_left = 144.0
 margin_right = 176.0
 slot_type = 0
 
-[node name="slot_6" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+[node name="Skill 6" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
 margin_left = 180.0
 margin_right = 212.0
 slot_type = 0
 
-[node name="slot_7" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+[node name="Skill 7" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
 margin_left = 216.0
 margin_right = 248.0
 slot_type = 0
 
-[node name="slot_8" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
+[node name="Skill 8" parent="content/bars/h_box_container/command_panel/command/active_skills" instance=ExtResource( 13 )]
 margin_left = 252.0
 margin_right = 284.0
 slot_type = 0
@@ -160,10 +160,10 @@ margin_left = 302.0
 margin_right = 370.0
 margin_bottom = 32.0
 
-[node name="slot_9" parent="content/bars/h_box_container/command_panel/command/default_attack" instance=ExtResource( 13 )]
+[node name="Attack" parent="content/bars/h_box_container/command_panel/command/default_attack" instance=ExtResource( 13 )]
 slot_type = 0
 
-[node name="slot_10" parent="content/bars/h_box_container/command_panel/command/default_attack" instance=ExtResource( 13 )]
+[node name="Skill" parent="content/bars/h_box_container/command_panel/command/default_attack" instance=ExtResource( 13 )]
 margin_left = 36.0
 margin_right = 68.0
 slot_type = 0

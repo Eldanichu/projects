@@ -1,6 +1,10 @@
 extends Control
 class_name BasicSlot, "res://Assets/ui/panel/00670.PNG"
 
+signal use_skill(item)
+signal pick(item)
+signal use_item(item)
+
 enum SLOT_TYPE {
 	SKILL = 0,
 	EQUIP = 1
@@ -12,8 +16,13 @@ enum SLOT_ACTION {
 }
 
 const PATH_TYPE = {
-	0:"Items",
-	1:"Skill/icon"
+	1:"Items",
+	0:"Skill/icon"
+}
+
+const EVENT:Dictionary = {
+	"USE_SKILL":"use_skill",
+	"USE_ITEM":"use_item",
 }
 
 export(SLOT_TYPE) var slot_type = 0
@@ -27,7 +36,7 @@ var timer:ATimer = ATimer.new(self)
 
 var _is_mouse_in = false
 var can_click = false
-var slot_key:int = 0 setget set_slot_key
+var slot_key:String = "" setget set_slot_key
 
 var item:Dictionary = {
 	"id":"",
@@ -39,19 +48,41 @@ func _ready() -> void:
 	setup()
 
 func _input(event) -> void:
-	if not event as InputEventMouseButton || !_is_mouse_in:
+	if !can_click || !has_item():
 		return
-	if event.button_index == 1 && can_click:
-		if event.is_pressed():
-			if slot_type == SLOT_TYPE.SKILL:
-				_on_press()
-			elif slot_type == SLOT_TYPE.EQUIP:
-				print("move item")
-		if event.doubleclick:
-			if slot_type == SLOT_TYPE.EQUIP:
-				_on_press()
-				print("use item")
+	global_mouse_event(event)
+	self_click_event(event)
 
+func self_click_event(event):
+	if !_is_mouse_in:
+		return
+	if InputUtil.mouse_click(event, 1):
+		if slot_type == SLOT_TYPE.SKILL:
+			emit_event(EVENT.USE_SKILL)
+		elif slot_type == SLOT_TYPE.EQUIP:
+			emit_signal("pick", item)
+	if InputUtil.mouse_dbClick(event, 1):
+		if slot_type == SLOT_TYPE.EQUIP:
+			emit_event(EVENT.USE_ITEM)
+			print("use item")
+
+func global_mouse_event(event):
+	var settings = Store.settings
+	var bindings = settings.key_bindings
+	var attack = bindings["Attack"]
+	var skill = bindings["Skill"]
+	if (
+		slot_type == SLOT_TYPE.SKILL && \
+		(
+			InputUtil.mouse_click(event, attack.key_code) && slot_key == attack.key || \
+	 		InputUtil.mouse_click(event, skill.key_code) && slot_key == skill.key
+		)
+	):
+		emit_event(EVENT.USE_SKILL)
+
+func emit_event(ev_name):
+		_on_press()
+		emit_signal(ev_name, item)
 
 func _process(delta):
 	if interval == 0:
@@ -77,10 +108,7 @@ func setup():
 	timer.Interval = interval
 	progress.max_value = 100
 	progress.value = 0
-#	set_item({
-#		'appr':'00000',
-#		'type':1
-#	})
+
 	update_label()
 	bind_events()
 
@@ -116,7 +144,7 @@ func update_img():
 	pass
 
 func set_slot_key(n):
-	slot_key = n
+	slot_key = str(n)
 	update()
 
 func set_item(_item:Dictionary):
@@ -130,6 +158,9 @@ func set_item(_item:Dictionary):
 
 func _has_value(obj,key):
 	return key in obj && obj[key] != null
+
+func has_item():
+	return !StringUtil.isEmptyOrNull(item.id)
 
 func _on_mouse_in_slot(in_out) -> void:
 	print(in_out)

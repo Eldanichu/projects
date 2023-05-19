@@ -21,18 +21,46 @@ const GLOBAL_VAR = {
 }
 
 func _ready():
-	bind_events()
+	setup()
 
 func _process(delta):
 	com_panel.visible = show_command
 
-func bind_events():
-	var buttons = com_panel.get_children()
-	for button in buttons:
-		button.connect("pressed",self, "_on_command",[button.name])
+func setup():
+	load_key_bindings()
 
-func _on_command(type):
-	Event.emit_signal("battle_command",type)
+func load_key_bindings():
+	if not is_instance_valid(Store) and not "settings" in Store:
+		print("Game Store Class is not in AutoLoad.")
+		return
+	var settings = Store.settings
+	var _kbs = settings.key_bindings
+	for o in _kbs:
+		if o == "sep":
+			continue
+		var item = _kbs[o]
+		var _default:BasicSlot = default_attack.get_node_or_null(o)
+		if _default:
+			_default.set_slot_key(item.key)
+			_default.connect("use_skill",self,"_on_use_skill")
+
+		var _skills:BasicSlot = active_skills.get_node_or_null(o)
+		if _skills:
+			_skills.set_slot_key(item.key)
+			_skills.connect("use_skill",self,"_on_use_skill")
+
+func set_slot(slot, obj:Directory):
+	var _default = default_attack.get_node_or_null(slot)
+
+	_default.set_item({
+		"id":"default_attacks",
+		'appr':'00000',
+		'type':0
+	})
+
+func _on_use_skill(item):
+	print(item)
+	pass
 
 func update_ui(_stat):
 	stats.player_name.text = _stat.player_name

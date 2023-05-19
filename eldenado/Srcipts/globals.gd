@@ -106,7 +106,7 @@ const ITEM_TYPE:Dictionary = {
 static func get_class_stats(level:int,class_index:int = 0) -> Dictionary:
 	var max_hp
 	var max_mp
-	
+
 	if class_index == CLASS_TYPE.Warrior:
 		max_hp = hp_const + (int(level / warrior.hp_base + warrior.hp_acc + level / warrior.hp_cc) * level)
 		max_mp = round(level * warrior.mp_base)

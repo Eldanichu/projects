@@ -55,7 +55,8 @@ func set_stat(stat:Dictionary):
 
 func calculate_coming_damage(value):
 	var _v = (value - RandomUtil.between(mon_stat.ac, mon_stat.ac_max))
-
+	if _v < 0:
+		_v = 0
 	return _v
 
 func take_damge(value):

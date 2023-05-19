@@ -12,6 +12,7 @@ onready var mon_name := $"%mon_name"
 
 onready var anim := $anim
 
+var ft := preload("res://UI/Components/FloatingText/floating_text.tscn")
 var stylebox = preload("res://Assets/Themes/panel_border.tres")
 var action_timer := ATimer.new(self)
 
@@ -29,10 +30,6 @@ var taking_damage = false
 func _ready() -> void:
 	r.randomize()
 	setup()
-
-func set_border_color(color:Color = Color.green):
-	stylebox.border_color = color
-	add_stylebox_override("panel",stylebox.duplicate())
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(mon_obj):
@@ -58,16 +55,6 @@ func bind_event():
 	anim.connect("animation_finished",self,"_on_disapper")
 	mon_obj.connect("die",self,"_on_monster_die")
 
-func _on_disapper(anim_name):
-	mon_obj.queue_free()
-	queue_free()
-
-func _on_monster_die():
-	emit_signal("dead",mon_stat.exp)
-	anim.play("disapper")
-	var drops = mon_obj.drop()
-	emit_signal("drop",drops)
-
 func set_mon_stats():
 	mon_stat = mon_obj.mon_stat
 	mon_img.texture = load(mon_stat.appr)
@@ -82,22 +69,9 @@ func set_mon_stats():
 	var p = GameUtils.get_percent(mon_stat.atk_interval, mon_stat.atk_interval)
 	act_bar.t_val = p
 
-func _attack():
-	var p = GameUtils.get_percent(mon_stat.atk_interval, mon_stat.atk_interval)
-	act_bar.t_val = p
-	action_timer.start_timer()
-	var atk = mon_obj.attack()
-	emit_signal("on_attack",{
-		"name": mon_stat.name,
-		"damage": atk
-	})
-	if atk < 0:
-		action_timer.stop()
-
-func _attack_cd(sec):
-	var p = GameUtils.get_percent(sec,mon_stat.atk_interval)
-	act_bar.t_val = str(p)
-	pass
+func set_border_color(color:Color = Color.green):
+	stylebox.border_color = color
+	add_stylebox_override("panel",stylebox.duplicate())
 
 func shake(delta):
 	var last_p = origin
@@ -118,13 +92,53 @@ func take_damage(damage):
 	mon_obj.take_damge(damage)
 	hp_bar.t_val = mon_stat.hp
 	yield(get_tree(),"idle_frame")
-	origin = get_position()
+	update_origin_position()
+	float_damage_number(damage)
 #	set_border_color()
 #	yield(get_tree().create_timer(1,0),"timeout")
 #	set_border_color(Color("#545454"))
+
+func update_origin_position():
+	origin = get_position()
+
+func float_damage_number(damage):
+	var f = ft.instance()
+	f.position = get_global_position() - origin + (rect_size * 0.3)
+	f.label = damage
+	add_child(f)
 
 func wait():
 	action_timer.stop()
 
 func start():
 	action_timer.resume()
+
+"""
+Events
+"""
+func _attack():
+	var p = GameUtils.get_percent(mon_stat.atk_interval, mon_stat.atk_interval)
+	act_bar.t_val = p
+	action_timer.start_timer()
+	var atk = mon_obj.attack()
+	emit_signal("on_attack",{
+		"name": mon_stat.name,
+		"damage": atk
+	})
+	if atk < 0:
+		action_timer.stop()
+
+func _attack_cd(sec):
+	var p = GameUtils.get_percent(sec,mon_stat.atk_interval)
+	act_bar.t_val = str(p)
+	pass
+
+func _on_disapper(anim_name):
+	mon_obj.queue_free()
+	queue_free()
+
+func _on_monster_die():
+	emit_signal("dead",mon_stat.exp)
+	anim.play("disapper")
+	var drops = mon_obj.drop()
+	emit_signal("drop",drops)
