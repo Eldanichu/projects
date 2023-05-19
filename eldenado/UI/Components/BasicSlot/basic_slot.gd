@@ -47,6 +47,10 @@ var item:Dictionary = {
 func _ready() -> void:
 	setup()
 
+var startD = 0
+var D = 10
+
+
 func _input(event) -> void:
 	if !can_click || !has_item():
 		return

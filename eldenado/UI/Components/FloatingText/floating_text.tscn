@@ -4,7 +4,11 @@
 [ext_resource path="res://Assets/Fonts/res/damage.tres" type="DynamicFont" id=2]
 
 [node name="floating_text" type="Position2D"]
+position = Vector2( 585, 381 )
 script = ExtResource( 1 )
+__meta__ = {
+"_gizmo_extents_": 94.4
+}
 
 [node name="label" type="Label" parent="."]
 unique_name_in_owner = true
