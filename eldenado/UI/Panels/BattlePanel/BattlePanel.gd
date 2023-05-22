@@ -1,4 +1,5 @@
 extends Control
+class_name BattlePanel
 
 signal battle_start()
 signal battle_end()
@@ -108,21 +109,38 @@ func emit_battle_end():
 """
 Player Events
 """
-func _on_player_attack():
+func _on_player_attack(slot_obj:Dictionary):
 	if battle_state != BATTLE_STATUS.FIGHT:
 		return
 	monster_group("start")
-	var targets = get_random_target()
-	for target in targets:
-		var player_attack = player.attack()
-		var power = player_attack[0]
-		var text:BattleLogText = logger.format
-		text.text = "你对{0}造成{1}点伤害".format([
-			target.mon_stat.name,
-			power
-		])
-		logger.println(text)
-		target.take_damage(power)
+	print("[battle_panel]->",slot_obj)
+	var da := DefaultAttack.new()
+	var mon = get_selected_target()
+	da.cast = player
+	if mon:
+		da.target = mon.mon_obj
+		da.draw(10)
+	print("[{0}]->selected target:".format([name]),mon.mon_obj.mon_stat.name)
+#	da.target =
+#	var targets = get_random_target()
+#	var player_attack = player.attack()
+#	var power = player_attack[0]
+#	for target in targets:
+#		var text:BattleLogText = logger.format
+#		text.text = "你对{0}造成{1}点伤害".format([
+#			target.mon_stat.name,
+#			power
+#		])
+#		logger.println(text)
+#		target.take_damage(power)
+
+func get_selected_target():
+	var monsters = inst_monsters.get_children()
+	var _monster:Monster
+	for mon in monsters:
+		if mon.hover:
+			_monster = mon
+	return _monster
 
 func get_random_target(value = 1):
 	var node_mon = inst_monsters.get_children()
@@ -132,6 +150,8 @@ func get_random_target(value = 1):
 			alive_mons.append(node)
 	var res = RandomUtil.get_items_random(value, alive_mons)
 	return res
+
+
 
 """
 Monster Events

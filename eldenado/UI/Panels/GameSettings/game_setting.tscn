@@ -35,6 +35,7 @@ size_flags_vertical = 3
 tab_align = 0
 
 [node name="General" type="VBoxContainer" parent="v_box_container/tab_container"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.72908
@@ -143,6 +144,35 @@ unique_name_in_owner = true
 margin_top = 21.0
 margin_right = 278.0
 margin_bottom = 21.0
+
+[node name="Audio" type="VBoxContainer" parent="v_box_container/tab_container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.72908
+margin_top = 26.2449
+margin_right = -8.18863
+margin_bottom = -7.15253
+
+[node name="h_box_container" type="HBoxContainer" parent="v_box_container/tab_container/Audio"]
+margin_right = 278.0
+margin_bottom = 17.0
+
+[node name="label" type="Label" parent="v_box_container/tab_container/Audio/h_box_container"]
+margin_right = 82.0
+margin_bottom = 17.0
+text = "Master Volume"
+
+[node name="h_slider" type="HSlider" parent="v_box_container/tab_container/Audio/h_box_container"]
+margin_left = 86.0
+margin_right = 259.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="value" type="Label" parent="v_box_container/tab_container/Audio/h_box_container"]
+margin_left = 263.0
+margin_right = 278.0
+margin_bottom = 17.0
+text = "0%"
 
 [node name="bottom" type="VBoxContainer" parent="v_box_container"]
 margin_left = 230.0

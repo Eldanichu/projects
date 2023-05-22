@@ -11,13 +11,13 @@
 [sub_resource type="Animation" id=1]
 resource_name = "disapper"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("..:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1, 0.9 ),
+"times": PoolRealArray( 0.1, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -38,6 +38,7 @@ margin_left = 7.0
 margin_top = 7.0
 margin_right = 102.0
 margin_bottom = 171.0
+mouse_filter = 2
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -72,6 +73,7 @@ margin_top = 42.0
 margin_right = 85.0
 margin_bottom = 130.0
 rect_min_size = Vector2( 85, 88 )
+mouse_filter = 2
 size_flags_stretch_ratio = 5.0
 texture = ExtResource( 5 )
 expand = true
@@ -86,8 +88,8 @@ size_flags_vertical = 1
 t_val = "1"
 texture = ExtResource( 3 )
 show_value = false
-use_tween = false
 value_color = Color( 0.92549, 0.92549, 0.92549, 1 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
+root_node = NodePath(".")
 anims/disapper = SubResource( 1 )

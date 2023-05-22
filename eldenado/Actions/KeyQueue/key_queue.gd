@@ -39,8 +39,8 @@ class Quene:
 			last_key_counts = last_key_counts + 1
 			if last_key_counts < 2:
 				keys.append(key)
-		print(current_key,"----", last_key,"count:",last_key_counts)
-		print(keys)
+#		print(current_key,"----", last_key,"count:",last_key_counts)
+#		print(keys)
 
 		last_key = current_key
 
@@ -75,6 +75,6 @@ func _input(event) -> void:
 
 func _match_keys():
 	var keys = q.get_keys()
-	print("macth keys")
+#	print("macth keys")
 	q.reset_queue()
 	queue_timer.stop()

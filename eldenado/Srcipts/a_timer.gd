@@ -14,7 +14,7 @@ func _init(node:Node) -> void:
 	self.timer_id = timer_id
 	_node = node
 	var isUnique = unique_timer();
-	print(isUnique)
+#	print("[ATimer]is_unique:",isUnique)
 	if !isUnique:
 		attach_to_node(node)
 

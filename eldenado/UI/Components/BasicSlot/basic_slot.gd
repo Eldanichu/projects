@@ -26,7 +26,7 @@ const EVENT:Dictionary = {
 }
 
 export(SLOT_TYPE) var slot_type = 0
-export(float) var interval = 1
+export(float) var interval = 0.0
 
 onready var slot_label = $"%label"
 onready var slot_img = $"%img"
@@ -143,21 +143,26 @@ func update():
 func update_img():
 	if !is_inside_tree():
 		return
+	if not item.type in PATH_TYPE:
+		return
 	var res = ResourceLoader.load("res://Assets/{0}/{1}.png".format([PATH_TYPE[item.type],item.appr]))
 	slot_img.texture = res
-	pass
 
 func set_slot_key(n):
 	slot_key = str(n)
 	update()
 
 func set_item(_item:Dictionary):
-	if _has_value(_item, "id"):
-		item.id = _item.id
-	if _has_value(_item, "appr"):
-		item.appr = _item.appr
-	if _has_value(_item, "type"):
-		item.type = _item.type
+	for o in _item:
+		if o == "cd":
+			interval = _item[o]
+			timer.Interval = interval
+			continue
+		if _has_value(_item,o):
+			item[o] = _item[o]
+		else:
+			print("[basic_slot.tscn]-> Error:The property of slot ",o,"is empty!")
+
 	update_img()
 
 func _has_value(obj,key):

@@ -49,17 +49,22 @@ func load_key_bindings():
 			_skills.set_slot_key(item.key)
 			_skills.connect("use_skill",self,"_on_use_skill")
 
-func set_slot(slot, obj:Directory):
-	var _default = default_attack.get_node_or_null(slot)
+func set_slot(slot:String, attack:AttackBase):
+	var _slot_node
+	var _default_slot = default_attack.get_node_or_null(slot)
+	var _skill_slot = active_skills.get_node_or_null(slot)
+	if _default_slot:
+		_slot_node = _default_slot
+	elif _skill_slot:
+		_slot_node = _skill_slot
+	if !_slot_node:
+		return
+	var slot_obj:Dictionary = attack.obj
+	slot_obj.merge({"cd":attack.cd},true)
+	_slot_node.set_item(slot_obj)
 
-	_default.set_item({
-		"id":"default_attacks",
-		'appr':'00000',
-		'type':0
-	})
-
-func _on_use_skill(item):
-	print(item)
+func _on_use_skill(slot_obj:Dictionary):
+	Event.emit_signal("player_attack", slot_obj)
 	pass
 
 func update_ui(_stat):

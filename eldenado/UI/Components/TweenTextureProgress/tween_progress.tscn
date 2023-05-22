@@ -9,6 +9,7 @@
 margin_right = 60.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 60, 20 )
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 3 )
@@ -40,6 +41,3 @@ custom_fonts/font = ExtResource( 1 )
 text = "0/100"
 align = 1
 valign = 1
-
-[node name="tween_pg" type="Tween" parent="."]
-unique_name_in_owner = true

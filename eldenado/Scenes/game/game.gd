@@ -55,6 +55,22 @@ func create_player():
 func update_ui():
 	character.update_stats(player.stats)
 
+func load_skill_bar():
+	stat.set_slot(Globals.SLOT.ATTACK, DefaultAttack.new())
+
+
+func set_battle(battle:bool):
+	idel.visible = !battle
+	battle_panel.visible = battle
+	stat.show_command = battle
+
+func _on_battle_start():
+	set_battle(true)
+
+func _on_battle_end():
+	set_battle(false)
+
+
 """
  Events
 """
@@ -63,6 +79,7 @@ func _on_db_ready():
 	load_maps()
 	create_player()
 	update_ui()
+	load_skill_bar()
 	# ******test
 #	stat.show_command = true
 
@@ -103,13 +120,3 @@ func _on_game_panel_switch_panel(panel_name) -> void:
 		return
 	self[panel_name].visible = !self[panel_name].visible
 
-func set_battle(battle:bool):
-	idel.visible = !battle
-	battle_panel.visible = battle
-	stat.show_command = battle
-
-func _on_battle_start():
-	set_battle(true)
-
-func _on_battle_end():
-	set_battle(false)

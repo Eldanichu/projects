@@ -11,7 +11,7 @@ signal battle_command(type)
 """
 Player
 """
-signal player_attack()
+signal player_attack(slot_obj)
 
 """
 Audio

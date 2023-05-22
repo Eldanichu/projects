@@ -70,6 +70,19 @@ const char_panel_stat:Array = [
 	["crit_mag_chance","%","魔法暴击率"],
 ]
 
+const SLOT:Dictionary = {
+	ATTACK = "Attack",
+	DEFAULT_SKILL = "Skill",
+	SLOT_1 = "Skill 1",
+	SLOT_2 = "Skill 2",
+	SLOT_3 = "Skill 3",
+	SLOT_4 = "Skill 4",
+	SLOT_5 = "Skill 5",
+	SLOT_6 = "Skill 6",
+	SLOT_7 = "Skill 7",
+	SLOT_8 = "Skill 8",
+}
+
 const ITEM_QTY:Dictionary = {
 	COMMON = 9,
 	MAGIC = 8,
