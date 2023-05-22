@@ -16,6 +16,7 @@ onready var anim := $anim
 var ft := preload("res://UI/Components/FloatingText/floating_text.tscn")
 var stylebox = preload("res://Assets/Themes/panel_border.tres")
 var action_timer := ATimer.new(self)
+var action_value:float = 0
 
 var mon_obj:MonObj
 var mon_stat:Dictionary
@@ -36,11 +37,14 @@ func _ready() -> void:
 	setup()
 
 func _process(delta: float) -> void:
+	act_bar.t_val = str(action_value)
 	hp_bar.t_val = mon_stat.hp
+	
 	if not valid():
 		if not hovering():
 			selected = false
 		return
+
 	if shaking:
 		shake(delta)
 
@@ -52,36 +56,22 @@ func _input(event) -> void:
 #		print("[monster]-> on select monster:",mon_obj.mon_stat.name)
 		selected = true
 
-func valid():
-	return is_instance_valid(mon_obj) && not mon_obj.is_dead()
-
-func hovering():
-	return hover
-
 func setup():
 	if !is_instance_valid(mon_obj):
 		print("[monster](setup) monster was not instanced")
 		return
 	bind_event()
 	add_child(mon_obj)
-	set_mon_stats()
 	emit_signal("spawned")
-	action_timer.connect("timeout",self,"_attack")
-	action_timer.connect("remains" ,self,"_attack_cd")
-	action_timer.stop()
-	action_timer.start_timer()
-	yield(get_tree(),"idle_frame")
-	update_origin_position()
+	set_mon_stats()
+	auto_attack_timer()
 
 func bind_event():
 	connect("mouse_entered",self, "_on_mouse", [true])
 	connect("mouse_exited",self, "_on_mouse", [false])
 	anim.connect("animation_finished",self,"_on_disapper")
+	mon_obj.connect("damage",self,"_on_monster_damage")
 	mon_obj.connect("die",self,"_on_monster_die")
-
-func _on_mouse(v):
-#	print("[monster]-> on mouse hovering:",v)
-	hover = v
 
 func set_mon_stats():
 	mon_stat = mon_obj.mon_stat
@@ -96,6 +86,13 @@ func set_mon_stats():
 	act_bar.t_max = 100
 	var p = GameUtils.get_percent(mon_stat.atk_interval, mon_stat.atk_interval)
 	act_bar.t_val = p
+
+func auto_attack_timer():
+	action_timer.connect("timeout",self,"_attack")
+	action_timer.connect("remains" ,self,"_attack_cd")
+	action_timer.stop()
+	action_value = GameUtils.get_percent(mon_stat.atk_interval, mon_stat.atk_interval)
+	action_timer.start_timer()
 
 func set_border_color(color:Color = Color.green):
 	stylebox.border_color = color
@@ -120,7 +117,6 @@ func shake(delta):
 		shake_time = 0.0
 	shake_time += delta * 60
 
-
 func update_origin_position():
 	origin = get_position()
 	print("[monster] origin position:",origin)
@@ -136,34 +132,43 @@ func wait():
 
 func start():
 	action_timer.resume()
+	
+func valid():
+	return is_instance_valid(mon_obj) && not mon_obj.is_dead()
+
+func hovering():
+	return hover
 
 """
 Events
 """
 func _attack():
-	var p = GameUtils.get_percent(mon_stat.atk_interval, mon_stat.atk_interval)
-	act_bar.t_val = p
+	emit_signal("on_attack",{
+		"name": mon_stat.name
+	})
 	action_timer.start_timer()
-#	var atk = mon_obj.attack()
-#	emit_signal("on_attack",{
-#		"name": mon_stat.name,
-#		"damage": atk
-#	})
-#	if atk < 0:
-#		action_timer.stop()
 
 func _attack_cd(sec):
-	var p = GameUtils.get_percent(sec,mon_stat.atk_interval)
-	act_bar.t_val = str(p)
-	pass
+	action_value = GameUtils.get_percent(sec,mon_stat.atk_interval)
+
+func _on_monster_damage(damage):
+	yield(get_tree(),"idle_frame")
+	update_origin_position()
+	float_damage_number(damage)
+	shaking = true
+
+func _on_monster_die():
+	emit_signal("dead",mon_stat.exp)
+	action_timer.stop()
+	anim.play("disapper")
+	var drops = mon_obj.drop()
+	emit_signal("drop",drops)
 
 func _on_disapper(anim_name):
 	if anim_name == "disapper":
 		mon_obj.queue_free()
 		queue_free()
 
-func _on_monster_die():
-	emit_signal("dead",mon_stat.exp)
-	anim.play("disapper")
-	var drops = mon_obj.drop()
-	emit_signal("drop",drops)
+func _on_mouse(v):
+#	print("[monster]-> on mouse hovering:",v)
+	hover = v

@@ -10,9 +10,15 @@ func _init() -> void:
 
 	cd = 0.2
 
-func draw(value):
-	target.set_stat({
-		"hp":target.mon_stat.hp - value
-	})
-	if target.is_dead():
-		target.die()
+func get_power() -> int:
+	var stats:Dictionary = cast.stats
+	var ap = AttackPower.new(stats.dc, stats.dc_max)
+	ap.CRIT_ATK_RATE = stats.crit_chance
+	ap.CRIT_ATK_DMG_INC = stats.crit_strength
+	var power = ap.calc()
+	
+	return power
+
+func start():
+	var value = get_power()
+	target.give_damage(value)

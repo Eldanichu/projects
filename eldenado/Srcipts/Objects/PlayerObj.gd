@@ -112,6 +112,9 @@ func revive():
 	stats.hp = stats.hp_max
 	stats.mp = stats.mp_max
 
+func give_damge():
+	pass
+
 func give_exp(value):
 	stats.expr = stats.expr + value
 	emit_stats_change(stats)

@@ -13,7 +13,6 @@ onready var pg:TextureProgress = $"%pg"
 onready var lbl_text:Label = $"%text"
 
 var tween:Tween = Tween.new()
-var value:float = 0
 
 func _ready() -> void:
 	setup()

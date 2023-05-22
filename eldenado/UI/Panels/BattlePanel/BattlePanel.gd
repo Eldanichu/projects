@@ -119,8 +119,8 @@ func _on_player_attack(slot_obj:Dictionary):
 	da.cast = player
 	if mon:
 		da.target = mon.mon_obj
-		da.draw(10)
-	print("[{0}]->selected target:".format([name]),mon.mon_obj.mon_stat.name)
+		da.start()
+		print("[{0}]->selected target:".format([name]),mon.mon_obj.mon_stat.name)
 #	da.target =
 #	var targets = get_random_target()
 #	var player_attack = player.attack()
@@ -151,8 +151,6 @@ func get_random_target(value = 1):
 	var res = RandomUtil.get_items_random(value, alive_mons)
 	return res
 
-
-
 """
 Monster Events
 """
@@ -160,18 +158,14 @@ func _on_monster_spawned():
 	pass
 
 func _on_monster_attack(o):
-#	monster_group("wait")
-	var dmg = int(o.damage);
-	if dmg <= 0:
-		return
 	var name_text:BattleLogText = logger.format
 	name_text.text = o.name
 	name_text.color = Color.greenyellow
 	var damage_text:BattleLogText = logger.format
-	damage_text.text = dmg
+#	damage_text.text = dmg
 	damage_text.color = Color.red
-	player.take_damage(dmg)
-	logger.println("{0}对你造或{1}点伤害".format([name_text.to_string(),damage_text.to_string()]))
+#	player.take_damage(dmg)
+#	logger.println("{0}对你造或{1}点伤害".format([name_text.to_string(),damage_text.to_string()]))
 
 func _on_monster_dead(_exp):
 	battle_result.exp = _exp + battle_result.exp

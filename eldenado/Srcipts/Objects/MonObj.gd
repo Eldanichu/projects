@@ -1,6 +1,7 @@
 extends Node
 class_name MonObj
 
+signal damage(damage)
 signal die()
 
 var mon_items:Array = []
@@ -62,6 +63,14 @@ func is_dead():
 
 func die():
 	emit_signal("die")
+
+func give_damage(damage):
+	set_stat({
+		"hp":mon_stat.hp - damage
+	})
+	if is_dead():
+		die()
+	emit_signal("damage", damage)
 
 func drop():
 	var _items = mon_items
