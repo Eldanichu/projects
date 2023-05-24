@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/Components/TweenTextureProgress/tween_progress.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/ui/bars/01064t.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "disapper"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("..:modulate")
 tracks/0/interp = 1
@@ -17,14 +18,41 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1, 0.8 ),
+"times": PoolRealArray( 0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "shake"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../margin_container/v_box_container/image:rect_position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 0.482968, 0.757858, 0.466516, 0.466516, 0.757858, 0.535887 ),
+"update": 1,
+"values": [ Vector2( 0, 42 ), Vector2( -5, 42 ), Vector2( 3, 42 ), Vector2( -3, 42 ), Vector2( 5, 42 ), Vector2( 0, 42 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../margin_container/v_box_container/image:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1.7411, 0.594604 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.670588, 0.403922, 0.403922, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="monster" type="PanelContainer"]
-pause_mode = 2
 margin_right = 109.0
 margin_bottom = 178.0
 rect_min_size = Vector2( 85, 178 )
@@ -49,6 +77,7 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = 90.0
 margin_bottom = 159.0
+mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="hp" parent="margin_container/v_box_container" instance=ExtResource( 1 )]
@@ -93,3 +122,4 @@ value_color = Color( 0.92549, 0.92549, 0.92549, 1 )
 [node name="anim" type="AnimationPlayer" parent="."]
 root_node = NodePath(".")
 anims/disapper = SubResource( 1 )
+anims/shake = SubResource( 3 )

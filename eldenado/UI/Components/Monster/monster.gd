@@ -21,14 +21,9 @@ var action_value:float = 0
 var mon_obj:MonObj
 var mon_stat:Dictionary
 var hover:bool = false
-var selected:bool = false
 
 var r := RandomNumberGenerator.new()
 var tansform := get_transform()
-var shaking:bool = false
-var shake_period := 5.0
-var shake_time := 0.0
-var shke_strength = 2
 var origin:Vector2 = Vector2.ZERO
 
 
@@ -39,22 +34,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	act_bar.t_val = str(action_value)
 	hp_bar.t_val = mon_stat.hp
-	
-	if not valid():
-		if not hovering():
-			selected = false
-		return
 
-	if shaking:
-		shake(delta)
+	if not valid():
+		return
 
 func _input(event) -> void:
-	if not hovering() || not valid():
-		selected = false
-		return
-	if InputUtil.mouse_click(event,1):
-#		print("[monster]-> on select monster:",mon_obj.mon_stat.name)
-		selected = true
+	pass
+
 
 func setup():
 	if !is_instance_valid(mon_obj):
@@ -77,8 +63,7 @@ func set_mon_stats():
 	mon_stat = mon_obj.mon_stat
 	mon_img.texture = load(mon_stat.appr)
 	mon_name.text = mon_stat.name
-
-	mon_stat.atk_interval = mon_stat.atk_speed * 1.0 / 1000
+	mon_stat.atk_interval = (mon_stat.atk_speed + r.randf_range(100,180)) * 1.0 / 1000
 	action_timer.Interval = mon_stat.atk_interval
 	mon_stat.hp_max = mon_stat.hp
 	hp_bar.t_max = mon_stat.hp_max
@@ -88,9 +73,8 @@ func set_mon_stats():
 	act_bar.t_val = p
 
 func auto_attack_timer():
-	action_timer.connect("timeout",self,"_attack")
-	action_timer.connect("remains" ,self,"_attack_cd")
-	action_timer.stop()
+	action_timer.connect("timeout",self, "_attack")
+	action_timer.connect("remains" ,self, "_attack_cd")
 	action_value = GameUtils.get_percent(mon_stat.atk_interval, mon_stat.atk_interval)
 	action_timer.start_timer()
 
@@ -103,20 +87,6 @@ func _select_border():
 	yield(get_tree().create_timer(1,0),"timeout")
 	set_border_color(Color("#545454"))
 
-func shake(delta):
-	var last_p = origin
-	if shake_time <= shake_period:
-		var p = rect_position
-		var tp = Vector2(rect_position) - Vector2(r.randi_range(shke_strength, -shke_strength), 0)
-		tansform.x = lerp(p, tp, 1.0)
-		rect_position.x = tansform.x.x
-		last_p = rect_position.x
-	else:
-		shaking = false
-		rect_position = lerp(last_p, origin, 1)
-		shake_time = 0.0
-	shake_time += delta * 60
-
 func update_origin_position():
 	origin = get_position()
 	print("[monster] origin position:",origin)
@@ -128,11 +98,11 @@ func float_damage_number(damage):
 	add_child(f)
 
 func wait():
-	action_timer.stop()
+	action_timer.pause()
 
-func start():
+func starts_battle():
 	action_timer.resume()
-	
+
 func valid():
 	return is_instance_valid(mon_obj) && not mon_obj.is_dead()
 
@@ -143,9 +113,7 @@ func hovering():
 Events
 """
 func _attack():
-	emit_signal("on_attack",{
-		"name": mon_stat.name
-	})
+	emit_signal("on_attack", mon_obj)
 	action_timer.start_timer()
 
 func _attack_cd(sec):
@@ -155,11 +123,11 @@ func _on_monster_damage(damage):
 	yield(get_tree(),"idle_frame")
 	update_origin_position()
 	float_damage_number(damage)
-	shaking = true
+	anim.play("shake")
 
 func _on_monster_die():
+	wait()
 	emit_signal("dead",mon_stat.exp)
-	action_timer.stop()
 	anim.play("disapper")
 	var drops = mon_obj.drop()
 	emit_signal("drop",drops)
@@ -170,5 +138,5 @@ func _on_disapper(anim_name):
 		queue_free()
 
 func _on_mouse(v):
-#	print("[monster]-> on mouse hovering:",v)
+	print("[monster]-> on mouse hovering:",v)
 	hover = v

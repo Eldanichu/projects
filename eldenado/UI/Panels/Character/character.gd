@@ -7,6 +7,18 @@ var g:Globals = Globals.new()
 var player_stats:Dictionary
 
 func _ready():
+	load_stats_tab()
+	load_skill_tab()
+	load_equip_tab()
+
+func update_stats(stats):
+	player_stats = stats
+	update_stats_tabs()
+
+func load_equip_tab():
+	pass
+
+func load_stats_tab():
 	var g_keys = g.char_panel_stat
 	for i in range(g_keys.size()):
 		var g_key:String = g_keys[i][0]
@@ -21,11 +33,7 @@ func _ready():
 #		stat.line.value = "{0}{1}".format([player_stats[g_key],g_keys[i][1]])
 		stat_panel.add_child(stat)
 
-func update_stats(stats):
-	player_stats = stats
-	update_tabs()
-
-func update_tabs():
+func update_stats_tabs():
 	if !is_inside_tree():
 		return
 	var g_keys = g.char_panel_stat
@@ -40,3 +48,6 @@ func update_tabs():
 			])
 			continue
 		stat.line.value = "{0}{1}".format([player_stats[g_key],g_keys[i][1]])
+
+func load_skill_tab():
+	pass

@@ -30,7 +30,6 @@ func load_game_data():
 	add_child(db)
 
 func bind_events():
-	Event.connect("battle_command",self,"_on_battle_command")
 	battle_panel.connect("battle_start",self,"_on_battle_start")
 	battle_panel.connect("battle_end",self,"_on_battle_end")
 
@@ -51,35 +50,47 @@ func create_player():
 	if !player_info:
 		return
 	player.setup(player_info)
+	use_skills(false)
 
 func update_ui():
+	stat.update_ui(player.stats)
+	stat.update_skills(player.skill)
 	character.update_stats(player.stats)
-
-func load_skill_bar():
-	stat.set_slot(Globals.SLOT.ATTACK, DefaultAttack.new())
-
 
 func set_battle(battle:bool):
 	idel.visible = !battle
 	battle_panel.visible = battle
 	stat.show_command = battle
+	use_skills(battle)
 
-func _on_battle_start():
-	set_battle(true)
+func use_skills(value:bool):
+	var player_skills = player.skill
+	for s in player_skills:
+		var skill:AttackBase = player_skills[s]
+		skill.set_disabled(!value)
+		update_ui()
 
-func _on_battle_end():
-	set_battle(false)
 
+func get_mouse_item() -> MouseFloatItem:
+	var item = GameUtils.get_root_node(self, "mouse_item")
+	if item:
+		return item
+	return null
+
+func init_mouse_item():
+	var item := get_mouse_item()
+	if !item:
+		item = MouseFloatItem.new(self)
 
 """
  Events
 """
 func _on_db_ready():
 	print("[game] -> DB ready")
+	init_mouse_item()
 	load_maps()
 	create_player()
 	update_ui()
-	load_skill_bar()
 	# ******test
 #	stat.show_command = true
 
@@ -97,22 +108,25 @@ func _on_map_click(e):
 
 func _on_player_stats_change(_stat:Dictionary):
 	_stat.merge(player_info, true)
-	stat.update_ui(_stat)
 	update_ui()
 
 func _on_player_die():
+	print("[battle]palyer die")
+	battle_panel.battle_state = battle_panel.BATTLE_STATUS.FAIL
+	battle_panel.kill_all_monsters()
+	battle_panel.emit_battle_end()
 	set_battle(false)
 	player.revive()
 
 func _on_player_levelup():
 	Event.emit_signal("level_up")
-	pass
 
-func _on_battle_command(type):
-	if type == "attack":
-		Event.emit_signal("player_attack")
-	if type == "level_up":
-		player.level_up()
+func _on_battle_start():
+	set_battle(true)
+
+func _on_battle_end():
+	print("[game]-> battle state:end")
+	set_battle(false)
 
 func _on_game_panel_switch_panel(panel_name) -> void:
 	Event.emit_signal(Event.BUTTON_AUDIO.MENU_BUTTON)

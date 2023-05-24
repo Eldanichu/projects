@@ -22,7 +22,6 @@ __meta__ = {
 }
 
 [node name="game_ui" type="CanvasLayer" parent="."]
-pause_mode = 2
 
 [node name="game_ui" type="VBoxContainer" parent="game_ui"]
 anchor_right = 1.0

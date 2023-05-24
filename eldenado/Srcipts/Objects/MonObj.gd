@@ -64,12 +64,17 @@ func is_dead():
 func die():
 	emit_signal("die")
 
-func give_damage(damage):
+func give_damage(damage, dmg_type):
+	var value = mon_stat.hp - damage
+	var rnd := RandomNumberGenerator.new()
+	rnd.randomize()
+	value -= rnd.randi_range(mon_stat.ac,mon_stat.ac_max)
 	set_stat({
-		"hp":mon_stat.hp - damage
+		"hp": value
 	})
 	if is_dead():
 		die()
+		return
 	emit_signal("damage", damage)
 
 func drop():

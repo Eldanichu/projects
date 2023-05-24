@@ -4,7 +4,7 @@
 [ext_resource path="res://UI/Components/BasicSlot/basic_slot.gd" type="Script" id=2]
 [ext_resource path="res://Assets/ui/panel/00670.PNG" type="Texture" id=3]
 [ext_resource path="res://Assets/Fonts/res/wc-12.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Assets/ui/bars/01071.png" type="Texture" id=5]
+[ext_resource path="res://Assets/ui/bars/01064d.png" type="Texture" id=5]
 
 [node name="slot" type="MarginContainer"]
 margin_right = 32.0
@@ -30,6 +30,7 @@ patch_margin_bottom = 8
 [node name="margin_container" type="MarginContainer" parent="nine_patch_rect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 1

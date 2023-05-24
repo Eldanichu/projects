@@ -2,6 +2,7 @@ extends Node
 class_name PlayerObj
 
 signal stats_change(stats)
+signal damage(value)
 signal die()
 signal levelup()
 
@@ -29,6 +30,7 @@ var stats:Dictionary = {
 	crit_mag_strength = 1.1,
 	crit_mag_chance = 40,
 	ac = 0,
+	ac_max = 0,
 	mac = 0,
 	mc = 1.0,
 	mc_max = 2.0,
@@ -52,6 +54,7 @@ func new_player():
 	if stats.level == 0:
 		stats.gold = 2000
 		level_up()
+		default_attacks()
 
 func level_up():
 	stats.level = stats.level + 1
@@ -59,6 +62,7 @@ func level_up():
 	var _exp_value = _g.get_exp_by_level(stats.level)
 	stats.hp_max = _class_info["max_hp"]
 	stats.mp_max = _class_info["max_mp"]
+#	stats.hp = 1
 	stats.hp = stats.hp_max
 	stats.mp = stats.mp_max
 	stats.expr = 0
@@ -67,6 +71,10 @@ func level_up():
 	calculate_stats()
 	update_ui_stats()
 	emit_signal("levelup")
+
+func default_attacks():
+	skill["default_attacks"] = DefaultAttack.new()
+	print("[{0}]-> skills object : ".format([name]), skill)
 
 func update_ui_stats():
 	var _stats = {}
@@ -102,6 +110,9 @@ func is_dead():
 		dead = true
 	return dead
 
+func can_levelup() -> bool:
+	return stats.expr >= stats.expr_max
+
 func die():
 	emit_signal("die")
 	emit_stats_change(stats)
@@ -112,12 +123,32 @@ func revive():
 	stats.hp = stats.hp_max
 	stats.mp = stats.mp_max
 
-func give_damge():
-	pass
+func give_damge(damage, dmg_type):
+	var value = stats.hp - damage
+	var rnd := RandomNumberGenerator.new()
+	rnd.randomize()
+	var _min
+	var _max
+	if dmg_type == AttackType.DAMAGE_TYPE.ATTACK:
+		_min = stats.ac
+		_max = stats.ac_max
+	elif dmg_type == AttackType.DAMAGE_TYPE.SPELL:
+		_min = stats.mc
+		_max = stats.mc_max
+	value -= rnd.randi_range(_min,_max)
+	set_stat({
+		"hp": value
+	})
+	if is_dead():
+		die()
+		return
+	emit_signal("damage", value)
 
 func give_exp(value):
 	stats.expr = stats.expr + value
 	emit_stats_change(stats)
+	if can_levelup():
+		level_up()
 
 func give_gold(gold):
 	stats.gold = gold + stats.gold

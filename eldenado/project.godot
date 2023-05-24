@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Srcipts/Objects/AttackPower.gd"
 }, {
+"base": "Resource",
+"class": "AttackType",
+"language": "GDScript",
+"path": "res://Srcipts/Attacks/AttackType.gd"
+}, {
 "base": "Control",
 "class": "BasicSlot",
 "language": "GDScript",
@@ -108,11 +113,6 @@ _global_script_classes=[ {
 "class": "Comparator",
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/Comparator.gd"
-}, {
-"base": "Resource",
-"class": "ControlUtil",
-"language": "GDScript",
-"path": "res://Srcipts/Utils/ControlUtil.gd"
 }, {
 "base": "Node",
 "class": "DB",
@@ -689,6 +689,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/core/LocalTime.gd"
 }, {
+"base": "AttackBase",
+"class": "MonAttack",
+"language": "GDScript",
+"path": "res://Srcipts/Attacks/MonAttack.gd"
+}, {
 "base": "Node",
 "class": "MonObj",
 "language": "GDScript",
@@ -699,7 +704,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Components/Monster/monster.gd"
 }, {
-"base": "Node",
+"base": "CanvasLayer",
 "class": "MouseFloatItem",
 "language": "GDScript",
 "path": "res://UI/Components/BasicSlot/mouse_float_item.gd"
@@ -862,6 +867,7 @@ _global_script_class_icons={
 "ArrayUtil": "",
 "AttackBase": "",
 "AttackPower": "",
+"AttackType": "",
 "BasicSlot": "res://Assets/ui/panel/00670.PNG",
 "BattleLogText": "",
 "BattlePanel": "",
@@ -875,7 +881,6 @@ _global_script_class_icons={
 "CmdOption": "",
 "CmdOptions": "",
 "Comparator": "",
-"ControlUtil": "",
 "DB": "",
 "DefaultAttack": "",
 "DefaultValueProvider": "",
@@ -991,6 +996,7 @@ _global_script_class_icons={
 "JUnitXmlReport": "",
 "Json": "",
 "LocalTime": "",
+"MonAttack": "",
 "MonObj": "",
 "Monster": "",
 "MouseFloatItem": "",

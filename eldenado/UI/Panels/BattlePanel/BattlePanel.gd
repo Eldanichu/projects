@@ -5,14 +5,15 @@ signal battle_start()
 signal battle_end()
 
 enum BATTLE_STATUS {
-	WIN = 1,
-	FAIL = 0,
+	WAIT = -4
 	FIGHT = -1,
-	IDEL = -4
+	FAIL = 0,
+	WIN = 1,
 }
 
 onready var inst_monsters := $"%monsters"
 onready var logger := $"%battle_log"
+onready var anim := $"%fade_out"
 
 const GROUP_BATTLE_MONSTER = "battle_monster"
 
@@ -21,11 +22,14 @@ var pkg_monster := preload("res://UI/Components/Monster/monster.tscn")
 var player:PlayerObj setget set_player
 var mon_objs:Array = [] setget set_monsters
 
-var battle_state = BATTLE_STATUS.IDEL
+var battle_state = BATTLE_STATUS.WAIT
 var battle_result = {
 	"exp":0,
 	"gold":0
 }
+
+func _ready() -> void:
+		Event.connect("player_attack",self,"_on_player_attack")
 
 func _process(delta):
 	process_battle_result()
@@ -45,9 +49,9 @@ func set_monsters(_mon_obj:Array):
 		pkg_mon.mon_obj = mon_obj
 		inst_monsters.add_child(pkg_mon)
 		_group_add(pkg_mon)
-	bind_events()
 	logger.clear()
 	wait_to_palyer()
+	bind_events()
 	emit_battle_start()
 
 func set_player(_player:PlayerObj):
@@ -55,9 +59,11 @@ func set_player(_player:PlayerObj):
 
 func wait_to_palyer():
 	monster_group("wait")
+	yield(get_tree().create_timer(0.5),"timeout")
+	monster_group("starts_battle")
+	pass
 
 func bind_events():
-	Event.connect("player_attack",self,"_on_player_attack")
 	var mons := get_tree().get_nodes_in_group(GROUP_BATTLE_MONSTER)
 	for o in mons:
 		o.connect("spawned",self,"_on_monster_spawned")
@@ -69,16 +75,11 @@ func _monster_count():
 	return inst_monsters.get_child_count()
 
 func process_battle_result():
-	if not is_instance_valid(player) || battle_state == BATTLE_STATUS.IDEL:
+	if not is_instance_valid(player) || battle_state == BATTLE_STATUS.WAIT:
 		return
 	var _mon_remains = _monster_count()
 	if _mon_remains <= 0:
 		battle_state = BATTLE_STATUS.WIN
-		emit_battle_end()
-	if player.is_dead():
-		kill_all_monsters()
-		battle_state = BATTLE_STATUS.FAIL
-		kill_all_monsters()
 		emit_battle_end()
 
 func kill_all_monsters():
@@ -86,7 +87,14 @@ func kill_all_monsters():
 	for mon in node_mon:
 		mon.queue_free()
 
+func reset_battle_result():
+	battle_result = {
+	"exp":0,
+	"gold":0
+}
+
 func emit_battle_start():
+	modulate.a = 1
 	battle_state = BATTLE_STATUS.FIGHT
 	var text:BattleLogText = logger.format
 	text.text = "********战斗开始********"
@@ -94,7 +102,7 @@ func emit_battle_start():
 	emit_signal("battle_start")
 
 func emit_battle_end():
-	battle_state = BATTLE_STATUS.IDEL
+	battle_state = BATTLE_STATUS.WAIT
 	var text:BattleLogText = logger.format
 	text.text = "********战斗结束********"
 	logger.println(text)
@@ -105,38 +113,33 @@ func emit_battle_end():
 	})
 	player.give_exp(battle_result.exp)
 	logger.println(result_text)
+	anim.play("battle_end")
+	yield(anim,"animation_finished")
+	reset_battle_result()
+	emit_signal("battle_end")
 
 """
 Player Events
 """
 func _on_player_attack(slot_obj:Dictionary):
-	if battle_state != BATTLE_STATUS.FIGHT:
+	if battle_state != BATTLE_STATUS.FIGHT || player.is_dead():
 		return
-	monster_group("start")
 	print("[battle_panel]->",slot_obj)
-	var da := DefaultAttack.new()
+	var attack := DefaultAttack.new()
 	var mon = get_selected_target()
-	da.cast = player
-	if mon:
-		da.target = mon.mon_obj
-		da.start()
-		print("[{0}]->selected target:".format([name]),mon.mon_obj.mon_stat.name)
-#	da.target =
-#	var targets = get_random_target()
-#	var player_attack = player.attack()
-#	var power = player_attack[0]
-#	for target in targets:
-#		var text:BattleLogText = logger.format
-#		text.text = "你对{0}造成{1}点伤害".format([
-#			target.mon_stat.name,
-#			power
-#		])
-#		logger.println(text)
-#		target.take_damage(power)
+	attack.cast = player
+	if !mon || mon == null:
+		return
+	attack.target = mon.mon_obj
+	var v:Array = attack.start()
+	var power:int = v[0]
+	var is_critcle:bool = v[1]
+	var text = attack.get_log(power,is_critcle)
+	logger.println(text)
 
 func get_selected_target():
 	var monsters = inst_monsters.get_children()
-	var _monster:Monster
+	var _monster = null
 	for mon in monsters:
 		if mon.hover:
 			_monster = mon
@@ -157,14 +160,18 @@ Monster Events
 func _on_monster_spawned():
 	pass
 
-func _on_monster_attack(o):
-	var name_text:BattleLogText = logger.format
-	name_text.text = o.name
-	name_text.color = Color.greenyellow
-	var damage_text:BattleLogText = logger.format
-#	damage_text.text = dmg
-	damage_text.color = Color.red
-#	player.take_damage(dmg)
+func _on_monster_attack(mon_obj:MonObj):
+	if mon_obj.is_dead():
+		return
+	var attack := MonAttack.new()
+	attack.cast = mon_obj as MonObj
+	attack.target = player as PlayerObj
+	var v:Array = attack.start()
+	var power:int = v[0]
+	var is_critcle:bool = v[1]
+	var text = attack.get_log(power,is_critcle)
+	logger.println(text)
+
 #	logger.println("{0}对你造或{1}点伤害".format([name_text.to_string(),damage_text.to_string()]))
 
 func _on_monster_dead(_exp):

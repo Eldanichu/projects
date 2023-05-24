@@ -1,25 +1,29 @@
-extends Node
+extends CanvasLayer
 class_name MouseFloatItem
+const PATH_TYPE = {
+	1:"Items",
+	0:"Skill/icon"
+}
+const SKILL_PATH = [2]
 
 var item:Dictionary = {
 	"id":"",
 	"appr":"",
+	"texture":null,
+	"form":"",
 } setget set_item
 
 var texture = TextureRect.new()
 var mouse_position:Vector2 = Vector2.ZERO
 var position:Vector2 = Vector2.ZERO
 
-func _ready() -> void:
-	var root = get_tree().get_root()
-	if !item.id:
-		queue_free()
-		return
+func _init(node:Node) -> void:
+	name = "mouse_item"
+	var root = node.get_tree().get_root()
 
-	var res = ResourceLoader.load("res://Assets/Items/{0}.png".format([item.appr]))
-	texture.texture = res
 	add_child(texture)
 	root.add_child(self)
+
 
 func _input(event: InputEvent) -> void:
 	if not event is InputEventMouseMotion:
@@ -30,10 +34,22 @@ func _input(event: InputEvent) -> void:
 	texture.rect_position = mouse_position + Vector2(-12, -12)
 
 func _process(delta: float) -> void:
+	update_img()
 	pass
 
+func update_img():
+	if !is_inside_tree() || not "type" in item:
+		return
+	var res
+	var path
+	if item.type in PATH_TYPE :
+		path = PATH_TYPE[item.type]
+	if SKILL_PATH.has(item.type):
+		path = PATH_TYPE[0]
+	res = ResourceLoader.load("res://Assets/{0}/{1}.png".format([path,item.appr]))
+	texture.texture = res
+
 func set_item(_item:Dictionary):
-	if "id" in _item && _item.id != null:
-		item.id = _item.id
-	if "appr" in _item && _item.appr != null:
-		item.appr = _item.appr
+	item.merge(_item,true)
+	if item.texture:
+		texture.texture = item.texture

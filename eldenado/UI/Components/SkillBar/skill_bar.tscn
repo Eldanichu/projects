@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/Components/SkillBar/skill_bar.gd" type="Script" id=1]
+[ext_resource path="res://UI/Components/BasicSlot/basic_slot.tscn" type="PackedScene" id=2]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 0.576471 )
+shadow_color = Color( 0, 0, 0, 0.286275 )
+shadow_size = 2
+shadow_offset = Vector2( -1, 1 )
+
+[node name="skill_bar" type="HBoxContainer"]
+margin_left = 382.0
+margin_right = 752.0
+margin_bottom = 32.0
+size_flags_horizontal = 6
+script = ExtResource( 1 )
+
+[node name="active_skills" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+margin_right = 284.0
+margin_bottom = 32.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Skill 1" parent="active_skills" instance=ExtResource( 2 )]
+
+[node name="Skill 2" parent="active_skills" instance=ExtResource( 2 )]
+margin_left = 36.0
+margin_right = 68.0
+
+[node name="Skill 3" parent="active_skills" instance=ExtResource( 2 )]
+margin_left = 72.0
+margin_right = 104.0
+
+[node name="Skill 4" parent="active_skills" instance=ExtResource( 2 )]
+margin_left = 108.0
+margin_right = 140.0
+
+[node name="Skill 5" parent="active_skills" instance=ExtResource( 2 )]
+margin_left = 144.0
+margin_right = 176.0
+
+[node name="Skill 6" parent="active_skills" instance=ExtResource( 2 )]
+margin_left = 180.0
+margin_right = 212.0
+
+[node name="Skill 7" parent="active_skills" instance=ExtResource( 2 )]
+margin_left = 216.0
+margin_right = 248.0
+
+[node name="Skill 8" parent="active_skills" instance=ExtResource( 2 )]
+margin_left = 252.0
+margin_right = 284.0
+
+[node name="v_separator" type="VSeparator" parent="."]
+margin_left = 288.0
+margin_right = 298.0
+margin_bottom = 32.0
+custom_constants/separation = 10
+custom_styles/separator = SubResource( 2 )
+
+[node name="default_attack" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+margin_left = 302.0
+margin_right = 370.0
+margin_bottom = 32.0
+
+[node name="Attack" parent="default_attack" instance=ExtResource( 2 )]
+slot_type = 0
+
+[node name="Skill" parent="default_attack" instance=ExtResource( 2 )]
+margin_left = 36.0
+margin_right = 68.0
+slot_type = 0

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://UI/Panels/Character/character.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=2]
-[ext_resource path="res://UI/Components/SkillListItem/skill_list_item.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/Panels/Character/skill_line.tscn" type="PackedScene" id=3]
 
 [node name="character_panel" type="MarginContainer"]
 margin_left = -1.0
@@ -19,18 +19,13 @@ margin_right = 260.0
 margin_bottom = 340.0
 tab_align = 0
 
-[node name="TAG_CHAR_EQUIP" type="Tabs" parent="character"]
-visible = false
+[node name="TAG_CHAR_EQUIP" type="MarginContainer" parent="character"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.72908
 margin_top = 26.2449
 margin_right = -8.18863
 margin_bottom = -7.15253
-
-[node name="margin_container" type="MarginContainer" parent="character/TAG_CHAR_EQUIP"]
-anchor_right = 1.0
-anchor_bottom = 1.0
 size_flags_horizontal = 7
 size_flags_vertical = 3
 custom_constants/margin_right = 8
@@ -38,7 +33,7 @@ custom_constants/margin_top = 8
 custom_constants/margin_left = 8
 custom_constants/margin_bottom = 8
 
-[node name="v_box_container" type="VBoxContainer" parent="character/TAG_CHAR_EQUIP/margin_container"]
+[node name="v_box_container" type="VBoxContainer" parent="character/TAG_CHAR_EQUIP"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 236.0
@@ -46,25 +41,25 @@ margin_bottom = 298.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="h_box_container" type="HBoxContainer" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container"]
+[node name="h_box_container" type="HBoxContainer" parent="character/TAG_CHAR_EQUIP/v_box_container"]
 margin_right = 228.0
 margin_bottom = 260.0
 size_flags_vertical = 3
 
-[node name="v_box_container_2" type="VBoxContainer" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/h_box_container"]
+[node name="v_box_container_2" type="VBoxContainer" parent="character/TAG_CHAR_EQUIP/v_box_container/h_box_container"]
 margin_right = 224.0
 margin_bottom = 260.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.15
 custom_constants/separation = 0
 
-[node name="v_box_container" type="VBoxContainer" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container/h_box_container"]
+[node name="v_box_container" type="VBoxContainer" parent="character/TAG_CHAR_EQUIP/v_box_container/h_box_container"]
 margin_left = 228.0
 margin_right = 228.0
 margin_bottom = 260.0
 size_flags_stretch_ratio = 0.15
 
-[node name="attachments" type="HBoxContainer" parent="character/TAG_CHAR_EQUIP/margin_container/v_box_container"]
+[node name="attachments" type="HBoxContainer" parent="character/TAG_CHAR_EQUIP/v_box_container"]
 margin_top = 264.0
 margin_right = 228.0
 margin_bottom = 290.0
@@ -74,7 +69,7 @@ size_flags_horizontal = 5
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 
-[node name="TAG_CHAR_SKILL" type="Tabs" parent="character"]
+[node name="TAG_CHAR_STAT" type="ScrollContainer" parent="character"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -83,20 +78,15 @@ margin_top = 26.2449
 margin_right = -8.18863
 margin_bottom = -7.15253
 
-[node name="scroll_container" type="ScrollContainer" parent="character/TAG_CHAR_SKILL"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="v_box_container" type="VBoxContainer" parent="character/TAG_CHAR_SKILL/scroll_container"]
+[node name="stat_panel" type="VBoxContainer" parent="character/TAG_CHAR_STAT"]
+unique_name_in_owner = true
 margin_right = 244.082
 margin_bottom = 306.603
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="control" parent="character/TAG_CHAR_SKILL/scroll_container/v_box_container" instance=ExtResource( 3 )]
-margin_right = 244.0
-
-[node name="TAG_CHAR_STAT" type="Tabs" parent="character"]
+[node name="TAG_CHAR_SKILL" type="ScrollContainer" parent="character"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.72908
@@ -104,13 +94,10 @@ margin_top = 26.2449
 margin_right = -8.18863
 margin_bottom = -7.15253
 
-[node name="scroll_container" type="ScrollContainer" parent="character/TAG_CHAR_STAT"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="stat_panel" type="VBoxContainer" parent="character/TAG_CHAR_STAT/scroll_container"]
-unique_name_in_owner = true
+[node name="v_box_container" type="VBoxContainer" parent="character/TAG_CHAR_SKILL"]
 margin_right = 244.082
-margin_bottom = 306.603
+margin_bottom = 18.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
+
+[node name="skill_line" parent="character/TAG_CHAR_SKILL/v_box_container" instance=ExtResource( 3 )]
+margin_bottom = 51.0

@@ -6,7 +6,7 @@ var start_d = 0.0
 
 var t := Tween.new()
 var r := RandomNumberGenerator.new()
-var label = 0
+var label:int = 0
 var floatting = true
 
 func _ready() -> void:
@@ -17,7 +17,10 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	_label.text = str(label)
+	var _text = label
+	if _text == 0:
+		_text = "MISS"
+	_label.text = str(_text)
 	if floatting:
 		float_away(delta)
 	scale_to_number()
@@ -30,18 +33,10 @@ func _on_float_away():
 func float_away(delta):
 	start_d += delta
 	if start_d <= d:
-		position.y -= d
+		position.y -= d * 0.1
 	if t.is_active():
 		return
-	t.interpolate_property(
-		self,
-		"scale",
-		scale,
-		scale * r.randf_range(1.1,1.5),
-		0.6,
-		Tween.TRANS_QUART,
-		Tween.EASE_IN_OUT
-	)
+	scale_to_number()
 	t.interpolate_property(
 		self,
 		"modulate:a",
@@ -54,4 +49,13 @@ func float_away(delta):
 	t.start()
 
 func scale_to_number():
-	pass
+	t.interpolate_property(
+		self,
+		"scale",
+		scale,
+		scale * r.randf_range(0.8,1.5),
+		0.6,
+		Tween.TRANS_QUART,
+		Tween.EASE_IN_OUT
+	)
+	t.start()

@@ -45,3 +45,11 @@ static func set_z_index(control_node:CanvasItem,z_index:int):
 
 static func quit(node:Node):
 	node.get_tree().quit()
+
+static func get_root_node(node:Node,node_name:String):
+	var tree:SceneTree
+	if node.has_method("get_tree"):
+		tree = node.get_tree()
+	if tree == null:
+		return null
+	return tree.get_root().get_node_or_null(node_name)

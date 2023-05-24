@@ -15,10 +15,6 @@ var points:PoolVector2Array = []
 func _ready():
 	r.randomize()
 	combat_log.clear()
-	var fi = MouseFloatItem.new();
-	fi.item.id = "00394"
-	fi.item.appr = "00394"
-	add_child(fi)
 #	p.rotate(deg2rad(45))
 
 func poly_rect(position:Vector2) -> PoolVector2Array:
@@ -78,7 +74,7 @@ func _on_Restart_Timer_pressed() -> void:
 	pass
 
 func _timer_remaining(s):
-	combat_log.println_code_string(str(s))
+	combat_log.println(str(s))
 
 func _on_pause_timer_pressed() -> void:
 	timer.pause()

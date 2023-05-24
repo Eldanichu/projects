@@ -11,6 +11,7 @@ signal battle_command(type)
 """
 Player
 """
+signal on_target(target)
 signal player_attack(slot_obj)
 
 """

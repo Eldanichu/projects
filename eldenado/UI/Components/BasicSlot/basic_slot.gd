@@ -7,13 +7,19 @@ signal use_item(item)
 
 enum SLOT_TYPE {
 	SKILL = 0,
-	EQUIP = 1
+	EQUIP = 1,
+	SKILL_ITEM = 2
 }
 
 enum SLOT_ACTION {
 	USE = 1,
 	MOVE = 2
 }
+
+export(SLOT_TYPE) var slot_type = 0
+export(float) var interval = 0.0
+
+const SKILL_PATH = [2]
 
 const PATH_TYPE = {
 	1:"Items",
@@ -25,14 +31,13 @@ const EVENT:Dictionary = {
 	"USE_ITEM":"use_item",
 }
 
-export(SLOT_TYPE) var slot_type = 0
-export(float) var interval = 0.0
-
 onready var slot_label = $"%label"
 onready var slot_img = $"%img"
 onready var progress := $"%progress"
 
+var t := Tween.new()
 var timer:ATimer = ATimer.new(self)
+var _timeleft = 0
 
 var _is_mouse_in = false
 var can_click = false
@@ -45,11 +50,8 @@ var item:Dictionary = {
 } setget set_item
 
 func _ready() -> void:
+	add_child(t)
 	setup()
-
-var startD = 0
-var D = 10
-
 
 func _input(event) -> void:
 	if !can_click || !has_item():
@@ -58,7 +60,7 @@ func _input(event) -> void:
 	self_click_event(event)
 
 func self_click_event(event):
-	if !_is_mouse_in:
+	if !_is_mouse_in || !can_use():
 		return
 	if InputUtil.mouse_click(event, 1):
 		if slot_type == SLOT_TYPE.SKILL:
@@ -73,16 +75,15 @@ func self_click_event(event):
 func global_mouse_event(event):
 	var settings = Store.settings
 	var bindings = settings.key_bindings
-	var attack = bindings["Attack"]
-	var skill = bindings["Skill"]
-	if (
-		slot_type == SLOT_TYPE.SKILL && \
-		(
-			InputUtil.mouse_click(event, attack.key_code) && slot_key == attack.key || \
-	 		InputUtil.mouse_click(event, skill.key_code) && slot_key == skill.key
-		)
-	):
-		emit_event(EVENT.USE_SKILL)
+	for b in bindings:
+		var item = bindings[b]
+		if  b != "sep" && "default" in item && item["default"] == 1:
+			if (
+				slot_type == SLOT_TYPE.SKILL && \
+				(InputUtil.mouse_click(event, item.key_code) && slot_key == item.key) && \
+				can_use()
+			):
+				emit_event(EVENT.USE_SKILL)
 
 func emit_event(ev_name):
 		_on_press()
@@ -90,7 +91,7 @@ func emit_event(ev_name):
 
 func _process(delta):
 	if interval == 0:
-		interval = -1
+		timer.stop()
 	if progress.value <= 0:
 		progress.mouse_filter = MOUSE_FILTER_PASS
 		can_click = true
@@ -103,7 +104,8 @@ func _on_press():
 		timer.start_timer()
 
 func _on_timing(time_left):
-	progress.value = GameUtils.get_percent(time_left, interval)
+	_timeleft = time_left
+	progress.value = GameUtils.get_percent(_timeleft, interval)
 
 func _on_timeout():
 	timer.stop()
@@ -111,7 +113,7 @@ func _on_timeout():
 func setup():
 	timer.Interval = interval
 	progress.max_value = 100
-	progress.value = 0
+	progress.value = GameUtils.get_percent(_timeleft, interval)
 
 	update_label()
 	bind_events()
@@ -143,9 +145,13 @@ func update():
 func update_img():
 	if !is_inside_tree():
 		return
-	if not item.type in PATH_TYPE:
-		return
-	var res = ResourceLoader.load("res://Assets/{0}/{1}.png".format([PATH_TYPE[item.type],item.appr]))
+	var res
+	var path
+	if item.type in PATH_TYPE :
+		path = PATH_TYPE[item.type]
+	if SKILL_PATH.has(item.type):
+		path = PATH_TYPE[0]
+	res = ResourceLoader.load("res://Assets/{0}/{1}.png".format([path,item.appr]))
 	slot_img.texture = res
 
 func set_slot_key(n):
@@ -153,25 +159,39 @@ func set_slot_key(n):
 	update()
 
 func set_item(_item:Dictionary):
-	for o in _item:
-		if o == "cd":
-			interval = _item[o]
-			timer.Interval = interval
-			continue
-		if _has_value(_item,o):
-			item[o] = _item[o]
-		else:
-			print("[basic_slot.tscn]-> Error:The property of slot ",o,"is empty!")
+	var required_props:Array = ["id", "appr", "type"]
+	item.merge(_item, true)
+	if ObjectUtil.has_value(item,"cd"):
+		interval = item["cd"]
+		timer.Interval = interval
 
+	for o in _item:
+		if !ObjectUtil.has_value(_item, o) && required_props.has(o):
+			print(
+				"[basic_slot.tscn]->[****Error****]:" + \
+					"Slot required property: [{0}] is empty".format([o])
+			)
+	animate_disabled()
 	update_img()
 
-func _has_value(obj,key):
-	return key in obj && obj[key] != null
+func animate_disabled():
+	if ObjectUtil.has_value(item,"disabled"):
+		if item["disabled"]:
+			_timeleft = timer.Interval
+			progress.value = GameUtils.get_percent(_timeleft, interval)
+		else:
+			t.stop_all()
+			t.interpolate_property(
+				progress,"value",progress.value,0,0.1,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT
+			)
+			t.start()
 
 func has_item():
 	return !StringUtil.isEmptyOrNull(item.id)
 
+func can_use():
+	return "disabled" in item && !item.disabled
+
 func _on_mouse_in_slot(in_out) -> void:
-	print(in_out)
 	_is_mouse_in = in_out
 

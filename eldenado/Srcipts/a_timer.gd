@@ -4,7 +4,7 @@ class_name ATimer
 signal remains(reamins)
 
 export var timer_id:String
-export var Interval:float = 60
+export var Interval:float = 0.1
 
 var _node:Node
 var remains:float
@@ -20,16 +20,17 @@ func _init(node:Node) -> void:
 
 
 func _ready() -> void:
-	setup()
 	connect("timeout",self,"_timeout")
+	setup()
 
 
 func _process(delta: float) -> void:
-	if self.is_stopped():
+	if self.is_stopped() || self.is_paused():
 		return
 	emit_remains();
 
 func setup()->void:
+	self.stop()
 	self.wait_time = Interval
 	reduce_amount = Interval
 	self.autostart = false
@@ -44,7 +45,6 @@ func _timeout():
 	emit_remains()
 
 func start_timer() -> void:
-		self.stop()
 		setup()
 		self.start(Interval)
 
@@ -72,6 +72,7 @@ func reduce_amount(amount:float,type:String = "N")->void:
 	emit_remains()
 	wait_time = reduce_amount
 	start()
+
 
 func unique_timer() -> bool:
 	var parent = get_parent()

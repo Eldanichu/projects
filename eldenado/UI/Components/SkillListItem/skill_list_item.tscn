@@ -1,6 +1,0 @@
-[gd_scene format=2]
-
-[node name="control" type="MarginContainer"]
-margin_right = 234.0
-margin_bottom = 41.0
-rect_min_size = Vector2( 234, 41 )

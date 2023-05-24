@@ -7,8 +7,8 @@ var v_sync = false
 var use_short_number = false
 
 var key_bindings:Dictionary = {
-	"Attack":{"key_code":1,"key":"LMB"},
-	"Skill":{"key_code":2,"key":"RMB"},
+	"Attack":{"key_code":1, "key":"LMB", "default":1},
+	"Skill":{"key_code":2, "key":"RMB", "default":1},
 	"sep":1,
 	"Skill 1":{"key_code":49,"key":"1"},
 	"Skill 2":{"key_code":50,"key":"2"},
