@@ -6,10 +6,87 @@ const mp_const = 13;
 const exp_const = 14
 const exp_factor = 1.1
 
+enum SLOT_TYPE {
+	EMPTY = -1,
+	SKILL = 0,
+	EQUIP = 1,
+	SKILL_ITEM = 2,
+	USEABLE_ITEM = 3
+}
+
+enum SLOT_ACTION {
+	USE = 1,
+	MOVE = 2
+}
+
+const PATH_TYPE = {
+	1:"Items",
+	0:"Skill/icon"
+}
+
+const ITEM_SOURCE:Dictionary = {
+	UNKNOWN = -4,
+	SKILL_LIST = 1024,
+	SKILL_BAR = 980,
+	INVENTORY = 800,
+	EQUIPMENT = 720
+}
+
+const SLOT_RULES:Dictionary = {
+	ITEM_SOURCE.SKILL_LIST : [ ITEM_SOURCE.SKILL_BAR ],
+	ITEM_SOURCE.INVENTORY : [ ITEM_SOURCE.EQUIPMENT, ITEM_SOURCE.SKILL_BAR ],
+	ITEM_SOURCE.EQUIPMENT : [ ITEM_SOURCE.INVENTORY ],
+}
+
+enum BATTLE_STATUS {
+	WAIT = -4
+	FIGHT = -1,
+	FAIL = 0,
+	WIN = 1,
+}
+
+enum DAMAGE_TYPE {
+	SPELL = 0,
+	ATTACK = 1
+}
+
 const CLASS_TYPE:Dictionary = {
 	Wizard = 1,
 	Taos = 2,
 	Warrior = 0
+}
+
+const ITEM_QTY:Dictionary = {
+	COMMON = 9,
+	MAGIC = 8,
+	RARE = 7,
+	SET = 6,
+	EPIC = 5,
+	LEGENDARY = 4
+}
+
+const ITEM_TYPE:Dictionary = {
+	CONSUMABLE = 31,
+	POSION = 2,
+
+	HELM = 2,
+	WEAPON = 3,
+	SHIELD = 13,
+	CHEST = 10,
+
+	AMULET = 4,
+	BRACE = 5,
+	RING = 6,
+
+	BELT = 11,
+	BOOT = 12,
+	SPELL_ITEM = 32,
+	ATTACH = 33,
+
+	SPELL = 24,
+	TASK = 0,
+	SCROLL = 30,
+	MATERIAL = 32
 }
 
 const CLASS_NAME:Dictionary = {
@@ -83,39 +160,6 @@ const SLOT:Dictionary = {
 	SLOT_8 = "Skill 8",
 }
 
-const ITEM_QTY:Dictionary = {
-	COMMON = 9,
-	MAGIC = 8,
-	RARE = 7,
-	SET = 6,
-	EPIC = 5,
-	LEGENDARY = 4
-}
-
-const ITEM_TYPE:Dictionary = {
-	CONSUMABLE = 31,
-	POSION = 2,
-
-	HELM = 2,
-	WEAPON = 3,
-	SHIELD = 13,
-	CHEST = 10,
-
-	AMULET = 4,
-	BRACE = 5,
-	RING = 6,
-
-	BELT = 11,
-	BOOT = 12,
-	SPELL_ITEM = 32,
-	ATTACH = 33,
-
-	SPELL = 24,
-	TASK = 0,
-	SCROLL = 30,
-	MATERIAL = 32
-}
-
 static func get_class_stats(level:int,class_index:int = 0) -> Dictionary:
 	var max_hp
 	var max_mp
@@ -139,3 +183,22 @@ static func get_exp_by_level(level:int) -> int:
 	var exp_value:int = level * ( exp_const * exp_factor ) * time
 	return exp_value
 
+static func can_slot_put(item:Dictionary, slot:Dictionary) -> bool:
+	var b = false
+	if slot == null:
+		return b
+	if !ObjectUtil.has_value(item,"from"):
+		printerr("[can_put]->Error: Unknown Item Source!")
+		return b
+	if !ObjectUtil.has_value(slot,"from"):
+		printerr("[can_put]->Error: Unknown Slot Source!")
+		return b
+	var _item_from = item.from
+	var _slot_from = slot.from
+	if not _item_from in SLOT_RULES:
+		printerr("[can_put]->Error: Unknown Item Slot Rule!")
+		return b
+	var rule:Array = SLOT_RULES[_item_from]
+	if rule.has(_slot_from):
+		b = true
+	return b

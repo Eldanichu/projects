@@ -7,7 +7,7 @@ signal die()
 signal levelup()
 
 const _g:Globals = Globals
-
+const BAG_SIZE:int = 91
 
 var stats:Dictionary = {
 	player_name = "",
@@ -129,10 +129,10 @@ func give_damge(damage, dmg_type):
 	rnd.randomize()
 	var _min
 	var _max
-	if dmg_type == AttackType.DAMAGE_TYPE.ATTACK:
+	if dmg_type == Globals.DAMAGE_TYPE.ATTACK:
 		_min = stats.ac
 		_max = stats.ac_max
-	elif dmg_type == AttackType.DAMAGE_TYPE.SPELL:
+	elif dmg_type == Globals.DAMAGE_TYPE.SPELL:
 		_min = stats.mc
 		_max = stats.mc_max
 	value -= rnd.randi_range(_min,_max)

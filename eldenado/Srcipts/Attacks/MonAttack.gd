@@ -1,4 +1,4 @@
-extends AttackBase
+extends AttackObject
 class_name MonAttack
 
 func _init() -> void:
@@ -13,7 +13,7 @@ func start():
 	print("[MonAttack]-> ATK_RATE:",ap.ATK_RATE)
 	var power = ap.calc()
 	var _t:PlayerObj = target
-	_t.give_damge(power, AttackType.DAMAGE_TYPE.ATTACK)
+	_t.give_damge(power, Globals.DAMAGE_TYPE.ATTACK)
 	return [power, ap.is_crit_damage()]
 
 func get_chance() -> float:

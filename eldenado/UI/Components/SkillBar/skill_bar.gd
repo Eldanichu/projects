@@ -22,14 +22,28 @@ func load_key_bindings():
 		var _default:BasicSlot = default_attack.get_node_or_null(o)
 		if _default:
 			_default.set_slot_key(item.key)
+			_default.slot_source = Globals.ITEM_SOURCE.SKILL_BAR
 			_default.connect("use_skill",self,"_on_use_skill")
 
 		var _skills:BasicSlot = active_skills.get_node_or_null(o)
 		if _skills:
 			_skills.set_slot_key(item.key)
+			_skills.slot_source = Globals.ITEM_SOURCE.SKILL_BAR
 			_skills.connect("use_skill",self,"_on_use_skill")
+			_skills.connect("pick",self,"_on_pick_skill")
 
-func set_slot(attack:AttackBase):
+func _on_pick_skill(slot:Dictionary):
+	print("[skill bar pick ]",slot)
+	var node_mouse_item:MouseFloatItem = GameUtils.get_mouse_item(self)
+	var mouse_item = node_mouse_item.item
+	if !"id" in mouse_item || StringUtil.isEmptyOrNull(mouse_item["id"]):
+		return
+	var bo_put = Globals.can_slot_put(mouse_item, slot)
+	print("[can put in skill bar? ]", bo_put)
+	if !bo_put:
+		return
+
+func set_slot(attack:AttackObject):
 	var _slot_node
 	var slot = attack.obj.slot
 	var _default_slot = default_attack.get_node_or_null(slot)

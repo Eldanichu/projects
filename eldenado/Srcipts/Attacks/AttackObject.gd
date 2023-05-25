@@ -1,5 +1,5 @@
 extends Resource
-class_name AttackBase
+class_name AttackObject
 
 var cast setget set_cast
 var target setget set_target

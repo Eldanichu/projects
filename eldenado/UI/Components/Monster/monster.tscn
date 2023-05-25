@@ -56,7 +56,7 @@ tracks/1/keys = {
 margin_right = 109.0
 margin_bottom = 178.0
 rect_min_size = Vector2( 85, 178 )
-size_flags_horizontal = 6
+size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = SubResource( 2 )
 script = ExtResource( 4 )
@@ -80,21 +80,22 @@ margin_bottom = 159.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
+[node name="mon_name" type="Label" parent="margin_container/v_box_container"]
+unique_name_in_owner = true
+margin_left = 42.0
+margin_right = 42.0
+margin_bottom = 14.0
+size_flags_horizontal = 6
+
 [node name="hp" parent="margin_container/v_box_container" instance=ExtResource( 1 )]
 unique_name_in_owner = true
+margin_top = 18.0
 margin_right = 85.0
+margin_bottom = 38.0
 size_flags_vertical = 1
 t_val = "1"
 texture = ExtResource( 2 )
 value_color = Color( 0.909804, 0.909804, 0.909804, 1 )
-
-[node name="mon_name" type="Label" parent="margin_container/v_box_container"]
-unique_name_in_owner = true
-margin_left = 42.0
-margin_top = 24.0
-margin_right = 42.0
-margin_bottom = 38.0
-size_flags_horizontal = 6
 
 [node name="image" type="TextureRect" parent="margin_container/v_box_container"]
 unique_name_in_owner = true

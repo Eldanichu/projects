@@ -30,7 +30,9 @@ TAG_CLASS_WARRIOR,Warrior,战士
 TAG_BAG_SORT,Sort,整理
 TAG_CHAR_EQUIP,Equip,装备
 TAG_CHAR_SKILL,Skill,技能
+TAG_CHAR_STAT,Stats,状态
 TAG_GAME_CHAR,Charecter,人物
+TAG_GAME_INV,Inventory,背包
 TAG_GAME_MAPS,Maps,地图
 TAG_GAME_ENCHANT,Enchant,强化
 TAG_GAME_FORGE,Forge,铸炼

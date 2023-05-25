@@ -61,7 +61,6 @@ size_flags_vertical = 3
 margin_right = 1250.0
 margin_bottom = 203.0
 rect_min_size = Vector2( 0, 185 )
-size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="monsters" type="HFlowContainer" parent="panel_container/margin_container/h_box_container/v_box_container_2/panel_monsters"]
@@ -71,7 +70,6 @@ margin_top = 9.0
 margin_right = 1241.0
 margin_bottom = 194.0
 rect_min_size = Vector2( 0, 185 )
-size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="h_box_container" type="HBoxContainer" parent="panel_container/margin_container/h_box_container/v_box_container_2"]

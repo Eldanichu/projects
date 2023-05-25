@@ -1,13 +1,12 @@
-extends AttackBase
+extends AttackObject
 class_name DefaultAttack
 
 func _init() -> void:
 	set_obj({
 		"id":"DefaultAttack",
-		"appr":"00000",
-		"type":0,
-		"slot":Globals.SLOT.ATTACK,
-		"from":""
+		"icon":"00000",
+		"type":Globals.SLOT_TYPE.SKILL,
+		"slot":Globals.SLOT.ATTACK
 	})
 	set_cd(0.4)
 
@@ -22,7 +21,7 @@ func get_power() -> Array:
 
 func start() -> Array:
 	var value = get_power()
-	target.give_damage(value[0], AttackType.DAMAGE_TYPE.ATTACK)
+	target.give_damage(value[0], Globals.DAMAGE_TYPE.ATTACK)
 
 	return value
 

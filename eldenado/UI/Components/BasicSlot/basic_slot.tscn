@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Components/BasicSlot/basic_slot.gd" type="Script" id=2]
 [ext_resource path="res://Assets/ui/panel/00670.PNG" type="Texture" id=3]
 [ext_resource path="res://Assets/Fonts/res/wc-12.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Assets/ui/bars/01064d.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Fonts/res/chn-sm.tres" type="DynamicFont" id=6]
 
 [node name="slot" type="MarginContainer"]
 margin_right = 32.0
@@ -13,7 +14,6 @@ rect_min_size = Vector2( 32, 32 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource( 2 )
-slot_type = 1
 
 [node name="nine_patch_rect" type="NinePatchRect" parent="."]
 margin_right = 32.0
@@ -63,6 +63,19 @@ custom_fonts/font = ExtResource( 4 )
 text = "0"
 align = 2
 valign = 2
+
+[node name="size" type="Label" parent="nine_patch_rect/margin_container"]
+unique_name_in_owner = true
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 31.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0.219608, 1, 0, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "99+"
+align = 2
 
 [node name="progress" type="TextureProgress" parent="nine_patch_rect/margin_container"]
 unique_name_in_owner = true

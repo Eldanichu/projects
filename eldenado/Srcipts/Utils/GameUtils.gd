@@ -53,3 +53,8 @@ static func get_root_node(node:Node,node_name:String):
 	if tree == null:
 		return null
 	return tree.get_root().get_node_or_null(node_name)
+
+static func get_mouse_item(node:Node) -> MouseFloatItem:
+	var node_mouse_item:MouseFloatItem = get_root_node(node,"mouse_item")
+
+	return node_mouse_item

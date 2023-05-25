@@ -50,7 +50,10 @@ func create_player():
 	if !player_info:
 		return
 	player.setup(player_info)
+
+func init_player():
 	use_skills(false)
+	inv.set_player(player)
 
 func update_ui():
 	stat.update_ui(player.stats)
@@ -66,19 +69,12 @@ func set_battle(battle:bool):
 func use_skills(value:bool):
 	var player_skills = player.skill
 	for s in player_skills:
-		var skill:AttackBase = player_skills[s]
+		var skill:AttackObject = player_skills[s]
 		skill.set_disabled(!value)
 		update_ui()
 
-
-func get_mouse_item() -> MouseFloatItem:
-	var item = GameUtils.get_root_node(self, "mouse_item")
-	if item:
-		return item
-	return null
-
-func init_mouse_item():
-	var item := get_mouse_item()
+func init_mouse_item() -> void:
+	var item := GameUtils.get_mouse_item(self)
 	if !item:
 		item = MouseFloatItem.new(self)
 
@@ -90,7 +86,9 @@ func _on_db_ready():
 	init_mouse_item()
 	load_maps()
 	create_player()
+	init_player()
 	update_ui()
+
 	# ******test
 #	stat.show_command = true
 

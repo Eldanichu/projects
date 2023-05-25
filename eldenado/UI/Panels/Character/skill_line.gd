@@ -7,17 +7,20 @@ var id:String
 var icon:Texture
 
 func _ready() -> void:
-	var SLOT_TYPE = slot.SLOT_TYPE.SKILL_ITEM
 	slot.set_item({
 		"id":"0001",
-		"appr":"00004",
-		"type":SLOT_TYPE,
+		"icon":"00004",
+		"type":Globals.SLOT_TYPE.SKILL_ITEM,
 		"disabled":false
 	})
 	slot.connect("pick",self,"_on_pick")
 
 func _on_pick(item:Dictionary):
-	print(item)
-	var mouse_item = GameUtils.get_root_node(self,"mouse_item")
+	print("[skill line pick item ]",item)
+	var mouse_item:MouseFloatItem = GameUtils.get_mouse_item(self)
+	var mouse_item_obj = mouse_item.item
+	if mouse_item_obj.id == item.id && mouse_item_obj.from == item.from:
+		mouse_item.clear()
+		return
 	mouse_item.item = item.duplicate(true)
-	pass
+

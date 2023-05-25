@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Themes/game theme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Themes/scroll_hidden.tres" type="Theme" id=2]
 [ext_resource path="res://UI/Components/Inventory/inventory.gd" type="Script" id=3]
+[ext_resource path="res://Assets/ui/bars/text_bg.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 125, 16 )
+margin_left = 4.0
+margin_right = 4.0
+margin_top = 2.0
 
 [node name="imventory" type="PanelContainer"]
 margin_right = 348.0
@@ -25,6 +33,7 @@ margin_right = 502.0
 margin_bottom = 23.0
 
 [node name="sort" type="Button" parent="v_box_container/h_box_container"]
+unique_name_in_owner = true
 margin_right = 95.0
 margin_bottom = 23.0
 text = "TAG_BAG_SORT"
@@ -32,39 +41,47 @@ text = "TAG_BAG_SORT"
 [node name="margin_container" type="MarginContainer" parent="v_box_container"]
 margin_top = 27.0
 margin_right = 502.0
-margin_bottom = 301.0
+margin_bottom = 296.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="scrollbar" type="ScrollContainer" parent="v_box_container/margin_container"]
 margin_right = 502.0
-margin_bottom = 274.0
+margin_bottom = 269.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
 
-[node name="grid" type="GridContainer" parent="v_box_container/margin_container/scrollbar"]
-size_flags_horizontal = 0
-size_flags_vertical = 0
-custom_constants/vseparation = 1
-custom_constants/hseparation = 1
-columns = 10
+[node name="item_grid" type="GridContainer" parent="v_box_container/margin_container/scrollbar"]
+unique_name_in_owner = true
+margin_left = 251.0
+margin_right = 251.0
+size_flags_horizontal = 6
+size_flags_vertical = 2
+custom_constants/vseparation = 5
+custom_constants/hseparation = 5
+columns = 13
 
 [node name="h_box_container_2" type="HBoxContainer" parent="v_box_container"]
-margin_top = 305.0
+margin_top = 300.0
 margin_right = 502.0
 margin_bottom = 322.0
 
 [node name="TAG_GOLD" type="Label" parent="v_box_container/h_box_container_2"]
+margin_top = 2.0
 margin_right = 58.0
-margin_bottom = 17.0
+margin_bottom = 19.0
 text = "TAG_GOLD"
 
-[node name="gold" type="Label" parent="v_box_container/h_box_container_2"]
+[node name="gold" type="LineEdit" parent="v_box_container/h_box_container_2"]
 unique_name_in_owner = true
 margin_left = 62.0
-margin_right = 92.0
-margin_bottom = 17.0
+margin_right = 182.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 2
 size_flags_vertical = 7
-text = "GOLD"
+custom_colors/font_color_uneditable = Color( 1, 1, 1, 1 )
+custom_styles/read_only = SubResource( 1 )
+text = "0"
+editable = false

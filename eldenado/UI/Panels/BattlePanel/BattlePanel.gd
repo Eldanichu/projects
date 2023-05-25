@@ -4,12 +4,7 @@ class_name BattlePanel
 signal battle_start()
 signal battle_end()
 
-enum BATTLE_STATUS {
-	WAIT = -4
-	FIGHT = -1,
-	FAIL = 0,
-	WIN = 1,
-}
+const BATTLE_STATUS = Globals.BATTLE_STATUS
 
 onready var inst_monsters := $"%monsters"
 onready var logger := $"%battle_log"
@@ -127,6 +122,8 @@ func _on_player_attack(slot_obj:Dictionary):
 	print("[battle_panel]->",slot_obj)
 	var attack := DefaultAttack.new()
 	var mon = get_selected_target()
+	if !mon:
+		mon = get_random_target()[0]
 	attack.cast = player
 	if !mon || mon == null:
 		return
@@ -145,13 +142,13 @@ func get_selected_target():
 			_monster = mon
 	return _monster
 
-func get_random_target(value = 1):
+func get_random_target():
 	var node_mon = inst_monsters.get_children()
 	var alive_mons:Array = []
 	for node in node_mon:
 		if not node.mon_obj.is_dead():
 			alive_mons.append(node)
-	var res = RandomUtil.get_items_random(value, alive_mons)
+	var res = RandomUtil.get_items_random(1, alive_mons)
 	return res
 
 """

@@ -72,9 +72,7 @@ margin_right = 370.0
 margin_bottom = 32.0
 
 [node name="Attack" parent="default_attack" instance=ExtResource( 2 )]
-slot_type = 0
 
 [node name="Skill" parent="default_attack" instance=ExtResource( 2 )]
 margin_left = 36.0
 margin_right = 68.0
-slot_type = 0
