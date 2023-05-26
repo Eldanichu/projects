@@ -116,14 +116,14 @@ func emit_battle_end():
 """
 Player Events
 """
-func _on_player_attack(slot_obj:Dictionary):
+func _on_player_attack(slot_obj:SlotObject):
 	if battle_state != BATTLE_STATUS.FIGHT || player.is_dead():
 		return
 	print("[battle_panel]->",slot_obj)
 	var attack := DefaultAttack.new()
 	var mon = get_selected_target()
-	if !mon:
-		mon = get_random_target()[0]
+#	if !mon:
+#		mon = get_random_target()[0]
 	attack.cast = player
 	if !mon || mon == null:
 		return

@@ -809,6 +809,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/core/event/SignalHandler.gd"
 }, {
+"base": "Resource",
+"class": "SlotObject",
+"language": "GDScript",
+"path": "res://UI/Components/BasicSlot/SlotObject.gd"
+}, {
 "base": "Control",
 "class": "Stats",
 "language": "GDScript",
@@ -1030,6 +1035,7 @@ _global_script_class_icons={
 "Settings": "",
 "ShapeUtil": "",
 "SignalHandler": "",
+"SlotObject": "",
 "Stats": "res://Assets/ui/bars/empty.png",
 "StringFuzzer": "",
 "StringUtil": "",

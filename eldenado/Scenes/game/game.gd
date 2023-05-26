@@ -53,7 +53,19 @@ func create_player():
 
 func init_player():
 	use_skills(false)
+	give_default_items()
 	inv.set_player(player)
+
+func give_default_items():
+	var player_node = GameUtils.get_player(self, player.stats.player_name)
+	for i in Globals.PLAYER_DEFAUT_ITEMS:
+		var item := ItemObject.new({
+			"db":db,
+			"id":i.id,
+			"size":i.size,
+			"target":player_node
+		})
+		player.give_item(item)
 
 func update_ui():
 	stat.update_ui(player.stats)

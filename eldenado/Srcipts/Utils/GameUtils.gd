@@ -58,3 +58,10 @@ static func get_mouse_item(node:Node) -> MouseFloatItem:
 	var node_mouse_item:MouseFloatItem = get_root_node(node,"mouse_item")
 
 	return node_mouse_item
+
+static func get_player(node,player_name):
+	var main = get_root_node(node, "main")
+	var game = main.get_node_or_null("game")
+	var player = game.get_node_or_null("player_node[{0}]".format([player_name]))
+
+	return player

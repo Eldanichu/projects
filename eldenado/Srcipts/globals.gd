@@ -19,23 +19,12 @@ enum SLOT_ACTION {
 	MOVE = 2
 }
 
-const PATH_TYPE = {
-	1:"Items",
-	0:"Skill/icon"
-}
-
-const ITEM_SOURCE:Dictionary = {
+enum ITEM_SOURCE {
 	UNKNOWN = -4,
 	SKILL_LIST = 1024,
 	SKILL_BAR = 980,
 	INVENTORY = 800,
 	EQUIPMENT = 720
-}
-
-const SLOT_RULES:Dictionary = {
-	ITEM_SOURCE.SKILL_LIST : [ ITEM_SOURCE.SKILL_BAR ],
-	ITEM_SOURCE.INVENTORY : [ ITEM_SOURCE.EQUIPMENT, ITEM_SOURCE.SKILL_BAR ],
-	ITEM_SOURCE.EQUIPMENT : [ ITEM_SOURCE.INVENTORY ],
 }
 
 enum BATTLE_STATUS {
@@ -48,6 +37,18 @@ enum BATTLE_STATUS {
 enum DAMAGE_TYPE {
 	SPELL = 0,
 	ATTACK = 1
+}
+
+const PATH_TYPE = {
+	1:"Items",
+	0:"Skill/icon"
+}
+
+
+const SLOT_RULES:Dictionary = {
+	ITEM_SOURCE.SKILL_LIST : [ ITEM_SOURCE.SKILL_BAR ],
+	ITEM_SOURCE.INVENTORY : [ ITEM_SOURCE.EQUIPMENT, ITEM_SOURCE.SKILL_BAR ],
+	ITEM_SOURCE.EQUIPMENT : [ ITEM_SOURCE.INVENTORY ],
 }
 
 const CLASS_TYPE:Dictionary = {
@@ -145,6 +146,11 @@ const char_panel_stat:Array = [
 	["crit_chance","%","暴击率"],
 	["crit_mag_strength","","魔法暴击强度"],
 	["crit_mag_chance","%","魔法暴击率"],
+]
+
+const PLAYER_DEFAUT_ITEMS:Array = [
+	{"id":"posion_hp_0", "size":5},
+	{"id":"posion_mp_0", "size":5}
 ]
 
 const SLOT:Dictionary = {

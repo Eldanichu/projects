@@ -11,16 +11,17 @@ func _ready() -> void:
 		"id":"0001",
 		"icon":"00004",
 		"type":Globals.SLOT_TYPE.SKILL_ITEM,
+		"from":Globals.ITEM_SOURCE.SKILL_LIST,
 		"disabled":false
 	})
 	slot.connect("pick",self,"_on_pick")
 
-func _on_pick(item:Dictionary):
-	print("[skill line pick item ]",item)
+func _on_pick(item:SlotObject):
+	print("[skill line pick item ]",item.to_object())
 	var mouse_item:MouseFloatItem = GameUtils.get_mouse_item(self)
 	var mouse_item_obj = mouse_item.item
 	if mouse_item_obj.id == item.id && mouse_item_obj.from == item.from:
 		mouse_item.clear()
 		return
-	mouse_item.item = item.duplicate(true)
+	mouse_item.item = item
 

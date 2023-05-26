@@ -152,3 +152,6 @@ func give_exp(value):
 
 func give_gold(gold):
 	stats.gold = gold + stats.gold
+
+func give_item(item:ItemObject):
+		inventory[item.id] = item

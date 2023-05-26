@@ -21,14 +21,18 @@ func load_key_bindings():
 		var item = _kbs[o]
 		var _default:BasicSlot = default_attack.get_node_or_null(o)
 		if _default:
-			_default.set_slot_key(item.key)
-			_default.slot_source = Globals.ITEM_SOURCE.SKILL_BAR
+			_default.item.assign({
+				"key":item.key,
+				"from":Globals.ITEM_SOURCE.SKILL_BAR
+				})
 			_default.connect("use_skill",self,"_on_use_skill")
 
 		var _skills:BasicSlot = active_skills.get_node_or_null(o)
 		if _skills:
-			_skills.set_slot_key(item.key)
-			_skills.slot_source = Globals.ITEM_SOURCE.SKILL_BAR
+			_skills.item.assign({
+				"key":item.key,
+				"from":Globals.ITEM_SOURCE.SKILL_BAR
+			})
 			_skills.connect("use_skill",self,"_on_use_skill")
 			_skills.connect("pick",self,"_on_pick_skill")
 
@@ -57,5 +61,5 @@ func set_slot(attack:AttackObject):
 	var slot_obj:Dictionary = attack.obj
 	_slot_node.set_item(slot_obj)
 
-func _on_use_skill(slot_obj:Dictionary):
+func _on_use_skill(slot_obj:SlotObject):
 	Event.emit_signal("player_attack", slot_obj)

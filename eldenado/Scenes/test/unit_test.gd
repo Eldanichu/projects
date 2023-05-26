@@ -136,3 +136,13 @@ func _on_CharecterTest_pressed():
 		dmg_text.b
 	dmg_text.text = dmg
 	combat_log.println(dmg_text)
+
+
+func _on_AddNewMemberForClassTest_pressed() -> void:
+	var slot := SlotObject.new()
+	slot.id = "1"
+	slot.type = 1
+	slot.icon = "222"
+	print(slot.to_object())
+
+	pass # Replace with function body.

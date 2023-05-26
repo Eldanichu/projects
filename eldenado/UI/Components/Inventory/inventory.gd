@@ -40,7 +40,7 @@ func render_items():
 	for item in player_items:
 		var o:ItemObject = player_items[item]
 		var slot := get_slot_by_index(index)
-		slot.set_item(o.item)
+		slot.set_item(o.to_object())
 		index += 1
 	pass
 
@@ -59,25 +59,25 @@ func add_item(item:Dictionary):
 func _on_bag_sort():
 	pass
 
-func _on_bag_slot_pick(slot:Dictionary,slot_id):
+func _on_bag_slot_pick(slot:SlotObject,slot_id):
 	print("[inventory](on_pick)->{0}  name: {1}".format([slot,slot_id]))
 	var node_mi:MouseFloatItem = GameUtils.get_mouse_item(self)
-	var mouse_item = copy(node_mi.item)
-	var temp:Dictionary
+	var mouse_item = node_mi.item
+	var temp:SlotObject = SlotObject.new()
 	var _inv_slot := get_slot_by_id(slot_id)
-	if has_item(slot):
-		temp = copy(slot)
+	if !slot.is_empty():
+		temp.assign(slot.to_object())
 		if has_item(mouse_item):
-			_inv_slot.set_item(mouse_item)
-			node_mi.set_item(temp)
+			_inv_slot.set_item(mouse_item.to_object())
+			node_mi.set_item(temp.to_object())
 		else:
 			_inv_slot.clear()
-			node_mi.set_item(temp)
+			node_mi.set_item(temp.to_object())
 	else:
 		if has_item(mouse_item):
-			_inv_slot.set_item(mouse_item)
+			_inv_slot.set_item(mouse_item.to_object())
 			node_mi.clear()
-	temp = {}
+	temp = null
 
 func _on_bag_use_item(slot,slot_id):
 	print("[inventory](on_use)->{0}  name: {1}".format([slot,slot_id]))
@@ -87,12 +87,12 @@ func _on_bag_use_item(slot,slot_id):
 	var inv = player.inventory
 	if !item_id in inv:
 		return
-	var item_obj = inv[item_id]
-	print(item_obj)
-	pass
+	var item_obj:ItemObject = inv[item_id]
+	item_obj.use()
 
-func has_item(slot:Dictionary) -> bool:
-	return ObjectUtil.has_value(slot,"id") && ObjectUtil.has_value(slot, "type")
+
+func has_item(slot:SlotObject) -> bool:
+	return !slot.is_empty()
 
 func copy(item:Dictionary) -> Dictionary:
 	return item.duplicate(true)
