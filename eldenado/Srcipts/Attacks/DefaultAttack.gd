@@ -1,14 +1,22 @@
-extends AttackObject
+extends Resource
 class_name DefaultAttack
 
+const instance_props:Array = [
+	"id",
+	"icon",
+	"cd",
+	"cast",
+	"target",
+]
+
+var id = "default_attack"
+var icon:String = "00000"
+var cd:float = 0.6
+var cast
+var target
+
 func _init() -> void:
-	set_obj({
-		"id":"DefaultAttack",
-		"icon":"00000",
-		"type":Globals.SLOT_TYPE.SKILL,
-		"slot":Globals.SLOT.ATTACK
-	})
-	set_cd(0.4)
+	pass
 
 func get_power() -> Array:
 	var stats:Dictionary = cast.stats
@@ -36,3 +44,9 @@ func get_log(power, critcle):
 		damage_text.to_string()
 	])
 	return text
+
+func to_object() -> Dictionary:
+	var _props:Dictionary = {}
+	for key in instance_props:
+		_props[key] = self[key]
+	return _props

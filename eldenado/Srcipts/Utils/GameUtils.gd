@@ -46,6 +46,10 @@ static func set_z_index(control_node:CanvasItem,z_index:int):
 static func quit(node:Node):
 	node.get_tree().quit()
 
+func get_mouse_item(node):
+	var mouse_item = get_root_node(node,"mouse_item")
+	return mouse_item
+
 static func get_root_node(node:Node,node_name:String):
 	var tree:SceneTree
 	if node.has_method("get_tree"):
@@ -54,14 +58,27 @@ static func get_root_node(node:Node,node_name:String):
 		return null
 	return tree.get_root().get_node_or_null(node_name)
 
-static func get_mouse_item(node:Node) -> MouseFloatItem:
-	var node_mouse_item:MouseFloatItem = get_root_node(node,"mouse_item")
+static func get_main_node(node,node_name):
+	var main = get_root_node(node, "main")
+	if !main:
+		return null
+	var _node = main.get_node_or_null(node_name)
 
-	return node_mouse_item
+static func get_game_node(node,node_name):
+	var main = get_root_node(node, "main")
+	if !main:
+		return
+	var game = main.get_node_or_null("game")
+	var _node = game.get_node_or_null(node_name)
+
+	return _node
 
 static func get_player(node,player_name):
-	var main = get_root_node(node, "main")
-	var game = main.get_node_or_null("game")
-	var player = game.get_node_or_null("player_node[{0}]".format([player_name]))
+	var player = get_game_node(node, "player_node[{0}]".format([player_name]))
 
 	return player
+
+static func get_db(node):
+	var _db = get_game_node(node,"DB")
+	
+	return _db

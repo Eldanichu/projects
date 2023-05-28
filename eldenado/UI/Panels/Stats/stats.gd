@@ -15,7 +15,11 @@ onready var stats:Dictionary = {
 }
 
 func _ready():
+	Event.connect("player_ready",self, "_set_player")
 	pass
+
+func _set_player(player:PlayerObj):
+	update_ui(player.stats)
 
 func _process(delta):
 	com_panel.visible = show_command
@@ -34,8 +38,4 @@ func update_ui(_stat):
 	stats.expr.t_max = _stat.expr_max
 	stats.expr.t_val = _stat.expr
 
-func update_skills(skill:Dictionary):
-	if ObjectUtil.is_empty(skill):
-		return
-	skill_bar.set_slot(skill.default_attacks)
 

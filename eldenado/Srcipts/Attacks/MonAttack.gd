@@ -1,5 +1,9 @@
-extends AttackObject
+extends Resource
 class_name MonAttack
+
+var cast
+var target
+var cd:float
 
 func _init() -> void:
 	pass

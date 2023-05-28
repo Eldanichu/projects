@@ -34,7 +34,7 @@ func setup():
 				_node.name = o
 				add_child(_node)
 
-	emit_signal("db_ready")
+	Event.emit_signal("db_ready", self)
 
 func get_data(node_id:String):
 	var _node = get_node(node_id)

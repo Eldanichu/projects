@@ -35,11 +35,6 @@ _global_script_classes=[ {
 "path": "res://Srcipts/Utils/ArrayUtil.gd"
 }, {
 "base": "Resource",
-"class": "AttackObject",
-"language": "GDScript",
-"path": "res://Srcipts/Attacks/AttackObject.gd"
-}, {
-"base": "Resource",
 "class": "AttackPower",
 "language": "GDScript",
 "path": "res://Srcipts/Objects/AttackPower.gd"
@@ -114,7 +109,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://DB/DB.gd"
 }, {
-"base": "AttackObject",
+"base": "Resource",
 "class": "DefaultAttack",
 "language": "GDScript",
 "path": "res://Srcipts/Attacks/DefaultAttack.gd"
@@ -674,6 +669,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/fuzzers/IntFuzzer.gd"
 }, {
+"base": "TextureButton",
+"class": "Item",
+"language": "GDScript",
+"path": "res://Srcipts/Items/Item.gd"
+}, {
 "base": "Resource",
 "class": "ItemObject",
 "language": "GDScript",
@@ -694,7 +694,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdUnit3/src/core/LocalTime.gd"
 }, {
-"base": "AttackObject",
+"base": "Resource",
 "class": "MonAttack",
 "language": "GDScript",
 "path": "res://Srcipts/Attacks/MonAttack.gd"
@@ -710,9 +710,9 @@ _global_script_classes=[ {
 "path": "res://UI/Components/Monster/monster.gd"
 }, {
 "base": "CanvasLayer",
-"class": "MouseFloatItem",
+"class": "MouseItem",
 "language": "GDScript",
-"path": "res://UI/Components/BasicSlot/mouse_float_item.gd"
+"path": "res://Srcipts/Items/mouse_item.gd"
 }, {
 "base": "Resource",
 "class": "Notifer",
@@ -810,6 +810,11 @@ _global_script_classes=[ {
 "path": "res://addons/gdUnit3/src/core/event/SignalHandler.gd"
 }, {
 "base": "Resource",
+"class": "SkillObject",
+"language": "GDScript",
+"path": "res://Srcipts/Attacks/SkillObject.gd"
+}, {
+"base": "Resource",
 "class": "SlotObject",
 "language": "GDScript",
 "path": "res://UI/Components/BasicSlot/SlotObject.gd"
@@ -880,9 +885,8 @@ _global_script_class_icons={
 "AnyBuildInTypeArgumentMatcher": "",
 "AnyClazzArgumentMatcher": "",
 "ArrayUtil": "",
-"AttackObject": "",
 "AttackPower": "",
-"BasicSlot": "res://Assets/ui/panel/00670.PNG",
+"BasicSlot": "",
 "BattleLogText": "",
 "BattlePanel": "",
 "BigNumber": "",
@@ -1008,6 +1012,7 @@ _global_script_class_icons={
 "GodotGdErrorMonitor": "",
 "InputUtil": "",
 "IntFuzzer": "",
+"Item": "",
 "ItemObject": "",
 "JUnitXmlReport": "",
 "Json": "",
@@ -1015,7 +1020,7 @@ _global_script_class_icons={
 "MonAttack": "",
 "MonObj": "",
 "Monster": "",
-"MouseFloatItem": "",
+"MouseItem": "",
 "Notifer": "",
 "ObjectUtil": "",
 "Player": "",
@@ -1035,6 +1040,7 @@ _global_script_class_icons={
 "Settings": "",
 "ShapeUtil": "",
 "SignalHandler": "",
+"SkillObject": "",
 "SlotObject": "",
 "Stats": "res://Assets/ui/bars/empty.png",
 "StringFuzzer": "",

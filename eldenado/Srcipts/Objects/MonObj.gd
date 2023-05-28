@@ -70,7 +70,7 @@ func give_damage(damage, dmg_type):
 	rnd.randomize()
 	value -= rnd.randi_range(mon_stat.ac,mon_stat.ac_max)
 	set_stat({
-		"hp": value
+		"hp": max(value, 0)
 	})
 	if is_dead():
 		die()

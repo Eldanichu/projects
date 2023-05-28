@@ -26,7 +26,7 @@ func setup(_player_info:Dictionary):
 
 func load_game_data():
 	db = DB.new()
-	db.connect("db_ready",self,"_on_db_ready")
+	Event.connect("db_ready", self, "_on_db_ready")
 	add_child(db)
 
 func bind_events():
@@ -43,6 +43,7 @@ func load_maps():
 
 func create_player():
 	player = PlayerObj.new()
+	player.connect("ablity_change",self,"_on_player_ablity_change")
 	player.connect("stats_change",self,"_on_player_stats_change")
 	player.connect("die",self,"_on_player_die")
 	player.connect("levelup",self,"_on_player_levelup")
@@ -50,59 +51,40 @@ func create_player():
 	if !player_info:
 		return
 	player.setup(player_info)
+	Event.emit_signal("player_ready", player)
+
+func make_item(id:String) -> ItemObject:
+	var item:ItemObject = ItemObject.new()
+	item.set_target(player)
+	item.id = id
+	item.set_db(db)
+	item.cd = 0.1
+	item.size = 5
+	item.get_instance()
+	return item
 
 func init_player():
-	use_skills(false)
-	give_default_items()
-	inv.set_player(player)
-
-func give_default_items():
-	var player_node = GameUtils.get_player(self, player.stats.player_name)
-	for i in Globals.PLAYER_DEFAUT_ITEMS:
-		var item := ItemObject.new({
-			"db":db,
-			"id":i.id,
-			"size":i.size,
-			"target":player_node
-		})
-		player.give_item(item)
+	player.give_item(make_item("posion_mp_0"))
+	player.give_item(make_item("posion_hp_0"))
 
 func update_ui():
 	stat.update_ui(player.stats)
-	stat.update_skills(player.skill)
 	character.update_stats(player.stats)
 
 func set_battle(battle:bool):
 	idel.visible = !battle
 	battle_panel.visible = battle
 	stat.show_command = battle
-	use_skills(battle)
-
-func use_skills(value:bool):
-	var player_skills = player.skill
-	for s in player_skills:
-		var skill:AttackObject = player_skills[s]
-		skill.set_disabled(!value)
-		update_ui()
-
-func init_mouse_item() -> void:
-	var item := GameUtils.get_mouse_item(self)
-	if !item:
-		item = MouseFloatItem.new(self)
 
 """
  Events
 """
-func _on_db_ready():
-	print("[game] -> DB ready")
-	init_mouse_item()
+func _on_db_ready(db:DB):
+	print("[game] -> DB ready",db)
 	load_maps()
 	create_player()
 	init_player()
 	update_ui()
-
-	# ******test
-#	stat.show_command = true
 
 func _on_map_click(e):
 	Event.emit_signal(Event.BUTTON_AUDIO.MENU_BUTTON)
@@ -114,7 +96,9 @@ func _on_map_click(e):
 		mon.get_instance(db, _mon_id)
 		mon_objs.append(mon)
 	battle_panel.mon_objs = mon_objs
-	battle_panel.set_player(player)
+
+func _on_player_ablity_change():
+	pass
 
 func _on_player_stats_change(_stat:Dictionary):
 	_stat.merge(player_info, true)
@@ -133,10 +117,12 @@ func _on_player_levelup():
 
 func _on_battle_start():
 	set_battle(true)
+	player.state = Globals.PLAYER_STATE.BATTLE
 
 func _on_battle_end():
 	print("[game]-> battle state:end")
 	set_battle(false)
+	player.state = Globals.PLAYER_STATE.IDEL
 
 func _on_game_panel_switch_panel(panel_name) -> void:
 	Event.emit_signal(Event.BUTTON_AUDIO.MENU_BUTTON)

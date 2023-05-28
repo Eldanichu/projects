@@ -11,7 +11,8 @@ enum SLOT_TYPE {
 	SKILL = 0,
 	EQUIP = 1,
 	SKILL_ITEM = 2,
-	USEABLE_ITEM = 3
+	USEABLE_ITEM = 3,
+	MATERIAL = 4,
 }
 
 enum SLOT_ACTION {
@@ -25,6 +26,11 @@ enum ITEM_SOURCE {
 	SKILL_BAR = 980,
 	INVENTORY = 800,
 	EQUIPMENT = 720
+}
+
+enum PLAYER_STATE {
+	BATTLE,
+	IDEL,
 }
 
 enum BATTLE_STATUS {
@@ -67,8 +73,7 @@ const ITEM_QTY:Dictionary = {
 }
 
 const ITEM_TYPE:Dictionary = {
-	CONSUMABLE = 31,
-	POSION = 2,
+
 
 	HELM = 2,
 	WEAPON = 3,
@@ -81,14 +86,25 @@ const ITEM_TYPE:Dictionary = {
 
 	BELT = 11,
 	BOOT = 12,
-	SPELL_ITEM = 32,
+	SPELL_ITEM = 34,
 	ATTACH = 33,
 
+	CONSUMABLE = 31,
+	POSION = 2,
 	SPELL = 24,
-	TASK = 0,
 	SCROLL = 30,
+	TASK = 0,
 	MATERIAL = 32
 }
+
+static func is_equipment(item_type):
+	return [3,13,10,4,5,6,11,12,33,34].has(item_type)
+static func is_use_item(item_type):
+	return [31,2,0,30].has(item_type)
+static func is_spell(item_type):
+	return [24].has(item_type)
+static func is_fixed(item_type):
+	return [0,32].has(item_type)
 
 const CLASS_NAME:Dictionary = {
 	1 : "TAG_CLASS_WIZARD",
@@ -150,10 +166,11 @@ const char_panel_stat:Array = [
 
 const PLAYER_DEFAUT_ITEMS:Array = [
 	{"id":"posion_hp_0", "size":5},
-	{"id":"posion_mp_0", "size":5}
+	{"id":"posion_mp_0", "size":5},
+	{"id":"posion_rjuv_0", "size":5},
 ]
 
-const SLOT:Dictionary = {
+const SKILL_SLOT:Dictionary = {
 	ATTACK = "Attack",
 	DEFAULT_SKILL = "Skill",
 	SLOT_1 = "Skill 1",
@@ -189,15 +206,9 @@ static func get_exp_by_level(level:int) -> int:
 	var exp_value:int = level * ( exp_const * exp_factor ) * time
 	return exp_value
 
-static func can_slot_put(item:Dictionary, slot:Dictionary) -> bool:
+static func can_slot_put(item:SlotObject, slot:SlotObject) -> bool:
 	var b = false
 	if slot == null:
-		return b
-	if !ObjectUtil.has_value(item,"from"):
-		printerr("[can_put]->Error: Unknown Item Source!")
-		return b
-	if !ObjectUtil.has_value(slot,"from"):
-		printerr("[can_put]->Error: Unknown Slot Source!")
 		return b
 	var _item_from = item.from
 	var _slot_from = slot.from

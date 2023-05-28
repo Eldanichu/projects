@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/ui/bars/01072.png" type="Texture" id=1]
+[ext_resource path="res://Srcipts/Items/Item.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/res/chn-sm.tres" type="DynamicFont" id=3]
+
+[node name="item" type="TextureButton"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+focus_mode = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+shortcut_in_tooltip = false
+button_mask = 3
+enabled_focus_mode = 0
+expand = true
+stretch_mode = 3
+script = ExtResource( 2 )
+
+[node name="size" type="Label" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -2.0
+margin_bottom = -2.0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0.368627, 1, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "99+"
+align = 2
+
+[node name="cd" type="TextureProgress" parent="."]
+unique_name_in_owner = true
+modulate = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -2.0
+margin_bottom = -2.0
+rect_min_size = Vector2( 30, 30 )
+texture_progress = ExtResource( 1 )
+fill_mode = 3
+nine_patch_stretch = true
+
+[node name="test" type="Label" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 14.0
+
+[connection signal="button_up" from="." to="." method="_on_item_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_item_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_item_mouse_exited"]

@@ -24,7 +24,8 @@ var battle_result = {
 }
 
 func _ready() -> void:
-		Event.connect("player_attack",self,"_on_player_attack")
+	Event.connect("player_ready",self, "set_player")
+	Event.connect("player_attack",self,"_on_player_attack")
 
 func _process(delta):
 	process_battle_result()
@@ -116,22 +117,18 @@ func emit_battle_end():
 """
 Player Events
 """
-func _on_player_attack(slot_obj:SlotObject):
+func _on_player_attack(skill):
 	if battle_state != BATTLE_STATUS.FIGHT || player.is_dead():
 		return
-	print("[battle_panel]->",slot_obj)
-	var attack := DefaultAttack.new()
 	var mon = get_selected_target()
-#	if !mon:
-#		mon = get_random_target()[0]
-	attack.cast = player
+	skill.cast = player
 	if !mon || mon == null:
 		return
-	attack.target = mon.mon_obj
-	var v:Array = attack.start()
+	skill.target = mon.mon_obj
+	var v:Array = skill.start()
 	var power:int = v[0]
 	var is_critcle:bool = v[1]
-	var text = attack.get_log(power,is_critcle)
+	var text = skill.get_log(power,is_critcle)
 	logger.println(text)
 
 func get_selected_target():

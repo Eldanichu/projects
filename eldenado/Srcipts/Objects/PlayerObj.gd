@@ -1,6 +1,7 @@
 extends Node
 class_name PlayerObj
 
+signal ablity_change()
 signal stats_change(stats)
 signal damage(value)
 signal die()
@@ -40,9 +41,18 @@ var stats:Dictionary = {
 	sc_max = 2.0
 } setget set_stat
 
+var state = Globals.PLAYER_STATE.IDEL
+
+var player_name:String setget ,get_player_name
 var equipment := {}
 var inventory := {}
+var default_attacks := {}
 var skill := {}
+
+var disabled:Dictionary = {
+	"skill":false,
+	"item":false
+} setget set_disabled
 
 func setup(_player_info):
 	stats.merge(_player_info, true)
@@ -54,7 +64,6 @@ func new_player():
 	if stats.level == 0:
 		stats.gold = 2000
 		level_up()
-		default_attacks()
 
 func level_up():
 	stats.level = stats.level + 1
@@ -62,19 +71,16 @@ func level_up():
 	var _exp_value = _g.get_exp_by_level(stats.level)
 	stats.hp_max = _class_info["max_hp"]
 	stats.mp_max = _class_info["max_mp"]
-#	stats.hp = 1
-	stats.hp = stats.hp_max
-	stats.mp = stats.mp_max
+	stats.hp = 1
+	stats.mp = 1
+#	stats.hp = stats.hp_max
+#	stats.mp = stats.mp_max
 	stats.expr = 0
 	stats.expr_max = _exp_value
 
 	calculate_stats()
 	update_ui_stats()
 	emit_signal("levelup")
-
-func default_attacks():
-	skill["default_attacks"] = DefaultAttack.new()
-	print("[{0}]-> skills object : ".format([name]), skill)
 
 func update_ui_stats():
 	var _stats = {}
@@ -103,6 +109,14 @@ func set_stat(_stat:Dictionary):
 	stats.merge(_stat, true)
 	emit_stats_change(stats)
 
+func set_disabled(dict:Dictionary):
+	disabled.merge(dict, true)
+	emit_signal("ablity_change")
+
+
+func get_player_name():
+	return stats.player_name
+
 func is_dead():
 	var dead = false
 	if stats.hp <= 0:
@@ -123,6 +137,18 @@ func revive():
 	stats.hp = stats.hp_max
 	stats.mp = stats.mp_max
 
+func give_hp(value):
+	if stats.hp == stats.hp_max:
+		return
+	set_stat({
+		"hp":min(stats.hp + value, stats.hp_max)
+	})
+
+func give_mp(value):
+	set_stat({
+		"mp":min(stats.mp + value, stats.mp_max)
+	})
+
 func give_damge(damage, dmg_type):
 	var value = stats.hp - damage
 	var rnd := RandomNumberGenerator.new()
@@ -137,7 +163,7 @@ func give_damge(damage, dmg_type):
 		_max = stats.mc_max
 	value -= rnd.randi_range(_min,_max)
 	set_stat({
-		"hp": value
+		"hp": max(value,0)
 	})
 	if is_dead():
 		die()
@@ -153,5 +179,14 @@ func give_exp(value):
 func give_gold(gold):
 	stats.gold = gold + stats.gold
 
-func give_item(item:ItemObject):
-		inventory[item.id] = item
+func give_item(item_obj:ItemObject):
+	inventory[item_obj._uid] = item_obj
+	Event.emit_signal("add_item",item_obj)
+
+func remove_item(item_obj:ItemObject):
+	if not item_obj._uid in inventory:
+		return
+	inventory.erase(item_obj._uid)
+
+func add_skill(skill):
+	pass

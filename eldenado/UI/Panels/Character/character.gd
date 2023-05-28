@@ -7,9 +7,13 @@ var g:Globals = Globals.new()
 var player_stats:Dictionary
 
 func _ready():
+	Event.connect("player_ready", self, "_set_player")
 	load_stats_tab()
 	load_skill_tab()
 	load_equip_tab()
+
+func _set_player(player:PlayerObj):
+	update_stats(player.stats)
 
 func update_stats(stats):
 	player_stats = stats

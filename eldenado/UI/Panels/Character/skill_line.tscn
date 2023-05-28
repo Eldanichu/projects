@@ -19,8 +19,6 @@ size_flags_vertical = 0
 
 [node name="slot" parent="h_box_container" instance=ExtResource( 1 )]
 unique_name_in_owner = true
-slot_source = 1024
-slot_type = 2
 
 [node name="v_box_container" type="VBoxContainer" parent="h_box_container"]
 margin_left = 36.0

@@ -2,24 +2,15 @@ extends Resource
 class_name SlotObject
 
 enum REQUIRED {
-	id,
-	type,
-	icon
+	id
 }
 
 var id
 var type:int
-var icon:String
-var key
-var from
-var cd:float
+var source:int
+var key:String = ""
 var disabled:bool
-var size:int
 
-var variables:Dictionary = {} setget assign, get_variables
-
-func _init() -> void:
-	pass
 
 func is_empty():
 	var bo = false
@@ -29,28 +20,20 @@ func is_empty():
 	return bo
 
 func to_object() -> Dictionary:
-	if is_empty():
-		printerr("[SlotObject] to_object()-> required properties {0}".format([REQUIRED]))
-		return {}
 	var _props = {
 		"id":id,
 		"type":type,
-		"icon":icon,
-		"from":from,
-		"cd":cd,
 		"disabled":disabled
 	}
-	_props.merge(variables)
+	if is_empty():
+		printerr("[SlotObject] to_object()-> required properties {0}".format([REQUIRED]))
+		return {}
 	return _props
 
 func assign(dict:Dictionary):
 	for key in dict:
 		if key in self:
 			self[key] = dict[key]
-	variables.merge(dict, true)
-
-func get_variables() -> Dictionary:
-	return to_object()
 
 func can_use():
 	return !disabled

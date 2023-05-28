@@ -1,65 +1,90 @@
 extends HBoxContainer
 
+const SLOT_TYPE = Globals.SLOT_TYPE
+const ITEM_SOURCE = Globals.ITEM_SOURCE
+
+
 onready var active_skills = $"%active_skills"
 onready var default_attack = $"%default_attack"
 
+var db:DB
+var player:PlayerObj
+
 func _ready() -> void:
-	setup()
+	Event.connect("db_ready", self, "setup")
+	Event.connect("player_ready",self, "set_player")
 
-func setup():
-	load_key_bindings()
+func set_player(player_:PlayerObj):
+	player = player_
 
-func load_key_bindings():
+func setup(db_:DB):
+	db = db_
+	var slot := get_slot_by_id(Globals.SKILL_SLOT.ATTACK)
+	if !slot:
+		return
+	var item = slot.get_skill()
+	var _attack := SkillObject.new()
+	_attack.id = "default_attack"
+	_attack.get_instance()
+	slot.add_skill(_attack)
+
+func _process(delta):
+	show_bindings()
+
+
+func _input(event):
+	if !player || player.state == Globals.PLAYER_STATE.IDEL:
+		return
+	if InputUtil.mouse_click(event,BUTTON_LEFT):
+		var slot := get_slot_by_id(Globals.SKILL_SLOT.ATTACK)
+		if !slot:
+			return
+		var slot_skill := slot.get_skill()
+		var slot_obj := slot.get_instance()
+		slot_obj.use_skill()
+
+
+func get_slot_by_id(id:String) -> BasicSlot:
+	var slot = default_attack.get_node_or_null(id)
+	return slot
+
+func has_bindings() -> bool:
 	if not is_instance_valid(Store) and not "settings" in Store:
 		print("Game Store Class is not in AutoLoad.")
-		return
+		return false
+	return true
+
+func get_bindings()->Dictionary:
+	if !has_bindings():
+		return {}
 	var settings = Store.settings
 	var _kbs = settings.key_bindings
+	return _kbs
+
+func show_bindings():
+	var _kbs = get_bindings()
 	for o in _kbs:
 		if o == "sep":
 			continue
-		var item = _kbs[o]
-		var _default:BasicSlot = default_attack.get_node_or_null(o)
-		if _default:
-			_default.item.assign({
-				"key":item.key,
-				"from":Globals.ITEM_SOURCE.SKILL_BAR
-				})
-			_default.connect("use_skill",self,"_on_use_skill")
+		var item:Dictionary = _kbs[o]
+		var _slot:BasicSlot = get_slot(o)
+		if !_slot:
+			continue
+		_slot.slot.key = item.key
 
-		var _skills:BasicSlot = active_skills.get_node_or_null(o)
-		if _skills:
-			_skills.item.assign({
-				"key":item.key,
-				"from":Globals.ITEM_SOURCE.SKILL_BAR
-			})
-			_skills.connect("use_skill",self,"_on_use_skill")
-			_skills.connect("pick",self,"_on_pick_skill")
-
-func _on_pick_skill(slot:Dictionary):
-	print("[skill bar pick ]",slot)
-	var node_mouse_item:MouseFloatItem = GameUtils.get_mouse_item(self)
-	var mouse_item = node_mouse_item.item
-	if !"id" in mouse_item || StringUtil.isEmptyOrNull(mouse_item["id"]):
+func update_item(slot_id:String ,item_object:ItemObject):
+	var _slot := get_slot(slot_id)
+	if item_object.stackable && item_object.size <= 0:
+		_slot.clear()
 		return
-	var bo_put = Globals.can_slot_put(mouse_item, slot)
-	print("[can put in skill bar? ]", bo_put)
-	if !bo_put:
-		return
+	_slot.set_item(item_object.to_object())
 
-func set_slot(attack:AttackObject):
+func get_slot(slot_id:String) -> BasicSlot:
 	var _slot_node
-	var slot = attack.obj.slot
-	var _default_slot = default_attack.get_node_or_null(slot)
-	var _skill_slot = active_skills.get_node_or_null(slot)
+	var _default_slot = default_attack.get_node_or_null(slot_id)
+	var _skill_slot = active_skills.get_node_or_null(slot_id)
 	if _default_slot:
 		_slot_node = _default_slot
 	elif _skill_slot:
 		_slot_node = _skill_slot
-	if !_slot_node:
-		return
-	var slot_obj:Dictionary = attack.obj
-	_slot_node.set_item(slot_obj)
-
-func _on_use_skill(slot_obj:SlotObject):
-	Event.emit_signal("player_attack", slot_obj)
+	return _slot_node
