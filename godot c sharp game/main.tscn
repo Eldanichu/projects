@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://main.cs" type="Script" id=1]
+[ext_resource path="res://Script/Event.cs" type="Script" id=2]
+[ext_resource path="res://Script/Object/Slot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Script/Object/Player.cs" type="Script" id=4]
+
+[node name="main" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Event" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="g" type="Control" parent="GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="slot" parent="GUI/g" instance=ExtResource( 3 )]

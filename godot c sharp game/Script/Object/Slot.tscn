@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Script/Object/Slot.cs" type="Script" id=1]
+
+[node name="slot" type="TextureButton"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+button_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 32.0
+margin_bottom = 32.0
+align = 2
+valign = 2

@@ -1,0 +1,9 @@
+<Project Sdk="Godot.NET.Sdk/3.3.0">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>godotcsharpgame</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Script\Attribute" />
+  </ItemGroup>
+</Project>
