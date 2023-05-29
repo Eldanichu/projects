@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Godot.Collections;
+using godotcsharpgame.Script.Util;
 using Object = Godot.Object;
 
 public class Slot : TextureButton {
@@ -17,6 +18,7 @@ public class Slot : TextureButton {
       EventName = "PlayerAttack"
     };
     SlotName = "hi";
+    L.t($"{SlotName}");
     Event.Emit(this);
   }
 
@@ -31,6 +33,6 @@ public class Slot : TextureButton {
 
   public void OnAttack(Slot e) {
     e.SlotName = "fff";
-    GD.Print(e.SlotName);
+    L.t($"{e.SlotName}");
   }
 }
