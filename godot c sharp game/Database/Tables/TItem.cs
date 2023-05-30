@@ -1,7 +1,9 @@
-﻿using SQLite;
+﻿using System;
+using System.Collections.Generic;
+using SQLite;
 
 [Table("Item")]
-public class Item {
+public class TItem {
   [Column("_uid")] public string _uid { set; get; }
   [PrimaryKey] [Column("ID")] [Indexed] public string ID { set; get; }
   [Column("NAME")] public string NAME { set; get; }
