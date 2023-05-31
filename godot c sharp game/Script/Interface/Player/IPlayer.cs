@@ -1,7 +1,10 @@
-﻿public interface IPlayer {
-  bool Dead();
-  void LevelUp();
-  void Attack();
-  void UseItem();
-  void TakeDamage();
+﻿using System;
+using System.Collections.Generic;
+using Godot;
+
+public interface IPlayer {
+  Node node { set; get; }
+  List<Node> Targets { set; get; }
+  PlayerProperties props { set; get; }
+  List<String> Inventory { set; get; }
 }

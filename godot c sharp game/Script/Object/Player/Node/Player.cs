@@ -8,13 +8,25 @@ public class Player : Node {
   public PlayerObject PlayerObject { set; get; }
 
   public override void _Ready() {
-    PlayerObject = new PlayerObject(this);
-    var playerClass = new TaoClass<PlayerClass>(PlayerObject);
-    PlayerObject.LevelUp();
+    var owner = new BaseObject() {
+      Object = this
+    };
     
+    var buff = new HealingBuff() {
+      TickTimes = 5,
+      Owner = owner
+    };
+    
+    buff.Add();
 
-    L.t($"player properties ->{PlayerObject.GetObject()}");
-
+    var player = new PlayerObject() {
+      node = this
+    };
+    player.StateChanged += (sender, value) => {
+      L.t($"{sender} - {value}");
+    };
+    player.Attack(new Damage());
+    L.t($"{player}");
     // var item = new Items() {
     //   _uid = StringUtil.GetId(),
     //   ID = "00346",
