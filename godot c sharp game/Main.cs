@@ -10,8 +10,10 @@ public class Main : Node {
 
   [Connect("Eldanado")]
   public override void _Ready() {
-    var tick = new Tick(5);
-
+    var tick = new Tick(5) {
+      Name = "test tick"
+    };
+    
     tick.OnTick += (count) => {
       L.t($"ticks {count}");
       if (count >= 2) {
@@ -20,7 +22,7 @@ public class Main : Node {
     };
     AddChild(tick);
     tick.Start();
-
+    
     // yield
     // await ToSignal(GetTree(), "idle_frame");
     // var b1 = new BigNumber("1502.5");

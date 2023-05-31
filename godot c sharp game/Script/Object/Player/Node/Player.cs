@@ -15,6 +15,16 @@ public class Player : Node {
 
     L.t($"player properties ->{PlayerObject.GetObject()}");
 
+    var owner = new BaseObject() {
+      Object = this
+    };
+    
+    var buff = new HealingBuff() {
+      TickTimes = 5,
+      Owner = owner
+    };
+    
+    buff.Add();
     // var item = new Items() {
     //   _uid = StringUtil.GetId(),
     //   ID = "00346",
