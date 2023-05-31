@@ -1,21 +1,15 @@
 ﻿using Godot;
 
-public class Buff : Skill,IBuff {
-  public Node buff { set; get; }
-  
-  public void HealBuff() {
-    // timer = new Timer() {
-    //   Autostart = false,
-    //   ProcessMode = 0,
-    //   WaitTime = 1
-    // };
-    // skill.AddChild(timer);
-    // timer.Connect("timerout",this,"heal")
-    // timer.Start();
-  
+public class Buff : Node,IBuff {
+  public Buff() {
   }
-
-  public void BleedingBuff() {
-    throw new System.NotImplementedException();
+  
+  public Buff HealBuff() {
+    var buffTick = new Tick(7);
+    buffTick.OnTick += (count) => {
+      //TODO do something to target Object.
+    };
+    AddChild(buffTick);
+    return this;
   }
 }

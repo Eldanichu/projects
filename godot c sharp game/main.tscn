@@ -1,10 +1,26 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.cs" type="Script" id=1]
 [ext_resource path="res://Script/Event.cs" type="Script" id=2]
-[ext_resource path="res://Script/Object/Slot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scene/Component/pg.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Script/Object/Player/Player.cs" type="Script" id=4]
 [ext_resource path="res://Assets/Theme/g.tres" type="Theme" id=5]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.231373, 0.231373, 0.231373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.192157, 0.266667, 0.6, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.6, 0.574, 0.288, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
 [node name="main" type="Node"]
 script = ExtResource( 1 )
@@ -22,4 +38,69 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 5 )
 
-[node name="slot" parent="GUI/g" instance=ExtResource( 3 )]
+[node name="panels" type="VBoxContainer" parent="GUI/g"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="statsbar" type="VBoxContainer" parent="GUI/g/panels"]
+margin_right = 1024.0
+size_flags_horizontal = 3
+
+[node name="playerpanel" type="VBoxContainer" parent="GUI/g/panels"]
+margin_top = 494.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 10
+
+[node name="hpmp" type="HBoxContainer" parent="GUI/g/panels/playerpanel"]
+margin_right = 1024.0
+margin_bottom = 85.0
+
+[node name="hp" type="VBoxContainer" parent="GUI/g/panels/playerpanel/hpmp"]
+margin_right = 64.0
+margin_bottom = 85.0
+size_flags_horizontal = 2
+
+[node name="pg" parent="GUI/g/panels/playerpanel/hpmp/hp" instance=ExtResource( 3 )]
+rect_rotation = 0.0
+
+[node name="text" type="Label" parent="GUI/g/panels/playerpanel/hpmp/hp"]
+margin_top = 68.0
+margin_right = 64.0
+margin_bottom = 85.0
+custom_styles/normal = SubResource( 3 )
+
+[node name="mp" type="VBoxContainer" parent="GUI/g/panels/playerpanel/hpmp"]
+margin_left = 960.0
+margin_right = 1024.0
+margin_bottom = 85.0
+size_flags_horizontal = 10
+
+[node name="pg" parent="GUI/g/panels/playerpanel/hpmp/mp" instance=ExtResource( 3 )]
+rect_rotation = 0.0
+custom_styles/fg = SubResource( 8 )
+
+[node name="text" type="Label" parent="GUI/g/panels/playerpanel/hpmp/mp"]
+margin_top = 68.0
+margin_right = 64.0
+margin_bottom = 85.0
+custom_styles/normal = SubResource( 3 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="exp" type="HBoxContainer" parent="GUI/g/panels/playerpanel"]
+margin_top = 89.0
+margin_right = 1024.0
+margin_bottom = 106.0
+
+[node name="ProgressBar" type="ProgressBar" parent="GUI/g/panels/playerpanel/exp"]
+margin_right = 1024.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
+step = 1.0
+value = 50.0

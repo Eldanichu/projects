@@ -9,7 +9,7 @@ using SQLite;
 public class DBCommand<T> where T : new() {
   
   private SceneTree _tree;
-  public SQLiteConnection conn;
+  public SQLiteConnection Conn;
   private Type _type;
   
 
@@ -21,6 +21,6 @@ public class DBCommand<T> where T : new() {
 
   private void GetConnection() {
     var main = (Main)_tree.Root.GetNode("main");
-    conn = main.connection;
+    Conn = main.Connection;
   }
 }

@@ -13,4 +13,6 @@
 
   long mp0 { get; set; }
   long mp1 { get; set; }
+  long exp0 { get; set; }
+  long exp1 { get; set; }
 }

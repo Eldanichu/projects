@@ -1,8 +1,7 @@
-﻿public interface IPlayer : IPlayerProperties {
+﻿public interface IPlayer {
   bool Dead();
   void LevelUp();
   void Attack();
   void UseItem();
-  void Spell();
   void TakeDamage();
 }
