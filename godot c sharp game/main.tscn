@@ -1,20 +1,32 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Main.cs" type="Script" id=1]
 [ext_resource path="res://Script/Event.cs" type="Script" id=2]
 [ext_resource path="res://Scene/Component/pg.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Script/Object/Player/Node/Player.cs" type="Script" id=4]
 [ext_resource path="res://Assets/Theme/g.tres" type="Theme" id=5]
+[ext_resource path="res://Assets/UI/bar_blue.PNG" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/bar_red.PNG" type="Texture" id=7]
+[ext_resource path="res://Assets/Font/ttf/chn.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=8]
+size = 12
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+bg_color = Color( 0.219608, 0.219608, 0.219608, 1 )
+
+[sub_resource type="Theme" id=10]
+RichTextLabel/fonts/normal_font = SubResource( 8 )
+RichTextLabel/styles/normal = SubResource( 9 )
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.231373, 0.231373, 0.231373, 1 )
-
-[sub_resource type="StyleBoxFlat" id=8]
-content_margin_left = 0.0
-content_margin_right = 0.0
-content_margin_top = 0.0
-content_margin_bottom = 0.0
-bg_color = Color( 0.192157, 0.266667, 0.6, 1 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.6, 0.574, 0.288, 1 )
@@ -33,74 +45,115 @@ script = ExtResource( 4 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="g" type="Control" parent="GUI"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="g" type="Control" parent="GUI/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1019.0
+margin_bottom = 595.0
 theme = ExtResource( 5 )
 
-[node name="panels" type="VBoxContainer" parent="GUI/g"]
+[node name="panels" type="VBoxContainer" parent="GUI/MarginContainer/g"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="statsbar" type="VBoxContainer" parent="GUI/g/panels"]
-margin_right = 1024.0
+[node name="statsbar" type="VBoxContainer" parent="GUI/MarginContainer/g/panels"]
+margin_right = 1014.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 0, 36 )
 size_flags_horizontal = 3
 
-[node name="playerpanel" type="VBoxContainer" parent="GUI/g/panels"]
-margin_top = 494.0
-margin_right = 1024.0
-margin_bottom = 600.0
-size_flags_vertical = 10
+[node name="battle" type="VBoxContainer" parent="GUI/MarginContainer/g/panels"]
+unique_name_in_owner = true
+margin_top = 40.0
+margin_right = 1014.0
+margin_bottom = 480.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="hpmp" type="HBoxContainer" parent="GUI/g/panels/playerpanel"]
-margin_right = 1024.0
+[node name="battle_log" type="RichTextLabel" parent="GUI/MarginContainer/g/panels/battle"]
+unique_name_in_owner = true
+margin_right = 1014.0
+margin_bottom = 440.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 10 )
+text = "Logger"
+
+[node name="playerpanel" type="VBoxContainer" parent="GUI/MarginContainer/g/panels"]
+margin_top = 484.0
+margin_right = 1014.0
+margin_bottom = 590.0
+size_flags_vertical = 8
+
+[node name="hpmp" type="HBoxContainer" parent="GUI/MarginContainer/g/panels/playerpanel"]
+margin_right = 1014.0
 margin_bottom = 85.0
 
-[node name="hp" type="VBoxContainer" parent="GUI/g/panels/playerpanel/hpmp"]
+[node name="hp" type="VBoxContainer" parent="GUI/MarginContainer/g/panels/playerpanel/hpmp"]
 margin_right = 64.0
 margin_bottom = 85.0
 size_flags_horizontal = 2
 
-[node name="pg" parent="GUI/g/panels/playerpanel/hpmp/hp" instance=ExtResource( 3 )]
-rect_rotation = 0.0
+[node name="pg" parent="GUI/MarginContainer/g/panels/playerpanel/hpmp/hp" instance=ExtResource( 3 )]
+value = 20.0
+texture_progress = ExtResource( 7 )
 
-[node name="text" type="Label" parent="GUI/g/panels/playerpanel/hpmp/hp"]
+[node name="text" type="Label" parent="GUI/MarginContainer/g/panels/playerpanel/hpmp/hp"]
 margin_top = 68.0
 margin_right = 64.0
 margin_bottom = 85.0
 custom_styles/normal = SubResource( 3 )
+align = 1
+valign = 1
 
-[node name="mp" type="VBoxContainer" parent="GUI/g/panels/playerpanel/hpmp"]
-margin_left = 960.0
-margin_right = 1024.0
+[node name="command" type="VBoxContainer" parent="GUI/MarginContainer/g/panels/playerpanel/hpmp"]
+margin_left = 506.0
+margin_right = 506.0
+margin_bottom = 85.0
+size_flags_horizontal = 6
+size_flags_vertical = 3
+
+[node name="mp" type="VBoxContainer" parent="GUI/MarginContainer/g/panels/playerpanel/hpmp"]
+margin_left = 950.0
+margin_right = 1014.0
 margin_bottom = 85.0
 size_flags_horizontal = 10
 
-[node name="pg" parent="GUI/g/panels/playerpanel/hpmp/mp" instance=ExtResource( 3 )]
-rect_rotation = 0.0
-custom_styles/fg = SubResource( 8 )
+[node name="pg" parent="GUI/MarginContainer/g/panels/playerpanel/hpmp/mp" instance=ExtResource( 3 )]
+value = 20.0
+texture_progress = ExtResource( 6 )
 
-[node name="text" type="Label" parent="GUI/g/panels/playerpanel/hpmp/mp"]
+[node name="text" type="Label" parent="GUI/MarginContainer/g/panels/playerpanel/hpmp/mp"]
 margin_top = 68.0
 margin_right = 64.0
 margin_bottom = 85.0
 custom_styles/normal = SubResource( 3 )
+align = 1
+valign = 1
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="exp" type="HBoxContainer" parent="GUI/g/panels/playerpanel"]
+[node name="exp" type="HBoxContainer" parent="GUI/MarginContainer/g/panels/playerpanel"]
 margin_top = 89.0
-margin_right = 1024.0
+margin_right = 1014.0
 margin_bottom = 106.0
 
-[node name="ProgressBar" type="ProgressBar" parent="GUI/g/panels/playerpanel/exp"]
-margin_right = 1024.0
+[node name="pg" type="ProgressBar" parent="GUI/MarginContainer/g/panels/playerpanel/exp"]
+margin_right = 1014.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 custom_styles/fg = SubResource( 6 )
 custom_styles/bg = SubResource( 7 )
 step = 1.0
-value = 50.0
+value = 10.0

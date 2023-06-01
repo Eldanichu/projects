@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Godot;
 using godotcsharpgame.Database.Attribute;
@@ -66,6 +67,7 @@ public abstract class BasePlayer : PlayerClass, IPlayer, IPlayerAction, IPlayerE
     }
   }
   public void CalculateProperties() {
+    props.PName = "";
     var cg = new Global.ClassGrowth() {
       level = props.Level
     };
@@ -87,17 +89,28 @@ public abstract class BasePlayer : PlayerClass, IPlayer, IPlayerAction, IPlayerE
     props.mc1 = cg.Mc1;
   }
   public Dictionary<string, object> GetObject() {
-    var dict = new Dictionary<string, object>();
-    var _type = typeof(PlayerProperties);
-    var props = _type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-
-    foreach (var p in props) {
-      var attr = p.GetCustomAttribute<PropertyAttribute>();
-      if (attr == null) continue;
-      var obj = p.GetValue(props);
-      dict.Add(attr.Name, obj);
-    }
-
+    var dict = new Dictionary<string, dynamic>() {
+      {"ac0",props.ac0},
+      {"ac1",props.ac1},
+      {"sc0",props.sc0},
+      {"sc1",props.sc1},
+      {"mc0",props.mc0},
+      {"mc1",props.mc1},
+      {"dc0",props.dc0},
+      {"dc1",props.dc1},
+      {"mac0",props.mac0},
+      {"mac1",props.mac1},
+      {"Level",props.Level},
+      {"PName",props.PName},
+      {"ClassType",props.ClassType},
+      {"ClassName",props.ClassName},
+      {"exp0",props.exp0},
+      {"exp1",props.exp1},
+      {"mp0",props.mp0},
+      {"mp1",props.mp1},
+      {"hp0",props.hp0},
+      {"hp1",props.hp1},
+    };
     return dict;
   }
 }

@@ -1,9 +1,8 @@
 ﻿using godotcsharpgame.Database.Attribute;
 
 public class PlayerProperties {
-
-  [Property("PName")] public string PName { get; set; }
-  [Property("ClassName")] public string ClassName { get; set; }
+  [Property("PName")] public string PName { get; set; } = "";
+  [Property("ClassName")] public string ClassName { get; set; } = "";
   [Property("ClassType")] public int ClassType { get; set; }
   [Property("Level")] public long Level { get; set; }
   [Property("ac0")] public long ac0 { get; set; }
