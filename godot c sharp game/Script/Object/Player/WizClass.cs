@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 
-public class TaoClass : PlayerClass {
+public class WizClass : PlayerClass {
   
-  public TaoClass() {
-    Type = Global.CLASS_TYPE.tao;
+  public WizClass() {
+    Type = Global.CLASS_TYPE.wizard;
   }
   public override List<Skill> Skills { get; set; }
 

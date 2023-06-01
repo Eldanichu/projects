@@ -5,4 +5,5 @@
   decimal OnDamage(Damage dmg);
   int OnUseItem();
   int OnShop();
+  
 }

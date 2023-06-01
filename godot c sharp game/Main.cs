@@ -7,17 +7,22 @@ public class Main : Node {
 
   [Connect("Eldanado")]
   public override void _Ready() {
-    var tick = new Tick(5) {
-      Name = "test tick"
-    };
+    // var tick = new Tick(5) {
+    //   Name = "test tick"
+    // };
+    //
+    // tick.OnTick += count => {
+    //   L.t($"ticks {count}");
+    //   if (count >= 2) tick.Pause();
+    // };
+    // AddChild(tick);
+    // tick.Start();
 
-    tick.OnTick += count => {
-      L.t($"ticks {count}");
-      if (count >= 2) tick.Pause();
-    };
-    AddChild(tick);
-    tick.Start();
-
+    // var r = new Random();
+    // for (int i = 0; i < 15; i++) {
+    //   L.t($"{r.R(1,15)}");
+    // }
+  
     // yield
     // await ToSignal(GetTree(), "idle_frame");
     // var b1 = new BigNumber("1502.5");

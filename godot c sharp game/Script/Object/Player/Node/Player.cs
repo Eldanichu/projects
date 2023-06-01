@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using godotcsharpgame.Script.Util;
 
@@ -16,14 +17,14 @@ public class Player : Node {
 
     buff.Add();
 
-    var player = new PlayerObject {
-      node = this
-    };
+    var player = new CreatePlayer<PlayerObject,WarClass>().Player;
     player.StateChanged += (sender, value) => {
       L.t($"{sender} - {value}");
     };
     player.Attack(new Damage());
-    L.t($"{player}");
+    
+    
+    L.t($"{Math.Floor(1.4)}");
     // var item = new Items() {
     //   _uid = StringUtil.GetId(),
     //   ID = "00346",
