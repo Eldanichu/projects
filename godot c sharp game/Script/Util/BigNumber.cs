@@ -1,13 +1,15 @@
-﻿using Godot;
-using System;
+﻿using System;
+using Godot;
 using Godot.Collections;
-using Array = System.Array;
 
 public class BigNumber {
-  private float _mantissa = 0.0f;
-  private int _exponent = 1;
 
-  private readonly Dictionary<string, string> _postFixes = new Dictionary<string, string>() {
+  private readonly Array<string> _alphabet = new Array<string> {
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
+    "x", "y", "z"
+  };
+
+  private readonly Dictionary<string, string> _postFixes = new Dictionary<string, string> {
     {"0", ""},
     {"1", "k"},
     {"2", "m"},
@@ -68,23 +70,19 @@ public class BigNumber {
     {"57", "f2"}
   };
 
-  private readonly Array<string> _alphabet = new Array<string>() {
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
-    "x", "y", "z"
-  };
+  private int _exponent = 1;
+  private float _mantissa;
 
   public BigNumber(string m, int e = 0) {
     _mantissa = float.Parse(m);
     _exponent = e;
-    
+
     var scientific = m.Split("e");
     _mantissa = float.Parse(scientific[0]);
-    if (scientific.Length > 1) {
+    if (scientific.Length > 1)
       _exponent = int.Parse(scientific[1]);
-    }
-    else {
+    else
       _exponent = 0;
-    }
 
     Calculate();
   }
@@ -92,24 +90,20 @@ public class BigNumber {
   public string ToAA() {
     var target = Math.Floor(_exponent / 3f);
     var hundreds = 1;
-    for (var i = 0; i < _exponent % 3; i++) {
-      hundreds *= 10;
-    }
+    for (var i = 0; i < _exponent % 3; i++) hundreds *= 10;
 
     var prefix = _mantissa * hundreds;
     var postfix = _postFixes[target.ToString()];
     var result = "";
     var split = prefix.ToString().Split(".");
-    if (target == 0) {
+    if (target == 0)
       result = split[0];
-    }
-    else {
+    else
       result = $"{prefix}";
-    }
 
     return result + postfix;
   }
-  
+
   private void Calculate() {
     if (_mantissa >= 10f || _mantissa < 1f) {
       var diff = (int)Math.Floor(Math.Log10(_mantissa));
@@ -129,9 +123,7 @@ public class BigNumber {
         _exponent += 1;
       }
 
-      if (_mantissa == 0f) {
-        _exponent = 0;
-      }
+      if (_mantissa == 0f) _exponent = 0;
     }
   }
 }

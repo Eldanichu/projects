@@ -1,15 +1,13 @@
-﻿using System;
-using Godot;
-using godotcsharpgame.Script.Util;
+﻿using godotcsharpgame.Script.Util;
 
-public class HealingBuff : Buff{
+public class HealingBuff : Buff {
 
   public override void OnAdd() {
     BuffName = GetType().Name;
     base.OnAdd();
   }
 
-  public override void OnChange(BuffEvent.BUFF_STATE state) {
+  public override void OnChange(BUFF_STATE state) {
     L.t($"[healing] - {state}");
   }
 

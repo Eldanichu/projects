@@ -4,6 +4,6 @@
   public Tick tick { get; set; }
   public BaseObject Owner { get; set; }
   public virtual void Effect(int time) {
-    
+
   }
 }

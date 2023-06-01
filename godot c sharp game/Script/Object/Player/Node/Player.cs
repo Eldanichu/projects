@@ -1,25 +1,22 @@
-using System;
 using Godot;
-using Godot.Collections;
 using godotcsharpgame.Script.Util;
-using Array = Godot.Collections.Array;
 
 public class Player : Node {
   public PlayerObject PlayerObject { set; get; }
 
   public override void _Ready() {
-    var owner = new BaseObject() {
+    var owner = new BaseObject {
       Object = this
     };
-    
-    var buff = new HealingBuff() {
+
+    var buff = new HealingBuff {
       TickTimes = 5,
       Owner = owner
     };
-    
+
     buff.Add();
 
-    var player = new PlayerObject() {
+    var player = new PlayerObject {
       node = this
     };
     player.StateChanged += (sender, value) => {

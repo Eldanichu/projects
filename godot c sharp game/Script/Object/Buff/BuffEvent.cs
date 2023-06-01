@@ -9,7 +9,7 @@
   public BUFF_STATE State { set; get; }
 
   public virtual void OnChange(BUFF_STATE state) {
-    
+
   }
 
   public virtual void OnAdd() {

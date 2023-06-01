@@ -4,7 +4,7 @@
     COOLDOWN = 1,
     FINISH = 2
   }
-  
+
   public SKILL_STATE SkillState { get; set; }
   public virtual Tick tick { get; set; }
 

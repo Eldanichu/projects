@@ -1,26 +1,22 @@
-﻿using System;
-using Godot;
-using Godot.Collections;
-using godotcsharpgame.Script.Util;
-using Array = Godot.Collections.Array;
+﻿using Godot;
 
 public class Tick : Node {
-  private Timer Timer { get; }
   public delegate void TimerAction(int count);
-  public TimerAction OnTick { set; get; }
-  private int Amount { get; }
   private int _count;
   private bool _isPaused;
 
   public Tick(int amount = 1) {
     Amount = amount;
-    Timer = new Timer() {
+    Timer = new Timer {
       WaitTime = 1,
       OneShot = true
     };
-    Timer.Connect("timeout", this,"_OnTimeout",null);
+    Timer.Connect("timeout", this, "_OnTimeout");
     AddChild(Timer);
   }
+  private Timer Timer { get; }
+  public TimerAction OnTick { set; get; }
+  private int Amount { get; }
 
   public void Start() {
     Timer.Start();
@@ -34,14 +30,13 @@ public class Tick : Node {
 
   public void _OnTimeout() {
     OnTick(_count + 1);
-    if (_isPaused) {
-      return;
-    }
+    if (_isPaused) return;
     if (_count >= Amount) {
       Timer.Stop();
       QueueFree();
       return;
-    };
+    }
+    ;
     Timer.Start();
     _count++;
   }

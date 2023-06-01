@@ -1,5 +1,2 @@
-﻿
-  public class FireBall: BaseSkill {
-    
-  }
-
+﻿public class FireBall : BaseSkill {
+}

@@ -1,11 +1,10 @@
-﻿  using System;
+﻿using System;
 
-  [AttributeUsage(AttributeTargets.Method)]
-  public class ConnectAttribute : Attribute {
-    public string DBName { get; }
+[AttributeUsage(AttributeTargets.Method)]
+public class ConnectAttribute : Attribute {
 
-    public ConnectAttribute(string dbName) {
-      DBName = dbName;
-    }
+  public ConnectAttribute(string dbName) {
+    DBName = dbName;
   }
-
+  public string DBName { get; }
+}

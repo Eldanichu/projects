@@ -4,7 +4,7 @@
     wizard = 2,
     tao = 3
   }
-  
+
   public struct ClassGrowth {
     private decimal HpRatio;
     private decimal HpBase;
@@ -24,15 +24,15 @@
     public long MP => (long)(MpRate + (level / (1 + MpBase) + MpAcc) * MpRate * level);
 
     public long EXP => (long)(level * ExpConst * ExpFactor * (level * 1.1));
-    public void apply(Global.CLASS_TYPE type) {
+    public void apply(CLASS_TYPE type) {
       switch (type) {
-        case Global.CLASS_TYPE.tao:
+        case CLASS_TYPE.tao:
           Tao();
           break;
-        case Global.CLASS_TYPE.warrior:
+        case CLASS_TYPE.warrior:
           Warrior();
           break;
-        case Global.CLASS_TYPE.wizard:
+        case CLASS_TYPE.wizard:
           Wizard();
           break;
       }

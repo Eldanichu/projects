@@ -2,6 +2,6 @@
 
 [Table("ItemProperties")]
 public class TItemProperties {
-  [PrimaryKey][Column("IPID")]
+  [PrimaryKey] [Column("IPID")]
   public string ID { get; set; }
 }
