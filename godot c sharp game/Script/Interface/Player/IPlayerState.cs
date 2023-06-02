@@ -1,9 +1,10 @@
-﻿public interface IPlayerState {
-  PlayerState.PLAYER_STATE state { set; get; }
+﻿using godotcsharpgame.Script.Object.Damage;
+
+public interface IPlayerState {
+  Global.PLAYER_STATE state { set; get; }
   int OnAttack();
   int OnCast();
-  decimal OnDamage(Damage dmg);
+  decimal OnDamage(DamageObject dmg);
   int OnUseItem();
   int OnShop();
-  
 }

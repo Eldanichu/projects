@@ -1,5 +1,4 @@
 ﻿using Godot;
-using godotcsharpgame.Script.Util;
 
 public class Random {
   private RandomNumberGenerator rnd;
@@ -13,7 +12,7 @@ public class Random {
 
     return res;
   }
-  
+
   public float R(float min, float max) {
     float res;
     using (rnd = new RandomNumberGenerator()) {
@@ -28,7 +27,7 @@ public class Random {
     uint res;
     using (rnd = new RandomNumberGenerator()) {
       rnd.Randomize();
-      res = (uint)(limit > 0 ? (rnd.Randi() % limit) : rnd.Randi()) + 1;
+      res = (uint)(limit > 0 ? rnd.Randi() % limit : rnd.Randi()) + 1;
     }
 
     return res;

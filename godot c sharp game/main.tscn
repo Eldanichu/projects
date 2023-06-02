@@ -44,6 +44,7 @@ script = ExtResource( 2 )
 script = ExtResource( 4 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI"]
 anchor_right = 1.0
@@ -100,6 +101,7 @@ margin_right = 1014.0
 margin_bottom = 85.0
 
 [node name="hp" type="VBoxContainer" parent="GUI/MarginContainer/g/panels/playerpanel/hpmp"]
+unique_name_in_owner = true
 margin_right = 64.0
 margin_bottom = 85.0
 size_flags_horizontal = 2

@@ -1,31 +1,27 @@
-﻿using godotcsharpgame.Database.Attribute;
-
-public class PlayerProperties {
-  public delegate void PlayerPropertyChange(string propName,object value);
-  public event PlayerPropertyChange OnPropertyChanged;
-
-  public string PName {
-    get => _pName;
-    set => _pName = value;
-  }
-
-  public string ClassName {
-    get => _className;
-    set {
-      _className = value;
-      PropertyChanged("ClassName",value);
+﻿namespace godotcsharpgame.Script.Object.Monster.Base.Obj {
+  public class MonsterProps {
+    public string Uid {
+      get => _uid;
+      set => _uid = value;
     }
-  }
 
-  public int ClassType {
-    get => _classType;
-    set {
-      _classType = value;
-      PropertyChanged("ClassType",value);
+    public string Id {
+      get => _id;
+      set => _id = value;
     }
-  }
 
-  public long Level {
+    public string Name {
+      get => _name;
+      set => _name = value;
+    }
+
+    public int Type {
+      get => _type;
+      set => _type = value;
+    }
+
+
+    public long Level {
     get => _level;
     set {
       _level = value;
@@ -97,22 +93,6 @@ public class PlayerProperties {
     }
   }
 
-  public long Sc0 {
-    get => _sc0;
-    set {
-      _sc0 = value;
-      PropertyChanged("Sc0",value);
-    }
-  }
-
-  public long Sc1 {
-    get => _sc1;
-    set {
-      _sc1 = value;
-      PropertyChanged("Sc1",value);
-    }
-  }
-
   public long Hp0 {
     get => _hp0;
     set {
@@ -145,25 +125,11 @@ public class PlayerProperties {
     }
   }
 
-  public long Exp0 {
-    get => _exp0;
-    set {
-      _exp0 = value;
-      PropertyChanged("Exp0",value);
-    }
-  }
 
-  public long Exp1 {
-    get => _exp1;
-    set {
-      _exp1 = value;
-      PropertyChanged("Exp1",value);
-    }
-  }
-
-  private string _pName;
-  private string _className;
-  private int _classType;
+  private string _uid;
+  private string _id;
+  private string _name;
+  private int _type;
   private long _level;
   private long _ac0;
   private long _ac1;
@@ -173,16 +139,17 @@ public class PlayerProperties {
   private long _dc1;
   private long _mc0;
   private long _mc1;
-  private long _sc0;
-  private long _sc1;
   private long _hp0;
   private long _hp1;
   private long _mp0;
   private long _mp1;
-  private long _exp0;
-  private long _exp1;
+
+  
+  public delegate void MonPropertyChange(string propName,object value);
+  public event MonPropertyChange OnPropertyChanged;
 
   private void PropertyChanged(string propName,object value) {
     OnPropertyChanged?.Invoke(propName,value);
+  }
   }
 }
