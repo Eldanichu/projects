@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using godotcsharpgame.Script.Object.Damage;
 
-public abstract class PlayerClass : PlayerState, IPlayerClass {
+public class PlayerClass : IPlayerClass {
   public decimal HpRatio { set; get; }
   public decimal HpBase { set; get; }
   public decimal HpAcc { set; get; }
@@ -21,13 +21,13 @@ public abstract class PlayerClass : PlayerState, IPlayerClass {
   public virtual List<Skill> Skills { set; get; }
   
   public virtual void UseSkill(Skill skill) {
-    OnCast();
+    
   }
   public virtual bool CanCast() {
     return true;
   }
 
   public virtual void Attack(DamageObject damage) {
-    OnAttack();
+    
   }
 }

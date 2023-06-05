@@ -4,7 +4,6 @@
     <RootNamespace>godotcsharpgame</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Database\Enities" />
     <Folder Include="Script\Object\Buff\Node" />
     <Folder Include="Script\Object\Slot" />
   </ItemGroup>

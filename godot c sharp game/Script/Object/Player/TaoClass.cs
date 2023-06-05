@@ -12,6 +12,7 @@ public class TaoClass : PlayerClass {
     MpRate = 1;
   }
   public override List<Skill> Skills { get; set; }
+  
   public void UseSkill() {
 
   }

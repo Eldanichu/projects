@@ -6,6 +6,7 @@ using godotcsharpgame.Database.Attribute;
 
 public class AttributeOfValue<T, U> where T : PropertyAttribute {
 
+  public Global.PROP_TYPE Type { set; get; }
   public Dictionary<string, object> GetProps(U props) {
     var dict = new Dictionary<string, object>();
     var propties = typeof(U).GetProperties(BindingFlags.Instance | BindingFlags.Public);
@@ -13,8 +14,8 @@ public class AttributeOfValue<T, U> where T : PropertyAttribute {
     foreach (var prop in propties) {
       var attr = prop.GetCustomAttribute<T>();
       if (attr == null) continue;
+      if (attr.Type != Type) continue;
       var value = GetPropertyValue(props, attr.Name);
-
       dict.Add(attr.Name, value);
     }
 

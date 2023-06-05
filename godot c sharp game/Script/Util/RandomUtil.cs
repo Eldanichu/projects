@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 public class Random {
   private RandomNumberGenerator rnd;

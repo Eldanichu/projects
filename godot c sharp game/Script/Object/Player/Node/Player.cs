@@ -1,4 +1,5 @@
 using Godot;
+using godotcsharpgame.Script.Object.Player.Obj;
 using godotcsharpgame.Script.Util;
 
 public class Player : Node {
@@ -17,7 +18,7 @@ public class Player : Node {
   }
   public override void _Process(float delta) {
     if (PlayerObject == null) return;
-
+    
     props = PlayerObject.props;
     hpText.Text = $"{props.Hp0}/{props.Hp1}";
     mpText.Text = $"{props.Mp0}/{props.Mp1}";
@@ -31,9 +32,12 @@ public class Player : Node {
     QueueFree();
   }
   public void Create() {
-    PlayerObject = new CreatePlayer<PlayerObject, WizClass>().Player;
-    PlayerObject.node = this;
+    PlayerObject = new PlayerGenerator<TaoClass>() {
+      node = this
+    };
     PlayerObject.LevelUp();
+    var props = PlayerObject.GetProps(Global.PROP_TYPE.ATTACK);
+    L.t($"{props}");
   }
   private void _OnReady() {
     var g = GetTree().Root.GetNodeOrNull("main");
@@ -44,16 +48,16 @@ public class Player : Node {
     expBar = g.FindNode("exp").GetNode<ProgressBar>("pg");
   }
   private void _PlayerEvent() {
-    if (PlayerObject == null) {
-      return;
-    }
-    PlayerObject.AbilityChanged += (state, amount) => {
-      switch (state) {
-        case Global.PLAYER_ABILITY.LEVEL:
-          L.t("Level Up!");
-          break;
-      }
-    };
+    // if (PlayerObject == null) {
+    //   return;
+    // }
+    // PlayerObject.AbilityChanged += (state, amount) => {
+    //   switch (state) {
+    //     case Global.PLAYER_ABILITY.LEVEL:
+    //       L.t("Level Up!");
+    //       break;
+    //   }
+    // };
   }
 
 }

@@ -1,6 +1,11 @@
 ﻿using System;
 
 public static class Global {
+  public enum PROP_TYPE {
+    ATTACK,
+    DEFENCE,
+    STAT
+  }
   public enum CLASS_TYPE {
     warrior = 1,
     wizard = 2,
