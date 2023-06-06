@@ -2,6 +2,6 @@
 
 namespace godotcsharpgame.Script.Interface.Monster {
   public interface IMonsterEvent {
-    DamageType OnDamage(Godot.Object source,DamageObject damage);
+    DamageObject OnDamage(Godot.Object source,DamageObject damage);
   }
 }

@@ -10,6 +10,8 @@ public class WarClass : PlayerClass {
     MpRatio = 13;
     MpAcc = 3.4m;
     MpRate = 1;
+    AtkAcc = 2.5m;
+    AtkRate = 6;
   }
   public override List<Skill> Skills { get; set; }
 }

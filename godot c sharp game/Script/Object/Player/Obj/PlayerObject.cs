@@ -2,6 +2,7 @@
 using Godot;
 using godotcsharpgame.Database.Attribute;
 using godotcsharpgame.Script.Object.Damage;
+using godotcsharpgame.Script.Object.Monster.Base.Obj;
 using godotcsharpgame.Script.Object.Player.Obj.Base.State.Event.Action;
 
 public class PlayerObject : PlayerAction, IPlayer {
@@ -17,6 +18,7 @@ public class PlayerObject : PlayerAction, IPlayer {
   public PlayerObject() {
     Inventory = new List<string>();
     props = new PlayerProperties();
+    Object = node;
   }
   public override void GiveItem(Item item) {
     
@@ -90,5 +92,13 @@ public class PlayerObject : PlayerAction, IPlayer {
       props = props
     };
     cg.Calculate();
+  }
+
+  public override bool IsTargetObject(PlayerObject target) {
+    target.Object = node;
+    return true;
+  }
+  public override bool IsTargetObject(MonsterObject target) {
+    throw new System.NotImplementedException();
   }
 }

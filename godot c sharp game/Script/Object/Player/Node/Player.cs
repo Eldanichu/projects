@@ -1,4 +1,5 @@
 using Godot;
+using godotcsharpgame.Script.Object.Damage;
 using godotcsharpgame.Script.Object.Player.Obj;
 using godotcsharpgame.Script.Util;
 
@@ -8,6 +9,7 @@ public class Player : Node {
   private Label hpText;
   private TextureProgress mpBar;
   private Label mpText;
+  private DamageObject _dmage;
   public PlayerProperties props;
   public PlayerObject PlayerObject { set; get; }
 
@@ -18,14 +20,30 @@ public class Player : Node {
   }
   public override void _Process(float delta) {
     if (PlayerObject == null) return;
-    
+
     props = PlayerObject.props;
     hpText.Text = $"{props.Hp0}/{props.Hp1}";
     mpText.Text = $"{props.Mp0}/{props.Mp1}";
-    
+
     hpBar.Value = props.Hp0 / props.Hp1 * 100;
     mpBar.Value = props.Mp0 / props.Mp1 * 100;
     expBar.Value = props.Exp0 / props.Exp1 * 100;
+  }
+  
+  public override void _Input(InputEvent @event) {
+    if (PlayerObject == null) {
+      return;
+    }
+    // if (@event is InputEventMouseButton mb) {
+    //   if (mb.ButtonIndex == 1) {
+    //     _dmage = new DamageObject() {
+    //       Props = PlayerObject.props,
+    //       PlayerClass = PlayerObject.PlayerClass
+    //     };
+    //     _dmage.GetPower();
+    //     L.t($"{_dmage.Power} - {_dmage.IsCritical}");
+    //   }
+    // }
   }
   public override void _ExitTree() {
     base._ExitTree();

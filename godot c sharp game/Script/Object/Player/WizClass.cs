@@ -10,6 +10,8 @@ public class WizClass : PlayerClass {
     MpBase = 5;
     MpAcc = 8m;
     MpRate = 1;
+    AtkAcc = 3.5m;
+    AtkRate = 5;
   }
   public override List<Skill> Skills { get; set; }
 

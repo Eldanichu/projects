@@ -11,23 +11,23 @@ public class PlayerClass : IPlayerClass {
   public decimal MpRate { set; get; }
   public decimal DefRate => 0.325m;
   public decimal DefAcc => 0.117m;
-  public decimal AtkRate => 0.415m;
-  public decimal AtkAcc => 0.126m;
+  public decimal AtkRate { set; get; }
+  public decimal AtkAcc { set; get; }
 
   public PlayerClass() {
-    Skills = new List<Skill>();
+	Skills = new List<Skill>();
   }
   public Global.CLASS_TYPE Type { get; set; }
   public virtual List<Skill> Skills { set; get; }
   
   public virtual void UseSkill(Skill skill) {
-    
+	
   }
   public virtual bool CanCast() {
-    return true;
+	return true;
   }
 
   public virtual void Attack(DamageObject damage) {
-    
+	
   }
 }

@@ -1,4 +1,6 @@
-﻿public class SkillEvent : SkillObject, ISkillEvent {
+﻿using godotcsharpgame.Script.Object.Monster.Base.Obj;
+
+public class SkillEvent : SkillObject, ISkillEvent {
   public enum SKILL_STATE {
     CASTING = 0,
     COOLDOWN = 1,
@@ -18,5 +20,11 @@
 
   public virtual void OnFinish() {
     SkillState = SKILL_STATE.FINISH;
+  }
+  public override bool IsTargetObject(PlayerObject target) {
+    throw new System.NotImplementedException();
+  }
+  public override bool IsTargetObject(MonsterObject target) {
+    throw new System.NotImplementedException();
   }
 }

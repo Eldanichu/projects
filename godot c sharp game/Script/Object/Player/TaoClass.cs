@@ -10,6 +10,8 @@ public class TaoClass : PlayerClass {
     MpBase = 5;
     MpAcc = 6.6m;
     MpRate = 1;
+    AtkAcc = 0.5m;
+    AtkRate = 3;
   }
   public override List<Skill> Skills { get; set; }
   

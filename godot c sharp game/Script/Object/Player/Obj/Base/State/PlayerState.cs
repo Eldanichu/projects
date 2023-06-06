@@ -1,6 +1,6 @@
 ﻿using godotcsharpgame.Script.Object.Damage;
 
-public abstract class PlayerState : IPlayerState {
+public abstract class PlayerState : BaseObject,IPlayerState {
 
   public delegate void PlayerStateChanged(Global.PLAYER_STATE sender, object value);
   public Global.PLAYER_STATE state { get; set; }

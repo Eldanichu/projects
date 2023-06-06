@@ -2,7 +2,7 @@
 
 namespace godotcsharpgame.Script.Interface.Monster {
   public interface IMonsterAction {
-    DamageType Attack(PlayerObject player, DamageObject damage);
-
+    void Attack(BaseObject target, DamageObject damage);
+    
   }
 }
