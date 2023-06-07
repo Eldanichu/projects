@@ -4,7 +4,6 @@
 [ext_resource path="res://Scene/CreatePlayer.cs" type="Script" id=2]
 
 [node name="CreatePlayer" type="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -57,24 +56,24 @@ margin_bottom = 56.0
 size_flags_horizontal = 5
 size_flags_vertical = 0
 
-[node name="war" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/class"]
+[node name="0" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/class"]
 margin_right = 72.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 toggle_mode = true
 group = ExtResource( 1 )
-text = "war"
+text = "warrior"
 
-[node name="wiz" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/class"]
+[node name="1" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/class"]
 margin_left = 76.0
 margin_right = 149.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 toggle_mode = true
 group = ExtResource( 1 )
-text = "wiz"
+text = "wizard"
 
-[node name="tao" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/class"]
+[node name="2" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/class"]
 unique_name_in_owner = true
 margin_left = 153.0
 margin_right = 226.0
@@ -82,7 +81,7 @@ margin_bottom = 20.0
 size_flags_horizontal = 3
 toggle_mode = true
 group = ExtResource( 1 )
-text = "tao"
+text = "taoist"
 
 [node name="buttons" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 286.0

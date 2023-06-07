@@ -44,3 +44,4 @@ text = "Quit"
 
 [node name="CreatePlayer" parent="." instance=ExtResource( 2 )]
 unique_name_in_owner = true
+visible = false

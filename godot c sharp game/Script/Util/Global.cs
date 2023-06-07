@@ -7,9 +7,9 @@ public static class Global {
     STAT
   }
   public enum CLASS_TYPE {
-    warrior = 1,
-    wizard = 2,
-    tao = 3
+    warrior = 0,
+    wizard = 1,
+    tao = 2
   }
 
   public enum PLAYER_STATE {
