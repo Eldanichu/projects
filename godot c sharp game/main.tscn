@@ -3,13 +3,14 @@
 [ext_resource path="res://Main.cs" type="Script" id=1]
 [ext_resource path="res://Script/Event.cs" type="Script" id=2]
 [ext_resource path="res://Scene/Component/pg.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Script/Object/Player/Node/Player.cs" type="Script" id=4]
+[ext_resource path="res://Scene/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Theme/g.tres" type="Theme" id=5]
 [ext_resource path="res://Assets/UI/bar_blue.PNG" type="Texture" id=6]
 [ext_resource path="res://Assets/UI/bar_red.PNG" type="Texture" id=7]
 [ext_resource path="res://Assets/Font/ttf/chn.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Scene/Startup.tscn" type="PackedScene" id=9]
 [ext_resource path="res://squre.tres" type="TileSet" id=10]
+[ext_resource path="res://Scene/DrawPath.cs" type="Script" id=11]
 [ext_resource path="res://GUI.cs" type="Script" id=12]
 
 [sub_resource type="DynamicFont" id=8]
@@ -37,9 +38,6 @@ bg_color = Color( 0.6, 0.574, 0.288, 1 )
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 32, 32 )
-
 [node name="main" type="Node"]
 script = ExtResource( 1 )
 
@@ -47,8 +45,18 @@ script = ExtResource( 1 )
 unique_name_in_owner = true
 script = ExtResource( 2 )
 
+[node name="map" type="TileMap" parent="."]
+unique_name_in_owner = true
+tile_set = ExtResource( 10 )
+show_collision = true
+format = 1
+tile_data = PoolIntArray( 8, 0, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 2, 0, 65544, 3, 0, 65545, 4, 0, 65546, 9, 0, 65547, 9, 0, 65548, 4, 0, 65549, 4, 0, 65550, 4, 0, 65551, 5, 0, 131080, 3, 0, 131081, 4, 0, 131082, 4, 0, 131083, 4, 0, 131084, 4, 0, 131085, 4, 0, 131086, 4, 0, 131087, 5, 0, 196616, 3, 0, 196617, 4, 0, 196618, 9, 0, 196619, 9, 0, 196620, 4, 0, 196621, 4, 0, 196622, 4, 0, 196623, 5, 0, 262152, 3, 0, 262153, 4, 0, 262154, 4, 0, 262155, 4, 0, 262156, 9, 0, 262157, 9, 0, 262158, 4, 0, 262159, 5, 0, 327688, 3, 0, 327689, 4, 0, 327690, 4, 0, 327691, 4, 0, 327692, 9, 0, 327693, 4, 0, 327694, 4, 0, 327695, 5, 0, 393224, 3, 0, 393225, 9, 0, 393226, 4, 0, 393227, 4, 0, 393228, 9, 0, 393229, 9, 0, 393230, 4, 0, 393231, 5, 0, 458760, 6, 0, 458761, 7, 0, 458762, 7, 0, 458763, 7, 0, 458764, 7, 0, 458765, 9, 0, 458766, 7, 0, 458767, 8, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+
 [node name="GUI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+visible = false
 script = ExtResource( 12 )
 
 [node name="ui_control" type="MarginContainer" parent="GUI"]
@@ -186,28 +194,11 @@ value = 10.0
 
 [node name="Menu" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-
-[node name="Startup" parent="Menu" instance=ExtResource( 9 )]
 visible = false
 
-[node name="map" type="TileMap" parent="."]
-unique_name_in_owner = true
-tile_set = ExtResource( 10 )
-show_collision = true
-format = 1
-tile_data = PoolIntArray( 8, 0, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 2, 0, 65544, 3, 0, 65545, 4, 0, 65546, 4, 0, 65547, 4, 0, 65548, 4, 0, 65549, 4, 0, 65550, 4, 0, 65551, 5, 0, 131080, 3, 0, 131081, 4, 0, 131082, 4, 0, 131083, 4, 0, 131084, 4, 0, 131085, 4, 0, 131086, 4, 0, 131087, 5, 0, 196616, 3, 0, 196617, 4, 0, 196618, 4, 0, 196619, 4, 0, 196620, 4, 0, 196621, 4, 0, 196622, 4, 0, 196623, 5, 0, 262152, 3, 0, 262153, 4, 0, 262154, 4, 0, 262155, 4, 0, 262156, 4, 0, 262157, 4, 0, 262158, 4, 0, 262159, 5, 0, 327688, 3, 0, 327689, 4, 0, 327690, 4, 0, 327691, 4, 0, 327692, 4, 0, 327693, 4, 0, 327694, 4, 0, 327695, 5, 0, 393224, 3, 0, 393225, 4, 0, 393226, 4, 0, 393227, 4, 0, 393228, 4, 0, 393229, 4, 0, 393230, 4, 0, 393231, 5, 0, 458760, 6, 0, 458761, 7, 0, 458762, 7, 0, 458763, 7, 0, 458764, 7, 0, 458765, 7, 0, 458766, 7, 0, 458767, 8, 0 )
+[node name="Startup" parent="Menu" instance=ExtResource( 9 )]
 
-[node name="Player" type="KinematicBody2D" parent="."]
-unique_name_in_owner = true
-position = Vector2( 548, 448 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Collision" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 11 )
-
-[node name="Polygon2D" type="Polygon2D" parent="Player/Collision"]
-color = Color( 0.1276, 0.289007, 0.44, 0.54902 )
-polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 11 )

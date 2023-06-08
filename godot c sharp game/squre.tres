@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=15 format=2]
+[gd_resource type="TileSet" load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Sprite-sq.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprite-sqob.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 1.81715, 0, 1.81715, 0, 0, 64, 0 )
@@ -254,3 +255,17 @@ points = PoolVector2Array( 61.9992, 64, 0.200928, 64, 0.200928, 61.8063, 61.9992
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 8/z_index = 0
+9/name = "Sprite-sqob.png 9"
+9/texture = ExtResource( 2 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 0, 64, 64, 64 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
+9/shapes = [  ]
+9/z_index = 0

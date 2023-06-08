@@ -16,7 +16,7 @@ namespace godotcsharpgame.Script.Util {
       GetNode().EmitSignal(EventName, o);
     }
     
-    public void Emit(Dictionary o) {
+    public void Emit<T>(T o) {
       GetNode().EmitSignal(EventName, o);
     }
     public Error Connect(Godot.Object targetNode, string method) {

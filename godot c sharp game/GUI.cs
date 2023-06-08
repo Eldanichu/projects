@@ -28,7 +28,6 @@ public class GUI : CanvasLayer {
     _player.Create((Global.CLASS_TYPE)form["ClassType"]);
     Visible = true;
   }
-
   public void OnVisChanged() {
     var value = Visible ? 1f : 0f;
     var uiContainerModulate = _uiContainer.Modulate;
