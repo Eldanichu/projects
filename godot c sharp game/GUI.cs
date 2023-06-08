@@ -19,13 +19,15 @@ public class GUI : CanvasLayer {
   }
 
   public void OnCreatePlayer(Dictionary form) {
-    L.t($"{form}");
+    L.t($"Creating Player Info -> {form}");
     var menu = TNode.GetNode<CanvasLayer>(GetTree(),"%Menu");
     menu.Visible = false;
-    
-    
     var _player = TNode.GetNode<Player>(GetTree(),"%Player");
     _player.Create((Global.CLASS_TYPE)form["ClassType"]);
+    var _game = TNode.GetNode<Node2D>(GetTree(), "%game");
+    _game.Visible = true;
+    var map = _game.GetNode<PathFinding>("%map");
+    map.PlayerObject = _player.PlayerObject;
     Visible = true;
   }
   public void OnVisChanged() {

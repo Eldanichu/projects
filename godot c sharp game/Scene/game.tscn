@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://squre.tres" type="TileSet" id=1]
+[ext_resource path="res://Scene/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Script/Util/Pathfinding/PathFinding.cs" type="Script" id=4]
+[ext_resource path="res://Script/Util/Pathfinding/PathIndicator.cs" type="Script" id=5]
+
+[node name="game" type="Node2D"]
+
+[node name="PathIndicator" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 5 )
+
+[node name="map" type="TileMap" parent="."]
+unique_name_in_owner = true
+modulate = Color( 1, 1, 1, 0.552941 )
+tile_set = ExtResource( 1 )
+show_collision = true
+format = 1
+tile_data = PoolIntArray( 8, 0, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 2, 0, 65544, 3, 0, 65545, 4, 0, 65546, 9, 0, 65547, 9, 0, 65548, 4, 0, 65549, 4, 0, 65550, 4, 0, 65551, 5, 0, 131080, 3, 0, 131081, 4, 0, 131082, 4, 0, 131083, 4, 0, 131084, 4, 0, 131085, 4, 0, 131086, 4, 0, 131087, 5, 0, 196616, 3, 0, 196617, 4, 0, 196618, 9, 0, 196619, 9, 0, 196620, 4, 0, 196621, 4, 0, 196622, 4, 0, 196623, 5, 0, 262152, 3, 0, 262153, 4, 0, 262154, 4, 0, 262155, 4, 0, 262156, 9, 0, 262157, 9, 0, 262158, 4, 0, 262159, 5, 0, 327688, 3, 0, 327689, 4, 0, 327690, 4, 0, 327691, 4, 0, 327692, 9, 0, 327693, 4, 0, 327694, 4, 0, 327695, 5, 0, 393224, 3, 0, 393225, 9, 0, 393226, 4, 0, 393227, 4, 0, 393228, 9, 0, 393229, 9, 0, 393230, 4, 0, 393231, 5, 0, 458760, 6, 0, 458761, 7, 0, 458762, 7, 0, 458763, 7, 0, 458764, 7, 0, 458765, 9, 0, 458766, 7, 0, 458767, 8, 0 )
+script = ExtResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 544, 480 )
