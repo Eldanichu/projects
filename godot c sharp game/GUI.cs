@@ -26,8 +26,7 @@ public class GUI : CanvasLayer {
     _player.Create((Global.CLASS_TYPE)form["ClassType"]);
     var _game = TNode.GetNode<Node2D>(GetTree(), "%game");
     _game.Visible = true;
-    var map = _game.GetNode<PathFinding>("%map");
-    map.PlayerObject = _player.PlayerObject;
+
     Visible = true;
   }
   public void OnVisChanged() {

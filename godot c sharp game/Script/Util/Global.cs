@@ -29,4 +29,12 @@ public static class Global {
     MP,
     DEAD
   }
+  
+  public enum TILE_TYPE {
+    INVALID = -1,
+    PLAYER = 1,
+    MONSTER = 0,
+    OB = 9,
+    BUILDING = 2
+  }
 }
