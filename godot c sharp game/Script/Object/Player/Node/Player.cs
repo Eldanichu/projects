@@ -93,6 +93,10 @@ public class Player : KinematicBody2D {
     if (MovePath == null || MovePath.Length <= 0) {
       return;
     }
+    if (elapseTime < moveInterval) {
+      elapseTime += delta;
+      return;
+    }
     if (MoveIndex >= MovePath.Length) {
       return;
     }
@@ -102,10 +106,7 @@ public class Player : KinematicBody2D {
     if (_map.CellHasObjectTC(nextPoint) || _map.CellHasObject(nextPoint)) {
       return;
     }
-    if (elapseTime < moveInterval) {
-      elapseTime += delta;
-      return;
-    }
+
     // L.t($"start move");
     if (lastCell != Vector2.Zero) {
       // L.t($"{lastCell}");

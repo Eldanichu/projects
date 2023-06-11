@@ -7,47 +7,69 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
 
     private PathFinding _map;
     private Vector2[] MovePath;
-
-    public bool IsMoving;
-    public int pathIndex;
-    public Vector2 TargetPosition { set; get; }
+    private Tween _tweenMove;
+    private Vector2 lastCell = Vector2.Zero;
+  
+    public int MoveIndex;
+    public float moveInterval = 0.2f;
+    public float elapseTime;
     public override void _Ready() {
-      _map = TNode.GetNode<PathFinding>(GetTree(), "%map");
-      var cell = _map.WorldToMap(Position);
-      _map.TC.SetCellv(cell, 0);
+      SetupNode();
     }
+
     public override void _PhysicsProcess(float delta) {
+      MoveAlongPath(delta);
+    }
+
+    private void SetupNode() {
+      _tweenMove = new Tween();
+      _tweenMove.Connect("tween_all_completed", this, "_onStepFinished");
+      AddChild(_tweenMove);
+      _map = TNode.GetNode<PathFinding>(GetTree(), "%map");
+      
+      lastCell = _map.WorldToMap(Position);
+      _map.TC.SetCellv(lastCell, (int)Global.TILE_TYPE.PLAYER);
+    }
+
+    private void MoveAlongPath(float delta) {
       if (MovePath == null || MovePath.Length <= 0) {
         return;
       }
-
-      if (pathIndex < MovePath.Length && IsMoving) {
-        var cell = MovePath[pathIndex];
-        L.t($"last cell ->{cell}");
-        // var cellType = _map.GetAroundCellsType(cell,4);
-        _map.TC.SetCellv(cell, -1);
-        var point = _map.GetWorldCellVector2(cell);
-        var dist = Math.Floor(Position.DistanceTo(point));
-
-        if (dist <= 1d) {
-          pathIndex++;
-          L.t($"{pathIndex}");
-        }
-        Position = Position.LinearInterpolate(point, 0.18f);
-        if (pathIndex < MovePath.Length) {
-          cell = MovePath[pathIndex];
-          _map.TC.SetCellv(cell, 0);
-        }
+      if (elapseTime < moveInterval) {
+        elapseTime += delta;
+        return;
       }
-      else {
-        pathIndex = 0;
-        IsMoving = false;
-        MovePath = new Vector2[0];
+      if (MoveIndex >= MovePath.Length) {
+        return;
+      }
+      var movePathLength = (MoveIndex + 1 >= MovePath.Length) ? MovePath.Length - 1 : MoveIndex + 1;
+      var nextCell = MovePath[movePathLength];
+      var nextPoint = _map.GetWorldCellVector2(nextCell);
+      if (_map.CellHasObjectTC(nextPoint) || _map.CellHasObject(nextPoint)) {
+        return;
       }
 
-      if (!IsMoving) {
-        Position = Position.LinearInterpolate(TargetPosition, 0.3f);
+      // L.t($"start move");
+      if (lastCell != Vector2.Zero) {
+        // L.t($"{lastCell}");
+        _map.TC.SetCellv(lastCell, (int)Global.TILE_TYPE.INVALID);
       }
+      var cell = MovePath[MoveIndex];
+      var point = _map.GetWorldCellVector2(cell);
+      _tweenMove.InterpolateProperty(this,
+              "position",
+              Position,
+              point,
+              moveInterval,
+              Tween.TransitionType.Cubic,
+              Tween.EaseType.OutIn
+      );
+      _map.TC.SetCellv(cell, (int)Global.TILE_TYPE.PLAYER);
+      lastCell = cell;
+      _tweenMove.Start();
+      elapseTime = 0;
+      MoveIndex++;
     }
+    
   }
 }
