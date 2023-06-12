@@ -27,7 +27,7 @@ namespace godotcsharpgame.Script.Util {
     };
 
     public override void _Ready() {
-      TC = GetNode<TileMap>("%tc");
+      TC = TNode.GetNode<TileMap>(GetTree(), "%tc");
       _cellSize = CellSize * 0.5f;
       _aStar = new AStar2D();
       CalculateCells();
@@ -74,17 +74,17 @@ namespace godotcsharpgame.Script.Util {
     public bool CellHasObjectTC(Vector2 position) {
       var mapPos = TC.WorldToMap(position);
       var cellType = TC.GetCellv(mapPos);
-      
+
       return ObjectTileTypes.Contains(cellType);
     }
-    
+
     public bool CellHasObject(Vector2 position) {
       var mapPos = WorldToMap(position);
       var cellType = GetCellv(mapPos);
-      
+
       return ImmobilizedTileTypes.Contains(cellType);
     }
-    
+
     private Array GetObstacles() {
       var obTiles = new Array();
       foreach (Global.TILE_TYPE tileType in ImmobilizedTileTypes) {
@@ -185,10 +185,21 @@ namespace godotcsharpgame.Script.Util {
     public Array GetAroundCellsType(Vector2 point, int distance = 1) {
       var pointsRels = new Array();
       for (int i = 1; i < distance; i++) {
-        pointsRels.Add((point + Vector2.Up * i) );
-        pointsRels.Add((point + Vector2.Right * i) );
-        pointsRels.Add((point + Vector2.Down * i) );
-        pointsRels.Add((point + Vector2.Left * i) );
+        pointsRels.Add((point + Vector2.Up * i));
+        pointsRels.Add((point + Vector2.Right * i));
+        pointsRels.Add((point + Vector2.Down * i));
+        pointsRels.Add((point + Vector2.Left * i));
+      }
+      return pointsRels;
+    }
+
+    public Array GetAttackCells(Vector2 point, Vector2 dir, int distance = 2) {
+      var pointsRels = new Array();
+      var uob = dir.y >= 0 ? dir + (Vector2.Up * 2) : dir - Vector2.Up;
+      for (int i = 1; i < distance; i++) {
+        pointsRels.Add((point + (dir + Vector2.Left) * i));
+        pointsRels.Add((point + (uob) * i));
+        pointsRels.Add((point + (dir + Vector2.Right) * i));
       }
       return pointsRels;
     }

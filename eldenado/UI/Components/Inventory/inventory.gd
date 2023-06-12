@@ -80,7 +80,7 @@ func add_item(item_object:ItemObject):
 		if !slot_item:
 			slot.add_item(item_object)
 			break
-			
+
 
 """
 Events

@@ -6,7 +6,7 @@ using godotcsharpgame.Script.Object.Player.Obj;
 using godotcsharpgame.Script.Util;
 using Array = Godot.Collections.Array;
 
-public class Player : KinematicBody2D {
+public class Player : Node2D {
   private ProgressBar expBar;
   private TextureProgress hpBar;
   private Label hpText;
@@ -14,11 +14,13 @@ public class Player : KinematicBody2D {
   private Label mpText;
   private DamageObject _dmage;
 
+  private Polygon2D AttackArea;
+
   private PathFinding _map;
   private Vector2[] MovePath;
   private Tween _tweenMove;
   private Vector2 lastCell = Vector2.Zero;
-  
+
   public int MoveIndex;
   public float moveInterval = 0.2f;
   public float elapseTime;
@@ -42,8 +44,8 @@ public class Player : KinematicBody2D {
     if (PlayerObject == null) {
       return;
     }
-    if (!(@event is InputEventMouseButton mb)) return;
-    PlayerClickEvent(mb);
+    PlayerMouseMoveEvent(@event);
+    PlayerClickEvent(@event);
   }
   public override void _PhysicsProcess(float delta) {
     if (PlayerObject == null) {
@@ -81,7 +83,10 @@ public class Player : KinematicBody2D {
     _tweenMove.Connect("tween_all_completed", this, "_onStepFinished");
     AddChild(_tweenMove);
     _map = TNode.GetNode<PathFinding>(GetTree(), "%map");
-    
+
+    AttackArea = new Polygon2D();
+    AddChild(AttackArea);
+
     var g = GetTree().Root.GetNodeOrNull("main");
     hpText = g.FindNode("hp").GetNode<Label>("text");
     hpBar = g.FindNode("hp").GetNode<TextureProgress>("pg");
@@ -148,7 +153,8 @@ public class Player : KinematicBody2D {
       }
     };
   }
-  private void PlayerClickEvent(InputEventMouseButton mb) {
+  private void PlayerClickEvent(InputEvent @event) {
+    if (!(@event is InputEventMouseButton mb)) return;
     if (mb.ButtonIndex == 1 && mb.Pressed) {
       var mousePosition = GetGlobalMousePosition();
       MovePath = _map.GetMovePath(mousePosition, Position);
@@ -156,6 +162,33 @@ public class Player : KinematicBody2D {
       MoveIndex = 0;
     }
   }
+
+  private void PlayerMouseMoveEvent(InputEvent @event) {
+    if (!(@event is InputEventMouseMotion)) return;
+    var mousePosition = GetGlobalMousePosition();
+    var dir = Position.DirectionTo(mousePosition - _map.CellSize * 0.5f).Floor();
+    var area = _map.GetAttackCells(_map.WorldToMap(Position), dir);
+    L.t($"{dir}");
+    AttackArea.Polygon = CreateAttackArea(area);
+    AttackArea.Position = Position - _map.MapToWorld((Vector2)area[1]) - new Vector2(32,32);
+  }
+
+  public Vector2[] CreateAttackArea(Array areaPoints) {
+    var area = new Vector2[4];
+    var left = (Vector2)areaPoints[0];
+    // var center = (Vector2)areaPoints[1];
+    var right = (Vector2)areaPoints[2];
+    var size = 32;
+    var origin = -32;
+    //left
+    area[0] = new Vector2(origin, origin);
+    area[1] = new Vector2(size, origin);
+    area[2] = new Vector2(size, size);
+    area[3] = new Vector2(origin, size);
+
+    return area;
+  }
+
   private void ResetPlayer() {
     lastCell = _map.WorldToMap(Position);
     _map.TC.SetCellv(lastCell, (int)Global.TILE_TYPE.PLAYER);

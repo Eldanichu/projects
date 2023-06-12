@@ -28,7 +28,7 @@ func setup():
 	bind_events()
 
 func bind_events():
-	
+
 	pass
 
 func show_key():
@@ -82,8 +82,8 @@ func add_skill(skill:SkillObject):
 	if get_skill():
 		return
 	slot_item.set_skill(skill)
-	
-	
+
+
 """
 Events
 """

@@ -13,7 +13,7 @@ public class PlayerObject : PlayerAction, IPlayer {
   public List<string> Inventory { get; set; }
   public Dictionary<string, Item> Equipment { get; set; }
   public PlayerClass PlayerClass { set; get; }
-  public delegate void PlayerAbility(Global.PLAYER_ABILITY state, decimal amount);
+  
 
   public PlayerObject() {
     Inventory = new List<string>();
@@ -74,6 +74,7 @@ public class PlayerObject : PlayerAction, IPlayer {
     }
     return false;
   }
+  public delegate void PlayerAbility(Global.PLAYER_ABILITY state, decimal amount);
   public event PlayerAbility AbilityChanged;
   private void OnPlayerAbilityChange(Global.PLAYER_ABILITY state, decimal amount = -4) {
     AbilityChanged?.Invoke(state, amount);

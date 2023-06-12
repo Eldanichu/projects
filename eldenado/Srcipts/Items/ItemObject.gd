@@ -68,11 +68,11 @@ func get_instance():
 		printerr("[ItemObject](get_instance)-> item is not found in DB.")
 		return
 	print("[ItemObject](get_instance)-> instanced item id:",id)
-	
+
 	var item_props:Array = data[id]
 	qty = item_props[1]
 	item_type = item_props[2]
-	
+
 	icon = item_props[3]
 	effect_names = item_props[4]
 	set_properties(item_props[5])
@@ -80,8 +80,8 @@ func get_instance():
 func apply_effects():
 	for effect_name in effect_names:
 		EffectObject.new(
-			target, 
-			effect_name, 
+			target,
+			effect_name,
 			properties
 		)
 
@@ -136,7 +136,7 @@ func to_object() -> Dictionary:
 	return _props
 
 func exist():
-	return id != null && item_type != null 
+	return id != null && item_type != null
 
 func remove():
 	db = null
@@ -147,4 +147,4 @@ func remove():
 	effect_names = []
 	size = 0
 	icon = ""
-	
+
