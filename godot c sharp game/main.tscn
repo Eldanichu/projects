@@ -189,4 +189,3 @@ visible = false
 
 [node name="game" parent="." instance=ExtResource( 4 )]
 unique_name_in_owner = true
-visible = false

@@ -11,8 +11,8 @@ public class Main : Node {
   public override void _Ready() {
 	  _gui = GetNode<CanvasLayer>("%GUI");
 	  _menu = GetNode<CanvasLayer>("%Menu");
-	  _gui.Visible = false;
-	  _menu.Visible = true;
+	  // _gui.Visible = false;
+	  // _menu.Visible = true;
 	  // var tick = new Tick(5) {
 	  //   Name = "test tick"
 	  // };

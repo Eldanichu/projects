@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://squre.tres" type="TileSet" id=1]
 [ext_resource path="res://Scene/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Theme/g.tres" type="Theme" id=3]
 [ext_resource path="res://Script/Util/Pathfinding/PathFinding.cs" type="Script" id=4]
 [ext_resource path="res://Script/Util/Pathfinding/PathIndicator.cs" type="Script" id=5]
 [ext_resource path="res://Assets/Sprite-ob.png" type="Texture" id=6]
@@ -52,13 +53,6 @@
 
 [node name="game" type="Node2D"]
 
-[node name="PathIndicator" type="Control" parent="."]
-unique_name_in_owner = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-script = ExtResource( 5 )
-
 [node name="map" type="TileMap" parent="."]
 unique_name_in_owner = true
 tile_set = ExtResource( 1 )
@@ -77,3 +71,11 @@ __meta__ = {
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 800, 96 )
+
+[node name="PathIndicator" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 3 )
+script = ExtResource( 5 )

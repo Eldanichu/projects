@@ -9,6 +9,7 @@ namespace godotcsharpgame.Script.Util {
 
     [Export] public Vector2 mapSize = new Vector2(15, 7);
 
+    public Array WorkableCells;
     public TileMap TC { set; get; }
 
     private Vector2 _cellSize;
@@ -34,8 +35,8 @@ namespace godotcsharpgame.Script.Util {
     }
     public void CalculateCells() {
       var obstacles = GetObstacles();
-      var walkableCells = GenerateWalkableCells(obstacles);
-      ConnectWalkableCells(walkableCells);
+      WorkableCells = GenerateWalkableCells(obstacles);
+      ConnectWalkableCells(WorkableCells);
     }
     public Vector2 GetWorldCellVector2(Vector2 vector2) {
       return MapToWorld(vector2) + _cellSize;
@@ -81,7 +82,7 @@ namespace godotcsharpgame.Script.Util {
     public bool CellHasObject(Vector2 position) {
       var mapPos = WorldToMap(position);
       var cellType = GetCellv(mapPos);
-
+      
       return ImmobilizedTileTypes.Contains(cellType);
     }
 
@@ -193,18 +194,23 @@ namespace godotcsharpgame.Script.Util {
       return pointsRels;
     }
 
-    public Array GetAttackCells(Vector2 point, Vector2 dir, int distance = 2) {
-      var pointsRels = new Array();
-      var uob = dir.y >= 0 ? dir + (Vector2.Up * 2) : dir - Vector2.Up;
-      for (int i = 1; i < distance; i++) {
-        pointsRels.Add((point + (dir + Vector2.Left) * i));
-        pointsRels.Add((point + (uob) * i));
-        pointsRels.Add((point + (dir + Vector2.Right) * i));
-      }
-      return pointsRels;
+    public Vector2 GetPointMapPosition(Vector2 point) {
+      return WorldToMap(point);
+    }
+    public Vector2 GetAttackDir(Vector2 point) {
+      var mousePosition = GetGlobalMousePosition();
+      var mouseDir = ToMapDirection(point,mousePosition).Floor();
+
+      return mouseDir * CellSize;
     }
 
-
+    public Vector2 ToMapDirection(Vector2 point, Vector2 dirTo) {
+      // 45 angles are 0.707, plus 0.3f to floor them to 1;
+      var mapPoint = GetPointMapPosition(point);
+      var mapDirTo = GetPointMapPosition(dirTo);
+      var dir = mapPoint.DirectionTo(mapDirTo) + new Vector2(0.3f, 0.3f);
+      return dir;
+    }
     private void ConnectWalkableCells(Array points) {
       foreach (Vector2 point in points) {
         var pointIndex = GetPointIndex(point);

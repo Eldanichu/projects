@@ -38,25 +38,30 @@ public class Player : Node2D {
     if (PlayerObject == null) {
       return;
     }
+
     UIUpdating();
   }
+
   public override void _Input(InputEvent @event) {
-    if (PlayerObject == null) {
-      return;
-    }
+    // if (PlayerObject == null) {
+    //   return;
+    // }
     PlayerMouseMoveEvent(@event);
     PlayerClickEvent(@event);
   }
+
   public override void _PhysicsProcess(float delta) {
-    if (PlayerObject == null) {
-      return;
-    }
+    // if (PlayerObject == null) {
+    //   return;
+    // }
     MoveAlongPath(delta);
   }
+
   public override void _ExitTree() {
     base._ExitTree();
     QueueFree();
   }
+
   public void Create(Global.CLASS_TYPE classType) {
     switch (classType) {
       case Global.CLASS_TYPE.tao:
@@ -75,16 +80,20 @@ public class Player : Node2D {
     var props = PlayerObject.GetProps(Global.PROP_TYPE.ATTACK);
     L.t($"{props}");
   }
+
   public void _onStepFinished() {
 
   }
+
   private void SetupNode() {
     _tweenMove = new Tween();
     _tweenMove.Connect("tween_all_completed", this, "_onStepFinished");
     AddChild(_tweenMove);
     _map = TNode.GetNode<PathFinding>(GetTree(), "%map");
 
-    AttackArea = new Polygon2D();
+    AttackArea = new Polygon2D() {
+      Modulate = Color.Color8(255, 255, 255, 125)
+    };
     AddChild(AttackArea);
 
     var g = GetTree().Root.GetNodeOrNull("main");
@@ -94,17 +103,21 @@ public class Player : Node2D {
     mpBar = g.FindNode("mp").GetNode<TextureProgress>("pg");
     expBar = g.FindNode("exp").GetNode<ProgressBar>("pg");
   }
+
   private void MoveAlongPath(float delta) {
     if (MovePath == null || MovePath.Length <= 0) {
       return;
     }
+
     if (elapseTime < moveInterval) {
       elapseTime += delta;
       return;
     }
+
     if (MoveIndex >= MovePath.Length) {
       return;
     }
+
     var movePathLength = (MoveIndex + 1 >= MovePath.Length) ? MovePath.Length - 1 : MoveIndex + 1;
     var nextCell = MovePath[movePathLength];
     var nextPoint = _map.GetWorldCellVector2(nextCell);
@@ -117,6 +130,7 @@ public class Player : Node2D {
       // L.t($"{lastCell}");
       _map.TC.SetCellv(lastCell, (int)Global.TILE_TYPE.INVALID);
     }
+
     var cell = MovePath[MoveIndex];
     var point = _map.GetWorldCellVector2(cell);
     _tweenMove.InterpolateProperty(this,
@@ -133,6 +147,7 @@ public class Player : Node2D {
     elapseTime = 0;
     MoveIndex++;
   }
+
   private void DoDamage() {
     _dmage = new DamageObject() {
       Props = PlayerObject.props,
@@ -141,10 +156,12 @@ public class Player : Node2D {
     _dmage.GetPower();
     L.t($"{_dmage.Power} - {_dmage.IsCritical}");
   }
+
   private void _PlayerEvent() {
     if (PlayerObject == null) {
       return;
     }
+
     PlayerObject.AbilityChanged += (state, amount) => {
       switch (state) {
         case Global.PLAYER_ABILITY.LEVEL:
@@ -153,6 +170,7 @@ public class Player : Node2D {
       }
     };
   }
+
   private void PlayerClickEvent(InputEvent @event) {
     if (!(@event is InputEventMouseButton mb)) return;
     if (mb.ButtonIndex == 1 && mb.Pressed) {
@@ -165,22 +183,22 @@ public class Player : Node2D {
 
   private void PlayerMouseMoveEvent(InputEvent @event) {
     if (!(@event is InputEventMouseMotion)) return;
-    var mousePosition = GetGlobalMousePosition();
-    var dir = Position.DirectionTo(mousePosition - _map.CellSize * 0.5f).Floor();
-    var area = _map.GetAttackCells(_map.WorldToMap(Position), dir);
-    L.t($"{dir}");
-    AttackArea.Polygon = CreateAttackArea(area);
-    AttackArea.Position = Position - _map.MapToWorld((Vector2)area[1]) - new Vector2(32,32);
+    var mouseDir = _map.GetAttackDir(Position);
+
+    if (mouseDir == Vector2.Zero || _map.CellHasObject(Position + mouseDir)) {
+      return;
+    }
+
+    AttackArea.Polygon = CreateAttackArea();
+    AttackArea.Position = Position - (Position - mouseDir);
   }
 
-  public Vector2[] CreateAttackArea(Array areaPoints) {
+
+  public Vector2[] CreateAttackArea() {
     var area = new Vector2[4];
-    var left = (Vector2)areaPoints[0];
-    // var center = (Vector2)areaPoints[1];
-    var right = (Vector2)areaPoints[2];
     var size = 32;
     var origin = -32;
-    //left
+ 
     area[0] = new Vector2(origin, origin);
     area[1] = new Vector2(size, origin);
     area[2] = new Vector2(size, size);
@@ -193,6 +211,7 @@ public class Player : Node2D {
     lastCell = _map.WorldToMap(Position);
     _map.TC.SetCellv(lastCell, (int)Global.TILE_TYPE.PLAYER);
   }
+
   private void UIUpdating() {
     props = PlayerObject.props;
     hpText.Text = $"{props.Hp0}/{props.Hp1}";
