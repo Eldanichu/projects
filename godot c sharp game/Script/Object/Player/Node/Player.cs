@@ -14,16 +14,18 @@ public class Player : Node2D {
   private Label mpText;
   private DamageObject _dmage;
 
+  private Line2D dirLine;
   private Polygon2D AttackArea;
+  private Polygon2D ViewRange;
 
   private PathFinding _map;
   private Vector2[] MovePath;
   private Tween _tweenMove;
+  private Tick moveTick;
   private Vector2 lastCell = Vector2.Zero;
 
   public int MoveIndex;
   public float moveInterval = 0.2f;
-  public float elapseTime;
 
   public PlayerProperties props;
   public PlayerObject PlayerObject { set; get; }
@@ -34,11 +36,38 @@ public class Player : Node2D {
     _PlayerEvent();
   }
 
+  private void SetupNode() {
+    _tweenMove = new Tween();
+    AddChild(_tweenMove);
+    moveTick = new Tick(0, moveInterval);
+    AddChild(moveTick);
+    moveTick.OnTick += MoveAlongPath;
+    
+    _map = TNode.GetNode<PathFinding>(GetTree(), "%map");
+    dirLine = GetNode<Line2D>("%lineDir");
+
+    AttackArea = new Polygon2D() {
+      Modulate = Color.Color8(255, 255, 255, 55)
+    };
+    ViewRange = new Polygon2D() {
+      Modulate = Color.Color8(255, 255, 255, 55)
+    };
+
+    AddChild(AttackArea);
+    AddChild(ViewRange);
+
+    var g = GetTree().Root.GetNodeOrNull("main");
+    hpText = g.FindNode("hp").GetNode<Label>("text");
+    hpBar = g.FindNode("hp").GetNode<TextureProgress>("pg");
+    mpText = g.FindNode("mp").GetNode<Label>("text");
+    mpBar = g.FindNode("mp").GetNode<TextureProgress>("pg");
+    expBar = g.FindNode("exp").GetNode<ProgressBar>("pg");
+  }
+
   public override void _Process(float delta) {
     if (PlayerObject == null) {
       return;
     }
-
     UIUpdating();
   }
 
@@ -51,10 +80,6 @@ public class Player : Node2D {
   }
 
   public override void _PhysicsProcess(float delta) {
-    // if (PlayerObject == null) {
-    //   return;
-    // }
-    MoveAlongPath(delta);
   }
 
   public override void _ExitTree() {
@@ -81,53 +106,24 @@ public class Player : Node2D {
     L.t($"{props}");
   }
 
-  public void _onStepFinished() {
-
-  }
-
-  private void SetupNode() {
-    _tweenMove = new Tween();
-    _tweenMove.Connect("tween_all_completed", this, "_onStepFinished");
-    AddChild(_tweenMove);
-    _map = TNode.GetNode<PathFinding>(GetTree(), "%map");
-
-    AttackArea = new Polygon2D() {
-      Modulate = Color.Color8(255, 255, 255, 125)
-    };
-    AddChild(AttackArea);
-
-    var g = GetTree().Root.GetNodeOrNull("main");
-    hpText = g.FindNode("hp").GetNode<Label>("text");
-    hpBar = g.FindNode("hp").GetNode<TextureProgress>("pg");
-    mpText = g.FindNode("mp").GetNode<Label>("text");
-    mpBar = g.FindNode("mp").GetNode<TextureProgress>("pg");
-    expBar = g.FindNode("exp").GetNode<ProgressBar>("pg");
-  }
-
-  private void MoveAlongPath(float delta) {
+  private void MoveAlongPath(int count) {
     if (MovePath == null || MovePath.Length <= 0) {
       return;
     }
 
-    if (elapseTime < moveInterval) {
-      elapseTime += delta;
-      return;
-    }
-
     if (MoveIndex >= MovePath.Length) {
+      moveTick.Stop();
       return;
     }
 
-    var movePathLength = (MoveIndex + 1 >= MovePath.Length) ? MovePath.Length - 1 : MoveIndex + 1;
+    var movePathLength = Math.Min(MoveIndex + 1, MovePath.Length - 1);
     var nextCell = MovePath[movePathLength];
     var nextPoint = _map.GetWorldCellVector2(nextCell);
     if (_map.CellHasObjectTC(nextPoint) || _map.CellHasObject(nextPoint)) {
       return;
     }
 
-    // L.t($"start move");
     if (lastCell != Vector2.Zero) {
-      // L.t($"{lastCell}");
       _map.TC.SetCellv(lastCell, (int)Global.TILE_TYPE.INVALID);
     }
 
@@ -137,14 +133,13 @@ public class Player : Node2D {
             "position",
             Position,
             point,
-            moveInterval,
+            0.1f,
             Tween.TransitionType.Cubic,
             Tween.EaseType.OutIn
     );
     _map.TC.SetCellv(cell, (int)Global.TILE_TYPE.PLAYER);
     lastCell = cell;
     _tweenMove.Start();
-    elapseTime = 0;
     MoveIndex++;
   }
 
@@ -173,32 +168,41 @@ public class Player : Node2D {
 
   private void PlayerClickEvent(InputEvent @event) {
     if (!(@event is InputEventMouseButton mb)) return;
-    if (mb.ButtonIndex == 1 && mb.Pressed) {
-      var mousePosition = GetGlobalMousePosition();
-      MovePath = _map.GetMovePath(mousePosition, Position);
-      elapseTime = moveInterval;
-      MoveIndex = 0;
-    }
+    if (mb.ButtonIndex != 1 || !mb.Pressed) return;
+    var mousePosition = GetGlobalMousePosition();
+    var dist = _map.GetDistance(Position, mousePosition);
+    L.t($"{dist}");
+    var range = _map.GetRange(Position, new Vector2(2, 2));
+    var poly = new Vector2[4];
+    poly[0] = (Vector2)range[0];
+    
+    ViewRange.Polygon = poly;
+    moveTick.Stop();
+    MovePath = _map.GetMovePath(mousePosition, Position);
+    MoveIndex = 0;
+    moveTick.Start();
   }
 
   private void PlayerMouseMoveEvent(InputEvent @event) {
     if (!(@event is InputEventMouseMotion)) return;
     var mouseDir = _map.GetAttackDir(Position);
+    var cellSizedDir = mouseDir * _map.CellSize;
 
-    if (mouseDir == Vector2.Zero || _map.CellHasObject(Position + mouseDir)) {
-      return;
-    }
+    // if (_map.CellHasObject(Position + cellSizedDir)) {
+    //   return;
+    // }
 
-    AttackArea.Polygon = CreateAttackArea();
-    AttackArea.Position = Position - (Position - mouseDir);
+    AttackArea.Polygon = CreateAttackArea(_map.CellSize);
+    AttackArea.Position = Position - (Position - cellSizedDir);
+    dirLine.Rotation = mouseDir.Angle();
   }
 
-
-  public Vector2[] CreateAttackArea() {
+  public Vector2[] CreateAttackArea(Vector2 cellSize) {
     var area = new Vector2[4];
-    var size = 32;
-    var origin = -32;
- 
+    var cellArea = (cellSize.x + cellSize.y) / 2;
+    var size = cellArea * 0.5f;
+    var origin = -size;
+
     area[0] = new Vector2(origin, origin);
     area[1] = new Vector2(size, origin);
     area[2] = new Vector2(size, size);

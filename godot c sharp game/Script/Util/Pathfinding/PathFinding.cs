@@ -9,11 +9,11 @@ namespace godotcsharpgame.Script.Util {
 
     [Export] public Vector2 mapSize = new Vector2(15, 7);
 
-    public Array WorkableCells;
+    public Array WalkableCells;
+    public Array ObstaclesCells;
+    public Array PathConnections = new Array();
     public TileMap TC { set; get; }
-
     private Vector2 _cellSize;
-    private Array connections = new Array();
     private AStar2D _aStar;
 
     private Array ImmobilizedTileTypes = new Array() {
@@ -34,97 +34,36 @@ namespace godotcsharpgame.Script.Util {
       CalculateCells();
     }
     public void CalculateCells() {
-      var obstacles = GetObstacles();
-      WorkableCells = GenerateWalkableCells(obstacles);
-      ConnectWalkableCells(WorkableCells);
-    }
-    public Vector2 GetWorldCellVector2(Vector2 vector2) {
-      return MapToWorld(vector2) + _cellSize;
+      GetObstacles();
+      GenerateWalkableCells();
+      ConnectWalkableCells();
     }
 
-    public Vector2 MoveSnap(Vector2 position) {
-      var mapPosition = WorldToMap(position);
-      return MapToWorld(mapPosition) + _cellSize;
+    public Vector2[] GetMovePath(Vector2 startPosition, Vector2 targetPosition) {
+      var mapStartPos = WorldToMap(startPosition);
+      var startCellId = GetPointIndex(mapStartPos);
+
+      var mapsTargetPos = WorldToMap(targetPosition);
+      var targetCellId = GetPointIndex(mapsTargetPos);
+
+      return _aStar.GetPointPath(targetCellId, startCellId);
     }
-
-    public Vector2[] GetMovePath(Vector2 mousePosition, Vector2 targetPosition) {
-      var mouseMapPos = WorldToMap(mousePosition);
-      var mouseCellId = GetPointIndex(mouseMapPos);
-
-      var playerMapPos = WorldToMap(targetPosition);
-      var playerCellId = GetPointIndex(playerMapPos);
-
-      return _aStar.GetPointPath(playerCellId, mouseCellId);
-    }
-
-    public int GetNextCell(Vector2 position, Vector2 origin, Vector2 targetCell) {
-      var dir = position.DirectionTo(targetCell);
-      var local = WorldToMap(origin) + dir.Floor();
-      var nextCellId = GetCellv(local);
-      return nextCellId;
-    }
-
-    public bool IsValidCell(Vector2 position) {
-      var mapPos = WorldToMap(position);
-      var cellType = GetCellv(mapPos);
-      L.t($"MouseClicked Cell Type->{cellType}");
-
-      return !ImmobilizedTileTypes.Contains(cellType);
-    }
-
     public bool CellHasObjectTC(Vector2 position) {
-      var mapPos = TC.WorldToMap(position);
-      var cellType = TC.GetCellv(mapPos);
+      var cellType = GetCellType(TC, position);
 
       return ObjectTileTypes.Contains(cellType);
     }
-
     public bool CellHasObject(Vector2 position) {
-      var mapPos = WorldToMap(position);
-      var cellType = GetCellv(mapPos);
-      
+      var cellType = GetCellType(this, position);
+
       return ImmobilizedTileTypes.Contains(cellType);
     }
-
-    private Array GetObstacles() {
-      var obTiles = new Array();
-      foreach (Global.TILE_TYPE tileType in ImmobilizedTileTypes) {
-        var _tiles = GetUsedCellsById((int)tileType);
-        foreach (Vector2 tile in _tiles) {
-          obTiles.Add(tile);
-        }
-      }
-
-      foreach (var obTile in obTiles) {
-        var tileVec = (Vector2)obTile;
-        var index = GetPointIndex(tileVec);
-        _aStar.AddPoint(index, tileVec);
-      }
-
-      return obTiles;
+    public int GetCellType(TileMap map, Vector2 position) {
+      var mapPos = map.WorldToMap(position);
+      var cellType = map.GetCellv(mapPos);
+      return cellType;
     }
-
-    private Array GenerateWalkableCells(Array obstacles) {
-      var globalCells = GetUsedCells();
-      var cells = new Array();
-      foreach (Vector2 point in globalCells) {
-        if (obstacles.Contains(point)) {
-          continue;
-        }
-
-        cells.Add(point);
-        var cellIndex = GetPointIndex(point);
-        _aStar.AddPoint(cellIndex, point);
-      }
-
-      return cells;
-    }
-
-    public int GetAroundCellsType(Vector2 point, TileMap map = null) {
-      var _map = map;
-      if (_map == null) {
-        _map = this;
-      }
+    public int GetAroundCellsType(Vector2 point) {
       var pointsRels = new Array() {
         {point + Vector2.Left},
         {point + Vector2.Up},
@@ -136,7 +75,7 @@ namespace godotcsharpgame.Script.Util {
       var InvalidSide = new Array<bool>() {false, false, false, false};
       // check if point's 4 dirs of tile type is not -1;
       foreach (Vector2 pointsRel in pointsRels) {
-        var _relCellType = _map.GetCellv(pointsRel);
+        var _relCellType = GetCellv(pointsRel);
         if (_relCellType == (int)Global.TILE_TYPE.INVALID) {
           InvalidSide[index] = true;
         }
@@ -179,29 +118,72 @@ namespace godotcsharpgame.Script.Util {
 
       #endregion
 
-
       return cellType;
     }
-
-    public Array GetAroundCellsType(Vector2 point, int distance = 1) {
-      var pointsRels = new Array();
-      for (int i = 1; i < distance; i++) {
-        pointsRels.Add((point + Vector2.Up * i));
-        pointsRels.Add((point + Vector2.Right * i));
-        pointsRels.Add((point + Vector2.Down * i));
-        pointsRels.Add((point + Vector2.Left * i));
-      }
-      return pointsRels;
+    public Vector2 GetWorldCellVector2(Vector2 vector2) {
+      return MapToWorld(vector2) + _cellSize;
     }
-
     public Vector2 GetPointMapPosition(Vector2 point) {
       return WorldToMap(point);
     }
     public Vector2 GetAttackDir(Vector2 point) {
       var mousePosition = GetGlobalMousePosition();
-      var mouseDir = ToMapDirection(point,mousePosition).Floor();
+      var mouseDir = ToMapDirection(point, mousePosition).Floor();
 
-      return mouseDir * CellSize;
+      return mouseDir;
+    }
+    public Vector2 GetRandomWalkableDir(Vector2 point) {
+      var pointsRels = new Array() {
+        {point + Vector2.Left},
+        {point + Vector2.Up},
+        {point + Vector2.Right},
+        {point + Vector2.Down}
+      };
+
+      var nextPoints = new Array();
+
+      foreach (Vector2 pointsRel in pointsRels) {
+        var relCellType = GetCellv(pointsRel);
+        var objCellType = TC.GetCellv(pointsRel);
+        if (ImmobilizedTileTypes.Contains(relCellType) || ObjectTileTypes.Contains(objCellType)) {
+          continue;
+        }
+        nextPoints.Add(pointsRel);
+      }
+
+      var rnd = new Random();
+      var index = rnd.R(0, nextPoints.Count - 1);
+      var nextPoint = (Vector2)nextPoints[index];
+      var nextDir = ToMapDirection(MapToWorld(point), MapToWorld(nextPoint)).Floor();
+
+      return nextDir;
+    }
+
+    public Array GetRange(Vector2 point, Vector2 range) {
+      var mapPoint = WorldToMap(point);
+
+      var pointsRels = new Array() {
+        {new Vector2(Mathf.Min(mapPoint.x, mapPoint.x - range.x), Mathf.Min(mapPoint.y, mapPoint.y - range.y))},
+        {new Vector2(Mathf.Min(mapPoint.x, mapPoint.x + range.x), Mathf.Min(mapPoint.y, mapPoint.y - range.y))},
+        {new Vector2(Mathf.Min(mapPoint.x, mapPoint.x - range.x), Mathf.Min(mapPoint.y, mapPoint.y + range.y))},
+        {new Vector2(Mathf.Min(mapPoint.x, mapPoint.x + range.x), Mathf.Min(mapPoint.y, mapPoint.y + range.y))},
+      };
+
+      return pointsRels;
+    }
+    public float GetDistance(Vector2 start, Vector2 target) {
+      var targetCellType = GetCellType(this, target);
+      if (targetCellType == -1) {
+        targetCellType = GetCellType(TC, target);
+      }
+      if (ImmobilizedTileTypes.Contains(targetCellType) && !ObjectTileTypes.Contains(targetCellType)) {
+        return -1;
+      }
+
+      var mapStart = WorldToMap(start);
+      var mapTarget = WorldToMap(target);
+
+      return Mathf.Floor(mapStart.DistanceTo(mapTarget));
     }
 
     public Vector2 ToMapDirection(Vector2 point, Vector2 dirTo) {
@@ -211,8 +193,37 @@ namespace godotcsharpgame.Script.Util {
       var dir = mapPoint.DirectionTo(mapDirTo) + new Vector2(0.3f, 0.3f);
       return dir;
     }
-    private void ConnectWalkableCells(Array points) {
-      foreach (Vector2 point in points) {
+    private void GetObstacles() {
+      ObstaclesCells = new Array();
+      foreach (Global.TILE_TYPE tileType in ImmobilizedTileTypes) {
+        var _tiles = GetUsedCellsById((int)tileType);
+        foreach (Vector2 tile in _tiles) {
+          ObstaclesCells.Add(tile);
+        }
+      }
+
+      foreach (var obTile in ObstaclesCells) {
+        var tileVec = (Vector2)obTile;
+        var index = GetPointIndex(tileVec);
+        _aStar.AddPoint(index, tileVec);
+      }
+    }
+    private void GenerateWalkableCells() {
+      var globalCells = GetUsedCells();
+      var cells = new Array();
+      foreach (Vector2 point in globalCells) {
+        if (ObstaclesCells.Contains(point)) {
+          continue;
+        }
+
+        cells.Add(point);
+        var cellIndex = GetPointIndex(point);
+        _aStar.AddPoint(cellIndex, point);
+      }
+      WalkableCells = cells;
+    }
+    private void ConnectWalkableCells() {
+      foreach (Vector2 point in WalkableCells) {
         var pointIndex = GetPointIndex(point);
         var pointsRels = new Array() {
           {point + Vector2.Right},
@@ -235,15 +246,16 @@ namespace godotcsharpgame.Script.Util {
             {_aStar.GetPointPosition(pointIndex)},
             {_aStar.GetPointPosition(pointRelIndex)}
           };
-          connections.Add(line);
+          PathConnections.Add(line);
         }
       }
     }
-
     private bool IsOutSideMap(Vector2 point) {
-      return point.x < 0 || point.y < 0 || point.x > mapSize.x || point.y > mapSize.y;
+      var allCell = GetUsedCells();
+      var startRange = (Vector2)allCell[0];
+      var endRange = (Vector2)allCell[allCell.Count - 1];
+      return point.x < startRange.x || point.y < startRange.y || point.x > endRange.x || point.y > endRange.y;
     }
-
     private int GetPointIndex(Vector2 point) {
       return (int)Math.Floor(point.x + mapSize.x * point.y);
     }

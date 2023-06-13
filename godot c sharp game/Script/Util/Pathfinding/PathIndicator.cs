@@ -18,7 +18,7 @@ namespace godotcsharpgame.Script.Util {
     }
 
     public override void _Draw() {
-      var cells = _tileMap.WorkableCells;
+      var cells = _tileMap.WalkableCells;
       if (cells == null) return;
       foreach (Vector2 vec in cells) {
         DrawString(GetFont("default"),_tileMap.MapToWorld(vec) + _tileMap.CellSize * 0.5f,$"{vec}",Colors.Aqua);

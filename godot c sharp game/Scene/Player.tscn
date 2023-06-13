@@ -9,16 +9,16 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( 32, 32 )
+[node name="polyPlayer" type="Polygon2D" parent="."]
 color = Color( 0.35277, 0.66, 0.3366, 0.701961 )
-offset = Vector2( -32, -32 )
 polygon = PoolVector2Array( -32, 32, -32, -32, 32, -32, 32, 32 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Line2D" type="Line2D" parent="."]
-position = Vector2( -352, 288 )
-points = PoolVector2Array( 384, -320, 384, -256 )
+[node name="lineDir" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PoolVector2Array( 0, 0, 32, 0 )
 width = 2.0
+default_color = Color( 0.84, 0.76272, 0.0672, 0.635294 )
+joint_mode = 1
