@@ -58,6 +58,12 @@ namespace godotcsharpgame.Script.Util {
 
       return ImmobilizedTileTypes.Contains(cellType);
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="map"></param>
+    /// <param name="position">world position</param>
+    /// <returns></returns>
     public int GetCellType(TileMap map, Vector2 position) {
       var mapPos = map.WorldToMap(position);
       var cellType = map.GetCellv(mapPos);
@@ -200,14 +206,26 @@ namespace godotcsharpgame.Script.Util {
       return _aStar.GetPointPosition(tileIndex);
     }
 
-    public int GetPositionObjectType(Vector2 mapPoint) {
-      var cellType = GetCellType(this, mapPoint);
+    /// <summary>
+    /// Convert Object Position to Tile type;
+    /// The <see cref="GetCellType"></see> method is for converting Position to Map Vectors
+    /// </summary>
+    /// <param name="globalPosition">
+    ///   Global position
+    /// </param>
+    /// <returns>Cell's type</returns>
+    public int GetPositionObjectType(Vector2 globalPosition) {
+      var cellType = GetCellType(TC, globalPosition);
       if (cellType == -1) {
-        cellType = GetCellType(TC, mapPoint);
+        cellType = GetCellType(this, globalPosition);
       }
 
       return cellType;
     }
+    /// <summary>
+    /// Use <see cref="Godot.TileMap.GetUsedCellsById"/> to get all cells
+    /// which are Obstacles, and store as an Array.
+    /// </summary>
     private void GetObstacles() {
       ObstaclesCells = new Array();
       foreach (Global.TILE_TYPE tileType in ImmobilizedTileTypes) {

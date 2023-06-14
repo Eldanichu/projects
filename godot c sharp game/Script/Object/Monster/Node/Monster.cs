@@ -14,7 +14,7 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
 
     private Polygon2D ViewRange;
     private Vector2[] ViewRangeShape = new Vector2[4];
-    private Vector2[] ViewRangeShapePositionRelatived = new Vector2[4];
+    private Vector2[] ViewRangeShapePositionRelative = new Vector2[4];
     private Vector2 viewRangeSize;
 
     private PlayerNode _player;
@@ -34,9 +34,9 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
       AddChild(moveTick);
       _map = TNode.GetNode<PathFinding>(GetTree(), "%map");
       var _tc = TNode.GetNode<TileMap>(GetTree(), "tc");
-      
+
       _player = _tc.GetNode<PlayerNode>("%Player");
-      
+
       ViewRange = new Polygon2D() {
         Modulate = Color.Color8(255, 255, 255, 55)
       };
@@ -47,6 +47,7 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
       // moveTick.OnTick += RandMovement;
       // moveTick.Start();
     }
+
 
     public void RandMovement(int tick) {
       var mapPosition = _map.WorldToMap(Position);
@@ -93,7 +94,7 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
       ViewRange.Polygon = ViewRangeShape;
 
       for (int i = 0; i < ViewRangeShape.Length; i++) {
-        ViewRangeShapePositionRelatived[i] = Position - ViewRangeShape[i] + _map.CellSize;
+        ViewRangeShapePositionRelative[i] = Position - ViewRangeShape[i] + _map.CellSize;
       }
 
       UpdateViewRangePosition();
@@ -109,14 +110,19 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
 
     public override void _PhysicsProcess(float delta) {
       _player.GetPlayerShape();
-  
-      var intersect = Geometry.IntersectPolygons2d(_player.PlayerShape, ViewRangeShapePositionRelatived);
-      if (intersect.Count <=0) {
+
+      var intersect = Geometry.IntersectPolygons2d(
+              _player.PlayerShape,
+              ViewRangeShapePositionRelative
+      );
+      if (intersect.Count <= 0) {
         return;
       }
+
       var poly = (Vector2[])intersect[0];
       var point = poly[0] - _map.CellSize;
-      L.t($" - {_map.WorldToMap(point)}");
+      var playerPos = _map.WorldToMap(point);
+      L.t($" - {playerPos} - tileType {_map.GetPositionObjectType(point)}");
     }
 
     private void Reset() {
