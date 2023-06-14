@@ -172,10 +172,8 @@ namespace godotcsharpgame.Script.Util {
       return pointsRels;
     }
     public float GetDistance(Vector2 start, Vector2 target) {
-      var targetCellType = GetCellType(this, target);
-      if (targetCellType == -1) {
-        targetCellType = GetCellType(TC, target);
-      }
+      var targetCellType = GetPositionObjectType(target);
+      
       if (ImmobilizedTileTypes.Contains(targetCellType) && !ObjectTileTypes.Contains(targetCellType)) {
         return -1;
       }
@@ -192,6 +190,23 @@ namespace godotcsharpgame.Script.Util {
       var mapDirTo = GetPointMapPosition(dirTo);
       var dir = mapPoint.DirectionTo(mapDirTo) + new Vector2(0.3f, 0.3f);
       return dir;
+    }
+
+    public int GetPointIndex(Vector2 point) {
+      return (int)Math.Floor(point.x + mapSize.x * point.y);
+    }
+
+    public Vector2 GetPointPosition(int tileIndex) {
+      return _aStar.GetPointPosition(tileIndex);
+    }
+
+    public int GetPositionObjectType(Vector2 mapPoint) {
+      var cellType = GetCellType(this, mapPoint);
+      if (cellType == -1) {
+        cellType = GetCellType(TC, mapPoint);
+      }
+
+      return cellType;
     }
     private void GetObstacles() {
       ObstaclesCells = new Array();
@@ -255,9 +270,6 @@ namespace godotcsharpgame.Script.Util {
       var startRange = (Vector2)allCell[0];
       var endRange = (Vector2)allCell[allCell.Count - 1];
       return point.x < startRange.x || point.y < startRange.y || point.x > endRange.x || point.y > endRange.y;
-    }
-    private int GetPointIndex(Vector2 point) {
-      return (int)Math.Floor(point.x + mapSize.x * point.y);
     }
   }
 }

@@ -70,10 +70,12 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="tc" instance=ExtResource( 2 )]
 position = Vector2( 800, 288 )
 
-[node name="Monster" parent="." instance=ExtResource( 7 )]
+[node name="Monsters" type="Node" parent="tc"]
+
+[node name="Monster" parent="tc/Monsters" instance=ExtResource( 7 )]
 position = Vector2( 672, 224 )
 __meta__ = {
 "_edit_group_": true

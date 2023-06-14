@@ -11,6 +11,7 @@ __meta__ = {
 
 [node name="polyPlayer" type="Polygon2D" parent="."]
 color = Color( 0.35277, 0.66, 0.3366, 0.701961 )
+invert_border = 1.0
 polygon = PoolVector2Array( -32, 32, -32, -32, 32, -32, 32, 32 )
 __meta__ = {
 "_edit_lock_": true
