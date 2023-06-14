@@ -1,9 +1,10 @@
-using System;
 using Godot;
+using Godot.Collections;
+using godotcsharpgame.Script.Object.Player.Node;
 using godotcsharpgame.Script.Util;
 
 namespace godotcsharpgame.Script.Object.Monster.Node {
-  public class Monster : Godot.Node2D {
+  public class Monster : Node2D {
 
     private PathFinding _map;
     private Vector2[] MovePath;
@@ -13,24 +14,29 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
 
     private Polygon2D ViewRange;
     private Vector2[] ViewRangeShape = new Vector2[4];
+    private Vector2[] ViewRangeShapePositionRelatived = new Vector2[4];
     private Vector2 viewRangeSize;
 
-    [Export]
-    public float moveInterval = 3f;
+    private PlayerNode _player;
 
+    [Export] public float moveInterval = 3f;
     public int TileIndex { set; get; }
     public Vector2 intersectPoint { get; set; }
 
     public override void _Ready() {
       SetupNode();
     }
+
     private void SetupNode() {
       _tweenMove = new Tween();
       AddChild(_tweenMove);
       moveTick = new Tick(0, moveInterval);
       AddChild(moveTick);
       _map = TNode.GetNode<PathFinding>(GetTree(), "%map");
-
+      var _tc = TNode.GetNode<TileMap>(GetTree(), "tc");
+      
+      _player = _tc.GetNode<PlayerNode>("%Player");
+      
       ViewRange = new Polygon2D() {
         Modulate = Color.Color8(255, 255, 255, 55)
       };
@@ -38,8 +44,8 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
       Reset();
       UpdateTileIndex();
       CreateViewRange(_map.CellSize, new Vector2(1, 1));
-      moveTick.OnTick += RandMovement;
-      moveTick.Start();
+      // moveTick.OnTick += RandMovement;
+      // moveTick.Start();
     }
 
     public void RandMovement(int tick) {
@@ -49,6 +55,7 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
         // L.t($"{lastCell}");
         _map.TC.SetCellv(lastCell, (int)Global.TILE_TYPE.INVALID);
       }
+
       var cell = _map.WorldToMap(Position) + nextDir;
       var point = _map.GetWorldCellVector2(cell);
       _tweenMove.InterpolateProperty(this,
@@ -60,13 +67,13 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
               Tween.EaseType.OutIn
       );
       _map.TC.SetCellv(cell, (int)Global.TILE_TYPE.MONSTER);
-   
       lastCell = cell;
       _tweenMove.Start();
       moveTick.Start();
       UpdateTileIndex();
       UpdateViewRangePosition();
-      // L.t($"move {tick} - path{_map.WorldToMap(Position) + nextDir}");
+
+      // intersectPoint = _map.WorldToMap(PlayerNode.Position);
     }
 
     public void CreateViewRange(Vector2 cellSize, Vector2 range) {
@@ -84,6 +91,11 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
       // down left
       ViewRangeShape[3] = new Vector2(origin, cellArea * range.y + size);
       ViewRange.Polygon = ViewRangeShape;
+
+      for (int i = 0; i < ViewRangeShape.Length; i++) {
+        ViewRangeShapePositionRelatived[i] = Position - ViewRangeShape[i] + _map.CellSize;
+      }
+
       UpdateViewRangePosition();
     }
 
@@ -96,14 +108,15 @@ namespace godotcsharpgame.Script.Object.Monster.Node {
     }
 
     public override void _PhysicsProcess(float delta) {
-      if (intersectPoint == -Vector2.One) {
+      _player.GetPlayerShape();
+  
+      var intersect = Geometry.IntersectPolygons2d(_player.PlayerShape, ViewRangeShapePositionRelatived);
+      if (intersect.Count <=0) {
         return;
       }
-      var intersect = Geometry.IsPointInPolygon(new Vector2(0,0),ViewRangeShape);
-      if (intersect) {
-        return;
-      }
-      L.t($"{intersect}");
+      var poly = (Vector2[])intersect[0];
+      var point = poly[0] - _map.CellSize;
+      L.t($" - {_map.WorldToMap(point)}");
     }
 
     private void Reset() {
