@@ -149,8 +149,7 @@ namespace godotcsharpgame.Script.Object.Properties {
         PropertyChanged("Mp1", value);
       }
     }
-
-
+    
     public delegate void PlayerPropertyChange(string propName, object value);
     public event PlayerPropertyChange OnPropertyChanged;
 

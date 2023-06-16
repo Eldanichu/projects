@@ -15,6 +15,12 @@ public class WizClass : PlayerClass {
   }
   public override List<Skill> Skills { get; set; }
 
+  public override void Calculate() {
+    base.Calculate();
+    props.Mc0 = CalcValue(1m, AtkRate, AtkAcc);
+    props.Mc1 = CalcValue(3m, AtkRate, AtkAcc, true);
+  }
+
   public void UseSkill() {
 
   }

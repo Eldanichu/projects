@@ -1,9 +1,8 @@
 using Godot;
-using Godot.Collections;
-using godotcsharpgame.Script.Object.Player.Node;
+using godotcsharpgame.Script.Object.Player;
 using godotcsharpgame.Script.Util;
 
-namespace godotcsharpgame.Script.Object.Monster.Node {
+namespace godotcsharpgame.Script.Object.Monster {
   public class Monster : Node2D {
 
     private PathFinding _map;

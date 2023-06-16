@@ -8,12 +8,5 @@ namespace godotcsharpgame.Script.Object.Monster.Base.Obj {
     public string _uid { get; set; }
     public string ID { get; set; }
     public MonsterProps Props { get; set; }
-
-    public override bool IsTargetObject(PlayerObject target) {
-      throw new System.NotImplementedException();
-    }
-    public override bool IsTargetObject(MonsterObject target) {
-      throw new System.NotImplementedException();
-    }
   }
 }

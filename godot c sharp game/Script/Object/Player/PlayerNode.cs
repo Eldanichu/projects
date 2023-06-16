@@ -1,10 +1,9 @@
 using System;
 using Godot;
 using godotcsharpgame.Script.Object.Damage;
-using godotcsharpgame.Script.Object.Player.Obj;
 using godotcsharpgame.Script.Util;
 
-namespace godotcsharpgame.Script.Object.Player.Node {
+namespace godotcsharpgame.Script.Object.Player {
   public class PlayerNode : Node2D {
     private ProgressBar expBar;
     private TextureProgress hpBar;
@@ -82,25 +81,6 @@ namespace godotcsharpgame.Script.Object.Player.Node {
     public override void _ExitTree() {
       base._ExitTree();
       QueueFree();
-    }
-
-    public void Create(Global.CLASS_TYPE classType) {
-      switch (classType) {
-        case Global.CLASS_TYPE.tao:
-          PlayerObject = new PlayerGenerator<TaoClass>();
-          break;
-        case Global.CLASS_TYPE.warrior:
-          PlayerObject = new PlayerGenerator<WarClass>();
-          break;
-        case Global.CLASS_TYPE.wizard:
-          PlayerObject = new PlayerGenerator<WizClass>();
-          break;
-      }
-
-      PlayerObject.node = this;
-      PlayerObject.LevelUp();
-      var props = PlayerObject.GetProps(Global.PROP_TYPE.ATTACK);
-      L.t($"{props}");
     }
 
     private void MoveAlongPath(int count) {

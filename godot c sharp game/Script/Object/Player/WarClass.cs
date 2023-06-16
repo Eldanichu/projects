@@ -14,4 +14,10 @@ public class WarClass : PlayerClass {
     AtkRate = 6;
   }
   public override List<Skill> Skills { get; set; }
+
+  public override void Calculate() {
+    base.Calculate();
+    props.Dc0 = CalcValue(1m, AtkRate, AtkAcc);
+    props.Dc1 = CalcValue(3m, AtkRate, AtkAcc, true);
+  }
 }
