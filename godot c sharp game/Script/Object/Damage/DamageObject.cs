@@ -4,7 +4,7 @@ using godotcsharpgame.Script.Object.Properties;
 
 namespace godotcsharpgame.Script.Object.Damage {
   public class DamageObject {
-    public PlayerClass PlayerClass { set; get; }
+    public PlayerClass.PlayerClass PlayerClass { set; get; }
     public bool IsCritical { set; get; }
     public bool IsMagic { get; }
     public BaseProperty Props { set; get; }
@@ -22,10 +22,7 @@ namespace godotcsharpgame.Script.Object.Damage {
         Power = 0;
         return;
       }
-      if (PlayerClass.Type == Global.CLASS_TYPE.tao) {
-        DMin = Props.Sc0;
-        DMax = Props.Sc1;
-      }
+
       CriticalHit();
       Power += _rnd.R(DMin, DMax);
       if (!IsCritical) return;

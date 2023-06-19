@@ -1,8 +1,7 @@
 ﻿using godotcsharpgame.Script.Interface.Monster;
-using godotcsharpgame.Script.Object.Monster.Base.Obj.State.Event.Action;
 
 namespace godotcsharpgame.Script.Object.Monster.Base.Obj {
-  public class MonsterObject : MonsterAction ,IMonster {
+  public class MonsterObject : IMonster {
 
     public Godot.Node Node { get; set; }
     public string _uid { get; set; }

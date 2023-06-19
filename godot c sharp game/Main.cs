@@ -1,4 +1,7 @@
 using Godot;
+using godotcsharpgame.Script.Object.PlayerClass;
+using godotcsharpgame.Script.Object.Properties;
+using godotcsharpgame.Script.Util;
 using SQLite;
 
 public class Main : Node {
@@ -11,6 +14,11 @@ public class Main : Node {
   public override void _Ready() {
 	  _gui = GetNode<CanvasLayer>("%GUI");
 	  _menu = GetNode<CanvasLayer>("%Menu");
+	  var da = new TaoClass() {
+		  props = new PlayerProperties()
+	  };
+	  da.Calculate();
+	  L.t($"{da}");
 	  // _gui.Visible = false;
 	  // _menu.Visible = true;
 	  // var tick = new Tick(5) {

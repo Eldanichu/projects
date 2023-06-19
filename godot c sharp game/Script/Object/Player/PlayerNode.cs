@@ -1,33 +1,34 @@
 using System;
 using Godot;
 using godotcsharpgame.Script.Object.Damage;
+using godotcsharpgame.Script.Object.Properties;
 using godotcsharpgame.Script.Util;
 
 namespace godotcsharpgame.Script.Object.Player {
   public class PlayerNode : Node2D {
-    private ProgressBar expBar;
-    private TextureProgress hpBar;
-    private Label hpText;
-    private TextureProgress mpBar;
-    private Label mpText;
     private DamageObject _dmage;
-
-    private Line2D dirLine;
-    private Polygon2D AttackArea;
-    private Vector2[] AttackAreaShape = new Vector2[4];
 
 
     private PathFinding _map;
-    private Vector2[] MovePath;
     private Tween _tweenMove;
-    private Tick moveTick;
-    private Vector2 lastCell = Vector2.Zero;
+    private Polygon2D AttackArea;
+    private readonly Vector2[] AttackAreaShape = new Vector2[4];
 
-    public Vector2[] PlayerShape { set; get; }
+    private Line2D dirLine;
+    private ProgressBar expBar;
+    private TextureProgress hpBar;
+    private Label hpText;
+    private Vector2 lastCell = Vector2.Zero;
     public int MoveIndex;
     public float moveInterval = 0.2f;
+    private Vector2[] MovePath;
+    private Tick moveTick;
+    private TextureProgress mpBar;
+    private Label mpText;
 
     public PlayerProperties props;
+
+    public Vector2[] PlayerShape { set; get; }
     public PlayerObject PlayerObject { set; get; }
 
     public override void _Ready() {
@@ -46,7 +47,7 @@ namespace godotcsharpgame.Script.Object.Player {
       _map = TNode.GetNode<PathFinding>(GetTree(), "%map");
       dirLine = GetNode<Line2D>("%lineDir");
 
-      AttackArea = new Polygon2D() {
+      AttackArea = new Polygon2D {
         Modulate = Color.Color8(255, 255, 255, 55)
       };
       AddChild(AttackArea);
@@ -60,9 +61,7 @@ namespace godotcsharpgame.Script.Object.Player {
     }
 
     public override void _Process(float delta) {
-      if (PlayerObject == null) {
-        return;
-      }
+      if (PlayerObject == null) return;
 
       UIUpdating();
     }
@@ -84,9 +83,7 @@ namespace godotcsharpgame.Script.Object.Player {
     }
 
     private void MoveAlongPath(int count) {
-      if (MovePath == null || MovePath.Length <= 0) {
-        return;
-      }
+      if (MovePath == null || MovePath.Length <= 0) return;
 
       if (MoveIndex >= MovePath.Length) {
         moveTick.Stop();
@@ -96,13 +93,9 @@ namespace godotcsharpgame.Script.Object.Player {
       var movePathLength = Math.Min(MoveIndex + 1, MovePath.Length - 1);
       var nextCell = MovePath[movePathLength];
       var nextPoint = _map.GetWorldCellVector2(nextCell);
-      if (_map.CellHasObjectTC(nextPoint) || _map.CellHasObject(nextPoint)) {
-        return;
-      }
+      if (_map.CellHasObjectTC(nextPoint) || _map.CellHasObject(nextPoint)) return;
 
-      if (lastCell != Vector2.Zero) {
-        _map.TC.SetCellv(lastCell, (int)Global.TILE_TYPE.INVALID);
-      }
+      if (lastCell != Vector2.Zero) _map.TC.SetCellv(lastCell, (int)Global.TILE_TYPE.INVALID);
 
       var cell = MovePath[MoveIndex];
       var point = _map.GetWorldCellVector2(cell);
@@ -121,18 +114,11 @@ namespace godotcsharpgame.Script.Object.Player {
     }
 
     private void DoDamage() {
-      _dmage = new DamageObject() {
-        Props = PlayerObject.props,
-        PlayerClass = PlayerObject.PlayerClass
-      };
-      _dmage.GetPower();
-      L.t($"{_dmage.Power} - {_dmage.IsCritical}");
+
     }
 
     private void _PlayerEvent() {
-      if (PlayerObject == null) {
-        return;
-      }
+      if (PlayerObject == null) return;
 
       PlayerObject.AbilityChanged += (state, amount) => {
         switch (state) {
@@ -195,9 +181,7 @@ namespace godotcsharpgame.Script.Object.Player {
     }
 
     public override void _Draw() {
-      if (PlayerShape == null) {
-        return;
-      }
+      if (PlayerShape == null) return;
 
       DrawColoredPolygon(PlayerShape, Colors.Red);
     }
