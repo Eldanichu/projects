@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
 using Godot;
 using godotcsharpgame.Database.Attribute;
+using godotcsharpgame.Script.Interface.Player;
+using godotcsharpgame.Script.Object.PlayerClass;
 using godotcsharpgame.Script.Object.Properties;
 using godotcsharpgame.Script.Object.Skill;
 
-public class PlayerObject {
+public class PlayerObject : IPlayer {
   public delegate void PlayerAbility(Global.PLAYER_ABILITY state, decimal amount);
   public Node node { get; set; }
   public List<Node> Targets { get; set; }
   public PlayerProperties props { get; set; }
+  public PlayerClass classType { get; set; }
   public List<string> Inventory { get; set; }
   public Dictionary<string, Item> Equipment { get; set; }
   public PlayerObject() {
