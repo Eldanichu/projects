@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb0puxvhcgic1"]
+
+[ext_resource type="Script" path="res://main.cs" id="1_f722n"]
+[ext_resource type="PackedScene" uid="uid://b8jh78n4bbd5c" path="res://Packages/StatBar.tscn" id="2_oevw5"]
+
+[sub_resource type="TileSet" id="TileSet_q57o2"]
+tile_size = Vector2i(96, 128)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_f722n")
+
+[node name="gui" type="CanvasLayer" parent="."]
+
+[node name="ui_control" type="Control" parent="gui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatBar" parent="gui/ui_control" instance=ExtResource("2_oevw5")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 90.0
+offset_bottom = 90.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_q57o2")
+format = 2
