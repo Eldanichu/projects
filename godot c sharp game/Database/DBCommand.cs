@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using godotcsharpgame;
 using SQLite;
 
 public class DBCommand<T> where T : new() {

@@ -1,16 +1,14 @@
 ﻿using System;
 using Godot;
 using godotcsharpgame.Script.Object.Properties;
+using godotcsharpgame.Script.Util;
 
 namespace godotcsharpgame.Script.Object.Damage {
   public class DamageObject {
-    public PlayerClass.PlayerClass PlayerClass { set; get; }
-    public bool IsCritical { set; get; }
-    public bool IsMagic { get; }
-    public BaseProperty Props { set; get; }
-    public int DMin { get; set; }
-    public int DMax { get; set; }
-    public int Power { set; get; }
+    public float dMax { get; set; }
+    public float dMin { get; set; }
+    public float Power { private set; get; }
+    public bool IsCriticalPower { private set; get; }
 
     private Random _rnd;
     public DamageObject() {
@@ -18,25 +16,22 @@ namespace godotcsharpgame.Script.Object.Damage {
     }
 
     public void GetPower() {
-      if (!Hit()) {
-        Power = 0;
+      if (!IsHit()) {
         return;
       }
-
-      CriticalHit();
-      Power += _rnd.R(DMin, DMax);
-      if (!IsCritical) return;
-      Power += 1;
-      Power = (int)Math.Round(Power * 1.1);
+      Power += _rnd.R(dMax, dMin);
+      if (IsCritical()) {
+        Power *= 1.2f;
+        IsCriticalPower = true;
+      }
     }
 
-    private bool Hit() {
-      return _rnd.I(100 - Props.AttackRate) < Props.AttackRate;
+    private bool IsHit() {
+      return _rnd.Possible(55);
     }
 
-    private void CriticalHit() {
-      var _critical = _rnd.I(100 - Props.CriticalChance) < Props.CriticalChance;
-      IsCritical = _critical;
+    private bool IsCritical() {
+      return _rnd.Possible(25);
     }
   }
 }

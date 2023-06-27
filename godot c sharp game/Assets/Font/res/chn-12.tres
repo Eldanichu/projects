@@ -3,7 +3,6 @@
 [ext_resource path="res://Assets/Font/ttf/chn.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 14
-use_mipmaps = true
+size = 12
 use_filter = true
 font_data = ExtResource( 1 )

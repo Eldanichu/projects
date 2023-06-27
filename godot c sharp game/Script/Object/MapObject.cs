@@ -9,7 +9,7 @@ namespace godotcsharpgame.Script.Object {
       get => uid = StringUtil.GetId();
       set {
         uid = value;
-      } 
+      }
     }
     public int tileIndex { get; set; }
     public Node NodeObject { get; set; }

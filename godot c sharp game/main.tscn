@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Main.cs" type="Script" id=1]
 [ext_resource path="res://Script/Event.cs" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Assets/UI/bar_red.PNG" type="Texture" id=7]
 [ext_resource path="res://Assets/Font/ttf/chn.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Scene/Startup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Script/Test/test_main.cs" type="Script" id=10]
+[ext_resource path="res://Assets/Font/res/chn-14.tres" type="DynamicFont" id=11]
 [ext_resource path="res://GUI.cs" type="Script" id=12]
 
 [sub_resource type="DynamicFont" id=8]
@@ -35,6 +37,23 @@ bg_color = Color( 0.6, 0.574, 0.288, 1 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.15, 0.15, 0.15, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.42, 0.42, 0.42, 1 )
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="main" type="Node"]
 script = ExtResource( 1 )
@@ -144,6 +163,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 3
 
 [node name="mp" type="VBoxContainer" parent="GUI/ui_control/g/panels/playerpanel/hpmp"]
+unique_name_in_owner = true
 margin_left = 974.0
 margin_right = 1014.0
 margin_bottom = 61.0
@@ -168,6 +188,7 @@ __meta__ = {
 }
 
 [node name="exp" type="HBoxContainer" parent="GUI/ui_control/g/panels/playerpanel"]
+unique_name_in_owner = true
 margin_top = 65.0
 margin_right = 1014.0
 margin_bottom = 82.0
@@ -183,9 +204,53 @@ value = 10.0
 
 [node name="Menu" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="Startup" parent="Menu" instance=ExtResource( 9 )]
 
 [node name="game" parent="." instance=ExtResource( 4 )]
 unique_name_in_owner = true
+visible = false
+
+[node name="TEST" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="test_main" type="Control" parent="TEST"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 10 )
+
+[node name="PanelContainer" type="PanelContainer" parent="TEST/test_main"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TEST/test_main/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="logger" type="RichTextLabel" parent="TEST/test_main/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 1010.0
+margin_bottom = 562.0
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 11 )
+custom_styles/normal = SubResource( 11 )
+bbcode_enabled = true
+bbcode_text = "Hello"
+text = "Hello"
+scroll_following = true
+deselect_on_focus_loss_enabled = false
+
+[node name="HFlowContainer" type="HFlowContainer" parent="TEST/test_main/PanelContainer/VBoxContainer"]
+margin_top = 566.0
+margin_right = 1010.0
+margin_bottom = 586.0
+
+[node name="GetPower" type="Button" parent="TEST/test_main/PanelContainer/VBoxContainer/HFlowContainer"]
+unique_name_in_owner = true
+margin_right = 74.0
+margin_bottom = 20.0
+text = "GetPower"

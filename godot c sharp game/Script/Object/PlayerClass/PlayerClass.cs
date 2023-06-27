@@ -16,20 +16,23 @@ namespace godotcsharpgame.Script.Object.PlayerClass {
     public decimal AtkAcc { set; get; }
     private double ExpConst => 14;
     private double ExpFactor => 1.1;
-  
+
     public PlayerProperties props { set; get; }
 
     public void Calculate() {
-      props.Hp1 = (int)(HpRatio + (props.Level / (1 + HpBase) + HpAcc) * props.Level);
-      props.Mp1 = (int)(MpRate +
-                        (props.Level / (1 + MpBase) + MpAcc) * MpRate * props.Level);
-      props.Exp1 = (int)(props.Level * ExpConst * ExpFactor * (props.Level * 1.1));
+      if (props == null) {
+        return;
+      }
+      var _level = Math.Max(1, props.Level);
+      props.Hp1 = (int)(HpRatio + (_level / (1 + HpBase) + HpAcc) * _level);
+      props.Mp1 = (int)(MpRate + (_level / (1 + MpBase) + MpAcc) * MpRate * _level);
+      props.Exp1 = (int)(_level * ExpConst * ExpFactor * (_level * 1.1));
       props.Ac0 = CalcValue(0.84m, DefRate, DefAcc);
       props.Ac1 = CalcValue(0.96m, DefRate, DefAcc, true);
       props.Mac0 = CalcValue(0.1m, DefRate, DefAcc);
       props.Mac1 = CalcValue(0.5m, DefRate, DefAcc);
     }
-  
+
     protected int CalcValue(
             decimal c,
             decimal rate,

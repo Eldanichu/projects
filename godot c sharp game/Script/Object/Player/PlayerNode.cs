@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Godot.Collections;
 using godotcsharpgame.Script.Object.Damage;
 using godotcsharpgame.Script.Object.Properties;
 using godotcsharpgame.Script.Util;
@@ -53,11 +54,22 @@ namespace godotcsharpgame.Script.Object.Player {
       AddChild(AttackArea);
 
       var g = GetTree().Root.GetNodeOrNull("main");
-      hpText = g.FindNode("hp").GetNode<Label>("text");
-      hpBar = g.FindNode("hp").GetNode<TextureProgress>("pg");
-      mpText = g.FindNode("mp").GetNode<Label>("text");
-      mpBar = g.FindNode("mp").GetNode<TextureProgress>("pg");
-      expBar = g.FindNode("exp").GetNode<ProgressBar>("pg");
+      var hp = g.GetNode("%hp");
+      var mp = g.GetNode("%mp");
+      hpText = hp.GetNode<Label>("text");
+      hpBar = hp.GetNode<TextureProgress>("pg");
+      mpText = mp.GetNode<Label>("text");
+      mpBar = mp.GetNode<TextureProgress>("pg");
+      expBar = g.GetNode("%exp").GetNode<ProgressBar>("pg");
+    }
+
+    public void Create(Dictionary form) {
+      var classType = (Global.CLASS_TYPE)form["ClassType"];
+      PlayerObject = new PlayerObject(classType);
+      props = PlayerObject.props;
+      PlayerObject.PlayerClass.Calculate();
+      PlayerObject.RestoreStat();
+      PlayerObject.GiveExp(920000);
     }
 
     public override void _Process(float delta) {
@@ -67,9 +79,9 @@ namespace godotcsharpgame.Script.Object.Player {
     }
 
     public override void _Input(InputEvent @event) {
-      // if (PlayerObject == null) {
-      //   return;
-      // }
+      if (PlayerObject == null) {
+        return;
+      }
       PlayerMouseMoveEvent(@event);
       PlayerClickEvent(@event);
     }
@@ -192,13 +204,12 @@ namespace godotcsharpgame.Script.Object.Player {
     }
 
     private void UIUpdating() {
-      props = PlayerObject.props;
       hpText.Text = $"{props.Hp0}/{props.Hp1}";
       mpText.Text = $"{props.Mp0}/{props.Mp1}";
 
-      hpBar.Value = props.Hp0 / props.Hp1 * 100;
-      mpBar.Value = props.Mp0 / props.Mp1 * 100;
-      expBar.Value = props.Exp0 / props.Exp1 * 100;
+      hpBar.Value = props.Hp0 * 1f / props.Hp1 * 1f * 100;
+      mpBar.Value = props.Mp0 * 1f / props.Mp1 * 1f * 100;
+      expBar.Value = props.Exp0 * 1f / props.Exp1 * 1f * 100;
     }
   }
 }

@@ -24,8 +24,8 @@ namespace godotcsharpgame {
       L.t($"Creating Player Info -> {form}");
       var menu = TNode.GetNode<CanvasLayer>(GetTree(),"%Menu");
       menu.Visible = false;
-      var _player = TNode.GetNode<PlayerNode>(GetTree(),"Player");
-      // _player.Create((Global.CLASS_TYPE)form["ClassType"]);
+      var _player = TNode.GetNode<PlayerNode>(GetTree(),"%Player");
+      _player.Create(form);
       var _game = TNode.GetNode<Node2D>(GetTree(), "%game");
       _game.Visible = true;
 

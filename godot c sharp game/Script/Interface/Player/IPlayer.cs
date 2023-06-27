@@ -6,6 +6,6 @@ namespace godotcsharpgame.Script.Interface.Player {
   public interface IPlayer {
     Node node { get; set; }
     PlayerProperties props { get; set; }
-    PlayerClass classType { set; get; }
+    PlayerClass PlayerClass { set; get; }
   }
 }

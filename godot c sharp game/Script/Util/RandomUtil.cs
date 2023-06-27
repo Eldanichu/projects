@@ -33,4 +33,10 @@ public class Random {
 
     return res;
   }
+
+  public bool Possible(int c = 0) {
+    var r = R(1f, 0f);
+    var p = r * 100;
+    return p <= c;
+  }
 }
