@@ -1,33 +1,15 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Main.cs" type="Script" id=1]
 [ext_resource path="res://Script/Event.cs" type="Script" id=2]
 [ext_resource path="res://Scene/Component/pg.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scene/game.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Theme/g.tres" type="Theme" id=5]
 [ext_resource path="res://Assets/UI/bar_blue.PNG" type="Texture" id=6]
 [ext_resource path="res://Assets/UI/bar_red.PNG" type="Texture" id=7]
-[ext_resource path="res://Assets/Font/ttf/chn.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Scene/Logger/logger.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scene/Startup.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Script/Test/test_main.cs" type="Script" id=10]
-[ext_resource path="res://Assets/Font/res/chn-14.tres" type="DynamicFont" id=11]
 [ext_resource path="res://GUI.cs" type="Script" id=12]
-
-[sub_resource type="DynamicFont" id=8]
-size = 12
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 8 )
-
-[sub_resource type="StyleBoxFlat" id=9]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-bg_color = Color( 0.219608, 0.219608, 0.219608, 1 )
-
-[sub_resource type="Theme" id=10]
-RichTextLabel/fonts/normal_font = SubResource( 8 )
-RichTextLabel/styles/normal = SubResource( 9 )
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.231373, 0.231373, 0.231373, 1 )
@@ -38,23 +20,6 @@ bg_color = Color( 0.6, 0.574, 0.288, 1 )
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
-[sub_resource type="StyleBoxFlat" id=11]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-bg_color = Color( 0.15, 0.15, 0.15, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.42, 0.42, 0.42, 1 )
-border_blend = true
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
 [node name="main" type="Node"]
 script = ExtResource( 1 )
 
@@ -64,7 +29,6 @@ script = ExtResource( 2 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 script = ExtResource( 12 )
 
 [node name="ui_control" type="MarginContainer" parent="GUI"]
@@ -76,110 +40,126 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
-[node name="g" type="Control" parent="GUI/ui_control"]
+[node name="panels" type="VBoxContainer" parent="GUI/ui_control"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1019.0
 margin_bottom = 595.0
-theme = ExtResource( 5 )
-
-[node name="panels" type="VBoxContainer" parent="GUI/ui_control/g"]
-anchor_right = 1.0
-anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/ui_control/g/panels"]
+[node name="center" type="HBoxContainer" parent="GUI/ui_control/panels"]
 margin_right = 1014.0
-margin_bottom = 504.0
+margin_bottom = 394.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="battle" type="VBoxContainer" parent="GUI/ui_control/g/panels/HBoxContainer"]
-unique_name_in_owner = true
-margin_right = 505.0
-margin_bottom = 504.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="statsbar" type="VBoxContainer" parent="GUI/ui_control/g/panels/HBoxContainer/battle"]
-margin_right = 505.0
-margin_bottom = 36.0
-rect_min_size = Vector2( 0, 36 )
-size_flags_horizontal = 3
-
-[node name="battle_log" type="RichTextLabel" parent="GUI/ui_control/g/panels/HBoxContainer/battle"]
-unique_name_in_owner = true
-margin_top = 40.0
-margin_right = 505.0
-margin_bottom = 504.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = SubResource( 10 )
-text = "Logger"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/ui_control/g/panels/HBoxContainer"]
-margin_left = 509.0
-margin_right = 1014.0
-margin_bottom = 504.0
-size_flags_horizontal = 3
-
-[node name="playerpanel" type="VBoxContainer" parent="GUI/ui_control/g/panels"]
-margin_top = 508.0
+[node name="bottom" type="VBoxContainer" parent="GUI/ui_control/panels"]
+margin_top = 398.0
 margin_right = 1014.0
 margin_bottom = 590.0
+rect_min_size = Vector2( 0, 192 )
 size_flags_vertical = 8
 
-[node name="hpmp" type="HBoxContainer" parent="GUI/ui_control/g/panels/playerpanel"]
+[node name="bar" type="VBoxContainer" parent="GUI/ui_control/panels/bottom"]
 margin_right = 1014.0
-margin_bottom = 61.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
 
-[node name="hp" type="VBoxContainer" parent="GUI/ui_control/g/panels/playerpanel/hpmp"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/ui_control/panels/bottom/bar"]
+margin_right = 1014.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="funcs" type="HBoxContainer" parent="GUI/ui_control/panels/bottom/bar/HBoxContainer"]
+margin_top = 22.0
+margin_right = 213.0
+margin_bottom = 42.0
+size_flags_vertical = 4
+custom_constants/separation = 5
+
+[node name="bag" type="Button" parent="GUI/ui_control/panels/bottom/bar/HBoxContainer/funcs"]
+margin_right = 35.0
+margin_bottom = 20.0
+text = "Bag"
+
+[node name="maps" type="Button" parent="GUI/ui_control/panels/bottom/bar/HBoxContainer/funcs"]
+margin_left = 40.0
+margin_right = 86.0
+margin_bottom = 20.0
+text = "Maps"
+
+[node name="char" type="Button" parent="GUI/ui_control/panels/bottom/bar/HBoxContainer/funcs"]
+margin_left = 91.0
+margin_right = 163.0
+margin_bottom = 20.0
+text = "Character"
+
+[node name="skills" type="Button" parent="GUI/ui_control/panels/bottom/bar/HBoxContainer/funcs"]
+margin_left = 168.0
+margin_right = 213.0
+margin_bottom = 20.0
+text = "Skills"
+
+[node name="hpmp" type="HBoxContainer" parent="GUI/ui_control/panels/bottom"]
+margin_top = 68.0
+margin_right = 1014.0
+margin_bottom = 174.0
+size_flags_vertical = 11
+
+[node name="hp" type="VBoxContainer" parent="GUI/ui_control/panels/bottom/hpmp"]
 unique_name_in_owner = true
-margin_right = 40.0
-margin_bottom = 61.0
-size_flags_horizontal = 2
+margin_right = 80.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 0
 
-[node name="pg" parent="GUI/ui_control/g/panels/playerpanel/hpmp/hp" instance=ExtResource( 3 )]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="pg" parent="GUI/ui_control/panels/bottom/hpmp/hp" instance=ExtResource( 3 )]
+margin_right = 80.0
+margin_bottom = 88.0
 rect_min_size = Vector2( 40, 40 )
 value = 20.0
 texture_progress = ExtResource( 7 )
 
-[node name="text" type="Label" parent="GUI/ui_control/g/panels/playerpanel/hpmp/hp"]
-margin_top = 44.0
-margin_right = 40.0
-margin_bottom = 61.0
+[node name="text" type="Label" parent="GUI/ui_control/panels/bottom/hpmp/hp"]
+margin_top = 92.0
+margin_right = 80.0
+margin_bottom = 106.0
 custom_styles/normal = SubResource( 3 )
 align = 1
 valign = 1
 
-[node name="command" type="VBoxContainer" parent="GUI/ui_control/g/panels/playerpanel/hpmp"]
-margin_left = 506.0
-margin_right = 506.0
-margin_bottom = 61.0
-size_flags_horizontal = 6
-size_flags_vertical = 3
+[node name="logger" type="VBoxContainer" parent="GUI/ui_control/panels/bottom/hpmp"]
+margin_left = 84.0
+margin_right = 930.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
 
-[node name="mp" type="VBoxContainer" parent="GUI/ui_control/g/panels/playerpanel/hpmp"]
+[node name="messages" parent="GUI/ui_control/panels/bottom/hpmp/logger" instance=ExtResource( 8 )]
+margin_right = 846.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
+
+[node name="mp" type="VBoxContainer" parent="GUI/ui_control/panels/bottom/hpmp"]
 unique_name_in_owner = true
-margin_left = 974.0
+margin_left = 934.0
 margin_right = 1014.0
-margin_bottom = 61.0
-size_flags_horizontal = 10
+margin_bottom = 106.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 8
 
-[node name="pg" parent="GUI/ui_control/g/panels/playerpanel/hpmp/mp" instance=ExtResource( 3 )]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="pg" parent="GUI/ui_control/panels/bottom/hpmp/mp" instance=ExtResource( 3 )]
+margin_right = 80.0
+margin_bottom = 88.0
 rect_min_size = Vector2( 40, 40 )
 value = 20.0
 texture_progress = ExtResource( 6 )
 
-[node name="text" type="Label" parent="GUI/ui_control/g/panels/playerpanel/hpmp/mp"]
-margin_top = 44.0
-margin_right = 40.0
-margin_bottom = 61.0
+[node name="text" type="Label" parent="GUI/ui_control/panels/bottom/hpmp/mp"]
+margin_top = 92.0
+margin_right = 80.0
+margin_bottom = 106.0
 custom_styles/normal = SubResource( 3 )
 align = 1
 valign = 1
@@ -187,15 +167,16 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="exp" type="HBoxContainer" parent="GUI/ui_control/g/panels/playerpanel"]
+[node name="exp" type="HBoxContainer" parent="GUI/ui_control/panels/bottom"]
 unique_name_in_owner = true
-margin_top = 65.0
+margin_top = 178.0
 margin_right = 1014.0
-margin_bottom = 82.0
+margin_bottom = 192.0
+size_flags_vertical = 8
 
-[node name="pg" type="ProgressBar" parent="GUI/ui_control/g/panels/playerpanel/exp"]
+[node name="pg" type="ProgressBar" parent="GUI/ui_control/panels/bottom/exp"]
 margin_right = 1014.0
-margin_bottom = 17.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
 custom_styles/fg = SubResource( 6 )
 custom_styles/bg = SubResource( 7 )
@@ -204,6 +185,7 @@ value = 10.0
 
 [node name="Menu" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="Startup" parent="Menu" instance=ExtResource( 9 )]
 
@@ -213,6 +195,7 @@ visible = false
 
 [node name="TEST" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="test_main" type="Control" parent="TEST"]
 anchor_right = 1.0
@@ -231,23 +214,12 @@ margin_bottom = 593.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="logger" type="RichTextLabel" parent="TEST/test_main/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-margin_right = 1010.0
-margin_bottom = 562.0
-size_flags_vertical = 3
-custom_fonts/normal_font = ExtResource( 11 )
-custom_styles/normal = SubResource( 11 )
-bbcode_enabled = true
-bbcode_text = "Hello"
-text = "Hello"
-scroll_following = true
-deselect_on_focus_loss_enabled = false
-
 [node name="HFlowContainer" type="HFlowContainer" parent="TEST/test_main/PanelContainer/VBoxContainer"]
 margin_top = 566.0
 margin_right = 1010.0
 margin_bottom = 586.0
+
+[node name="logger" parent="TEST/test_main/PanelContainer/VBoxContainer/HFlowContainer" instance=ExtResource( 8 )]
 
 [node name="GetPower" type="Button" parent="TEST/test_main/PanelContainer/VBoxContainer/HFlowContainer"]
 unique_name_in_owner = true

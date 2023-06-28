@@ -7,6 +7,7 @@ margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 rect_pivot_offset = Vector2( 32, 32 )
+size_flags_vertical = 3
 value = 50.0
 texture_under = ExtResource( 1 )
 fill_mode = 3

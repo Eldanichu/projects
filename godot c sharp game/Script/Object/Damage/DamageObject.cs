@@ -1,10 +1,11 @@
 ﻿using System;
 using Godot;
+using godotcsharpgame.Script.Interface.Damage;
 using godotcsharpgame.Script.Object.Properties;
 using godotcsharpgame.Script.Util;
 
 namespace godotcsharpgame.Script.Object.Damage {
-  public class DamageObject {
+  public class DamageObject : IDamage{
     public float dMax { get; set; }
     public float dMin { get; set; }
     public float Power { private set; get; }

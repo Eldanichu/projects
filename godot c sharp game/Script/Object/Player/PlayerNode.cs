@@ -20,15 +20,15 @@ namespace godotcsharpgame.Script.Object.Player {
     private TextureProgress hpBar;
     private Label hpText;
     private Vector2 lastCell = Vector2.Zero;
-    public int MoveIndex;
-    public float moveInterval = 0.2f;
+
     private Vector2[] MovePath;
     private Tick moveTick;
     private TextureProgress mpBar;
     private Label mpText;
-
+    
+    public int MoveIndex;
+    public float moveInterval = 0.2f;
     public PlayerProperties props;
-
     public Vector2[] PlayerShape { set; get; }
     public PlayerObject PlayerObject { set; get; }
 
@@ -87,6 +87,7 @@ namespace godotcsharpgame.Script.Object.Player {
     }
 
     public override void _PhysicsProcess(float delta) {
+      // Input.is_mouse_buttoned_pressed  // check if mouse button is on keydown state
     }
 
     public override void _ExitTree() {
