@@ -12,10 +12,9 @@ namespace godotcsharpgame.Script.Object.Player {
     private TextureProgress hpBar;
     private Label hpText;
 
-    private Vector2[] MovePath;
     private TextureProgress mpBar;
     private Label mpText;
-    
+
     public PlayerProperties props;
     public PlayerObject PlayerObject { set; get; }
 
@@ -41,34 +40,24 @@ namespace godotcsharpgame.Script.Object.Player {
       props = PlayerObject.props;
       PlayerObject.PlayerClass.Calculate();
       PlayerObject.RestoreStat();
-      PlayerObject.GiveExp(920000);
+      // PlayerObject.GiveExp(920000);
     }
 
     public override void _Process(float delta) {
       if (PlayerObject == null) return;
 
-      UIUpdating();
+      UpdateUI();
     }
 
     public override void _Input(InputEvent @event) {
-      if (PlayerObject == null) {
-        return;
-      }
+      if (PlayerObject == null) return;
+
       PlayerMouseMoveEvent(@event);
       PlayerClickEvent(@event);
     }
 
     public override void _PhysicsProcess(float delta) {
       // Input.is_mouse_buttoned_pressed  // check if mouse button is on keydown state
-    }
-
-    public override void _ExitTree() {
-      base._ExitTree();
-      QueueFree();
-    }
-
-    private void DoDamage() {
-
     }
 
     private void _PlayerEvent() {
@@ -87,25 +76,26 @@ namespace godotcsharpgame.Script.Object.Player {
       if (!(@event is InputEventMouseButton mb)) return;
       if (mb.ButtonIndex != 1 || !mb.Pressed) return;
       var mousePosition = GetGlobalMousePosition();
-  
+
     }
 
     private void PlayerMouseMoveEvent(InputEvent @event) {
       if (!(@event is InputEventMouseMotion)) return;
 
     }
-    
-    public override void _Draw() {
-  
+
+    private void UpdateUI() {
+      hpText.Text = props.DisplayNumber(props.Hp0, props.Hp1);
+      mpText.Text = props.DisplayNumber(props.Mp0, props.Mp1);
+
+      hpBar.Value = props.Percentage(props.Hp0, props.Hp1);
+      mpBar.Value = props.Percentage(props.Mp0, props.Mp1);
+      expBar.Value = props.Percentage(props.Exp0, props.Exp1);
     }
 
-    private void UIUpdating() {
-      hpText.Text = $"{props.Hp0}/{props.Hp1}";
-      mpText.Text = $"{props.Mp0}/{props.Mp1}";
-
-      hpBar.Value = props.Hp0 * 1f / props.Hp1 * 1f * 100;
-      mpBar.Value = props.Mp0 * 1f / props.Mp1 * 1f * 100;
-      expBar.Value = props.Exp0 * 1f / props.Exp1 * 1f * 100;
+    public override void _ExitTree() {
+      base._ExitTree();
+      QueueFree();
     }
   }
 }

@@ -17,11 +17,6 @@ namespace godotcsharpgame {
 			_gui = GetNode<CanvasLayer>("%GUI");
 			_menu = GetNode<CanvasLayer>("%Menu");
 			TEST = GetNode<CanvasLayer>("%TEST");
-			var da = new TaoClass() {
-				props = new PlayerProperties()
-			};
-			da.Calculate();
-			L.t($"{da}");
 			// _gui.Visible = false;
 			// _menu.Visible = true;
 			// var tick = new Tick(5) {

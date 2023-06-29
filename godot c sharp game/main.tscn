@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.cs" type="Script" id=1]
 [ext_resource path="res://Script/Event.cs" type="Script" id=2]
 [ext_resource path="res://Scene/Component/pg.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scene/game.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scene/MonsterField.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/UI/bar_blue.PNG" type="Texture" id=6]
 [ext_resource path="res://Assets/UI/bar_red.PNG" type="Texture" id=7]
 [ext_resource path="res://Scene/Logger/logger.tscn" type="PackedScene" id=8]
@@ -13,12 +14,6 @@
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.231373, 0.231373, 0.231373, 1 )
-
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.6, 0.574, 0.288, 1 )
-
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
 [node name="main" type="Node"]
 script = ExtResource( 1 )
@@ -53,6 +48,13 @@ margin_right = 1014.0
 margin_bottom = 394.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/ui_control/panels/center"]
+margin_right = 1014.0
+margin_bottom = 394.0
+size_flags_horizontal = 3
+
+[node name="monster_field" parent="GUI/ui_control/panels/center/VBoxContainer" instance=ExtResource( 5 )]
 
 [node name="bottom" type="VBoxContainer" parent="GUI/ui_control/panels"]
 margin_top = 398.0
@@ -105,27 +107,27 @@ text = "Skills"
 [node name="hpmp" type="HBoxContainer" parent="GUI/ui_control/panels/bottom"]
 margin_top = 68.0
 margin_right = 1014.0
-margin_bottom = 174.0
+margin_bottom = 186.0
 size_flags_vertical = 11
 
 [node name="hp" type="VBoxContainer" parent="GUI/ui_control/panels/bottom/hpmp"]
 unique_name_in_owner = true
 margin_right = 80.0
-margin_bottom = 106.0
+margin_bottom = 118.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 0
 
 [node name="pg" parent="GUI/ui_control/panels/bottom/hpmp/hp" instance=ExtResource( 3 )]
 margin_right = 80.0
-margin_bottom = 88.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 40, 40 )
 value = 20.0
 texture_progress = ExtResource( 7 )
 
 [node name="text" type="Label" parent="GUI/ui_control/panels/bottom/hpmp/hp"]
-margin_top = 92.0
+margin_top = 104.0
 margin_right = 80.0
-margin_bottom = 106.0
+margin_bottom = 118.0
 custom_styles/normal = SubResource( 3 )
 align = 1
 valign = 1
@@ -133,33 +135,33 @@ valign = 1
 [node name="logger" type="VBoxContainer" parent="GUI/ui_control/panels/bottom/hpmp"]
 margin_left = 84.0
 margin_right = 930.0
-margin_bottom = 106.0
+margin_bottom = 118.0
 size_flags_horizontal = 3
 
 [node name="messages" parent="GUI/ui_control/panels/bottom/hpmp/logger" instance=ExtResource( 8 )]
 margin_right = 846.0
-margin_bottom = 106.0
+margin_bottom = 118.0
 size_flags_horizontal = 3
 
 [node name="mp" type="VBoxContainer" parent="GUI/ui_control/panels/bottom/hpmp"]
 unique_name_in_owner = true
 margin_left = 934.0
 margin_right = 1014.0
-margin_bottom = 106.0
+margin_bottom = 118.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 8
 
 [node name="pg" parent="GUI/ui_control/panels/bottom/hpmp/mp" instance=ExtResource( 3 )]
 margin_right = 80.0
-margin_bottom = 88.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 40, 40 )
 value = 20.0
 texture_progress = ExtResource( 6 )
 
 [node name="text" type="Label" parent="GUI/ui_control/panels/bottom/hpmp/mp"]
-margin_top = 92.0
+margin_top = 104.0
 margin_right = 80.0
-margin_bottom = 106.0
+margin_bottom = 118.0
 custom_styles/normal = SubResource( 3 )
 align = 1
 valign = 1
@@ -169,19 +171,16 @@ __meta__ = {
 
 [node name="exp" type="HBoxContainer" parent="GUI/ui_control/panels/bottom"]
 unique_name_in_owner = true
-margin_top = 178.0
+margin_top = 190.0
 margin_right = 1014.0
 margin_bottom = 192.0
 size_flags_vertical = 8
 
-[node name="pg" type="ProgressBar" parent="GUI/ui_control/panels/bottom/exp"]
+[node name="ProgressBar" type="ProgressBar" parent="GUI/ui_control/panels/bottom/exp"]
 margin_right = 1014.0
-margin_bottom = 14.0
+margin_bottom = 2.0
 size_flags_horizontal = 3
-custom_styles/fg = SubResource( 6 )
-custom_styles/bg = SubResource( 7 )
-step = 1.0
-value = 10.0
+percent_visible = false
 
 [node name="Menu" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -195,7 +194,6 @@ visible = false
 
 [node name="TEST" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="test_main" type="Control" parent="TEST"]
 anchor_right = 1.0
@@ -215,14 +213,47 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HFlowContainer" type="HFlowContainer" parent="TEST/test_main/PanelContainer/VBoxContainer"]
-margin_top = 566.0
 margin_right = 1010.0
-margin_bottom = 586.0
-
-[node name="logger" parent="TEST/test_main/PanelContainer/VBoxContainer/HFlowContainer" instance=ExtResource( 8 )]
+margin_bottom = 20.0
 
 [node name="GetPower" type="Button" parent="TEST/test_main/PanelContainer/VBoxContainer/HFlowContainer"]
 unique_name_in_owner = true
 margin_right = 74.0
 margin_bottom = 20.0
 text = "GetPower"
+
+[node name="VSeparator" type="VSeparator" parent="TEST/test_main/PanelContainer/VBoxContainer/HFlowContainer"]
+margin_left = 78.0
+margin_right = 82.0
+margin_bottom = 20.0
+
+[node name="create_player" type="MenuButton" parent="TEST/test_main/PanelContainer/VBoxContainer/HFlowContainer"]
+unique_name_in_owner = true
+margin_left = 86.0
+margin_right = 181.0
+margin_bottom = 20.0
+text = "create player"
+items = [ "war", null, 0, false, false, 0, 0, null, "", false, "wiz", null, 0, false, false, 1, 0, null, "", false, "tao", null, 0, false, false, 2, 0, null, "", false ]
+
+[node name="test_damage" type="Button" parent="TEST/test_main/PanelContainer/VBoxContainer/HFlowContainer"]
+unique_name_in_owner = true
+margin_left = 185.0
+margin_right = 276.0
+margin_bottom = 20.0
+text = "test damage"
+
+[node name="level_up" type="Button" parent="TEST/test_main/PanelContainer/VBoxContainer/HFlowContainer"]
+unique_name_in_owner = true
+margin_left = 280.0
+margin_right = 343.0
+margin_bottom = 20.0
+text = "level up"
+
+[node name="VSeparator2" type="VSeparator" parent="TEST/test_main/PanelContainer/VBoxContainer/HFlowContainer"]
+margin_left = 347.0
+margin_right = 351.0
+margin_bottom = 20.0
+
+[node name="logger" parent="TEST/test_main/PanelContainer/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 24.0
+margin_bottom = 586.0

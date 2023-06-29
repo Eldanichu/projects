@@ -9,7 +9,7 @@ namespace godotcsharpgame.Script.Object.Properties {
       set => _criticalChance = value;
     }
     [Property("CriticalStrength", Global.PROP_TYPE.ATTACK)]
-    public virtual int CriticalStrength {
+    public virtual float CriticalStrength {
       get => _criticalStrength;
       set => _criticalStrength = value;
     }
@@ -25,7 +25,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Ac0", Global.PROP_TYPE.DEFENCE)]
-    public int Ac0 {
+    public float Ac0 {
       get => _ac0;
       set {
         _ac0 = value;
@@ -34,7 +34,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Ac1", Global.PROP_TYPE.DEFENCE)]
-    public int Ac1 {
+    public float Ac1 {
       get => _ac1;
       set {
         _ac1 = value;
@@ -43,7 +43,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Mac0", Global.PROP_TYPE.DEFENCE)]
-    public int Mac0 {
+    public float Mac0 {
       get => _mac0;
       set {
         _mac0 = value;
@@ -52,7 +52,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Mac1", Global.PROP_TYPE.DEFENCE)]
-    public int Mac1 {
+    public float Mac1 {
       get => _mac1;
       set {
         _mac1 = value;
@@ -61,7 +61,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Dc0", Global.PROP_TYPE.ATTACK)]
-    public int Dc0 {
+    public float Dc0 {
       get => _dc0;
       set {
         _dc0 = value;
@@ -70,7 +70,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Dc1", Global.PROP_TYPE.ATTACK)]
-    public int Dc1 {
+    public float Dc1 {
       get => _dc1;
       set {
         _dc1 = value;
@@ -79,7 +79,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Mc0", Global.PROP_TYPE.ATTACK)]
-    public int Mc0 {
+    public float Mc0 {
       get => _mc0;
       set {
         _mc0 = value;
@@ -88,7 +88,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Mc1", Global.PROP_TYPE.ATTACK)]
-    public int Mc1 {
+    public float Mc1 {
       get => _mc1;
       set {
         _mc1 = value;
@@ -97,7 +97,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Sc0", Global.PROP_TYPE.ATTACK)]
-    public int Sc0 {
+    public float Sc0 {
       get => _sc0;
       set {
         _sc0 = value;
@@ -106,7 +106,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Sc1", Global.PROP_TYPE.ATTACK)]
-    public int Sc1 {
+    public float Sc1 {
       get => _sc1;
       set {
         _sc1 = value;
@@ -115,7 +115,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Hp0", Global.PROP_TYPE.STAT)]
-    public int Hp0 {
+    public float Hp0 {
       get => _hp0;
       set {
         _hp0 = value;
@@ -124,7 +124,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Hp1", Global.PROP_TYPE.STAT)]
-    public int Hp1 {
+    public float Hp1 {
       get => _hp1;
       set {
         _hp1 = value;
@@ -133,7 +133,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Mp0", Global.PROP_TYPE.STAT)]
-    public int Mp0 {
+    public float Mp0 {
       get => _mp0;
       set {
         _mp0 = value;
@@ -142,7 +142,7 @@ namespace godotcsharpgame.Script.Object.Properties {
     }
 
     [Property("Mp1", Global.PROP_TYPE.STAT)]
-    public int Mp1 {
+    public float Mp1 {
       get => _mp1;
       set {
         _mp1 = value;
@@ -150,29 +150,37 @@ namespace godotcsharpgame.Script.Object.Properties {
       }
     }
     
-    public delegate void PlayerPropertyChange(string propName, object value);
+    public delegate void PlayerPropertyChange(string propName, float value);
     public event PlayerPropertyChange OnPropertyChanged;
 
-    protected void PropertyChanged(string propName, object value) {
+    protected void PropertyChanged(string propName, float value) {
       OnPropertyChanged?.Invoke(propName, value);
     }
+
+    public float AttackMin() {
+      return Dc0 + Mc0 + Sc0;
+    }
     
-    private int _ac0;
-    private int _ac1;
-    private int _mac0;
-    private int _mac1;
-    private int _dc0;
-    private int _dc1;
-    private int _mc0;
-    private int _mc1;
-    private int _sc0;
-    private int _sc1;
-    private int _hp0;
-    private int _hp1;
-    private int _mp0;
-    private int _mp1;
+    public float AttackMax() {
+      return Dc1 + Mc1 + Sc1;
+    }
+
+    private float _ac0;
+    private float _ac1;
+    private float _mac0;
+    private float _mac1;
+    private float _dc0;
+    private float _dc1;
+    private float _mc0;
+    private float _mc1;
+    private float _sc0;
+    private float _sc1;
+    private float _hp0;
+    private float _hp1;
+    private float _mp0;
+    private float _mp1;
     private int _criticalChance;
-    private int _criticalStrength;
+    private float _criticalStrength;
     private int _attackSpeed;
     private int _attackRate;
   }

@@ -1,4 +1,5 @@
-﻿using godotcsharpgame.Database.Attribute;
+﻿using Godot;
+using godotcsharpgame.Database.Attribute;
 
 namespace godotcsharpgame.Script.Object.Properties {
   public class PlayerProperties : BaseProperty {
@@ -9,10 +10,7 @@ namespace godotcsharpgame.Script.Object.Properties {
 
     public string ClassName {
       get => _className;
-      set {
-        _className = value;
-        PropertyChanged("ClassName", value);
-      }
+      set { _className = value; }
     }
 
     public byte ClassType {
@@ -53,8 +51,18 @@ namespace godotcsharpgame.Script.Object.Properties {
     public override int AttackRate { get; set; } = 45;
     public override int AttackSpeed { get; set; } = 100;
     public override int CriticalChance { get; set; } = 10;
-    public override int CriticalStrength { get; set; } = 11;
-  
+    public override float CriticalStrength { get; set; } = 1.2f;
+
+    public int Percentage(float min, float max) {
+      var max1 = Mathf.Max(1f, max);
+
+      return Mathf.RoundToInt(min / max1 * 100);
+    }
+
+    public string DisplayNumber(float min, float max) {
+      return $"{(int)min}/{(int)max}";
+    }
+
     private string _pName;
     private string _className;
     private byte _classType;

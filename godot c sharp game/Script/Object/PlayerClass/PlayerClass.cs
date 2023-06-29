@@ -1,25 +1,26 @@
 using System;
+using Godot;
 using godotcsharpgame.Script.Object.Properties;
 
 namespace godotcsharpgame.Script.Object.PlayerClass {
   public abstract class PlayerClass {
-    public decimal HpRatio { set; get; }
-    public decimal HpBase { set; get; }
-    public decimal HpAcc { set; get; }
-    public decimal MpBase { set; get; }
-    public decimal MpRatio { set; get; }
-    public decimal MpAcc { set; get; }
-    public decimal MpRate { set; get; }
-    public decimal DefRate => 0.325m;
-    public decimal DefAcc => 0.117m;
-    public decimal AtkRate { set; get; }
-    public decimal AtkAcc { set; get; }
-    private double ExpConst => 14;
-    private double ExpFactor => 1.1;
+    public float HpRatio { set; get; }
+    public float HpBase { set; get; }
+    public float HpAcc { set; get; }
+    public float MpBase { set; get; }
+    public float MpRatio { set; get; }
+    public float MpAcc { set; get; }
+    public float MpRate { set; get; }
+    public float DefRate => 0.325f;
+    public float DefAcc => 0.117f;
+    public float AtkRate { set; get; }
+    public float AtkAcc { set; get; }
+    private float ExpConst => 14;
+    private float ExpFactor => 1.1f;
 
     public PlayerProperties props { set; get; }
 
-    public void Calculate() {
+    public virtual void Calculate() {
       if (props == null) {
         return;
       }
@@ -27,21 +28,21 @@ namespace godotcsharpgame.Script.Object.PlayerClass {
       props.Hp1 = (int)(HpRatio + (_level / (1 + HpBase) + HpAcc) * _level);
       props.Mp1 = (int)(MpRate + (_level / (1 + MpBase) + MpAcc) * MpRate * _level);
       props.Exp1 = (int)(_level * ExpConst * ExpFactor * (_level * 1.1));
-      props.Ac0 = CalcValue(0.84m, DefRate, DefAcc);
-      props.Ac1 = CalcValue(0.96m, DefRate, DefAcc, true);
-      props.Mac0 = CalcValue(0.1m, DefRate, DefAcc);
-      props.Mac1 = CalcValue(0.5m, DefRate, DefAcc);
+      props.Ac0 = CalcValue(0.84f, DefRate, DefAcc);
+      props.Ac1 = CalcValue(0.96f, DefRate, DefAcc, true);
+      props.Mac0 = CalcValue(0.1f, DefRate, DefAcc);
+      props.Mac1 = CalcValue(0.5f, DefRate, DefAcc);
     }
 
     protected int CalcValue(
-            decimal c,
-            decimal rate,
-            decimal acc,
+            float c,
+            float rate,
+            float acc,
             bool boMax = false
     ) {
-      var _lv = (decimal)props.Level;
-      if (c != 0m) _lv *= c;
-      var value = Math.Floor(_lv * rate + acc * rate + 1);
+      var _lv = (float)props.Level;
+      if (c != 0f) _lv *= c;
+      var value = Mathf.Floor(_lv * rate + acc * rate + 1);
       if (boMax) value += _lv * acc;
 
       return (int)Math.Floor(value);
