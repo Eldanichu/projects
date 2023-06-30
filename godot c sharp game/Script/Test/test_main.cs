@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using godotcsharpgame.Script.Object.Damage;
 using godotcsharpgame.Script.Object.Properties;
 using godotcsharpgame.Script.Util;
@@ -27,6 +28,16 @@ public class test_main : Control {
     
     btnLevelUp = GetNode<Button>("%level_up");
     btnLevelUp.Connect("pressed", this, "btnLevelUpPressed");
+  }
+
+  private void sortArray() {
+    var arr = new List<int>() {
+      56,3,4,5
+    };
+    arr.Sort((x, y) => x.CompareTo(y));
+    foreach (var i in arr) {
+      L.t($"{i}");
+    }
   }
 
   public void btnGetPowerPressed() {

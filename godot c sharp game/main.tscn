@@ -254,6 +254,12 @@ margin_left = 347.0
 margin_right = 351.0
 margin_bottom = 20.0
 
-[node name="logger" parent="TEST/test_main/PanelContainer/VBoxContainer" instance=ExtResource( 8 )]
+[node name="HBoxContainer" type="HBoxContainer" parent="TEST/test_main/PanelContainer/VBoxContainer"]
 margin_top = 24.0
+margin_right = 1010.0
 margin_bottom = 586.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="logger" parent="TEST/test_main/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
+size_flags_horizontal = 3

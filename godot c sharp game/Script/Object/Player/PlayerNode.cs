@@ -57,7 +57,7 @@ namespace godotcsharpgame.Script.Object.Player {
     }
 
     public override void _PhysicsProcess(float delta) {
-      // Input.is_mouse_buttoned_pressed  // check if mouse button is on keydown state
+      // Input.IsMouseButtonPressed(1);// check if mouse button is on keydown state
     }
 
     private void _PlayerEvent() {
