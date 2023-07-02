@@ -81,7 +81,6 @@ namespace godotcsharpgame.Script.Object.Player {
 
     private void PlayerMouseMoveEvent(InputEvent @event) {
       if (!(@event is InputEventMouseMotion)) return;
-
     }
 
     private void UpdateUI() {

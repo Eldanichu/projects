@@ -54,7 +54,6 @@ public class PlayerObject : IPlayer {
       amount -= props.Exp1;
       props.Exp0 = amount;
       LevelUp();
-      L.t($"exp remains ->{props.Exp0}");
     }
   }
   public void GiveHp(int value = 0) {
