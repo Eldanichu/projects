@@ -255,8 +255,24 @@ margin_left = 347.0
 margin_right = 351.0
 margin_bottom = 20.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TEST/test_main/PanelContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TEST/test_main/PanelContainer/VBoxContainer"]
 margin_top = 24.0
+margin_right = 1010.0
+margin_bottom = 196.0
+
+[node name="monster_field" parent="TEST/test_main/PanelContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 5 )]
+unique_name_in_owner = true
+margin_left = 21.0
+margin_right = 989.0
+
+[node name="TextureProgress" type="TextureProgress" parent="TEST/test_main/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_top = 172.0
+margin_right = 1010.0
+margin_bottom = 172.0
+nine_patch_stretch = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TEST/test_main/PanelContainer/VBoxContainer"]
+margin_top = 200.0
 margin_right = 1010.0
 margin_bottom = 586.0
 size_flags_horizontal = 3
@@ -264,6 +280,7 @@ size_flags_vertical = 3
 
 [node name="logger" parent="TEST/test_main/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 margin_right = 686.0
+margin_bottom = 386.0
 size_flags_horizontal = 3
 
 [node name="Property" parent="TEST/test_main/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 11 )]
@@ -272,6 +289,6 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 690.0
 margin_right = 1010.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 320, 240 )
+margin_bottom = 180.0
+rect_min_size = Vector2( 320, 180 )
 size_flags_vertical = 0
