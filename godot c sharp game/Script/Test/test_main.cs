@@ -13,6 +13,7 @@ public class test_main : Control {
   private Button btnLevelUp;
 
   private PlayerObject PlayerObject;
+  private TextureProgressTween _progressTween;
   private string currentClass;
 
   private Property UProperty;
@@ -30,6 +31,23 @@ public class test_main : Control {
     btnLevelUp.Connect("pressed", this, "btnLevelUpPressed");
 
     UProperty = GetNode<Property>("%Property");
+    _progressTween = GetNode<TextureProgressTween>("%tprg");
+    var tick = new Tick(0);
+    tick.OnTick += (int i) => {
+      if (PlayerObject == null) {
+        return;
+      }
+      PlayerObject.GiveHp(-1);
+      updateStats();
+    };
+    AddChild(tick);
+    tick.Start();
+  }
+
+  private void updateStats() {
+    var p = PlayerObject.props;
+    _progressTween.Value0 = p.Hp0;
+    _progressTween.Value1 = p.Hp1;
   }
 
   private void sortArray() {
@@ -43,6 +61,9 @@ public class test_main : Control {
   }
 
   public void btnGetPowerPressed() {
+    if (PlayerObject == null) {
+      return;
+    }
     var dmg = new DamageObject(PlayerObject.props);
     dmg.GetPower();
     logger.AppendBbcode($"made dmg ->{dmg.Power} - is critical? {dmg.IsCriticalPower} \n");
@@ -70,13 +91,14 @@ public class test_main : Control {
     var p = PlayerObject.props;
     currentClass = name;
     PrintProps(currentClass, p);
+    p.Hp0 = p.Hp1;
     L.t($"{item}");
   }
 
   private void PrintProps(string name, BaseProperty property) {
     logger.AppendBbcode($"{name} class is level up. \n");
 
-    
+
     if (property is PlayerProperties p) {
       var properties = new Dictionary<string, string>() {
         {"Level", $"{p.Level}"},
@@ -87,7 +109,7 @@ public class test_main : Control {
         {"Dc", $"{p.Dc0} - {p.Dc1}"},
         {"Sc", $"{p.Sc0} - {p.Sc1}"},
         {"Mc", $"{p.Mc0} - {p.Mc1}"}
-    
+
       };
       UProperty.Properties = properties;
 //       logger.AppendBbcode($@"
