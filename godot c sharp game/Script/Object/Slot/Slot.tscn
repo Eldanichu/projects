@@ -1,19 +1,39 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Script/Object/Slot/Slot.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Font/res/chn-12.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/UI/root/slot/border Copy Copy.png" type="Texture" id=2]
+[ext_resource path="res://Script/Object/Slot/Slot.gd" type="Script" id=3]
 
-[node name="slot" type="TextureButton"]
-margin_right = 32.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-button_mask = 3
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[sub_resource type="StyleBoxEmpty" id=1]
+content_margin_right = 4.0
+content_margin_bottom = 2.0
 
-[node name="Label" type="Label" parent="."]
-margin_right = 32.0
-margin_bottom = 32.0
+[node name="slot" type="TextureRect"]
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 2 )
+expand = true
+script = ExtResource( 3 )
+
+[node name="item" type="TextureButton" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+shortcut_in_tooltip = false
+expand = true
+stretch_mode = 5
+
+[node name="amount" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+custom_styles/normal = SubResource( 1 )
+text = "99+"
 align = 2
 valign = 2
+
+[node name="effect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0

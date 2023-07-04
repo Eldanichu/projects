@@ -13,7 +13,6 @@ public class test_main : Control {
   private Button btnLevelUp;
 
   private PlayerObject PlayerObject;
-  private TextureProgressTween _progressTween;
   private string currentClass;
 
   private Property UProperty;
@@ -31,17 +30,17 @@ public class test_main : Control {
     btnLevelUp.Connect("pressed", this, "btnLevelUpPressed");
 
     UProperty = GetNode<Property>("%Property");
-    _progressTween = GetNode<TextureProgressTween>("%tprg");
-    var tick = new Tick(0);
-    tick.OnTick += (int i) => {
-      if (PlayerObject == null) {
-        return;
-      }
-      PlayerObject.GiveHp(-1);
-      updateStats();
-    };
-    AddChild(tick);
-    tick.Start();
+    // _progressTween = GetNode<TextureProgressTween>("%tprg");
+    // var tick = new Tick(0);
+    // tick.OnTick += (int i) => {
+    //   if (PlayerObject == null) {
+    //     return;
+    //   }
+    //   PlayerObject.GiveHp(-1);
+    //   updateStats();
+    // };
+    // AddChild(tick);
+    // tick.Start();
   }
 
   private void updateStats() {
