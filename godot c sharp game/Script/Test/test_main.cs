@@ -45,8 +45,7 @@ public class test_main : Control {
 
   private void updateStats() {
     var p = PlayerObject.props;
-    _progressTween.Value0 = p.Hp0;
-    _progressTween.Value1 = p.Hp1;
+
   }
 
   private void sortArray() {

@@ -2,21 +2,24 @@
 
 [ext_resource path="res://Assets/Font/res/chn-12.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/UI/root/slot/border Copy Copy.png" type="Texture" id=2]
-[ext_resource path="res://Script/Object/Slot/Slot.gd" type="Script" id=3]
+[ext_resource path="res://Script/Object/Slot/Slot.cs" type="Script" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 content_margin_right = 4.0
 content_margin_bottom = 2.0
 
 [node name="slot" type="TextureRect"]
-margin_right = 48.0
-margin_bottom = 48.0
+anchor_right = 0.047
+anchor_bottom = 0.08
+margin_right = -0.128002
 rect_min_size = Vector2( 48, 48 )
+mouse_filter = 0
 texture = ExtResource( 2 )
 expand = true
 script = ExtResource( 3 )
 
 [node name="item" type="TextureButton" parent="."]
+unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 shortcut_in_tooltip = false
@@ -24,6 +27,7 @@ expand = true
 stretch_mode = 5
 
 [node name="amount" type="Label" parent="."]
+unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -35,5 +39,6 @@ align = 2
 valign = 2
 
 [node name="effect" type="NinePatchRect" parent="."]
+unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0

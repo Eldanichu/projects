@@ -11,6 +11,8 @@ namespace godotcsharpgame {
 		private CanvasLayer _gui;
 		private CanvasLayer _menu;
 		private CanvasLayer TEST;
+
+		private PackedScene dn = ResourceLoader.Load<PackedScene>("res://Script/Object/Damage/DamageNumber.tscn");
   
 		[Connect("Eldanado")]
 		public override void _Ready() {
@@ -45,7 +47,8 @@ namespace godotcsharpgame {
 		public override void _Input(InputEvent @event) {
 			if (Input.IsActionJustReleased("ui_console")) {
 				L.t($"toggle console");
-				TEST.Visible = !TEST.Visible;
+				// TEST.Visible = !TEST.Visible;
+				AddChild(dn.Instance());
 			}
 		}
 	}
