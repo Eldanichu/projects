@@ -10,7 +10,6 @@ min_value = -1.0
 _data = [ Vector2( 0, 0.0181819 ), 0.0, 0.0, 0, 0, Vector2( 0.190476, 0.854545 ), 0.0, 0.0, 0, 0, Vector2( 0.435374, -0.145455 ), -3.56364, -3.56364, 0, 0, Vector2( 0.72449, -1 ), 0.0, 0.0, 0, 0 ]
 
 [node name="damageNumber" type="Position2D"]
-position = Vector2( 576, 256 )
 script = ExtResource( 1 )
 CurveX = SubResource( 1 )
 CurveY = SubResource( 2 )
@@ -19,4 +18,4 @@ CurveY = SubResource( 2 )
 unique_name_in_owner = true
 margin_right = 40.0
 margin_bottom = 14.0
-text = "152"
+text = "0"

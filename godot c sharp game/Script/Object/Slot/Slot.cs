@@ -19,21 +19,26 @@ public class Slot : TextureRect {
     ItemImage = GetNode<TextureButton>("%item");
     ItemImage.Connect("mouse_entered", this, "OnHover", new Array() {true});
     ItemImage.Connect("mouse_exited", this, "OnHover", new Array() {false});
-    
+
     Amount = GetNode<Label>("%amount");
     ItemEffectBorder = GetNode<NinePatchRect>("%effect");
-    L.t("slot create");
+    
+    Initialize();
+  }
+
+  private void Initialize() {
+    Amount.Visible = false;
+    Amount.Text = "0";
   }
 
   public void OnHover(bool hover) {
-    L.t($"mouse hovered - [{hover}]");
     IsHover = hover;
   }
   public override void _PhysicsProcess(float delta) {
     if (IsHover == false) return;
     if (Input.IsMouseButtonPressed((int)ButtonList.Left)) {
-      RectGlobalPosition = GetGlobalMousePosition() - (RectSize * 0.5f);
-      L.t($"mouse key down {GetLocalMousePosition()}");
+      // RectGlobalPosition = GetGlobalMousePosition() - (RectSize * 0.5f);
+      // L.t($"mouse key down {GetLocalMousePosition()}");
     }
   }
   public void SetItemImage(string itemId) {
@@ -53,6 +58,7 @@ public class Slot : TextureRect {
       return;
     }
     var s = $"{amount}";
+    Amount.Visible = amount > 0;
     if (amount > 99) {
       s = $"{amount}+";
     }
