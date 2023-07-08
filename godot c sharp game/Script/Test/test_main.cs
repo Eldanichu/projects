@@ -1,7 +1,12 @@
 using Godot;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using CsvHelper;
 using godotcsharpgame.Script.Object.Damage;
 using godotcsharpgame.Script.Object.Properties;
+using godotcsharpgame.Script.Test;
 using godotcsharpgame.Script.Util;
 
 public class test_main : Control {
@@ -17,6 +22,8 @@ public class test_main : Control {
 
   private Property UProperty;
 
+  private Button ImportItems;
+
   public override void _Ready() {
     _menuButton = GetNode<MenuButton>("%create_player");
     _menuButton.GetPopup().Connect("id_pressed", this, "btnMenuPressed");
@@ -30,6 +37,9 @@ public class test_main : Control {
     btnLevelUp.Connect("pressed", this, "btnLevelUpPressed");
 
     UProperty = GetNode<Property>("%Property");
+    ImportItems = GetNode<Button>("%import_items");
+
+    ImportItems.Connect("pressed", this, "ImportItemsPressed");
     // _progressTween = GetNode<TextureProgressTween>("%tprg");
     // var tick = new Tick(0);
     // tick.OnTick += (int i) => {
@@ -42,6 +52,7 @@ public class test_main : Control {
     // AddChild(tick);
     // tick.Start();
   }
+
 
   private void updateStats() {
     var p = PlayerObject.props;
@@ -56,6 +67,18 @@ public class test_main : Control {
     foreach (var i in arr) {
       L.t($"{i}");
     }
+  }
+
+  public void ImportItemsPressed() {
+    using (var reader = new StreamReader("E:\\~GameProjects\\dev\\assets game\\StdItems.csv", Encoding.UTF8)) {
+      using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture)) {
+        var records = csv.GetRecords<StdItems>();
+        foreach (var @record in records) {
+          L.t(@record.Name);
+        }
+      }
+    }
+
   }
 
   public void btnGetPowerPressed() {

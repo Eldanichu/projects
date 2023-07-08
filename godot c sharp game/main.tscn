@@ -268,6 +268,13 @@ margin_right = 299.0
 margin_bottom = 31.0
 text = "inventory"
 
+[node name="import_items" type="Button" parent="TEST/test_main/PanelContainer/VBoxContainer/HFlowContainer"]
+unique_name_in_owner = true
+margin_left = 303.0
+margin_right = 386.0
+margin_bottom = 31.0
+text = "import items"
+
 [node name="battle" type="VBoxContainer" parent="TEST/test_main/PanelContainer/VBoxContainer"]
 visible = false
 margin_top = 35.0
