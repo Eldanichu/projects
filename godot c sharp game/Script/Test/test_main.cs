@@ -1,8 +1,11 @@
+using System;
 using Godot;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using CsvHelper;
 using godotcsharpgame.Script.Object.Damage;
 using godotcsharpgame.Script.Object.Properties;
@@ -23,6 +26,8 @@ public class test_main : Control {
   private Property UProperty;
 
   private Button ImportItems;
+  private TextureProgressTween ImportProgress;
+  private FileDialog fileDialog;
 
   public override void _Ready() {
     _menuButton = GetNode<MenuButton>("%create_player");
@@ -38,6 +43,8 @@ public class test_main : Control {
 
     UProperty = GetNode<Property>("%Property");
     ImportItems = GetNode<Button>("%import_items");
+    fileDialog = GetNode<FileDialog>("%file");
+    ImportProgress = GetNode<TextureProgressTween>("%import_prog");
 
     ImportItems.Connect("pressed", this, "ImportItemsPressed");
     // _progressTween = GetNode<TextureProgressTween>("%tprg");
@@ -70,21 +77,77 @@ public class test_main : Control {
   }
 
   public void ImportItemsPressed() {
-    using (var reader = new StreamReader("E:\\~GameProjects\\dev\\assets game\\StdItems.csv", Encoding.UTF8)) {
-      using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture)) {
-        var records = csv.GetRecords<StdItems>();
-        foreach (var @record in records) {
-          L.t(@record.Name);
-        }
-      }
+    fileDialog.Visible = true;
+    fileDialog.Connect("file_selected", this, "OnFileSelected");
+    ImportProgress.Value0 = 0;
+  }
+
+  public void OnFileSelected(string path) {
+    fileDialog.Visible = false;
+    if (string.IsNullOrEmpty(path)) {
+      throw new Exception("Selected path is empty");
     }
 
+    var p = new Progress<ImportProgress>();
+    p.ProgressChanged += ImportProgressEvent;
+    Importer(path, p);
+  }
+
+  private void ImportProgressEvent(object sender, ImportProgress e) {
+    ImportProgress.Value0 = e.Progress;
+    L.t($"current item -> {e.CurrentItem}");
+  }
+
+  public void Importer(string path, IProgress<ImportProgress> progress) {
+    var importProgress = new ImportProgress();
+    var com = new DBCommand(GetTree());
+    var conn = com.Conn;
+
+    var list = conn.Query<GameItem>($"select _uid from Item");
+    ImportProgress.Value1 = list.Count;
+    Task.Run(() => {
+      using (var reader = new StreamReader(path, Encoding.UTF8)) {
+        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture)) {
+          var records = csv.GetRecords<StdItems>();
+          foreach (var @record in records) {
+            var dict = new Dictionary<string, float>() {
+              {"AC0", float.Parse(@record.AC0)},
+              {"AC1", float.Parse(@record.AC1)},
+
+              {"MAC0", float.Parse(@record.MAC0)},
+              {"MAC1", float.Parse(@record.MAC1)},
+
+              {"DC0", float.Parse(@record.DC0)},
+              {"DC1", float.Parse(@record.DC1)},
+
+              {"MC0", float.Parse(@record.MC0)},
+              {"MC1", float.Parse(@record.MC1)},
+
+              {"SC0", float.Parse(@record.SC0)},
+              {"SC1", float.Parse(@record.SC1)},
+            };
+            var json = JSON.Print(dict);
+            conn.Execute($"update Item set ICON = '{@record.Looks}',PROPS = '{json}' where NAME = '{@record.Name}'");
+            importProgress.Progress++;
+            importProgress.CurrentItem = json;
+            progress.Report(importProgress);
+            // var list = conn.Query<GameItem>($"select _uid,NAME from Item where NAME = '{@record.Name}'");
+            // if (list.Count > 1) {
+            //   var item = list[0];
+            //   conn.Execute($"delete from Item where _uid = '{item._uid}'");
+            // }
+            // conn.Execute($"INSERT INTO Item VALUES ('{StringUtil.GetId()}','','{@record.Name}','','','','')");
+          }
+        }
+      }
+    });
   }
 
   public void btnGetPowerPressed() {
     if (PlayerObject == null) {
       return;
     }
+
     var dmg = new DamageObject(PlayerObject.props);
     dmg.GetPower();
     logger.AppendBbcode($"made dmg ->{dmg.Power} - is critical? {dmg.IsCriticalPower} \n");

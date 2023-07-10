@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using godotcsharpgame.Scene;
 using godotcsharpgame.Script.Util;
 
 public class CreatePlayer : Control {
@@ -9,28 +10,28 @@ public class CreatePlayer : Control {
   private Button _class;
 
   public override void _Ready() {
-	_create = GetNode<Button>("%create");
-	_name = GetNode<LineEdit>("%t_name");
-	_class = GetNode<Button>("%2");
-	_create.Connect("button_up", this, "_OnCreate");
+    _create = GetNode<Button>("%create");
+    _name = GetNode<LineEdit>("%t_name");
+    _class = GetNode<Button>("%2");
+    _create.Connect("button_up", this, "_OnCreate");
   }
 
   public void _OnCreate() {
-	L.t("button_up");
-	var _classType = _class.Group.GetPressedButton();
+    L.t("button_up");
+    var _classType = _class.Group.GetPressedButton();
 
-	var _event = new GlobalGameEvent() {
-	  Tree = GetTree(),
-	  EventName = "OnCreatePlayer"
-	};
+    var _event = new GlobalGameEvent() {
+      Tree = GetTree(),
+      EventName = "OnGameCreatePlayer"
+    };
 
-	var form = new Dictionary() {
-	  {"Name", _name.Text},
-	  {"ClassType", (Global.CLASS_TYPE)int.Parse(_classType.Name)}
-	};
-	_event.Emit(form);
+    var form = new Dictionary() {
+      {"Name", _name.Text},
+      {"ClassType", (Global.CLASS_TYPE)int.Parse(_classType.Name)}
+    };
+    _event.Emit(form);
 
-	Visible = false;
+    Visible = false;
   }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -30,6 +30,11 @@ namespace godotcsharpgame.Script.Object.Inventory {
       var _slot = InvGrid[position];
       return _slot;
     }
+
+    public void OnPickItem(Slot slot) {
+      L.t($"{slot.PositionS}");
+    }
+    
     private void CreateSlots() {
       InvGrid = new Dictionary<Vector2, Slot>();
       var cols = grid.Columns;
@@ -38,11 +43,15 @@ namespace godotcsharpgame.Script.Object.Inventory {
       for (int i = 0; i < Slots; i++) {
         var _slot = (Slot)SlotObject.Instance();
         grid.AddChild(_slot);
+        _slot.Connect("PickItem", this, "OnPickItem");
         if (i % cols == 0) {
           xIndex = 0;
           ++yIndex;
         }
-        InvGrid.Add(new Vector2(xIndex, yIndex), _slot);
+
+        var pos = new Vector2(xIndex, yIndex);
+        InvGrid.Add(pos, _slot);
+        _slot.PositionS = pos;
         ++xIndex;
       }
 

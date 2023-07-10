@@ -3,7 +3,7 @@ using Godot;
 using godotcsharpgame;
 using SQLite;
 
-public class DBCommand<T> where T : new() {
+public class DBCommand {
 
   private readonly SceneTree _tree;
   private Type _type;
@@ -11,13 +11,12 @@ public class DBCommand<T> where T : new() {
 
 
   public DBCommand(SceneTree tree) {
-	_tree = tree;
-	_type = typeof(T);
-	GetConnection();
+    _tree = tree;
+    GetConnection();
   }
 
   private void GetConnection() {
-	var main = (Main)_tree.Root.GetNode("main");
-	Conn = main.Connection;
+    var main = _tree.Root.GetNode<Main>("main");
+    Conn = main.Connection;
   }
 }

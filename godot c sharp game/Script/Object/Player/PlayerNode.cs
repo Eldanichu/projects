@@ -1,4 +1,3 @@
-using System;
 using Godot;
 using Godot.Collections;
 using godotcsharpgame.Script.Object.Damage;
@@ -19,10 +18,16 @@ namespace godotcsharpgame.Script.Object.Player {
     public PlayerObject PlayerObject { set; get; }
 
     public override void _Ready() {
-      SetupNode();
-      _PlayerEvent();
+      var _OnCreatePlayer = new GlobalGameEvent() {
+        Tree = GetTree(),
+        EventName = "OnGameCreatePlayer"
+      };
+      _OnCreatePlayer.Connect(this, "OnGameCreatePlayer");
+      // SetupNode();
+      // _PlayerEvent();
     }
 
+    
     private void SetupNode() {
       var g = GetTree().Root.GetNodeOrNull("main");
       var hp = g.GetNode("%hp");
@@ -43,12 +48,6 @@ namespace godotcsharpgame.Script.Object.Player {
       // PlayerObject.GiveExp(920000);
     }
 
-    public override void _Process(float delta) {
-      if (PlayerObject == null) return;
-
-      UpdateUI();
-    }
-
     public override void _Input(InputEvent @event) {
       if (PlayerObject == null) return;
 
@@ -57,7 +56,9 @@ namespace godotcsharpgame.Script.Object.Player {
     }
 
     public override void _PhysicsProcess(float delta) {
-      // Input.IsMouseButtonPressed(1);// check if mouse button is on keydown state
+      if (PlayerObject == null) return;
+
+      UpdateUI();
     }
 
     private void _PlayerEvent() {

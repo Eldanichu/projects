@@ -1,2 +1,5 @@
-﻿public class Item {
+﻿namespace godotcsharpgame.Script.Object.Item {
+  public class Item {
+    
+  }
 }

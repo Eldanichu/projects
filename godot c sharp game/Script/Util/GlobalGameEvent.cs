@@ -1,5 +1,7 @@
 using Godot;
 using Godot.Collections;
+using Object = Godot.Object;
+
 
 namespace godotcsharpgame.Script.Util {
   public class GlobalGameEvent {
@@ -12,10 +14,6 @@ namespace godotcsharpgame.Script.Util {
       return main.GetNode("Event");
     }
 
-    public void Emit(Godot.Object o) {
-      GetNode().EmitSignal(EventName, o);
-    }
-    
     public void Emit<T>(T o) {
       GetNode().EmitSignal(EventName, o);
     }

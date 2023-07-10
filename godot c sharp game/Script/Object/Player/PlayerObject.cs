@@ -2,6 +2,7 @@
 using Godot;
 using godotcsharpgame.Database.Attribute;
 using godotcsharpgame.Script.Interface.Player;
+using godotcsharpgame.Script.Object.Item;
 using godotcsharpgame.Script.Object.PlayerClass;
 using godotcsharpgame.Script.Object.Properties;
 using godotcsharpgame.Script.Object.Skill;
