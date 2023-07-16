@@ -1,6 +1,5 @@
 using Godot;
 using Godot.Collections;
-using Object = Godot.Object;
 
 
 namespace godotcsharpgame.Script.Util {
@@ -10,11 +9,15 @@ namespace godotcsharpgame.Script.Util {
     public string EventName { set; get; }
 
     private Node GetNode() {
-      var main = Tree.Root.GetNode("main");
-      return main.GetNode("Event");
+      var events = TNode.GetNode<Node>(Tree,"%Event");
+      return events;
     }
 
-    public void Emit<T>(T o) {
+    public void Emit(Dictionary o) {
+      GetNode().EmitSignal(EventName, o);
+    }
+    
+    public void Emit(Godot.Object o) {
       GetNode().EmitSignal(EventName, o);
     }
     public Error Connect(Godot.Object targetNode, string method) {

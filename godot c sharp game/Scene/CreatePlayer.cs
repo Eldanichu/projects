@@ -1,6 +1,5 @@
 using Godot;
 using Godot.Collections;
-using godotcsharpgame.Scene;
 using godotcsharpgame.Script.Util;
 
 public class CreatePlayer : Control {

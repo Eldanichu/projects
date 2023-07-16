@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Theme/g.tres" type="Theme" id=1]
+[ext_resource path="res://Scene/Logger/logger.cs" type="Script" id=2]
 
 [node name="logger" type="RichTextLabel"]
 unique_name_in_owner = true
@@ -13,3 +14,4 @@ bbcode_text = "Hello"
 text = "Hello"
 scroll_following = true
 deselect_on_focus_loss_enabled = false
+script = ExtResource( 2 )

@@ -16,7 +16,6 @@ namespace godotcsharpgame {
   
 		[Connect("Eldanado")]
 		public override void _Ready() {
-			_gui = GetNode<CanvasLayer>("%GUI");
 			_menu = GetNode<CanvasLayer>("%Menu");
 			TEST = GetNode<CanvasLayer>("%TEST");
 			// _gui.Visible = false;
@@ -46,7 +45,6 @@ namespace godotcsharpgame {
 
 		public override void _Input(InputEvent @event) {
 			if (Input.IsActionJustReleased("ui_console")) {
-				L.t($"toggle console");
 				// TEST.Visible = !TEST.Visible;
 				AddChild(dn.Instance());
 			}

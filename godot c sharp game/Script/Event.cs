@@ -1,11 +1,10 @@
 using Godot;
 using Godot.Collections;
-using godotcsharpgame.Scene;
 
 namespace godotcsharpgame.Script {
   public class Event : Node {
     [Signal]
-    public delegate void OnGameCreatePlayer(Dictionary playerModel);
+    public delegate void OnGameCreatePlayer(Dictionary form);
   
     [Signal]
     public delegate void OnPlayerMoving(Vector2[] movePath);

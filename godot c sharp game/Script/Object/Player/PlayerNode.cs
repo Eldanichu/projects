@@ -1,42 +1,41 @@
 using Godot;
 using Godot.Collections;
+using godotcsharpgame.Scene;
 using godotcsharpgame.Script.Object.Damage;
 using godotcsharpgame.Script.Object.Properties;
 using godotcsharpgame.Script.Util;
 
 namespace godotcsharpgame.Script.Object.Player {
   public class PlayerNode : Node2D {
-    private DamageObject _dmage;
-    private ProgressBar expBar;
-    private TextureProgress hpBar;
-    private Label hpText;
-
-    private TextureProgress mpBar;
-    private Label mpText;
-
     public PlayerProperties props;
     public PlayerObject PlayerObject { set; get; }
 
+    private Equipment Equipment;
+    private Inventory Inventory;
+    private DamageObject _dmage;
+    private TextureProgressTween expBar;
+    private TextureProgress hpBar;
+    private Label hpText;
+    private TextureProgress mpBar;
+    private Label mpText;
     public override void _Ready() {
-      var _OnCreatePlayer = new GlobalGameEvent() {
-        Tree = GetTree(),
-        EventName = "OnGameCreatePlayer"
-      };
-      _OnCreatePlayer.Connect(this, "OnGameCreatePlayer");
-      // SetupNode();
+      SetupNode();
       // _PlayerEvent();
     }
-
     
     private void SetupNode() {
-      var g = GetTree().Root.GetNodeOrNull("main");
-      var hp = g.GetNode("%hp");
-      var mp = g.GetNode("%mp");
+      Equipment = GetNodeOrNull<Equipment>("%Equipment");
+      Inventory = GetNodeOrNull<Inventory>("%Inventory");
+      PlayerObject.Inventory = Inventory;
+      PlayerObject.Equipment = Equipment;
+      
+      var hp = GetNode<VBoxContainer>("%hp");
+      var mp = GetNode<VBoxContainer>("%mp");
       hpText = hp.GetNode<Label>("text");
       hpBar = hp.GetNode<TextureProgress>("pg");
       mpText = mp.GetNode<Label>("text");
       mpBar = mp.GetNode<TextureProgress>("pg");
-      expBar = g.GetNode("%exp").GetNode<ProgressBar>("pg");
+      expBar = GetNode<TextureProgressTween>("%exp");
     }
 
     public void Create(Dictionary form) {
@@ -90,7 +89,8 @@ namespace godotcsharpgame.Script.Object.Player {
 
       hpBar.Value = props.Percentage(props.Hp0, props.Hp1);
       mpBar.Value = props.Percentage(props.Mp0, props.Mp1);
-      expBar.Value = props.Percentage(props.Exp0, props.Exp1);
+      expBar.Value0 = props.Exp0;
+      expBar.Value1 = props.Exp1;
     }
 
     public override void _ExitTree() {

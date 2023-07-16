@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Godot;
 using godotcsharpgame.Database.Attribute;
+using godotcsharpgame.Scene;
 using godotcsharpgame.Script.Interface.Player;
 using godotcsharpgame.Script.Object.Item;
 using godotcsharpgame.Script.Object.PlayerClass;
@@ -14,10 +15,9 @@ public class PlayerObject : IPlayer {
   public List<Node> Targets { get; set; }
   public PlayerProperties props { get; set; }
   public PlayerClass PlayerClass { get; set; }
-  public List<string> Inventory { get; set; }
-  public Dictionary<string, Item> Equipment { get; set; }
+  public Inventory Inventory { get; set; }
+  public Equipment Equipment { get; set; }
   public PlayerObject(Global.CLASS_TYPE classType) {
-    Inventory = new List<string>();
     props = new PlayerProperties();
     props.Level = 1;
     switch (classType) {

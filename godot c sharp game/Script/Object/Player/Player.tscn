@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Theme/g.tres" type="Theme" id=1]
-[ext_resource path="res://Assets/UI/root/bars/prg_under.png" type="Texture" id=2]
-[ext_resource path="res://Assets/UI/root/bars/exp/exp gr.png" type="Texture" id=3]
+[ext_resource path="res://Scene/TextureProgressTween.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Script/Object/Inventory/inventory.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scene/Logger/logger.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scene/Component/pg.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scene/MonsterField.tscn" type="PackedScene" id=6]
-[ext_resource path="res://GUI.cs" type="Script" id=8]
+[ext_resource path="res://Scene/Equipment.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Script/Object/Player/GUI.cs" type="Script" id=8]
 [ext_resource path="res://Assets/UI/root/chp/empty bar.png" type="Texture" id=10]
 [ext_resource path="res://Assets/UI/root/cmp/empty bar.png" type="Texture" id=11]
 [ext_resource path="res://Script/Object/Player/PlayerNode.cs" type="Script" id=12]
@@ -39,19 +40,36 @@ size_flags_vertical = 3
 
 [node name="center" type="HBoxContainer" parent="GUI/ui_control/panels"]
 margin_right = 1014.0
-margin_bottom = 381.0
+margin_bottom = 375.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/ui_control/panels/center"]
 margin_right = 1014.0
-margin_bottom = 381.0
+margin_bottom = 375.0
 size_flags_horizontal = 3
 
 [node name="monster_field" parent="GUI/ui_control/panels/center/VBoxContainer" instance=ExtResource( 6 )]
+visible = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/ui_control/panels/center/VBoxContainer"]
+margin_right = 1014.0
+
+[node name="Equipment" parent="GUI/ui_control/panels/center/VBoxContainer/HBoxContainer" instance=ExtResource( 7 )]
+unique_name_in_owner = true
+visible = false
+margin_right = 220.0
+margin_bottom = 300.0
+
+[node name="Inventory" parent="GUI/ui_control/panels/center/VBoxContainer/HBoxContainer" instance=ExtResource( 3 )]
+unique_name_in_owner = true
+visible = false
+margin_left = 549.0
+margin_right = 1014.0
+size_flags_horizontal = 10
 
 [node name="bottom" type="VBoxContainer" parent="GUI/ui_control/panels"]
-margin_top = 385.0
+margin_top = 379.0
 margin_right = 1014.0
 margin_bottom = 590.0
 rect_min_size = Vector2( 0, 192 )
@@ -69,6 +87,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="funcs" type="HBoxContainer" parent="GUI/ui_control/panels/bottom/bar/HBoxContainer"]
+unique_name_in_owner = true
 margin_top = 16.0
 margin_right = 199.0
 margin_bottom = 47.0
@@ -163,23 +182,15 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="exp" type="HBoxContainer" parent="GUI/ui_control/panels/bottom"]
-unique_name_in_owner = true
+[node name="exp_container" type="HBoxContainer" parent="GUI/ui_control/panels/bottom"]
 margin_top = 191.0
 margin_right = 1014.0
-margin_bottom = 205.0
+margin_bottom = 211.0
 size_flags_vertical = 8
 
-[node name="pg" type="TextureProgress" parent="GUI/ui_control/panels/bottom/exp"]
+[node name="exp" parent="GUI/ui_control/panels/bottom/exp_container" instance=ExtResource( 2 )]
+unique_name_in_owner = true
+anchor_right = 0.0
 margin_right = 1014.0
-margin_bottom = 14.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
-value = 50.0
-texture_under = ExtResource( 2 )
-texture_progress = ExtResource( 3 )
-nine_patch_stretch = true
-stretch_margin_left = 7
-stretch_margin_top = 7
-stretch_margin_right = 7
-stretch_margin_bottom = 7
