@@ -2,6 +2,8 @@
 
 public class Tick : Node {
   public delegate void TimerAction(int count);
+
+  public delegate void TimerProcess();
   private int _count;
   private bool _isPaused;
 
@@ -17,6 +19,10 @@ public class Tick : Node {
   private Timer Timer { get; }
   public TimerAction OnTick { set; get; }
   private int Amount { get; }
+
+  public override void _PhysicsProcess(float delta) {
+    
+  }
 
   public void Start() {
     Timer.Start();

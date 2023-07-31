@@ -22,10 +22,10 @@ script = ExtResource( 2 )
 
 [node name="game" parent="." instance=ExtResource( 4 )]
 unique_name_in_owner = true
-visible = false
 
 [node name="Menu" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="Startup" parent="Menu" instance=ExtResource( 9 )]
 
