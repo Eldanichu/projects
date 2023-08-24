@@ -56,7 +56,6 @@ namespace godotcsharpgame.Script.Object.Player {
 
     public override void _PhysicsProcess(float delta) {
       if (PlayerObject == null) return;
-
       UpdateUI();
     }
 

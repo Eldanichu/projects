@@ -5,8 +5,11 @@ export.cfg
 export_presets.cfg
 exports
 
+**/.godot/shader_cache/**
+**/.godot/**
+
 *.log
-**/.log
+**/*.log
 
 # Mono-specific ignores
 .mono/
