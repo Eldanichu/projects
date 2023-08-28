@@ -1,10 +1,15 @@
-[gd_scene format=3 uid="uid://dd3vra1iyxgg7"]
+[gd_scene load_steps=5 format=3 uid="uid://dd3vra1iyxgg7"]
+
+[ext_resource type="PackedScene" uid="uid://j6hvq4pejmsk" path="res://Components/Bar.tscn" id="1_gyhx3"]
+[ext_resource type="Script" path="res://Scene/gui.gd" id="1_ltgcd"]
+[ext_resource type="Texture2D" uid="uid://craqabaqb84ov" path="res://Themes/prg-bg.tres" id="2_wyfax"]
+[ext_resource type="PackedScene" uid="uid://bsa2mons0vuco" path="res://Components/timer_ex.tscn" id="3_jcedl"]
 
 [node name="game" type="Node2D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="G" type="CanvasLayer" parent="."]
 
-[node name="gui" type="Control" parent="CanvasLayer"]
+[node name="gui" type="Control" parent="G"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,3 +17,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+script = ExtResource("1_ltgcd")
+
+[node name="Bar" parent="G/gui" instance=ExtResource("1_gyhx3")]
+layout_mode = 0
+texture_under = ExtResource("2_wyfax")
+v_max = 10.0
+
+[node name="Control" type="Control" parent="G/gui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="G/gui/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="L" type="Label" parent="G/gui/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="start" type="Button" parent="G/gui/Control/VBoxContainer"]
+layout_mode = 2
+text = "start"
+
+[node name="pause" type="Button" parent="G/gui/Control/VBoxContainer"]
+layout_mode = 2
+text = "pause"
+
+[node name="stop" type="Button" parent="G/gui/Control/VBoxContainer"]
+layout_mode = 2
+text = "reset"
+
+[node name="M" type="CanvasLayer" parent="."]
+
+[node name="TimerEx" parent="M" instance=ExtResource("3_jcedl")]
+
+[connection signal="pressed" from="G/gui/Control/VBoxContainer/start" to="G/gui" method="_on_start_pressed"]
+[connection signal="pressed" from="G/gui/Control/VBoxContainer/pause" to="G/gui" method="_on_pause_pressed"]
+[connection signal="pressed" from="G/gui/Control/VBoxContainer/stop" to="G/gui" method="_on_stop_pressed"]
