@@ -10,6 +10,7 @@ public partial class StatBar : TextureProgressBar {
 
   public override async void _Ready() {
     _label = GetNode<Label>("%label");
+
     dMax = 10;
     MaxValue = 100f;
     TweenProgress();

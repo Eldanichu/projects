@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bx2sev850e6ox"]
+
+[sub_resource type="SystemFont" id="SystemFont_2naws"]
+
+[resource]
+default_base_scale = 1.0
+default_font = SubResource("SystemFont_2naws")
+default_font_size = 9

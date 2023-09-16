@@ -1,0 +1,165 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8t3268rex13"]
+
+[ext_resource type="Script" path="res://Components/player.gd" id="1_qwgf7"]
+[ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="2_6jdvh"]
+[ext_resource type="Texture2D" uid="uid://be7a1layup1rk" path="res://Assets/Tiles/tile_0.png" id="3_313y3"]
+[ext_resource type="PackedScene" uid="uid://j6hvq4pejmsk" path="res://Components/Bar.tscn" id="4_nnifl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ew23"]
+atlas = ExtResource("3_313y3")
+region = Rect2(663, 170, 16, 16)
+
+[sub_resource type="SystemFont" id="SystemFont_01gd0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dfpsp"]
+line_spacing = 0.0
+font = SubResource("SystemFont_01gd0")
+font_size = 9
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrtna"]
+atlas = ExtResource("3_313y3")
+region = Rect2(663, 187, 16, 16)
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_qwgf7")
+
+[node name="player_gui" type="CanvasLayer" parent="."]
+
+[node name="game_ui" type="Control" parent="player_gui"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="player_gui/game_ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="p_top" type="PanelContainer" parent="player_gui/game_ui/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+
+[node name="ScrollContainer" type="BoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="stats" type="HBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/BoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="col_0" type="VBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/BoxContainer/stats"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="col_1" type="VBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/BoxContainer/stats"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="p_center" type="PanelContainer" parent="player_gui/game_ui/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="player_gui/game_ui/VBoxContainer/p_center"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="player_gui/game_ui/VBoxContainer/p_center/MarginContainer"]
+layout_mode = 2
+
+[node name="bag" type="Button" parent="player_gui/game_ui/VBoxContainer/p_center/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("2_6jdvh")
+text = "Bag"
+
+[node name="stat" type="Button" parent="player_gui/game_ui/VBoxContainer/p_center/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("2_6jdvh")
+text = "Stats"
+
+[node name="char" type="Button" parent="player_gui/game_ui/VBoxContainer/p_center/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("2_6jdvh")
+text = "Character"
+
+[node name="p_bottom" type="PanelContainer" parent="player_gui/game_ui/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_bottom"]
+layout_mode = 2
+
+[node name="hp_container" type="HBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/hp_container"]
+custom_minimum_size = Vector2(16, 16)
+layout_direction = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_4ew23")
+
+[node name="Bar" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/hp_container" instance=ExtResource("4_nnifl")]
+self_modulate = Color(1, 0.270588, 0.270588, 1)
+custom_minimum_size = Vector2(40, 8)
+layout_mode = 2
+size_flags_vertical = 4
+value = 32.0
+
+[node name="hp_value" type="Label" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/hp_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "32/100"
+label_settings = SubResource("LabelSettings_dfpsp")
+vertical_alignment = 1
+
+[node name="mp_container" type="HBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/mp_container"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jrtna")
+
+[node name="Bar" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/mp_container" instance=ExtResource("4_nnifl")]
+self_modulate = Color(0, 0.686275, 1, 1)
+custom_minimum_size = Vector2(40, 8)
+layout_mode = 2
+size_flags_vertical = 4
+value = 20.0
+
+[node name="mp_value" type="Label" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/mp_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10/100"
+label_settings = SubResource("LabelSettings_dfpsp")
+vertical_alignment = 1

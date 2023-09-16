@@ -1,0 +1,31 @@
+extends Resource
+class_name Enums
+
+enum PLAYER_PRIMARY_STATS {
+	HP,
+	MP,
+	EXP
+}
+
+enum PLAYER_EXCLUSIVE_STATS {
+	ATTACK,
+	ATTACK_SPEED,
+	CAST_SPEED,
+	
+	DFIRE,
+	DICE,
+	DWIND,
+	DWATER,
+	
+	LINE_SPLIT,
+	
+	RATTACK,
+	RFIRE,
+	RICE,
+	RWATER,
+	RWIND,
+	
+	CRITICAL_CHANCE,
+	CRITICAL_DAMAGE
+}
+
