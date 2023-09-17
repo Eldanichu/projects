@@ -118,6 +118,7 @@ script = ExtResource("1_asfsb")
 
 [node name="StartMenu" type="Control" parent="G"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

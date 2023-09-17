@@ -22,13 +22,13 @@ gdscript/warnings/get_node_default_without_onready=1
 
 [display]
 
-window/size/viewport_width=160
-window/size/viewport_height=284
+window/size/viewport_width=188
+window/size/viewport_height=334
+window/size/resizable=false
 window/size/window_width_override=375
 window/size/window_height_override=667
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
-window/vsync/vsync_mode=2
+window/vsync/vsync_mode=0
 
 [editor]
 
@@ -70,3 +70,5 @@ pause={
 [rendering]
 
 renderer/rendering_method="mobile"
+2d/sdf/oversize=0
+2d/sdf/scale=0

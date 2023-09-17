@@ -2,6 +2,7 @@ extends Resource
 class_name GameActor
 
 const enum_stats:Enums.PLAYER_EXCLUSIVE_STATS = Enums.PLAYER_EXCLUSIVE_STATS
+const enum_main_stats:Enums.PLAYER_PRIMARY_STATS = Enums.PLAYER_PRIMARY_STATS
 
 const stats:Dictionary = {
 	enum_stats.ATTACK : 100,
@@ -26,4 +27,8 @@ const stats:Dictionary = {
 	enum_stats.CRITICAL_DAMAGE : 0,
 }
 
-
+const main_stats:Dictionary = {
+	enum_main_stats.HP:0,
+	enum_main_stats.MP:0,
+	enum_main_stats.EXP:0,
+}

@@ -1,8 +1,41 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bx2sev850e6ox"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bx2sev850e6ox"]
 
-[sub_resource type="SystemFont" id="SystemFont_2naws"]
+[ext_resource type="FontFile" uid="uid://c1dfngnuhog2m" path="res://Assets/Fonts/BerkeleyMono-Bold.ttf" id="2_yvls5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbnrk"]
+bg_color = Color(0.13, 0.13, 0.13, 0.419608)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvagf"]
+bg_color = Color(0.13, 0.13, 0.13, 0.419608)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfvp2"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 0.419608)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cyb3h"]
+bg_color = Color(0.13, 0.13, 0.13, 0.419608)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ymir"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+border_width_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66h8y"]
+bg_color = Color(0.490196, 0.490196, 0.490196, 0.631373)
 
 [resource]
 default_base_scale = 1.0
-default_font = SubResource("SystemFont_2naws")
-default_font_size = 9
+default_font = ExtResource("2_yvls5")
+default_font_size = 10
+MenuButton/constants/h_separation = 1
+MenuButton/constants/outline_size = 0
+MenuButton/font_sizes/font_size = 9
+MenuButton/styles/focus = SubResource("StyleBoxFlat_xbnrk")
+MenuButton/styles/hover = SubResource("StyleBoxFlat_fvagf")
+MenuButton/styles/normal = SubResource("StyleBoxFlat_pfvp2")
+MenuButton/styles/pressed = SubResource("StyleBoxFlat_cyb3h")
+PopupMenu/constants/h_separation = 2
+PopupMenu/constants/indent = 8
+PopupMenu/constants/v_separation = 2
+PopupMenu/font_sizes/font_separator_size = 9
+PopupMenu/font_sizes/font_size = 9
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_2ymir")
+PopupMenu/styles/panel_disabled = SubResource("StyleBoxFlat_66h8y")
