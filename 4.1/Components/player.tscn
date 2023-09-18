@@ -277,17 +277,19 @@ layout_direction = 1
 layout_mode = 2
 texture = SubResource("AtlasTexture_4ew23")
 
-[node name="Bar" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/hp_container" instance=ExtResource("4_nnifl")]
+[node name="hp_bar" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/hp_container" instance=ExtResource("4_nnifl")]
+unique_name_in_owner = true
 self_modulate = Color(1, 0.270588, 0.270588, 1)
 custom_minimum_size = Vector2(40, 8)
 layout_mode = 2
 size_flags_vertical = 4
-value = 32.0
+value = 50.0
 
 [node name="hp_value" type="Label" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/hp_container"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "32/100"
+text = "541/920"
 label_settings = SubResource("LabelSettings_dfpsp")
 vertical_alignment = 1
 
@@ -298,16 +300,18 @@ layout_mode = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_jrtna")
 
-[node name="Bar" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/mp_container" instance=ExtResource("4_nnifl")]
+[node name="mp_bar" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/mp_container" instance=ExtResource("4_nnifl")]
+unique_name_in_owner = true
 self_modulate = Color(0, 0.686275, 1, 1)
 custom_minimum_size = Vector2(40, 8)
 layout_mode = 2
 size_flags_vertical = 4
-value = 20.0
+value = 30.0
 
 [node name="mp_value" type="Label" parent="player_gui/game_ui/VBoxContainer/p_bottom/VBoxContainer/mp_container"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "10/100"
+text = "172/856"
 label_settings = SubResource("LabelSettings_dfpsp")
 vertical_alignment = 1

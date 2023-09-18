@@ -3,8 +3,11 @@ class_name Enums
 
 enum PLAYER_PRIMARY_STATS {
 	HP,
+	HPMAX,
 	MP,
-	EXP
+	MPMAX,
+	EXP,
+	EXPMAX
 }
 
 enum PLAYER_EXCLUSIVE_STATS {

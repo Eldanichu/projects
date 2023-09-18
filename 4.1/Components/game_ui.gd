@@ -30,10 +30,10 @@ func bind_events():
 		_button.pressed.connect(_on_ui_func_button.bind(button.name))
 
 func _on_ui_func_button(type:String):
-	var control = ui_func_box.get_node(current_display_box)
+	var control = ui_func_box.get_node_or_null(current_display_box)
 	if control != null:
 		ControlUtil.hide_control(control)
-	control = ui_func_box.get_node(type)
+	control = ui_func_box.get_node_or_null(type)
 	if control == null:
 		current_display_box = ""
 		return
