@@ -1,7 +1,10 @@
 extends HBoxContainer
 
+const icon_no_image = preload("res://Assets/Icons/no-image.tres")
+
 @export
 var icon:AtlasTexture
+
 @export
 var color:Color = Color.WHITE
 
@@ -18,11 +21,15 @@ var value:Label = %value
 func _ready():
 	img.texture = icon
 	set_value()
+	update_icon()
 
-func _process(delta):
+func _process(_delta):
 	set_value()
+	update_icon()
+
+func update_icon():
 	if icon == null:
-		img.texture = load("res://Assets/Icons/no-image.tres")
+		img.texture = icon_no_image
 		return
 	img.texture = icon
 	img.modulate = color

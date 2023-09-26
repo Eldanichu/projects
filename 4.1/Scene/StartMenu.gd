@@ -13,7 +13,7 @@ func _ready():
 	modulate.a = 0
 	anim.play("fade_in");
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_start_pressed():

@@ -1,6 +1,9 @@
 extends Resource
 class_name Enums
 
+func _init():
+	pass
+
 enum PLAYER_PRIMARY_STATS {
 	HP,
 	HPMAX,

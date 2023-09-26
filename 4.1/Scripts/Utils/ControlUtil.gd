@@ -1,6 +1,9 @@
 extends Resource
 class_name ControlUtil
 
+func _init():
+	pass
+
 static func hide_control(control:Node):
 	control.visible = false
 	control.mouse_filter = Control.MOUSE_FILTER_IGNORE

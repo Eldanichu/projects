@@ -1,6 +1,9 @@
 extends Resource
 class_name IconLoader
 
+func _init():
+	pass
+
 const ICON_STATS:Array = [
 	"res://Assets/Icons/s2.tres",
 	"res://Assets/Icons/s3.tres",

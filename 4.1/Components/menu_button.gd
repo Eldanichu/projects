@@ -41,7 +41,7 @@ func _ready():
 	set_selected_enums([PROP.BREAKABLE, PROP.EQUIPABLE])
 	reload()
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func load_popup_items():

@@ -34,7 +34,7 @@ script = ExtResource("1_qwgf7")
 
 [node name="player_gui" type="CanvasLayer" parent="."]
 
-[node name="game_ui" type="Control" parent="player_gui"]
+[node name="game_ui" type="Control" parent="player_gui" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -43,6 +43,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_vvlnb")
+player = NodePath("../..")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="player_gui/game_ui"]
 layout_mode = 1
