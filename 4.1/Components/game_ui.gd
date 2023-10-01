@@ -34,8 +34,6 @@ func bind_events():
 		_button.pressed.connect(_on_ui_func_button.bind(button.name))
 
 func _on_ui_func_button(type:String):
-	if type == "bag":
-		player.actor.give_exp(500)
 	var control = ui_func_box.get_node_or_null(current_display_box)
 	if control != null:
 		ControlUtil.hide_control(control)
