@@ -26,8 +26,8 @@ func query_mon_drops(mon_id:int):
 				.format({"mon_id":mon_id})
 	db.query(sql)
 	var rows = db.query_result
+	close()
 	return rows
-	pass
 
 
 

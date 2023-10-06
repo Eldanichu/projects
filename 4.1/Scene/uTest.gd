@@ -75,5 +75,3 @@ func _el_test_connectDB():
 
 
 
-
-

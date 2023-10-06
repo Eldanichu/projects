@@ -61,7 +61,7 @@ func update_stats_value():
 		if item == null:
 			u_stats = get_node_or_null("%col_1")
 			item = u_stats.get_node_or_null(node_name)
-		if item:
+		else:
 			item.stat_value = actor.stats[actor_stats[s]]
 
 func update_actor_stats():
