@@ -1,0 +1,5 @@
+[gd_resource type="StyleBoxLine" format=3 uid="uid://chv37auhl7d1p"]
+
+[resource]
+color = Color(0.419608, 0.419608, 0.419608, 1)
+vertical = true

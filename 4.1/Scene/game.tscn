@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dd3vra1iyxgg7"]
+[gd_scene load_steps=8 format=3 uid="uid://dd3vra1iyxgg7"]
 
 [ext_resource type="Script" path="res://Scene/game.gd" id="1_asfsb"]
 [ext_resource type="PackedScene" uid="uid://c8t3268rex13" path="res://Components/player.tscn" id="2_wwavc"]
-[ext_resource type="PackedScene" uid="uid://bsa2mons0vuco" path="res://Components/timer_ex.tscn" id="3_jcedl"]
 [ext_resource type="Script" path="res://Scene/StartMenu.gd" id="3_y6vwx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eyxr4"]
@@ -168,8 +167,6 @@ libraries = {
 
 [node name="M" type="CanvasLayer" parent="."]
 visible = false
-
-[node name="TimerEx" parent="M" instance=ExtResource("3_jcedl")]
 
 [connection signal="start_game" from="G/StartMenu" to="." method="_on_start_menu_start_game"]
 [connection signal="pressed" from="G/StartMenu/start" to="G/StartMenu" method="_on_start_pressed"]

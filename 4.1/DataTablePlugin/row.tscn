@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bj3hluuea21b3"]
+
+[node name="row" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+
+[node name="text" type="TextEdit" parent="."]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+scroll_smooth = true
+scroll_fit_content_height = true

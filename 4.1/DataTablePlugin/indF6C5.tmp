@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://46acgrr1kd0a"]
+
+[ext_resource type="Script" path="res://DataTablePlugin/index.gd" id="1_5eyyp"]
+
+[node name="index" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5eyyp")
+
+[node name="header" type="HSplitContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 188.0
+offset_bottom = 26.0
+
+[node name="Label" type="Label" parent="header"]
+layout_mode = 2
+text = "title1"
+
+[node name="Label2" type="Label" parent="header"]
+layout_mode = 2
+text = "title2"
+
+[node name="scrollbox" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.108
+anchor_right = 0.952
+anchor_bottom = 0.889
+offset_top = -0.0720024
+offset_right = 0.0240021
+offset_bottom = 0.0739746
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+scroll_deadzone = 5
+
+[node name="box" type="VBoxContainer" parent="scrollbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="vscroll" type="VScrollBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.043
+anchor_bottom = 0.045
+offset_left = 179.0
+offset_top = 36.0
+offset_right = 178.916
+offset_bottom = 281.97
+grow_horizontal = 0
+grow_vertical = 2
+max_value = 0.0

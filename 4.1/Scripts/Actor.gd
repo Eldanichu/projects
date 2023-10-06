@@ -59,6 +59,7 @@ func get_mp(strgify:bool, is_max:bool = false):
 		return "{0}/{1}".format([_min,_max])
 	if is_max:
 		return _max
+
 	return _min
 
 func set_hp(value:int, max_value:int = -1):
@@ -72,6 +73,7 @@ func set_mp(value:int, max_value:int = -1):
 		max_value = main_stats[e_main_stats.MPMAX]
 	main_stats[e_main_stats.MP] = value
 	main_stats[e_main_stats.MPMAX] = max_value
+
 
 func give_hp(value:int):
 	
