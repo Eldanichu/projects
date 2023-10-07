@@ -12,14 +12,15 @@ config_version=5
 
 config/name="GMir-4.1"
 config/description="A game I wanna make."
+config/tags=PackedStringArray("mygame", "textgame")
 run/main_scene="res://main.tscn"
-run/disable_stdout=true
 config/features=PackedStringArray("4.1", "Mobile")
 boot_splash/show_image=false
 
 [autoload]
 
 dbc="*res://AutoLoad/DBCommand.gd"
+PlayerEvent="*res://AutoLoad/player_event.gd"
 
 [debug]
 

@@ -76,23 +76,19 @@ layout_mode = 2
 
 [node name="stats" type="HBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="col_0" type="VBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/stats"]
-unique_name_in_owner = true
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="col_1" type="VBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/stats"]
+[node name="stats_grid" type="GridContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/stats"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 5
+columns = 4
 
 [node name="char" type="VBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
