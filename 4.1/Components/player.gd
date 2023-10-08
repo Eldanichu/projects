@@ -20,6 +20,7 @@ var hp_value:Label = %hp_value
 var mp_value:Label = %mp_value
 
 func _ready():
+	
 	bind_event()
 	setup()
 	
@@ -27,7 +28,7 @@ func _process(_delta):
 	pass
 
 func setup():
-	Log.d(setup)
+
 	actor = GameActor.new()
 	actor.emit_stats_change()
 

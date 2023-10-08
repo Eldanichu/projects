@@ -1,9 +1,6 @@
 extends Resource
 class_name IconLoader
 
-func _init():
-	pass
-
 const ICON_STATS:Array = [
 	"res://Assets/Icons/s2.tres",
 	"res://Assets/Icons/s3.tres",
@@ -26,6 +23,7 @@ const ICON_STATS:Array = [
 ]
 
 static func get_resource(stat_icon_index:int) -> Dictionary:
+
 	var path:String = ICON_STATS[stat_icon_index]
 	var res = null
 	var meta = Color.WHITE

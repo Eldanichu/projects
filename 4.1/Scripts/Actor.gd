@@ -39,6 +39,7 @@ var ms:Dictionary = {
 }
 
 func _init():
+	
 	pass
 
 func get_hp(strgify:bool, is_max:bool = false):
