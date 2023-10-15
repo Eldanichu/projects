@@ -1,15 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://i77v66t6105n"]
+[gd_scene load_steps=3 format=3 uid="uid://i77v66t6105n"]
 
-[ext_resource type="Texture2D" uid="uid://coebs7vkjr03s" path="res://Assets/Icons/iconClose.tres" id="1_h1wki"]
+[ext_resource type="Script" path="res://Components/equipment_tip.gd" id="1_d7isy"]
+[ext_resource type="Texture2D" uid="uid://coebs7vkjr03s" path="res://Assets/Icons/iconClose.tres" id="1_dm2vx"]
 
 [node name="EquipmentTip" type="PanelContainer"]
 y_sort_enabled = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 80.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(110, 90)
+offset_right = 113.0
+offset_bottom = 90.0
+mouse_filter = 2
+script = ExtResource("1_d7isy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -28,13 +28,15 @@ size_flags_vertical = 0
 
 [node name="name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 text = "Equipment name"
+vertical_alignment = 2
 
 [node name="close" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 10
-texture_normal = ExtResource("1_h1wki")
+texture_normal = ExtResource("1_dm2vx")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

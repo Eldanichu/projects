@@ -8,13 +8,13 @@ class CLog:
 	
 	func debug(str0,str1):
 		var call_from = get_stack_dict()
-		var prefix = "\t [DEBUG]{L:{line}} - {time}_{ms}  [i]{func}[/i]@[color=#{path_color}][u]{source}[/u][/color] - {str0} {str1}".format({
+		var prefix = "\t [DEBUG] - {time}_{ms}  [i]{func}[/i]@[color=#{path_color}][u]{source}[/u][/color]:{line} - {str0} {str1}".format({
 			"time":Time.get_datetime_string_from_system(),
 			"ms":Time.get_ticks_usec() / 1000.0,
 			"line":call_from["line"],
 			"func":call_from["function"],
 			"source":call_from["source"],
-			"path_color":Color(0.647059, 0.164706, 0.164706, 1).to_html(),
+			"path_color":Color.SKY_BLUE.to_html(),
 			"str0":str(str0),
 			"str1":str(str1),
 		})

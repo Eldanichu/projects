@@ -1,19 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://c8t3268rex13"]
+[gd_scene load_steps=12 format=3 uid="uid://c8t3268rex13"]
 
 [ext_resource type="Script" path="res://Components/player.gd" id="1_qwgf7"]
 [ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="2_6jdvh"]
 [ext_resource type="Script" path="res://Components/game_ui.gd" id="2_vvlnb"]
 [ext_resource type="Texture2D" uid="uid://be7a1layup1rk" path="res://Assets/Tiles/tile_0.png" id="3_313y3"]
-[ext_resource type="Texture2D" uid="uid://d0xu6eg8rkm43" path="res://Assets/Icons/icon0.tres" id="4_la5m6"]
+[ext_resource type="PackedScene" uid="uid://005kgkwx52vv" path="res://Components/stats.tscn" id="3_gxbsq"]
 [ext_resource type="PackedScene" uid="uid://j6hvq4pejmsk" path="res://Components/Bar.tscn" id="4_nnifl"]
-[ext_resource type="Texture2D" uid="uid://coxyoq0qu1gox" path="res://Assets/Icons/icon1.tres" id="5_0alea"]
-[ext_resource type="Texture2D" uid="uid://uv4u66nnrpx" path="res://Assets/Icons/icon4.tres" id="5_hjevj"]
-[ext_resource type="Texture2D" uid="uid://dslqht5m1oyiq" path="res://Assets/Icons/icon2.tres" id="6_fw1kj"]
-[ext_resource type="Script" path="res://Components/menu_button.gd" id="6_q2ene"]
-[ext_resource type="Texture2D" uid="uid://d2i1peb7lyo5n" path="res://Assets/Icons/icon3.tres" id="7_enadm"]
-[ext_resource type="Texture2D" uid="uid://cd00hafgbeg1q" path="res://Assets/Icons/icon6.tres" id="8_1d27o"]
-[ext_resource type="Texture2D" uid="uid://dv562pheiryu8" path="res://Assets/Icons/icon5.tres" id="9_7x7ak"]
-[ext_resource type="PackedScene" uid="uid://i77v66t6105n" path="res://Scene/equipment_tip.tscn" id="14_7sme1"]
+[ext_resource type="PackedScene" uid="uid://b4d6muyuqnpre" path="res://Components/char.tscn" id="4_r0qbg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ew23"]
 atlas = ExtResource("3_313y3")
@@ -74,153 +67,13 @@ theme_override_constants/margin_bottom = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="stats" type="HBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box"]
+[node name="stats" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box" instance=ExtResource("3_gxbsq")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="stats_grid" type="GridContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/stats"]
+[node name="char" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box" instance=ExtResource("4_r0qbg")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 6
-theme_override_constants/h_separation = 5
-columns = 4
-
-[node name="char" type="VBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char"]
-layout_mode = 2
-
-[node name="chest" type="MenuButton" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char/HBoxContainer4"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_6jdvh")
-icon = ExtResource("4_la5m6")
-flat = false
-item_count = 2
-popup/item_0/text = "Equip On"
-popup/item_0/id = 0
-popup/item_1/text = "Equip Out"
-popup/item_1/id = 1
-script = ExtResource("6_q2ene")
-props = 16
-
-[node name="helm" type="MenuButton" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char/HBoxContainer4"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_6jdvh")
-icon = ExtResource("5_hjevj")
-flat = false
-item_count = 2
-popup/item_0/text = "Equip On"
-popup/item_0/id = 0
-popup/item_1/text = "Equip Out"
-popup/item_1/id = 1
-script = ExtResource("6_q2ene")
-props = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char"]
-layout_mode = 2
-
-[node name="weapon" type="MenuButton" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_6jdvh")
-icon = ExtResource("5_0alea")
-flat = false
-item_count = 2
-popup/item_0/text = "Equip On"
-popup/item_0/id = 0
-popup/item_1/text = "Equip Out"
-popup/item_1/id = 1
-script = ExtResource("6_q2ene")
-props = 16
-
-[node name="shield" type="MenuButton" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_6jdvh")
-icon = ExtResource("6_fw1kj")
-flat = false
-item_count = 2
-popup/item_0/text = "Equip On"
-popup/item_0/id = 0
-popup/item_1/text = "Equip Out"
-popup/item_1/id = 1
-script = ExtResource("6_q2ene")
-props = 16
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char"]
-layout_mode = 2
-
-[node name="ring0" type="MenuButton" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_6jdvh")
-icon = ExtResource("7_enadm")
-flat = false
-alignment = 0
-text_overrun_behavior = 3
-clip_text = true
-item_count = 2
-popup/item_0/text = "Equip On"
-popup/item_0/id = 0
-popup/item_1/text = "Equip Out"
-popup/item_1/id = 1
-script = ExtResource("6_q2ene")
-props = 16
-
-[node name="ring1" type="MenuButton" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_6jdvh")
-icon = ExtResource("7_enadm")
-flat = false
-item_count = 2
-popup/item_0/text = "Equip On"
-popup/item_0/id = 0
-popup/item_1/text = "Equip Out"
-popup/item_1/id = 1
-script = ExtResource("6_q2ene")
-props = 16
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char"]
-layout_mode = 2
-
-[node name="hand" type="MenuButton" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_6jdvh")
-icon = ExtResource("8_1d27o")
-flat = false
-alignment = 0
-text_overrun_behavior = 3
-clip_text = true
-item_count = 2
-popup/item_0/text = "Equip On"
-popup/item_0/id = 0
-popup/item_1/text = "Equip Out"
-popup/item_1/id = 1
-script = ExtResource("6_q2ene")
-props = 16
-
-[node name="boot" type="MenuButton" parent="player_gui/game_ui/VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/char/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_6jdvh")
-icon = ExtResource("9_7x7ak")
-flat = false
-item_count = 2
-popup/item_0/text = "Equip On"
-popup/item_0/id = 0
-popup/item_1/text = "Equip Out"
-popup/item_1/id = 1
-script = ExtResource("6_q2ene")
-props = 16
 
 [node name="p_center" type="PanelContainer" parent="player_gui/game_ui/VBoxContainer"]
 layout_mode = 2
@@ -322,11 +175,3 @@ size_flags_horizontal = 3
 text = "172/856"
 label_settings = SubResource("LabelSettings_dfpsp")
 vertical_alignment = 1
-
-[node name="EquipmentTip" parent="player_gui/game_ui" instance=ExtResource("14_7sme1")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.246
-offset_top = -0.164001

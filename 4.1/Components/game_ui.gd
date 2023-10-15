@@ -22,6 +22,10 @@ func _process(_delta):
 	pass
 
 func hide_all_func_box():
+	var eqs = get_tree().get_nodes_in_group("player_eq")
+	var _eq:MenuButtonEx
+	for eq in eqs:
+		_eq = eq
 	var ui_func_boxes = ui_func_box.get_children()
 	for box in ui_func_boxes:
 		ControlUtil.hide_control(box)

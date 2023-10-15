@@ -18,7 +18,7 @@ func _process(_delta):
 
 func _on_start_pressed():
 	ControlUtil.disable_control(start_button)
-	print("start game")
+	log.d("start game")
 	anim.play("fade_out")
 	await anim.animation_finished
 	ControlUtil.hide_control(self)
