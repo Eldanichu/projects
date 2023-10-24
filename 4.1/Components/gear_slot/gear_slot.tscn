@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm7glp3u16ydh"]
+
+[ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="1_hh4mc"]
+[ext_resource type="Texture2D" uid="uid://d0xu6eg8rkm43" path="res://Assets/Icons/icon0.tres" id="2_xi6hv"]
+[ext_resource type="Script" path="res://Components/gear_slot/gear_slot.gd" id="3_nea1p"]
+[ext_resource type="PackedScene" uid="uid://i77v66t6105n" path="res://Components/equipment_tip.tscn" id="4_463u4"]
+
+[node name="gear_slot" type="MenuButton"]
+custom_minimum_size = Vector2(50, 0)
+offset_right = 50.0
+offset_bottom = 16.0
+size_flags_horizontal = 3
+theme = ExtResource("1_hh4mc")
+icon = ExtResource("2_xi6hv")
+flat = false
+script = ExtResource("3_nea1p")
+
+[node name="layer_tip" type="CanvasLayer" parent="."]
+
+[node name="tip" parent="layer_tip" instance=ExtResource("4_463u4")]
+unique_name_in_owner = true
+visible = false
+top_level = true
+offset_left = -49.0
+offset_top = 32.5
+offset_right = -49.0
+offset_bottom = -47.5
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

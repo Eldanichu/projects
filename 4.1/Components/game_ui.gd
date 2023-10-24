@@ -3,10 +3,8 @@ extends Control
 @export
 var player:GamePlayer
 
-
 @onready
 var ui_func_box = %ui_func_box
-
 @onready
 var ui_func_buttons = %ui_func_buttons
 
@@ -16,14 +14,9 @@ func _ready():
 	hide_all_func_box()
 	bind_events()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
 func hide_all_func_box():
 	var eqs = get_tree().get_nodes_in_group("player_eq")
-	var _eq:MenuButtonEx
+	var _eq:GearSlot
 	for eq in eqs:
 		_eq = eq
 	var ui_func_boxes = ui_func_box.get_children()

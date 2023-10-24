@@ -4,15 +4,17 @@ class_name GamePlayer
 var actor:GameActor
 
 @onready
-var stats:Stats = %stats
+var game_ui = %game_ui
 @onready
-var hp_bar:TweenProgress = %hp_bar
+var stats:Stats = game_ui.get_node("%stats")
 @onready
-var mp_bar:TweenProgress = %mp_bar
+var hp_bar:TweenProgress = game_ui.get_node("%hp_bar")
 @onready
-var hp_value:Label = %hp_value
+var mp_bar:TweenProgress = game_ui.get_node("%mp_bar")
 @onready
-var mp_value:Label = %mp_value
+var hp_value:Label = game_ui.get_node("%hp_value")
+@onready
+var mp_value:Label = game_ui.get_node("%mp_value")
 
 func _ready():
 	bind_event()

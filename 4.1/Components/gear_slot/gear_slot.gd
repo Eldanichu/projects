@@ -1,5 +1,5 @@
 extends MenuButton
-class_name MenuButtonEx
+class_name GearSlot
 
 signal equipment_action(id)
 
@@ -80,11 +80,7 @@ func confine_tip():
 	if  origin_position >= window_size.x - tip_size.x:
 		offset = mouse_position - Vector2(tip_size.x + tip_offset, 0)
 		tip.position = Vector2(0, offset.y + tip_offset)
-
-func _mouse_hover_event(state:int):
-	is_hover = state
-	tip.visible = bool(is_hover)
-		
+	
 func load_popup_items():
 	var pop_items = get_popup()
 	pop_items.clear()
@@ -97,10 +93,6 @@ func load_popup_items():
 func reload():
 	selections = get_selected_enums(PROP,props)
 	load_popup_items()
-
-func _on_popup_item_pressed(id):
-	log.d(id)
-	emit_signal("equipment_action",id)
 
 func get_selected_enums(enum_var:Dictionary, flag_var:int):
 	var _enum = enum_var
@@ -118,6 +110,14 @@ func set_selected_enums(enum_vars:Array):
 	for index in range(0,len(enum_vars)):
 		bit += int(pow(2,enum_vars[index]))
 	props = bit
+
+func _on_popup_item_pressed(id):
+	log.d(id)
+	emit_signal("equipment_action",id)
+
+func _mouse_hover_event(state:int):
+	is_hover = state
+	tip.visible = bool(is_hover)
 
 func _on_toggled(button_pressed):
 	popup_show = button_pressed
