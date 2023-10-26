@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://005kgkwx52vv" path="res://Components/stats.tscn" id="2_btk5e"]
 [ext_resource type="PackedScene" uid="uid://b4d6muyuqnpre" path="res://Components/char.tscn" id="3_8xrf1"]
 [ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="4_byxu3"]
-[ext_resource type="Texture2D" uid="uid://be7a1layup1rk" path="res://Assets/Tiles/tile_0.png" id="5_2jexw"]
+[ext_resource type="Texture2D" uid="uid://bdai8f226kpfr" path="res://Assets/Tiles/tile_0.png" id="5_2jexw"]
 [ext_resource type="PackedScene" uid="uid://j6hvq4pejmsk" path="res://Components/Bar.tscn" id="6_yoouf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ew23"]
@@ -30,6 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r2ph4")
+player = NodePath("")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

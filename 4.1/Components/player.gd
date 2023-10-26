@@ -24,6 +24,7 @@ func _process(_delta):
 	pass
 
 func setup():
+	game_ui.player = self
 	actor = GameActor.new()
 	actor.emit_stats_change()
 
