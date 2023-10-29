@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://bx2sev850e6ox"]
 
-[ext_resource type="FontFile" uid="uid://b6uygptnmam87" path="res://Assets/Fonts/BerkeleyMono-Bold.ttf" id="2_yvls5"]
+[ext_resource type="FontFile" uid="uid://c1dfngnuhog2m" path="res://Assets/Fonts/BerkeleyMono-Bold.ttf" id="2_yvls5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbnrk"]
 bg_color = Color(0.13, 0.13, 0.13, 0.419608)

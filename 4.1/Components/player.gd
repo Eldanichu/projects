@@ -17,6 +17,7 @@ var hp_value:Label = game_ui.get_node("%hp_value")
 var mp_value:Label = game_ui.get_node("%mp_value")
 
 func _ready():
+	
 	bind_event()
 	setup()
 	

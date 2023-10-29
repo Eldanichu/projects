@@ -70,7 +70,12 @@ func _el_test_connectDB():
 	print(dbc.query_mon_drops(1))
 	pass
 
-
+func _el_test_load_file():
+	var loader = ResFileLoader.get_instance()
+	loader.set_dir("H:\\dev\\ui\\skill_icon")
+	var handle = loader.load_file_ex()
+	
+	pass
 
 
 
