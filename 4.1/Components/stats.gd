@@ -26,13 +26,10 @@ func update_stats_ui():
 	var item
 	var _stat_item
 	for s in actor_stats:
-		res = IconLoader.get_resource(actor_stats[s])
 		_stat_item = stat_item.instantiate()
 		node_name = "{0}{1}".format([u_stats_name_prefix,s])
 		item = u_stats.get_node_or_null(node_name)
 		_stat_item.name = node_name
-		_stat_item.icon = res.icon
-		_stat_item.color = res.meta
 		_stat_item.stat_value = actor.stats[actor_stats[s]]
 		
 		if item:

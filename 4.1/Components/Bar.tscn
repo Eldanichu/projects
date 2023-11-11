@@ -1,15 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://j6hvq4pejmsk"]
+[gd_scene load_steps=2 format=3 uid="uid://j6hvq4pejmsk"]
 
-[ext_resource type="Texture2D" uid="uid://be7a1layup1rk" path="res://Assets/Tiles/tile_0.png" id="1_gce1d"]
 [ext_resource type="Script" path="res://Components/Bar.gd" id="1_hp232"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_prwan"]
-atlas = ExtResource("1_gce1d")
-region = Rect2(663, 238, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q8o46"]
-atlas = ExtResource("1_gce1d")
-region = Rect2(663, 255, 16, 16)
 
 [node name="Bar" type="TextureProgressBar"]
 custom_minimum_size = Vector2(30, 8)
@@ -22,6 +13,4 @@ stretch_margin_left = 4
 stretch_margin_top = 4
 stretch_margin_right = 4
 stretch_margin_bottom = 4
-texture_under = SubResource("AtlasTexture_prwan")
-texture_progress = SubResource("AtlasTexture_q8o46")
 script = ExtResource("1_hp232")

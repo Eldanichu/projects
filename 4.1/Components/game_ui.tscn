@@ -4,11 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://005kgkwx52vv" path="res://Components/stats.tscn" id="2_btk5e"]
 [ext_resource type="PackedScene" uid="uid://b4d6muyuqnpre" path="res://Components/char.tscn" id="3_8xrf1"]
 [ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="4_byxu3"]
-[ext_resource type="Texture2D" uid="uid://be7a1layup1rk" path="res://Assets/Tiles/tile_0.png" id="5_2jexw"]
 [ext_resource type="PackedScene" uid="uid://j6hvq4pejmsk" path="res://Components/Bar.tscn" id="6_yoouf"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qt71a"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ew23"]
-atlas = ExtResource("5_2jexw")
+atlas = SubResource("CompressedTexture2D_qt71a")
 region = Rect2(663, 170, 16, 16)
 
 [sub_resource type="SystemFont" id="SystemFont_01gd0"]
@@ -19,7 +20,7 @@ font = SubResource("SystemFont_01gd0")
 font_size = 9
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jrtna"]
-atlas = ExtResource("5_2jexw")
+atlas = SubResource("CompressedTexture2D_qt71a")
 region = Rect2(663, 187, 16, 16)
 
 [node name="game_ui" type="Control"]

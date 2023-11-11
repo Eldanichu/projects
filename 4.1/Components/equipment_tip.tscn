@@ -1,7 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://i77v66t6105n"]
 
 [ext_resource type="Script" path="res://Components/equipment_tip.gd" id="1_d7isy"]
-[ext_resource type="Texture2D" uid="uid://coebs7vkjr03s" path="res://Assets/Icons/iconClose.tres" id="1_dm2vx"]
 
 [node name="EquipmentTip" type="PanelContainer"]
 y_sort_enabled = true
@@ -36,7 +35,6 @@ vertical_alignment = 2
 visible = false
 layout_mode = 2
 size_flags_horizontal = 10
-texture_normal = ExtResource("1_dm2vx")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

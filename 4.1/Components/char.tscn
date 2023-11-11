@@ -1,58 +1,38 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4d6muyuqnpre"]
+[gd_scene load_steps=2 format=3 uid="uid://b4d6muyuqnpre"]
 
-[ext_resource type="PackedScene" uid="uid://cm7glp3u16ydh" path="res://Components/slot/gear_slot.tscn" id="1_3d1th"]
-[ext_resource type="Script" path="res://Components/char.gd" id="1_ur6u7"]
-[ext_resource type="Texture2D" uid="uid://uv4u66nnrpx" path="res://Assets/Icons/icon4.tres" id="2_g3lkp"]
-[ext_resource type="Texture2D" uid="uid://d2h2fe3i2ojrh" path="res://Assets/Icons/icon7.tres" id="3_e44ul"]
-[ext_resource type="Texture2D" uid="uid://y3rbeqe0174a" path="res://Assets/Icons/icon8.tres" id="4_8kvna"]
-[ext_resource type="Texture2D" uid="uid://coxyoq0qu1gox" path="res://Assets/Icons/icon1.tres" id="5_apcvw"]
-[ext_resource type="Texture2D" uid="uid://dslqht5m1oyiq" path="res://Assets/Icons/icon2.tres" id="6_muftt"]
-[ext_resource type="Texture2D" uid="uid://cva2wet021a3k" path="res://Assets/Icons/icon9.tres" id="7_qts4q"]
-[ext_resource type="Texture2D" uid="uid://d2i1peb7lyo5n" path="res://Assets/Icons/icon3.tres" id="8_etsv7"]
-[ext_resource type="Texture2D" uid="uid://cd00hafgbeg1q" path="res://Assets/Icons/icon6.tres" id="9_ec0mt"]
-[ext_resource type="Texture2D" uid="uid://dv562pheiryu8" path="res://Assets/Icons/icon5.tres" id="10_p0pah"]
+[ext_resource type="PackedScene" uid="uid://cm7glp3u16ydh" path="res://Components/gear_slot/gear_slot.tscn" id="1_3d1th"]
 
 [node name="char" type="GridContainer"]
 size_flags_horizontal = 3
 mouse_filter = 2
 columns = 2
-script = ExtResource("1_ur6u7")
 
 [node name="e2" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
 layout_mode = 2
-icon = ExtResource("2_g3lkp")
 
 [node name="e3" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
 layout_mode = 2
 
 [node name="e7" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
 layout_mode = 2
-icon = ExtResource("3_e44ul")
 
 [node name="e8" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
 layout_mode = 2
-icon = ExtResource("4_8kvna")
 
 [node name="e0" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
 layout_mode = 2
-icon = ExtResource("5_apcvw")
 
 [node name="e1" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
 layout_mode = 2
-icon = ExtResource("6_muftt")
 
 [node name="e9" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
 layout_mode = 2
-icon = ExtResource("7_qts4q")
 
 [node name="e6" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
 layout_mode = 2
-icon = ExtResource("8_etsv7")
 
 [node name="e4" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
 layout_mode = 2
-icon = ExtResource("9_ec0mt")
 
 [node name="e5" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
 layout_mode = 2
-icon = ExtResource("10_p0pah")
