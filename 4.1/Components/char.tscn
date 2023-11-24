@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4d6muyuqnpre"]
 
-[ext_resource type="PackedScene" uid="uid://cm7glp3u16ydh" path="res://Components/gear_slot/gear_slot.tscn" id="1_3d1th"]
+[ext_resource type="PackedScene" uid="uid://cm7glp3u16ydh" path="res://Components/GearSlot/gear_slot.tscn" id="1_3d1th"]
 
 [node name="char" type="GridContainer"]
 size_flags_horizontal = 3

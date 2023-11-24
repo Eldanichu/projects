@@ -7,32 +7,31 @@ class Rnd:
 	
 	func _init():
 		r = RandomNumberGenerator.new()
-		
 
 	func randomi(range:int = 1) -> int:
 		r.randomize()
 		var rn = floor(ceil(r.randi())) % (range + 1)
 		return rn
-	
+
 	func randomf(rangeP:float = 1.0) -> float:
 		r.randomize()
 		var rn:String = "%10.2f" % fmod(r.randf() * 100 ,rangeP)
 		
 		return float(rn)
-	
+
 	func pick(array:Array = []):
 		var arr_len = len(array)
 		var _array = array
 		var i = randomi(arr_len - 1)
 		var item = _array[i]
 		return item
-	
+
 	func hit(chance:int):
 		var _c = ((chance * 1.00) / 100)
 		var r = randomf()
 		var res = r <= _c
 		return res
-	
+
 	func uid(len:int = 8, number:bool = false) -> String:
 		var str = ""
 		var _A = "QWERTYUIOPASDFGHJKLZXCVBNM"

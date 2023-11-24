@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8t3268rex13"]
+
+[ext_resource type="Script" path="res://Components/Player/player.gd" id="1_qwgf7"]
+[ext_resource type="PackedScene" uid="uid://bc3lbpi48revl" path="res://Components/game_ui.tscn" id="2_vicvf"]
+[ext_resource type="PackedScene" uid="uid://dakcgn7px8emr" path="res://Scene/debug_window.tscn" id="3_7ymve"]
+[ext_resource type="PackedScene" uid="uid://swqnrbjdta3w" path="res://Components/BattleField/battle.tscn" id="3_d00hg"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_qwgf7")
+
+[node name="player_gui" type="CanvasLayer" parent="."]
+
+[node name="game_ui" parent="player_gui" instance=ExtResource("2_vicvf")]
+unique_name_in_owner = true
+
+[node name="battle_gui" type="CanvasLayer" parent="."]
+
+[node name="battle" parent="battle_gui" instance=ExtResource("3_d00hg")]
+
+[node name="debug_window" parent="." instance=ExtResource("3_7ymve")]
+unique_name_in_owner = true
+position = Vector2i(205, 36)

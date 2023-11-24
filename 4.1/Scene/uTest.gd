@@ -1,14 +1,14 @@
 extends Control
 
-@onready
-var box = %box
+@onready var box = %box
+@onready var label = $box/label
+
 
 var FUNC_PREFIX = "_el_test_"
-
+var count = 0
+var label_value = 0
 
 func _ready():
-
-	
 	var funcs = get_current_script_methods()
 	handle_methods(funcs)
 
@@ -69,14 +69,30 @@ func _el_test_loot():
 func _el_test_connectDB():
 	print(dbc.query_mon_drops(1))
 	pass
-
-func _el_test_load_file():
-	var loader = ResFileLoader.get_instance()
-	loader.set_dir("H:\\dev\\ui\\skill_icon")
-	var handle = loader.load_file_ex()
 	
-	pass
+func _el_test_PM():
+	var dict = {
+		"a":1,
+		"b":2,
+		"c":{
+			"c1":null
+		}
+	}
+	var om = OM.new(dict)
+	om.set_v("c/c1",5)
+	print(om.key_path)
+	print(om.from,"--->",dict)
+	Damage.new().source(null,DamageType.new().DEFENCE())
 
 
+func _el_test_animate_number():
+	count = count + 10
+	TweenValue.new(self) \
+	.from(int(label.text)) \
+	.to(count) \
+	.set_trans(Tween.TRANS_QUINT) \
+	.callback(_animate_number) \
+	.start()
 
-
+func _animate_number(value):
+	label.text = str(value)

@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://005kgkwx52vv"]
+
+[ext_resource type="Script" path="res://Components/StatePanel/stats.gd" id="1_fpfpg"]
+[ext_resource type="PackedScene" uid="uid://myrxwuv4oojq" path="res://Components/StatePanel/stat_item.tscn" id="2_6ilhu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk0x6"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_17a7m"]
+ScrollContainer/styles/panel = SubResource("StyleBoxFlat_fk0x6")
+
+[node name="stats" type="VBoxContainer" groups=["stats"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_fpfpg")
+
+[node name="scroll_container" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_17a7m")
+
+[node name="v_box_container" type="VBoxContainer" parent="scroll_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="atk" type="BoxContainer" parent="scroll_container/v_box_container"]
+layout_mode = 2
+vertical = true
+
+[node name="SI_ATTACK" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="SI_ATTACK_SPEED" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="SI_CAST_SPEED" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="SI_DEFENCE" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="ratk" type="BoxContainer" parent="scroll_container/v_box_container"]
+layout_mode = 2
+vertical = true
+
+[node name="SI_CRITICAL_CHANCE" parent="scroll_container/v_box_container/ratk" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="SI_CRITICAL_DAMAGE" parent="scroll_container/v_box_container/ratk" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="def" type="BoxContainer" parent="scroll_container/v_box_container"]
+layout_mode = 2
+vertical = true
+
+[node name="SI_DFIRE" parent="scroll_container/v_box_container/def" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="SI_DICE" parent="scroll_container/v_box_container/def" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="SI_DWIND" parent="scroll_container/v_box_container/def" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="SI_DWATER" parent="scroll_container/v_box_container/def" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="res" type="BoxContainer" parent="scroll_container/v_box_container"]
+layout_mode = 2
+vertical = true
+
+[node name="SI_RFIRE" parent="scroll_container/v_box_container/res" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="SI_RICE" parent="scroll_container/v_box_container/res" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="SI_RWIND" parent="scroll_container/v_box_container/res" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="SI_RWATER" parent="scroll_container/v_box_container/res" instance=ExtResource("2_6ilhu")]
+layout_mode = 2

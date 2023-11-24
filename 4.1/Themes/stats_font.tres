@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b1u528sajv868"]
+
+[sub_resource type="SystemFont" id="SystemFont_x352l"]
+
+[sub_resource type="SystemFont" id="SystemFont_d30ah"]
+
+[resource]
+default_font = SubResource("SystemFont_d30ah")
+default_font_size = 12
+Label/font_sizes/font_size = 10
+Label/fonts/font = SubResource("SystemFont_x352l")

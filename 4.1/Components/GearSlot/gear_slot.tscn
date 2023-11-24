@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cm7glp3u16ydh"]
 
 [ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="1_hh4mc"]
-[ext_resource type="Script" path="res://Components/gear_slot/gear_slot.gd" id="3_nea1p"]
-[ext_resource type="PackedScene" uid="uid://i77v66t6105n" path="res://Components/equipment_tip.tscn" id="4_463u4"]
+[ext_resource type="Script" path="res://Components/GearSlot/gear_slot.gd" id="3_nea1p"]
+[ext_resource type="PackedScene" uid="uid://i77v66t6105n" path="res://Components/Tip/equipment_tip.tscn" id="4_463u4"]
 
 [node name="gear_slot" type="MenuButton"]
 custom_minimum_size = Vector2(50, 16)

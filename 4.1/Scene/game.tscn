@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dd3vra1iyxgg7"]
 
 [ext_resource type="Script" path="res://Scene/game.gd" id="1_asfsb"]
-[ext_resource type="PackedScene" uid="uid://c8t3268rex13" path="res://Components/player.tscn" id="2_wwavc"]
+[ext_resource type="PackedScene" uid="uid://c8t3268rex13" path="res://Components/Player/player.tscn" id="2_uxu3y"]
 [ext_resource type="Script" path="res://Scene/StartMenu.gd" id="3_y6vwx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eyxr4"]
@@ -113,13 +113,11 @@ _data = {
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_asfsb")
-player = ExtResource("2_wwavc")
+player = ExtResource("2_uxu3y")
 
 [node name="G" type="CanvasLayer" parent="."]
 
 [node name="StartMenu" type="Control" parent="G"]
-visible = false
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -164,9 +162,6 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_u128g")
 }
-
-[node name="M" type="CanvasLayer" parent="."]
-visible = false
 
 [connection signal="start_game" from="G/StartMenu" to="." method="_on_start_menu_start_game"]
 [connection signal="pressed" from="G/StartMenu/start" to="G/StartMenu" method="_on_start_pressed"]

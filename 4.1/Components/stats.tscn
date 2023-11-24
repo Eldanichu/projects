@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://005kgkwx52vv"]
-
-[ext_resource type="Script" path="res://Components/stats.gd" id="1_4pd4y"]
-
-[node name="stats" type="GridContainer"]
-size_flags_horizontal = 6
-theme_override_constants/h_separation = 5
-columns = 4
-script = ExtResource("1_4pd4y")

@@ -1,35 +1,6 @@
-extends Resource
+extends RefCounted
 class_name Enums
 
 func _init():
 	pass
-
-enum PLAYER_PRIMARY_STATS {
-	HP,
-	HPMAX,
-	MP,
-	MPMAX,
-	EXP,
-	EXPMAX
-}
-
-enum PLAYER_EXCLUSIVE_STATS {
-	ATTACK,
-	ATTACK_SPEED,
-	CAST_SPEED,
-	
-	DFIRE,
-	DICE,
-	DWIND,
-	DWATER,
-
-	RATTACK,
-	RFIRE,
-	RICE,
-	RWATER,
-	RWIND,
-	
-	CRITICAL_CHANCE,
-	CRITICAL_DAMAGE
-}
 

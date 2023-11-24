@@ -24,6 +24,7 @@ PlayerEvent="*res://AutoLoad/player_event.gd"
 
 [debug]
 
+settings/stdout/verbose_stdout=true
 gdscript/warnings/get_node_default_without_onready=1
 
 [display]

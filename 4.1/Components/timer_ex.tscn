@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsa2mons0vuco"]
-
-[ext_resource type="Script" path="res://Components/timer_ex.gd" id="1_6o8fx"]
-
-[node name="TimerEx" type="Node"]
-script = ExtResource("1_6o8fx")
