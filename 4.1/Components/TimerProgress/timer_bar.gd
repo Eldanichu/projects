@@ -1,8 +1,6 @@
 extends ProgressBar
 class_name TweenProgress
 
-@export var interval:float = 1.0
-
 @export_range(0.1,9,0.01) 
 var duration:float = 0
 
@@ -24,10 +22,18 @@ var timer:TimerEx
 func _ready():
 	timer = TimerEx.new(self)
 	timer.on_tick.connect(_on_tick)
-	timer.interval = interval
 	timer.tick = false
-	v_max = interval
+
+func start():
+	max_value = 100;
+	v_max = timer.interval
 	timer.start()
+
+func set_interval(val:float) -> TweenProgress:
+	timer.interval = val
+	v_min = val
+	return self
+	
 
 func _on_tick(delta:float):
 	v_min = delta
@@ -35,7 +41,6 @@ func _on_tick(delta:float):
 	tween_progress()
 
 func tween_progress():
-	max_value = 100;
 	var _min_v = max(v_min,0)
 	var _max_v = max(v_max,1)
 	percent = min((_min_v / _max_v * 100), max_value)

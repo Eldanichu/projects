@@ -1,10 +1,10 @@
 extends RefCounted
 class_name State
 
-var value:int = IDEL()
+var value:int
 
 func _init():
-	value = IDEL()
+	IDEL()
 
 func IDEL():
 	value = 0x01

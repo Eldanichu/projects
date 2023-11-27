@@ -4,12 +4,11 @@
 [ext_resource type="Script" path="res://Components/TimerProgress/timer_bar.gd" id="2_c3d2p"]
 
 [node name="timer_bar" type="ProgressBar"]
-custom_minimum_size = Vector2(40, 40)
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(30, 0)
+offset_right = 4.0
+offset_bottom = 16.0
 size_flags_horizontal = 3
-size_flags_vertical = 1
+size_flags_vertical = 3
 theme = ExtResource("1_1rsc5")
 theme_override_font_sizes/font_size = 8
-fill_mode = 3
 script = ExtResource("2_c3d2p")

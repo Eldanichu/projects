@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://fjtojhdomdkq"]
+[gd_scene load_steps=4 format=3 uid="uid://fjtojhdomdkq"]
 
 [ext_resource type="Script" path="res://Components/Monster/monster.gd" id="1_470uu"]
 [ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="1_xruce"]
+[ext_resource type="PackedScene" uid="uid://bdydew1o2yysh" path="res://Components/TimerProgress/timer_bar.tscn" id="3_q7pg1"]
 
 [node name="monster" type="MarginContainer"]
 offset_right = 188.0
@@ -13,25 +14,35 @@ script = ExtResource("1_470uu")
 
 [node name="v_box_container" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
 
-[node name="h_box_container" type="HBoxContainer" parent="v_box_container"]
+[node name="margin_container" type="MarginContainer" parent="v_box_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="h_box_container" type="HBoxContainer" parent="v_box_container/margin_container"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="m_name" type="Label" parent="v_box_container/h_box_container"]
+[node name="m_name" type="Label" parent="v_box_container/margin_container/h_box_container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 text = "MonName"
 
-[node name="m_hp" type="Label" parent="v_box_container/h_box_container"]
+[node name="m_hp" type="Label" parent="v_box_container/margin_container/h_box_container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 text = "0/0"
 
-[node name="m_lv" type="Label" parent="v_box_container/h_box_container"]
+[node name="m_lv" type="Label" parent="v_box_container/margin_container/h_box_container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Lv:0"
+
+[node name="t_attack" parent="." instance=ExtResource("3_q7pg1")]
+layout_mode = 2
+show_percentage = false
