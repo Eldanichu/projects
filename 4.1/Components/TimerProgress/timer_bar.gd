@@ -1,20 +1,10 @@
 extends ProgressBar
-class_name TimerProgress
+class_name TweenProgress
 
-@export 
-var v_min:float = 0:
-	set(value):
-		v_min = value
-		tween_progress()
-
-@export 
-var v_max:float = 0:
-	set(value):
-		v_max = value
-		tween_progress()
+@export var interval:float = 1.0
 
 @export_range(0.1,9,0.01) 
-var duration:float = 0.2
+var duration:float = 0
 
 @export_enum(
 	"TRANS_CIRC",
@@ -23,11 +13,26 @@ var duration:float = 0.2
 	) 
 var trans:String = "TRANS_CUBIC"
 
+
+var v_min:float = 0
+var v_max:float = 0
 var tween:Tween
 var percent:float = 0
 
+var timer:TimerEx
+
 func _ready():
-	pass
+	timer = TimerEx.new(self)
+	timer.on_tick.connect(_on_tick)
+	timer.interval = interval
+	timer.tick = false
+	v_max = interval
+	timer.start()
+
+func _on_tick(delta:float):
+	v_min = delta
+	print("on_tick->",delta)
+	tween_progress()
 
 func tween_progress():
 	max_value = 100;
