@@ -3,17 +3,17 @@ class_name GameActor
 
 var secondary_stats:SecondaryStat
 var primary_stats:PrimaryStat
-var actor_state:ActorState
+var class_inst:BaseActorClass
 
 func _init():
-	actor_state = ActorState.new()
-	
 	primary_stats = PrimaryStat.new()
-	var tao = TaoClass.new(primary_stats)
-	primary_stats.set_class(tao)
-	
 	secondary_stats = SecondaryStat.new()
 
+func set_class(actor_class):
+	var instance = actor_class.new() as BaseActorClass
+	instance.stats0 = primary_stats
+	instance.stats1 = secondary_stats
+	class_inst = instance
 
 func set_hp(value:int, max_value:int = -1):
 	if max_value  == -1:
@@ -46,12 +46,6 @@ func get_mp(stringify:bool, is_max:bool = false):
 
 	return _min
 
-func give_hp(value:int):
-	primary_stats["HP"] = min(primary_stats["HP"] + value, primary_stats["HPMAX"])
-
-func give_damage(value:int):
-	primary_stats["HP"] = max(primary_stats["HP"] - value, 0)
-
 func give_exp(value:int):
 	var amount = value
 	var _max_exp = primary_stats["EXPMAX"]
@@ -64,6 +58,11 @@ func give_exp(value:int):
 		amount = amount - _max_exp
 		emit_level_up(amount)
 
+func level_up(reamin = 0):
+	primary_stats["EXP"] = reamin
+	primary_stats["LEVEL"] += 1
+	class_inst.update()
+
 func emit_level_up(amount):
 	if not is_level_up():
 		return
@@ -71,14 +70,6 @@ func emit_level_up(amount):
 
 func is_level_up():
 	return primary_stats["EXP"] >= primary_stats["EXPMAX"]
-
-func level_up(reamin = 0):
-	primary_stats["EXP"] = reamin
-	primary_stats["LEVEL"] += 1
-	primary_stats.update()
-	secondary_stats.update()
-
-
 
 
 

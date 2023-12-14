@@ -21,6 +21,7 @@ boot_splash/show_image=false
 
 dbc="*res://AutoLoad/DBCommand.gd"
 PlayerEvent="*res://AutoLoad/player_event.gd"
+BattleEvent="*res://AutoLoad/battle_event.gd"
 
 [debug]
 

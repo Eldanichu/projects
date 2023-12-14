@@ -11,6 +11,7 @@ var player:GamePlayer:
 
 @onready var ui_func_box = %ui_func_box
 @onready var ui_func_buttons = %ui_func_buttons
+@onready var battle:BattleScene = %battle
 
 var current_display_box:String = ""
 
@@ -57,4 +58,7 @@ func toggle_panel(type:String):
 		ControlUtil.show_control(control)
 		current_display_box = type
 
-
+func _on_map_map_click(id, name_str):
+	battle.p = player
+	battle.set_map(id)
+	battle.open()

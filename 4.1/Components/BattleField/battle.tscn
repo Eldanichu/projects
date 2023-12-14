@@ -3,10 +3,8 @@
 [ext_resource type="Script" path="res://Components/BattleField/battle.gd" id="1_puy7d"]
 [ext_resource type="PackedScene" uid="uid://c75akqqigtmh6" path="res://Scene/char_stat.tscn" id="2_0f8rb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejduf"]
-bg_color = Color(0.211765, 0.211765, 0.211765, 0.611765)
-shadow_color = Color(0, 0, 0, 0.227451)
-shadow_size = 1
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7u30k"]
+bg_color = Color(0.309804, 0.309804, 0.309804, 1)
 
 [node name="battle" type="Control"]
 layout_mode = 3
@@ -24,9 +22,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ejduf")
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_7u30k")
 
 [node name="v_box_container" type="VBoxContainer" parent="battle_panel"]
+layout_mode = 2
+
+[node name="time" type="Label" parent="battle_panel/v_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="v_separator" type="HSeparator" parent="battle_panel/v_box_container"]
 layout_mode = 2
 
 [node name="scroll_container" type="ScrollContainer" parent="battle_panel/v_box_container"]
@@ -38,6 +47,9 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 vertical = true
+
+[node name="v_separator2" type="HSeparator" parent="battle_panel/v_box_container"]
+layout_mode = 2
 
 [node name="v_box_container" type="VBoxContainer" parent="battle_panel/v_box_container"]
 layout_mode = 2

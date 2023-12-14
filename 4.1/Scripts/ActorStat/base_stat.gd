@@ -1,8 +1,20 @@
 extends RefCounted
 class_name BaseStat
 
+var variables = []
+
 var _changed:Dictionary = {}
 var _events = {}
+
+func set_variables(vars:Array):
+	variables = vars
+
+func get_properties() -> Dictionary:
+	var dict:Dictionary = {}
+	for key in variables:
+		dict[key] = self[key]
+
+	return dict
 
 func add_event(callback:Callable,id:String = "__default"):
 	_events[id] = callback

@@ -26,6 +26,16 @@ var exp_base = 20
 var exp_acc = 14
 var exp_rate = 1.1
 
+var stats0:PrimaryStat:
+	set(stat):
+		stats0 = stat
+var stats1:SecondaryStat:
+	set(stat):
+		stats1 = stat
+
+func _init():
+	pass
+
 func calculate(const_number:float, rate:float, acc:float, level:int, is_p1:bool):
 	var _lv = level;
 	if const_number != 0:
@@ -35,4 +45,5 @@ func calculate(const_number:float, rate:float, acc:float, level:int, is_p1:bool)
 		value += _lv * acc;
 
 	return int(floor(value));
-	
+
+

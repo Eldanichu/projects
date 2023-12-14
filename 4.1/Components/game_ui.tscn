@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bc3lbpi48revl"]
+[gd_scene load_steps=8 format=3 uid="uid://bc3lbpi48revl"]
 
 [ext_resource type="Script" path="res://Components/game_ui.gd" id="1_r2ph4"]
 [ext_resource type="PackedScene" uid="uid://005kgkwx52vv" path="res://Components/StatePanel/stats.tscn" id="2_btk5e"]
 [ext_resource type="PackedScene" uid="uid://b4d6muyuqnpre" path="res://Components/char.tscn" id="3_8xrf1"]
+[ext_resource type="PackedScene" uid="uid://ch0ln8t0na7a5" path="res://Components/MapSelection/map_selection.tscn" id="4_2qea4"]
 [ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="4_byxu3"]
 [ext_resource type="PackedScene" uid="uid://c75akqqigtmh6" path="res://Scene/char_stat.tscn" id="4_e12ki"]
+[ext_resource type="PackedScene" uid="uid://swqnrbjdta3w" path="res://Components/BattleField/battle.tscn" id="7_ofvwp"]
 
 [node name="game_ui" type="Control"]
 layout_mode = 3
@@ -53,6 +55,11 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
+[node name="map" parent="VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box" instance=ExtResource("4_2qea4")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="p_bottom" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -100,7 +107,7 @@ size_flags_vertical = 0
 theme = ExtResource("4_byxu3")
 text = "Char"
 
-[node name="battle" type="Button" parent="VBoxContainer/p_center/MarginContainer/ui_func_buttons"]
+[node name="map" type="Button" parent="VBoxContainer/p_center/MarginContainer/ui_func_buttons"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -108,3 +115,12 @@ size_flags_vertical = 0
 theme = ExtResource("4_byxu3")
 text = "Map
 "
+
+[node name="battle_gui" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="battle" parent="battle_gui" instance=ExtResource("7_ofvwp")]
+unique_name_in_owner = true
+
+[connection signal="map_click" from="VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/map" to="." method="_on_map_map_click"]

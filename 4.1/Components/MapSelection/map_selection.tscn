@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch0ln8t0na7a5"]
+
+[ext_resource type="Script" path="res://Components/MapSelection/map_selection.gd" id="1_cg1hh"]
+
+[node name="map_selection" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cg1hh")
+
+[node name="tab_container" type="TabContainer" parent="."]
+layout_mode = 2
+
+[node name="M1" type="ScrollContainer" parent="tab_container"]
+layout_mode = 2
+
+[node name="btn_container" type="BoxContainer" parent="tab_container/M1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="1" type="Button" parent="tab_container/M1/btn_container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "m1"

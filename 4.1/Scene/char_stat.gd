@@ -8,8 +8,8 @@ class_name CharStat
 			return
 		bind_event()
 
-@onready var hp_bar:TweenProgress = get_node("%hp_bar")
-@onready var mp_bar:TweenProgress = get_node("%mp_bar")
+@onready var hp_bar :TimerProgress = get_node("%hp_bar")
+@onready var mp_bar:TimerProgress = get_node("%mp_bar")
 @onready var hp_value:Label = get_node("%hp_value")
 @onready var mp_value:Label = get_node("%mp_value")
 

@@ -1,5 +1,5 @@
-extends Node
-class_name Monster
+extends GameObject
+class_name MonsterScene
 
 @onready var m_name = %m_name
 @onready var m_hp = %m_hp
@@ -7,7 +7,16 @@ class_name Monster
 
 @onready var t_attack:TweenProgress = $t_attack
 
-var actor:GameActor
+var attacker:GameObject = null
+var mon_stat:MonStat
+
+var mon_obj:MonObject:
+	set(mon):
+		mon_obj = mon
+		mon_stat = mon_obj.mon_stat
+		mon_stat.add_event(
+			update,"mon_".format([RandomEx.get_instance().uid()])
+			)
 
 func _ready():
 	setup()
@@ -15,12 +24,16 @@ func _ready():
 
 func _process(delta):
 	pass
+	
 
 func setup():
-	actor = GameActor.new();
-	actor.primary_stats.add_event(update,"monster_stats_change")
+	mon_stat.trigger_event()
 #	t_attack.set_interval(2).start()
 
 func update(changes):
-	m_hp.text = actor.get_hp(true)
-	m_lv.text = "Lv:{0}".format([str(actor.primary_stats.LEVEL)])
+	if not is_inside_tree():
+		return
+	m_hp.text = "{0}/{1}".format([mon_stat.HP,mon_stat.HPMAX])
+	m_lv.text = "Lv:{0}".format([str(mon_stat.LEVEL)])
+	m_name.text = mon_stat.DNAME
+

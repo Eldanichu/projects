@@ -54,5 +54,7 @@ class Rnd:
 static func get_instance() -> Rnd:
 	return Rnd.new()
 
-
+static func exceed(index:int,size:int):
+	var i = ((size + index) % size) % size
+	return i
 

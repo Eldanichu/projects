@@ -66,7 +66,6 @@ var	DWATER = 0:
 		DWATER = v
 		_on_change(var_name, v)
 
-
 var	RFIRE = 0:
 	set(v):
 		var var_name = "RFIRE"
@@ -92,25 +91,14 @@ var	RWATER = 0:
 		RWATER = v
 		_on_change(var_name, v)
 
+func _init():
+	set_variables([
+		"ATTACK","ATTACK_SPEED","CAST_SPEED",
+		"DFIRE","DICE","DWIND","DWATER",
+		"RFIRE","RICE","RWIND","RWATER",
+		"DEFENCE",
+		"CRITICAL_CHANCE","CRITICAL_DAMAGE",
+	])
 
-const variables = [
-	"ATTACK","ATTACK_SPEED","CAST_SPEED",
-	"DFIRE","DICE","DWIND","DWATER",
-	"RFIRE","RICE","RWIND","RWATER",
-	"DEFENCE",
-	"CRITICAL_CHANCE","CRITICAL_DAMAGE",
-]
-
-func get_properties() -> Dictionary:
-	var dict:Dictionary = {}
-	var i = 0;
-	for key in variables:
-		dict[key] = self[key]
-		i = i + 1
-	return dict
-
-
-func update():
-	pass
 
 

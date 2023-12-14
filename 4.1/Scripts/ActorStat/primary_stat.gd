@@ -1,10 +1,6 @@
 extends BaseStat
 class_name PrimaryStat
 
-const EXP_INC_RATIO = 1.05
-
-var _actor_class
-
 var HP = 16:
 	set(v):
 		var var_name = "HP"
@@ -42,30 +38,16 @@ var LEVEL = 1:
 		LEVEL = v
 		_on_change("LEVEL", v)
 
-
-const variables = [
-	"HP","HPMAX",
-	"MP","MPMAX",
-	"EXP","EXPMAX",
-	"LEVEL"
-]
-
 func _init():
-	pass
-
-func set_class(actor_class:BaseActorClass):
-	_actor_class = actor_class
-
-func get_properties() -> Dictionary:
-	var dict:Dictionary = {}
-	for key in variables:
-		dict[key] = self[key]
-
-	return dict
-
-func update():
-	if _actor_class as TaoClass:
-		_actor_class.update()
+	set_variables([
+		"HP",
+		"HPMAX",
+		"MP",
+		"MPMAX",
+		"EXP",
+		"EXPMAX",
+		"LEVEL"
+	])
 
 
 

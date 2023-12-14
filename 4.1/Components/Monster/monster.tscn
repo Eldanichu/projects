@@ -7,6 +7,7 @@
 [node name="monster" type="MarginContainer"]
 offset_right = 188.0
 offset_bottom = 16.0
+mouse_filter = 0
 theme = ExtResource("1_xruce")
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
@@ -43,6 +44,11 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "Lv:0"
 
+[node name="button" type="Button" parent="v_box_container/margin_container/h_box_container"]
+layout_mode = 2
+text = "ATTACK"
+
 [node name="t_attack" parent="." instance=ExtResource("3_q7pg1")]
 layout_mode = 2
+mouse_filter = 2
 show_percentage = false
