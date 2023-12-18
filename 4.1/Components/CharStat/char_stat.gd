@@ -1,12 +1,8 @@
 extends VBoxContainer
 class_name CharStat
 
-@export var player:GamePlayer:
-	set(_player):
-		player = _player
-		if not player:
-			return
-		bind_event()
+var player_scene:GamePlayer
+var on_battle:bool = false
 
 @onready var hp_bar :TimerProgress = get_node("%hp_bar")
 @onready var mp_bar:TimerProgress = get_node("%mp_bar")
@@ -16,21 +12,24 @@ class_name CharStat
 @onready var exp_bar = %exp_bar
 @onready var lvl = %lvl
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+@onready var battle_control = %battle_control
 
 func bind_event():
-	player.actor.primary_stats.add_event(update, "p0")
-
-func update(changed):
-	var actor = player.actor
+	if not player_scene:
+		return
+	battle_control.visible = on_battle
+	S.stats_changed.disconnect(update)
+	S.stats_changed.connect(update)
+	S.stats_changed.emit()
+	
+func update():
+	var actor = player_scene.player
 	hp_bar.v_max = actor.get_hp(false, true)
 	hp_bar.v_min = actor.get_hp(false, false)
 	mp_bar.v_max = actor.get_mp(false, true)
 	mp_bar.v_min = actor.get_mp(false, false)
 	hp_value.text = actor.get_hp(true)
 	mp_value.text = actor.get_mp(true)
-	exp_bar.v_max = actor.primary_stats.EXPMAX
-	exp_bar.v_min = actor.primary_stats.EXP
-	lvl.text = "Lv: {0} ".format([str(actor.primary_stats.LEVEL)])
+	exp_bar.v_max = actor.stats.EXPMAX
+	exp_bar.v_min = actor.stats.EXP
+	lvl.text = "Lv: {0} ".format([str(actor.stats.LEVEL)])

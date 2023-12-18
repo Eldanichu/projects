@@ -1,5 +1,8 @@
 extends RefCounted
-class_name BaseActorClass
+class_name ActorClass
+var _class_name = "ActorClass"
+func is_class_name(name_of_class:String) -> bool:
+	return name_of_class == _class_name
 
 var hp_ratio
 var hp_base
@@ -26,15 +29,11 @@ var exp_base = 20
 var exp_acc = 14
 var exp_rate = 1.1
 
-var stats0:PrimaryStat:
-	set(stat):
-		stats0 = stat
-var stats1:SecondaryStat:
-	set(stat):
-		stats1 = stat
-
-func _init():
-	pass
+var _actor_player:ActorPlayer
+var stats:BaseStat
+func _init(actor_player:ActorPlayer):
+	_actor_player = actor_player
+	stats = actor_player.stats
 
 func calculate(const_number:float, rate:float, acc:float, level:int, is_p1:bool):
 	var _lv = level;
@@ -45,5 +44,12 @@ func calculate(const_number:float, rate:float, acc:float, level:int, is_p1:bool)
 		value += _lv * acc;
 
 	return int(floor(value));
+
+func update_props():
+	var level = stats.LEVEL
+	var max_hp = int(hp_ratio + (level / (1 + hp_base) + hp_acc) * level)
+	var max_mp = int(mp_ratio + (level / (1 + mp_base) + mp_acc) * mp_rate * level)
+	_actor_player.set_hp(stats.HP, max_hp)
+	_actor_player.set_mp(stats.MP, max_mp)
 
 

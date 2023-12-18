@@ -23,8 +23,10 @@ func query_mon_by(mon_id):
 	var sql = "select * from Monsters where ID = {monId}".format({
 		"monId":mon_id
 	})
+	log.d(sql)
 	db.query(sql)
 	var row = db.query_result[0]
+	log.d(row)
 	close()
 	return row
 	
@@ -38,8 +40,10 @@ func query_map_mon_group(map_id):
 				where mg.MAP_ID = {map_id}".format({
 		"map_id":map_id
 	})
+	log.d(sql)
 	db.query(sql)
 	var rows = db.query_result
+	log.d(rows)
 	close()
 	return rows
 
@@ -49,8 +53,10 @@ func query_mon_drops(mon_id:int):
 				left join MonsterDrops md on md.MONID = m.ID 
 				where m.ID = {mon_id}" \
 				.format({"mon_id":mon_id})
+	log.d(sql)
 	db.query(sql)
 	var rows = db.query_result
+	log.d(rows)
 	close()
 	return rows
 
@@ -62,7 +68,6 @@ func import_monster(mon_name:String, row:Dictionary):
 		cols.append('\'{0}\''.format([row[key]]))
 	
 	var sql = "select NAME,DNAME from Monsters where NAME = '{0}'".format([mon_name])
-	db.query(sql)
 	var rows = db.query_result
 	if len(rows):
 		var update = "update Monsters set {props} where NAME = '{mon_name}'".format({
@@ -70,12 +75,10 @@ func import_monster(mon_name:String, row:Dictionary):
 			"mon_name":mon_name
 		})
 		db.query(update)
-		print(update)
 		return
 	var insert = "insert into Monsters (NAME,HP,MP,DEF,ATK,AGI) values ({props})".format({
 			"props":",".join(cols)
 		})
-	print(insert)
 	db.query(insert)
 
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://swqnrbjdta3w"]
 
 [ext_resource type="Script" path="res://Components/BattleField/battle.gd" id="1_puy7d"]
-[ext_resource type="PackedScene" uid="uid://c75akqqigtmh6" path="res://Scene/char_stat.tscn" id="2_0f8rb"]
+[ext_resource type="PackedScene" uid="uid://c75akqqigtmh6" path="res://Components/CharStat/char_stat.tscn" id="2_0f8rb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7u30k"]
 bg_color = Color(0.309804, 0.309804, 0.309804, 1)
@@ -55,4 +55,5 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="char_stat" parent="battle_panel/v_box_container/v_box_container" instance=ExtResource("2_0f8rb")]
+unique_name_in_owner = true
 layout_mode = 2

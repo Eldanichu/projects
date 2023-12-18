@@ -5,6 +5,19 @@ var label_value = 0
 
 @onready var file_select = %file_select
 
+var hp = 0:
+	set(value):
+		var ov = hp
+		hp = value
+		_set_hp(ov,value)
+
+func _set_hp(ov,nv):
+	print("before->",ov)
+	print("after->",nv)
+
+func _setter_getter_test():
+	hp += 2
+	pass
 
 func _ready():
 	pass
@@ -29,7 +42,7 @@ func _el_test_pick():
 	
 func _el_test_hit():
 	var r := RandomEx.get_instance();
-	var rn = r.hit(100)
+	var rn = r.hit(40)
 	print(rn)
 
 func _el_test_loot():

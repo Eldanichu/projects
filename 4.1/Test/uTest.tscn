@@ -94,6 +94,13 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.csv")
 
+[node name="h7" type="HBoxContainer" parent="tab_container/s0/v0"]
+layout_mode = 2
+
+[node name="getter" type="Button" parent="tab_container/s0/v0/h7"]
+layout_mode = 2
+text = "getter_test"
+
 [node name="s1" type="ScrollContainer" parent="tab_container"]
 visible = false
 layout_mode = 2
@@ -136,3 +143,4 @@ script = ExtResource("2_1px86")
 [connection signal="pressed" from="tab_container/s0/v0/h4/hit" to="." method="_el_test_hit"]
 [connection signal="pressed" from="tab_container/s0/v0/h5/loot" to="." method="_el_test_loot"]
 [connection signal="pressed" from="tab_container/s0/v0/h6/import_monster" to="." method="_import_monsters"]
+[connection signal="pressed" from="tab_container/s0/v0/h7/getter" to="." method="_setter_getter_test"]

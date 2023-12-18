@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b4d6muyuqnpre" path="res://Components/char.tscn" id="3_8xrf1"]
 [ext_resource type="PackedScene" uid="uid://ch0ln8t0na7a5" path="res://Components/MapSelection/map_selection.tscn" id="4_2qea4"]
 [ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="4_byxu3"]
-[ext_resource type="PackedScene" uid="uid://c75akqqigtmh6" path="res://Scene/char_stat.tscn" id="4_e12ki"]
+[ext_resource type="PackedScene" uid="uid://c75akqqigtmh6" path="res://Components/CharStat/char_stat.tscn" id="4_e12ki"]
 [ext_resource type="PackedScene" uid="uid://swqnrbjdta3w" path="res://Components/BattleField/battle.tscn" id="7_ofvwp"]
 
 [node name="game_ui" type="Control"]

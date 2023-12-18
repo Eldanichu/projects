@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c75akqqigtmh6"]
+[gd_scene load_steps=7 format=3 uid="uid://c75akqqigtmh6"]
 
-[ext_resource type="PackedScene" uid="uid://j6hvq4pejmsk" path="res://Components/ProgressBar/Bar.tscn" id="1_dlnh0"]
-[ext_resource type="Script" path="res://Scene/char_stat.gd" id="1_uf2p6"]
-[ext_resource type="Script" path="res://Components/ProgressBar/Bar.gd" id="2_hckkn"]
+[ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="1_5vskn"]
+[ext_resource type="Script" path="res://Components/CharStat/char_stat.gd" id="2_s07av"]
+[ext_resource type="PackedScene" uid="uid://j6hvq4pejmsk" path="res://Components/ProgressBar/Bar.tscn" id="3_agmx0"]
+[ext_resource type="Script" path="res://Components/ProgressBar/Bar.gd" id="4_374yh"]
 
 [sub_resource type="SystemFont" id="SystemFont_01gd0"]
 subpixel_positioning = 0
@@ -13,7 +14,10 @@ font = SubResource("SystemFont_01gd0")
 font_size = 9
 
 [node name="char_stat" type="VBoxContainer"]
-script = ExtResource("1_uf2p6")
+offset_right = 187.0
+offset_bottom = 76.0
+theme = ExtResource("1_5vskn")
+script = ExtResource("2_s07av")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -22,7 +26,7 @@ size_flags_vertical = 3
 [node name="hp_container" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="hp_bar" parent="VBoxContainer/hp_container" instance=ExtResource("1_dlnh0")]
+[node name="hp_bar" parent="VBoxContainer/hp_container" instance=ExtResource("3_agmx0")]
 unique_name_in_owner = true
 self_modulate = Color(1, 0.270588, 0.270588, 1)
 layout_mode = 2
@@ -38,11 +42,24 @@ label_settings = SubResource("LabelSettings_dfpsp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="h_box_container" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="battle_control" type="BoxContainer" parent="VBoxContainer/h_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="esc" type="Button" parent="VBoxContainer/h_box_container/battle_control"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Escape"
+
 [node name="mp_container" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 8
 
-[node name="mp_bar" parent="VBoxContainer/mp_container" instance=ExtResource("1_dlnh0")]
+[node name="mp_bar" parent="VBoxContainer/mp_container" instance=ExtResource("3_agmx0")]
 unique_name_in_owner = true
 self_modulate = Color(0, 0.686275, 1, 1)
 layout_mode = 2
@@ -68,7 +85,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 6
-script = ExtResource("2_hckkn")
+script = ExtResource("4_374yh")
 
 [node name="lvl" type="Label" parent="h_box_container"]
 unique_name_in_owner = true

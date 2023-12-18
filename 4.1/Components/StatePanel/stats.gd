@@ -1,10 +1,10 @@
 extends Control
 class_name Stats
 
-@export var player:GamePlayer:
+@export var player_scene:GamePlayer:
 	set(_player):
-		player = _player
-		if not player:
+		player_scene = _player
+		if not player_scene:
 			return
 		bind_event()
 
@@ -15,12 +15,12 @@ func _ready():
 	pass
 
 func bind_event():
-	player.actor.secondary_stats.add_event(update_stats_ui,"p1")
+	pass
 
-func update_stats_ui(changes):
-	if not player:
+func update_stats_ui():
+	if not player_scene:
 		return
-	var _player_stats = player.actor.secondary_stats.get_properties()
+	var _player_stats = player_scene.player.stats.get_properties()
 	
 	for key in _player_stats:
 		var node_name = "{prefix}{key}".format({

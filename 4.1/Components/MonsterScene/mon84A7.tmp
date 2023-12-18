@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://fjtojhdomdkq"]
 
-[ext_resource type="Script" path="res://Components/Monster/monster.gd" id="1_470uu"]
-[ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="1_xruce"]
-[ext_resource type="PackedScene" uid="uid://bdydew1o2yysh" path="res://Components/TimerProgress/timer_bar.tscn" id="3_q7pg1"]
+[ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="1_x3swe"]
+[ext_resource type="Script" path="res://Components/MonsterScene/monster_scene.gd" id="2_7jhxt"]
+[ext_resource type="PackedScene" uid="uid://bdydew1o2yysh" path="res://Components/TimerProgress/timer_bar.tscn" id="3_ocho7"]
 
-[node name="monster" type="MarginContainer"]
+[node name="monster_scene" type="MarginContainer"]
 offset_right = 188.0
 offset_bottom = 16.0
 mouse_filter = 0
-theme = ExtResource("1_xruce")
+theme = ExtResource("1_x3swe")
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
-script = ExtResource("1_470uu")
+script = ExtResource("2_7jhxt")
 
 [node name="v_box_container" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -44,11 +44,9 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "Lv:0"
 
-[node name="button" type="Button" parent="v_box_container/margin_container/h_box_container"]
-layout_mode = 2
-text = "ATTACK"
-
-[node name="t_attack" parent="." instance=ExtResource("3_q7pg1")]
+[node name="t_attack" parent="." instance=ExtResource("3_ocho7")]
 layout_mode = 2
 mouse_filter = 2
 show_percentage = false
+
+[connection signal="timeout" from="t_attack" to="." method="_on_t_attack_timeout"]

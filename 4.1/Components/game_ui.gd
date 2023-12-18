@@ -1,11 +1,8 @@
 extends Control
 
 @export
-var player:GamePlayer:
-	set(_player):
-		player = _player
-		setup()
-		
+var player_scene:GamePlayer:set = set_player_scene
+
 @onready var stats:Stats = get_node("%stats")
 @onready var char_stat:CharStat = %char_stat
 
@@ -19,11 +16,17 @@ func _ready():
 	hide_all_func_box()
 	bind_events()
 
+func set_player_scene(value):
+	player_scene = value
+	setup()
+
 func setup():
-	stats.player = player
-	char_stat.player = player
+	stats.player_scene = player_scene
+	char_stat.player_scene = player_scene
+	char_stat.bind_event()
 
 func bind_events():
+	battle.ended.connect(_on_battle_end)
 	var _ui_func_buttons = ui_func_buttons.get_children()
 	var _button:Button
 	for button in _ui_func_buttons:
@@ -59,6 +62,11 @@ func toggle_panel(type:String):
 		current_display_box = type
 
 func _on_map_map_click(id, name_str):
-	battle.p = player
+	battle.player_scene = player_scene
 	battle.set_map(id)
-	battle.open()
+
+func _on_battle_end():
+	setup()
+	player_scene.player.revive()
+		
+

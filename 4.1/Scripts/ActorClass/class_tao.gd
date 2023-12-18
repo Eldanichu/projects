@@ -1,7 +1,11 @@
-extends BaseActorClass
+extends ActorClass
 class_name TaoClass
+func is_class_name(name_of_class:String) -> bool:
+	_class_name = "TaoClass"
+	return name_of_class == _class_name
 
-func _init():
+
+func _init(actor_player:ActorPlayer):
 	hp_base = 16
 	hp_acc = 2.5
 	hp_ratio = 14
@@ -16,11 +20,9 @@ func _init():
 	atk_base = 1
 	atk_rate = 1
 	atk_ratio = 1.5
+	super(actor_player)
 
-func update():
-	var level = stats0.LEVEL
-	stats0.HPMAX = int(hp_ratio + (level / (1 + hp_base) + hp_acc) * level)
-	stats0.MPMAX = int(mp_ratio + (level / (1 + mp_base) + mp_acc) * mp_rate * level)
+
 
 
 

@@ -2,6 +2,8 @@ extends Node
 class_name TimerEx
 
 signal on_tick(delta)
+signal on_timeout()
+signal on_paused()
 
 @export
 var duration:float = 0.0
@@ -35,7 +37,7 @@ func _emit(_delta:float):
 func _process(_delta):
 	if tick:
 		return
-	if paused or soft_timeout():
+	if paused:
 		return
 	delta = timer.time_left
 	_emit(delta)
@@ -47,10 +49,12 @@ func start():
 	timer.wait_time = interval
 	if not tick:
 		duration = interval
+		_emit(delta)
 	timer.start()
 
 func pause():
 	paused = true
+	_emit(0)
 	timer.stop()
 
 func reset():
@@ -65,6 +69,7 @@ func clear():
 	queue_free()
 
 func _on_timeout():
+	duration = interval
 	if paused:
 		return
 	if duration <= 0 && tick:
@@ -74,10 +79,9 @@ func _on_timeout():
 	if hard_timeout():
 		timer.stop()
 		paused = true
-	delta = 0
+		delta = 0
+		emit_signal("on_timeout")
 	_emit(delta);
-	delta = delta + 1.0
-
 	timer.start()
 
 func hard_timeout() -> bool:

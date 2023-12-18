@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using godotcsharpgame.Script.Object.PlayerClass;
 using godotcsharpgame.Script.Object.Properties;
@@ -18,6 +21,13 @@ namespace godotcsharpgame {
 		public override void _Ready() {
 			_menu = GetNode<CanvasLayer>("%Menu");
 			TEST = GetNode<CanvasLayer>("%TEST");
+
+			Dictionary<int, int> dic = new Dictionary<int, int>();
+			dic.Add(1,2);
+			dic.Add(2,3);
+			foreach (var item in dic) {
+				dic[item.Key] += 1;
+			}
 			// _gui.Visible = false;
 			// _menu.Visible = true;
 			// var tick = new Tick(5) {
