@@ -11,8 +11,7 @@ func use_attack(target:GameActor):
 		return
 	var damage = Damage.new()
 	damage.set_source(self).set_target(target).set_dmg_type(DamageType.E.ATK)
-	var d = damage.build()
-	target.reduce_hp(d)
+	damage.build()
 
 func use_magic():
 	pass

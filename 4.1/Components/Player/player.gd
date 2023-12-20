@@ -11,17 +11,23 @@ func _init():
 
 func _ready():
 	setup()
-	bind_event()
 	
 func _process(_delta):
 	pass
 
 func setup():
+	create()
+	bind_event()
+	update_ui()
+
+func create():
 	player = ActorPlayer.new()
 	player.set_class(TaoClass.new(player))
+
+func update_ui():
 	game_ui.player_scene = self
 	debug_window.player_scene = self
-	
+
 func bind_event():
 	pass
 

@@ -25,6 +25,10 @@ func buildable() -> bool:
 		return false
 	return true
 
+func target_damaging(dmg):
+	for t in target:
+		t.reduce_hp(dmg)
+
 func build():
 	if not buildable():
 		return
@@ -32,6 +36,7 @@ func build():
 		return
 	var dmg_type = DamageType.new(attacker.stats, _dmg_type)
 	var dmg = dmg_type.get_damage()
+	target_damaging(dmg)
 	print("[Damage]{build} crit->",dmg)
 	return dmg
 
