@@ -20,7 +20,16 @@ func _setter_getter_test():
 	pass
 
 func _ready():
-	pass
+	var a = BaseProp.new()
+	print(a.value.hp_vm)
+	a.hp_vm = 2
+	a.update()
+	print(a.value.hp_vm)
+	a = MMProp.new()
+	print(a.value.hp_vm)
+	a.hp_vm = 4
+	a.update()
+	print(a.value.hp_vm)
 
 func _el_test_randomi():
 	var r := RandomEx.get_instance();
