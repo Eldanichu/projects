@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://swqnrbjdta3w"]
+
+[ext_resource type="Script" path="res://Components/BattleField/battle.gd" id="1_puy7d"]
+[ext_resource type="PackedScene" uid="uid://c75akqqigtmh6" path="res://Components/CharStat/char_stat.tscn" id="2_0f8rb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7u30k"]
+bg_color = Color(0.309804, 0.309804, 0.309804, 1)
+
+[node name="battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_puy7d")
+
+[node name="battle_panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_7u30k")
+
+[node name="v_box_container" type="VBoxContainer" parent="battle_panel"]
+layout_mode = 2
+
+[node name="time" type="Label" parent="battle_panel/v_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="v_separator" type="HSeparator" parent="battle_panel/v_box_container"]
+layout_mode = 2
+
+[node name="scroll_container" type="ScrollContainer" parent="battle_panel/v_box_container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="mon" type="BoxContainer" parent="battle_panel/v_box_container/scroll_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+vertical = true
+
+[node name="v_separator2" type="HSeparator" parent="battle_panel/v_box_container"]
+layout_mode = 2
+
+[node name="v_box_container" type="VBoxContainer" parent="battle_panel/v_box_container"]
+layout_mode = 2
+
+[node name="char_stat" parent="battle_panel/v_box_container/v_box_container" instance=ExtResource("2_0f8rb")]
+unique_name_in_owner = true
+layout_mode = 2

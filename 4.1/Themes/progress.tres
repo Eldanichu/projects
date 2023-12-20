@@ -1,5 +1,0 @@
-[gd_resource type="Theme" format=3 uid="uid://cm0im6e3th2rg"]
-
-[resource]
-ProgressBar/constants/outline_size = 0
-ProgressBar/font_sizes/font_size = 12
