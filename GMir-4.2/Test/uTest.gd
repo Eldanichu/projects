@@ -11,6 +11,30 @@ var hp = 0:
 		hp = value
 		_set_hp(ov,value)
 
+class A:
+	func _init() -> void:
+		print("A init")
+		pass
+	
+	func foo():
+		print("foo")
+
+class CB extends A:
+	func _init() -> void:
+		super()
+		print("B init")
+
+	func foo():
+		print("foo 2 do first")
+		super()
+		print("foo 2 do after")
+
+func _ready():
+	var b= CB.new();
+	b.foo()
+
+	pass
+
 func _set_hp(ov,nv):
 	print("before->",ov)
 	print("after->",nv)
@@ -19,17 +43,7 @@ func _setter_getter_test():
 	hp += 2
 	pass
 
-func _ready():
-	var a = BaseProp.new()
-	print(a.value.hp_vm)
-	a.hp_vm = 2
-	a.update()
-	print(a.value.hp_vm)
-	a = MMProp.new()
-	print(a.value.hp_vm)
-	a.hp_vm = 4
-	a.update()
-	print(a.value.hp_vm)
+
 
 func _el_test_randomi():
 	var r := RandomEx.get_instance();
@@ -39,7 +53,7 @@ func _el_test_randomf():
 	var r := RandomEx.get_instance();
 	var rn = r.randomf(1.0)
 	print(rn)
-	
+
 func _el_test_uid():
 	var r := RandomEx.get_instance();
 	var rn = r.uid(5, true)
@@ -48,7 +62,7 @@ func _el_test_pick():
 	var r := RandomEx.get_instance();
 	var rn = r.pick([1,2,3,4,5])
 	print(rn)
-	
+
 func _el_test_hit():
 	var r := RandomEx.get_instance();
 	var rn = r.hit(40)
@@ -62,7 +76,7 @@ func _el_test_loot():
 func _el_test_connectDB():
 	print(dbc.query_mon_drops(1))
 	pass
-	
+
 func _el_test_PM():
 	var dict = {
 		"a":1,
@@ -88,7 +102,7 @@ func _el_test_animate_number():
 
 func _import_monsters():
 	file_select.show()
-	
+
 	file_select.file_selected.connect(_file_selected)
 	pass
 
@@ -96,7 +110,7 @@ func _file_selected(path:String):
 	var thread = Thread.new()
 	thread.start(async_importer.bind(path))
 	thread.wait_to_finish()
-	
+
 func async_importer(path):
 	var reader = CsvReader.new()
 	reader.file_path = path

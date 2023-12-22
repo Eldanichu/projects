@@ -52,7 +52,10 @@ func get_mp(stringify:bool, is_max:bool = false):
 
 	return _min
 
-func give_exp(value:int):
+func set_exp(value):
+	stats.EXPMAX = value
+
+func set_exp_t(value:int):
 	var amount = value
 	var _max_exp = stats["EXPMAX"]
 	if amount < _max_exp:

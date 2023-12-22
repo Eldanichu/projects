@@ -37,7 +37,7 @@ func build():
 	var dmg_type = DamageType.new(attacker.stats, _dmg_type)
 	var dmg = dmg_type.get_damage()
 	target_damaging(dmg)
-	print("[Damage]{build} crit->",dmg)
+	print("[Damage]{build}->",dmg)
 	return dmg
 
 func _enqueue_target(object):
