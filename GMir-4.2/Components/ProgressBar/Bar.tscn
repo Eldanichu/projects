@@ -1,15 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://j6hvq4pejmsk"]
+[gd_scene load_steps=2 format=3 uid="uid://j6hvq4pejmsk"]
 
-[ext_resource type="Theme" uid="uid://cm0im6e3th2rg" path="res://Themes/progress.tres" id="1_gtkjy"]
 [ext_resource type="Script" path="res://Components/ProgressBar/Bar.gd" id="1_hp232"]
 
 [node name="Bar" type="ProgressBar"]
-custom_minimum_size = Vector2(40, 40)
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-theme = ExtResource("1_gtkjy")
 theme_override_font_sizes/font_size = 8
-fill_mode = 3
 script = ExtResource("1_hp232")

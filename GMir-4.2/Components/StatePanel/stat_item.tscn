@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://myrxwuv4oojq"]
+[gd_scene load_steps=6 format=3 uid="uid://myrxwuv4oojq"]
 
 [ext_resource type="Theme" uid="uid://b1u528sajv868" path="res://Themes/stats_font.tres" id="1_3s1wb"]
 [ext_resource type="Script" path="res://Components/StatePanel/stat_item.gd" id="1_7nxa4"]
 [ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="2_vt0i0"]
+
+[sub_resource type="SystemFont" id="SystemFont_fnusc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vkkde"]
+line_spacing = 1.0
+font = SubResource("SystemFont_fnusc")
+font_size = 10
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
 
 [node name="stat_item" type="HBoxContainer"]
 custom_minimum_size = Vector2(40, 0)
@@ -19,6 +28,7 @@ theme = ExtResource("2_vt0i0")
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 8
 text = "Prop"
+label_settings = SubResource("LabelSettings_vkkde")
 vertical_alignment = 1
 
 [node name="value" type="Label" parent="."]
@@ -29,4 +39,5 @@ theme = ExtResource("2_vt0i0")
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 8
 text = "99"
+label_settings = SubResource("LabelSettings_vkkde")
 vertical_alignment = 1

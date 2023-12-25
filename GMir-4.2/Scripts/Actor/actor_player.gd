@@ -6,6 +6,7 @@ var _actor_class:ActorClass
 func _init():
 	super(PlayerStat.new())
 	P.spawn.emit()
+	S.stats_changed.emit()
 	P.levelup.connect(update_class_prop)
 
 func set_class(actor_class:ActorClass):

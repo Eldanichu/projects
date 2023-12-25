@@ -74,9 +74,10 @@ func import_monster(mon_name:String, row:Dictionary):
 			"props":",".join(props),
 			"mon_name":mon_name
 		})
+		print(update)
 		db.query(update)
 		return
-	var insert = "insert into Monsters (NAME,HP,MP,DEF,ATK,AGI) values ({props})".format({
+	var insert = "insert into Monsters (NAME,DNAME,HP,MP,DEF,ATK,AGI,ATKSPD) values ({props})".format({
 			"props":",".join(cols)
 		})
 	db.query(insert)

@@ -1,7 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://005kgkwx52vv"]
+[gd_scene load_steps=8 format=3 uid="uid://005kgkwx52vv"]
 
 [ext_resource type="Script" path="res://Components/StatePanel/stats.gd" id="1_fpfpg"]
 [ext_resource type="PackedScene" uid="uid://myrxwuv4oojq" path="res://Components/StatePanel/stat_item.tscn" id="2_6ilhu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t845n"]
+bg_color = Color(0.239216, 0.239216, 0.239216, 1)
+border_width_bottom = 1
+
+[sub_resource type="SystemFont" id="SystemFont_mlj8d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0o101"]
+line_spacing = 1.0
+font = SubResource("SystemFont_mlj8d")
+font_size = 14
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk0x6"]
 content_margin_left = 2.0
@@ -22,6 +35,24 @@ grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_fpfpg")
 
+[node name="h_box_container" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="panel_container" type="PanelContainer" parent="h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_t845n")
+
+[node name="margin_container" type="MarginContainer" parent="h_box_container/panel_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="label" type="Label" parent="h_box_container/panel_container/margin_container"]
+layout_mode = 2
+text = "Statistics"
+label_settings = SubResource("LabelSettings_0o101")
+
 [node name="scroll_container" type="ScrollContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
@@ -36,26 +67,31 @@ size_flags_vertical = 3
 layout_mode = 2
 vertical = true
 
-[node name="SI_ATTACK" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
+[node name="SI_ATK" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
 layout_mode = 2
 
-[node name="SI_ATTACK_SPEED" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
+[node name="SI_ATKSPD" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
 layout_mode = 2
 
 [node name="SI_CAST_SPEED" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
 layout_mode = 2
 
-[node name="SI_DEFENCE" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
+[node name="SI_DEF" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="h_separator" type="HSeparator" parent="scroll_container/v_box_container"]
 layout_mode = 2
 
 [node name="ratk" type="BoxContainer" parent="scroll_container/v_box_container"]
 layout_mode = 2
-vertical = true
 
 [node name="SI_CRITICAL_CHANCE" parent="scroll_container/v_box_container/ratk" instance=ExtResource("2_6ilhu")]
 layout_mode = 2
 
 [node name="SI_CRITICAL_DAMAGE" parent="scroll_container/v_box_container/ratk" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="h_separator2" type="HSeparator" parent="scroll_container/v_box_container"]
 layout_mode = 2
 
 [node name="def" type="BoxContainer" parent="scroll_container/v_box_container"]
@@ -72,6 +108,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="SI_DWATER" parent="scroll_container/v_box_container/def" instance=ExtResource("2_6ilhu")]
+layout_mode = 2
+
+[node name="h_separator3" type="HSeparator" parent="scroll_container/v_box_container"]
 layout_mode = 2
 
 [node name="res" type="BoxContainer" parent="scroll_container/v_box_container"]

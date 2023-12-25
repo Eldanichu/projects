@@ -1,20 +1,12 @@
 extends Control
 class_name Stats
 
-@export var player_scene:GamePlayer:
-	set(_player):
-		player_scene = _player
-		if not player_scene:
-			return
-		bind_event()
+var player_scene:GamePlayer
 
 const PREFIX_NAME = "SI_"
 
 func _ready():
-	
-	pass
-
-func bind_event():
+	S.stats_changed.connect(update_stats_ui)
 	pass
 
 func update_stats_ui():
@@ -29,8 +21,9 @@ func update_stats_ui():
 		})
 
 		var node:StatItem = find_child(node_name, true)
+
 		if not node:
-			return
+			continue
 		node.data = {
 			"prop" : key + ":",
 			"value": _player_stats[key]

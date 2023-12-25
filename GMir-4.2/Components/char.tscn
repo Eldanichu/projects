@@ -7,32 +7,32 @@ size_flags_horizontal = 3
 mouse_filter = 2
 columns = 2
 
-[node name="e2" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
+[node name="e2" parent="." instance=ExtResource("1_3d1th")]
 layout_mode = 2
 
-[node name="e3" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
+[node name="e3" parent="." instance=ExtResource("1_3d1th")]
 layout_mode = 2
 
-[node name="e7" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
+[node name="e7" parent="." instance=ExtResource("1_3d1th")]
 layout_mode = 2
 
-[node name="e8" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
+[node name="e8" parent="." instance=ExtResource("1_3d1th")]
 layout_mode = 2
 
-[node name="e0" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
+[node name="e0" parent="." instance=ExtResource("1_3d1th")]
 layout_mode = 2
 
-[node name="e1" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
+[node name="e1" parent="." instance=ExtResource("1_3d1th")]
 layout_mode = 2
 
-[node name="e9" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
+[node name="e9" parent="." instance=ExtResource("1_3d1th")]
 layout_mode = 2
 
-[node name="e6" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
+[node name="e6" parent="." instance=ExtResource("1_3d1th")]
 layout_mode = 2
 
-[node name="e4" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
+[node name="e4" parent="." instance=ExtResource("1_3d1th")]
 layout_mode = 2
 
-[node name="e5" parent="." groups=["player_eq"] instance=ExtResource("1_3d1th")]
+[node name="e5" parent="." instance=ExtResource("1_3d1th")]
 layout_mode = 2

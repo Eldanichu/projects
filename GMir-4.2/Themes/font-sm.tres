@@ -24,8 +24,10 @@ bg_color = Color(0.490196, 0.490196, 0.490196, 0.631373)
 [resource]
 default_base_scale = 1.0
 default_font = ExtResource("2_yvls5")
-default_font_size = 10
-MenuButton/constants/h_separation = 1
+default_font_size = 8
+Button/constants/h_separation = 0
+Button/font_sizes/font_size = 9
+MenuButton/constants/h_separation = 0
 MenuButton/constants/outline_size = 0
 MenuButton/font_sizes/font_size = 12
 MenuButton/styles/focus = SubResource("StyleBoxFlat_xbnrk")

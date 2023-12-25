@@ -101,15 +101,14 @@ func _el_test_animate_number():
 	.start()
 
 func _import_monsters():
+	#print(get_dname("鹿002"))
 	file_select.show()
 
 	file_select.file_selected.connect(_file_selected)
 	pass
 
 func _file_selected(path:String):
-	var thread = Thread.new()
-	thread.start(async_importer.bind(path))
-	thread.wait_to_finish()
+	async_importer(path)
 
 func async_importer(path):
 	var reader = CsvReader.new()
@@ -119,11 +118,23 @@ func async_importer(path):
 	for row in reader.data:
 		dbc.import_monster(row["Name"],{
 			"NAME":row["Name"],
+			"DNAME":get_dname(row["Name"]),
 			"HP":row["HP"],
 			"MP":row["MP"],
 			"ATK":row["DcMax"],
 			"DEF":row["AC"],
 			"AGI":row["Hit"],
+			"ATKSPD":row["Attack_SPD"],
 		})
 	dbc.close()
 
+func get_dname(str:String):
+	var reg = RegEx.new()
+	reg.compile("[0-9]+$")
+	var s = reg.search(str)
+	if s == null:
+		return str
+	var matched_str = s.get_string()
+	var replaced = str.replace(matched_str,"")
+	return replaced
+	

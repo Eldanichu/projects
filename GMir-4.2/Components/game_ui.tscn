@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc3lbpi48revl"]
+[gd_scene load_steps=9 format=3 uid="uid://bc3lbpi48revl"]
 
 [ext_resource type="Script" path="res://Components/game_ui.gd" id="1_r2ph4"]
 [ext_resource type="PackedScene" uid="uid://005kgkwx52vv" path="res://Components/StatePanel/stats.tscn" id="2_btk5e"]
@@ -7,6 +7,12 @@
 [ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="4_byxu3"]
 [ext_resource type="PackedScene" uid="uid://c75akqqigtmh6" path="res://Components/CharStat/char_stat.tscn" id="4_e12ki"]
 [ext_resource type="PackedScene" uid="uid://swqnrbjdta3w" path="res://Components/BattleField/battle.tscn" id="7_ofvwp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l3eed"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
 
 [node name="game_ui" type="Control"]
 layout_mode = 3
@@ -52,7 +58,6 @@ layout_mode = 2
 
 [node name="char" parent="VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box" instance=ExtResource("3_8xrf1")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="map" parent="VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box" instance=ExtResource("4_2qea4")]
@@ -63,6 +68,7 @@ size_flags_horizontal = 3
 [node name="p_bottom" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_l3eed")
 
 [node name="char_stat" parent="VBoxContainer/p_bottom" instance=ExtResource("4_e12ki")]
 unique_name_in_owner = true

@@ -13,8 +13,35 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hqxxd")
 
+[node name="sub_viewport_container" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="sub_viewport" type="SubViewport" parent="sub_viewport_container"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(188, 334)
+render_target_update_mode = 4
+
+[node name="dragable_panel" parent="sub_viewport_container/sub_viewport" instance=ExtResource("3_qv811")]
+anchor_left = 0.0319149
+anchor_top = 0.0149701
+anchor_right = 0.0319149
+anchor_bottom = 0.0149701
+offset_left = 39.6596
+offset_top = 57.3353
+offset_right = 120.66
+offset_bottom = 107.335
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="sub_viewport2" type="SubViewport" parent="sub_viewport_container"]
+
 [node name="tab_container" type="TabContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,19 +164,6 @@ text = "player"
 [node name="tween_progress" type="ProgressBar" parent="tab_container/s1/v_box_container/v_box_container"]
 layout_mode = 2
 script = ExtResource("2_1px86")
-
-[node name="dragable_panel" parent="." instance=ExtResource("3_qv811")]
-layout_mode = 1
-anchor_left = 0.0319149
-anchor_top = 0.0149701
-anchor_right = 0.0319149
-anchor_bottom = 0.0149701
-offset_left = 50.0
-offset_top = 60.0
-offset_right = 131.0
-offset_bottom = 110.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [connection signal="pressed" from="tab_container/s0/v0/h0/randomi" to="." method="_el_test_randomi"]
 [connection signal="pressed" from="tab_container/s0/v0/h1/randomf" to="." method="_el_test_randomf"]
