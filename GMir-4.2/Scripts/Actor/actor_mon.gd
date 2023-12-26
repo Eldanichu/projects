@@ -1,10 +1,10 @@
 extends GameActor
 class_name MonObject
 
-signal spawned(mon_inst)
+signal spawned()
 signal stats_change()
-signal on_attack(mon_inst)
-signal on_dead(mon_inst)
+signal on_attack()
+signal on_dead()
 
 func _init(mon_id):
 	super(MonStat.new())
@@ -32,8 +32,8 @@ func can_attack() -> bool:
 	return true
 
 func dead() -> bool:
-	if stats.HP <= 0:
-		stats.HP = 0
+	if is_dead():
+		on_dead.emit()
 		return true
 	return false
 

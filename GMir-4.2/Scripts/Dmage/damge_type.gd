@@ -44,12 +44,12 @@ func def_breaking_atk():
 func get_crit_damage() -> int:
 	if not is_crit():
 		return 0
-	var crit_percent = _attacker_stat["CRITICAL_DAMAGE"] / 100.0
+	var crit_percent = _attacker_stat["CRITICAL_DAMAGE"] / 100
 	return _attacker_stat["ATK"] * crit_percent
 
 func hits() -> bool:
-	var agi = _attacker_stat["AGI"] / 100.0
-	var atk_c = _attacker_stat.ATK_CHANCE / 100.0
+	var agi = _attacker_stat["AGI"] / 100
+	var atk_c = _attacker_stat.ATK_CHANCE / 100
 	var c = (atk_c + agi) * 100
 	var hit = rnd.hit(min(G.MAX_HIT_CHANCE, c))
 	

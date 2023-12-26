@@ -1,18 +1,23 @@
 extends Control
-class_name Stats
+class_name StatPage
 
-var player_obj:ActorPlayer
+var player:ActorPlayer
 
 const PREFIX_NAME = "SI_"
 
 func _ready():
-
 	pass
 
-func update_stats_ui():
-	if not player_obj:
+func initialize():
+	if not player:
 		return
-	var _player_stats = player_obj.stats.get_properties()
+	player.stats_change.connect(update, CONNECT_REFERENCE_COUNTED)
+	player.stats_change.emit()
+
+func update():
+	if not player:
+		return
+	var _player_stats = player.stats.get_properties()
 	
 	for key in _player_stats:
 		var node_name = "{prefix}{key}".format({

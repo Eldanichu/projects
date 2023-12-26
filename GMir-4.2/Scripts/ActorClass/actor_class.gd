@@ -16,8 +16,8 @@ var mp_rate
 
 var def_ratio
 var def_base
-var def_acc = 0.325
-var def_rate = 0.117
+var def_acc = 25
+var def_rate = 11
 
 var atk_ratio
 var atk_base
@@ -27,7 +27,7 @@ var atk_rate
 var exp_ratio = 2
 var exp_base = 20
 var exp_acc = 14
-var exp_rate = 1.1
+var exp_rate = 11
 
 var _actor_player:ActorPlayer
 var stats:BaseStat
@@ -35,7 +35,7 @@ func _init(actor_player:ActorPlayer):
 	_actor_player = actor_player
 	stats = actor_player.stats
 
-func calculate(const_number:float, rate:float, acc:float, level:int, is_p1:bool):
+func calculate(const_number:int, rate:int, acc:int, level:int, is_p1:bool):
 	var _lv = level;
 	if const_number != 0:
 		_lv *= const_number

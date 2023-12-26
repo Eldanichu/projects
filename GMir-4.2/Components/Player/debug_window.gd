@@ -1,6 +1,6 @@
 extends Window
 
-@export var player_scene:GamePlayer
+@export var player:ActorPlayer
 
 @onready var exp_value = %exp_value
 
@@ -13,11 +13,11 @@ func _ready():
 	pass
 
 func _on_level_up_pressed():
-	player_scene.player.level_up(true)
+	player.level_up(true)
 
 func _on_set_exp_pressed():
 	var value = int(exp_value.text)
-	player_scene.player.set_exp_t(value)
+	player.set_exp_t(value)
 
 
 func _on_set_stat_pressed():

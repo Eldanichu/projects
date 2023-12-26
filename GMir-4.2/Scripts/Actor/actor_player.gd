@@ -3,6 +3,7 @@ class_name ActorPlayer
 
 signal spawnd()
 signal stats_change()
+signal on_level_up()
 signal on_attack()
 signal on_dead()
 
@@ -10,6 +11,7 @@ var _actor_class:ActorClass
 
 func _init():
 	super(PlayerStat.new())
+	self.on_level_up.connect(update_prop)
 	spawnd.emit()
 	stats_change.emit()
 
@@ -40,17 +42,19 @@ func set_def(value:int):
 	stats_change.emit()
 
 func attack(mon_obj:MonObject):
-	print(mon_obj)
 	if not mon_obj:
 		return
 	mon_obj.set_hp_t(-1)
 
 func level_up(direct:bool = false):
 	super(direct)
-	stats_change.emit()
+	on_level_up.emit()
 
-func update_class_prop():
+func update_prop():
 	if not _actor_class:
 		return
 	_actor_class.update_props()
+
+func update_class_prop():
+	update_prop()
 	stats_change.emit()

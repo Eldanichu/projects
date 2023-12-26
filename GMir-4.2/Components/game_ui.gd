@@ -1,33 +1,33 @@
 extends Control
 
-@export
-var player_scene:GamePlayer:set = set_player_scene
-
-@onready var stats:Stats = get_node("%stats")
+@onready var stat_page:StatPage = %stats
 @onready var char_stat:CharStat = %char_stat
 
 @onready var ui_func_box = %ui_func_box
 @onready var ui_func_buttons = %ui_func_buttons
 @onready var battle:BattleScene = %battle
 
+var player:ActorPlayer
+var _player_node:GamePlayer
 var current_display_box:String = ""
 
 func _ready():
 	hide_all_func_box()
 	bind_events()
 
-func set_player_scene(value):
-	player_scene = value
-	setup()
-
-func setup():
-	stats.player_obj = player_scene.player
-	char_stat.player_obj = player_scene.player
-	char_stat.bind_event()
-	player_scene.player.stats_change.emit()
+func initialize(player_node:GamePlayer):
+	_player_node = player_node
+	stat_page.player = player
+	stat_page.initialize()
+	char_stat.player = player
+	char_stat.initialize()
 
 func bind_events():
+	bind_buttons_event()
+	battle.started.connect(_on_battle_started)
 	battle.ended.connect(_on_battle_end)
+
+func bind_buttons_event():
 	var _ui_func_buttons = ui_func_buttons.get_children()
 	var _button:Button
 	for button in _ui_func_buttons:
@@ -42,9 +42,6 @@ func hide_all_func_box():
 	var ui_func_boxes = ui_func_box.get_children()
 	for box in ui_func_boxes:
 		ControlUtil.hide_control(box)
-
-func _on_ui_func_button(type:String):
-	toggle_panel(type)
 
 func toggle_panel(type:String):
 	var control = ui_func_box.get_node_or_null(current_display_box)
@@ -62,12 +59,16 @@ func toggle_panel(type:String):
 		ControlUtil.show_control(control)
 		current_display_box = type
 
-func _on_map_map_click(id, name_str):
-	battle.player_scene = player_scene
-	battle.set_map(id)
+func _on_ui_func_button(type:String):
+	toggle_panel(type)
+
+func _on_map_click(map_id, name_str):
+	battle.initialize(map_id, player, _player_node)
+	battle.start_battle()
+
+func _on_battle_started():
+	pass
 
 func _on_battle_end():
-	setup()
-	player_scene.player.revive()
-		
+	pass
 

@@ -1,8 +1,8 @@
 extends VBoxContainer
 class_name CharStat
 
-var player_obj:ActorPlayer
-var on_battle:bool = false
+var player:ActorPlayer
+var battle_options:bool = false
 
 @onready var hp_bar :TimerProgress = get_node("%hp_bar")
 @onready var mp_bar:TimerProgress = get_node("%mp_bar")
@@ -17,14 +17,15 @@ var on_battle:bool = false
 func _ready():
 	pass
 
-func bind_event():
-	if not player_obj:
+func initialize():
+	if not player:
 		return
-	battle_control.visible = on_battle
-	player_obj.stats_change.connect(update)
+	battle_control.visible = battle_options
+	player.stats_change.connect(update, CONNECT_REFERENCE_COUNTED)
+	player.stats_change.emit()
 	
 func update():
-	var actor = player_obj
+	var actor = player
 	hp_bar.v_max = actor.get_hp(false, true)
 	hp_bar.v_min = actor.get_hp(false, false)
 	mp_bar.v_max = actor.get_mp(false, true)

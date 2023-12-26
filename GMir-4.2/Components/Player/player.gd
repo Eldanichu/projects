@@ -3,8 +3,8 @@ class_name GamePlayer
 
 var player:ActorPlayer
 
-@onready var game_ui = %game_ui
-@onready var debug_window = %debug_window
+@onready var game_ui := %game_ui
+@onready var debug_window := %debug_window
 
 var attack_timer:TimerEx = TimerEx.new(self)
 
@@ -27,8 +27,9 @@ func create():
 	player.set_class(TaoClass.new(player))
 
 func update_ui():
-	game_ui.player_scene = self
-	debug_window.player_scene = self
+	game_ui.player = player
+	game_ui.initialize(self)
+	debug_window.player = player
 
 func bind_event():
 	attack_timer.on_timeout.connect(_on_player_attack)
