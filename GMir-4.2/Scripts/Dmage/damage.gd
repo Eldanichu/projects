@@ -1,7 +1,7 @@
 extends RefCounted
 class_name Damage
 
-var target:Array[GameActor] = []
+var target:GameActor = null
 var attacker:GameActor = null
 var _dmg_type:DamageType.E
 var rnd = RandomEx.get_instance()
@@ -25,18 +25,14 @@ func buildable() -> bool:
 		return false
 	return true
 
-func target_damaging(dmg):
-	for t in target:
-		t.set_hp_t(-dmg)
-
 func build():
 	if not buildable():
 		return
 	if attacker.dead():
 		return
-	var dmg_type = DamageType.new(attacker.stats, _dmg_type)
+	var dmg_type = DamageType.new(attacker.stats, target.stats, _dmg_type)
 	var dmg = dmg_type.get_damage()
-	target_damaging(dmg)
+	target.set_hp_t(-dmg)
 	print("[Damage]{build}->",dmg)
 	return dmg
 

@@ -40,6 +40,8 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="sub_viewport2" type="SubViewport" parent="sub_viewport_container"]
+handle_input_locally = false
+render_target_update_mode = 4
 
 [node name="tab_container" type="TabContainer" parent="."]
 layout_mode = 1
