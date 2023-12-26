@@ -20,10 +20,7 @@ boot_splash/show_image=false
 [autoload]
 
 dbc="*res://AutoLoad/db_command.gd"
-P="*res://AutoLoad/player_event.gd"
-B="*res://AutoLoad/battle_event.gd"
 G="*res://AutoLoad/globals.gd"
-S="*res://AutoLoad/prop_event.gd"
 
 [debug]
 

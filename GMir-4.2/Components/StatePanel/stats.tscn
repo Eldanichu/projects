@@ -73,7 +73,7 @@ layout_mode = 2
 [node name="SI_ATKSPD" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
 layout_mode = 2
 
-[node name="SI_CAST_SPEED" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
+[node name="SI_CASTSPD" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]
 layout_mode = 2
 
 [node name="SI_DEF" parent="scroll_container/v_box_container/atk" instance=ExtResource("2_6ilhu")]

@@ -17,7 +17,7 @@ func _on_level_up_pressed():
 
 func _on_set_exp_pressed():
 	var value = int(exp_value.text)
-	player_scene.player.give_exp(value)
+	player_scene.player.set_exp_t(value)
 
 
 func _on_set_stat_pressed():

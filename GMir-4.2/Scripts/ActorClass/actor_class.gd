@@ -45,14 +45,3 @@ func calculate(const_number:float, rate:float, acc:float, level:int, is_p1:bool)
 
 	return int(floor(value));
 
-func update_props():
-	var level = stats.LEVEL
-	var max_hp = int(hp_ratio + (level / (1 + hp_base) + hp_acc) * level)
-	var max_mp = int(mp_ratio + (level / (1 + mp_base) + mp_acc) * mp_rate * level)
-	var max_exp = int(level * 3 + level)
-	
-	_actor_player.set_hp(stats.HP, max_hp)
-	_actor_player.set_mp(stats.MP, max_mp)
-	_actor_player.set_exp(max_exp)
-
-

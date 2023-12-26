@@ -21,9 +21,10 @@ func set_player_scene(value):
 	setup()
 
 func setup():
-	stats.player_scene = player_scene
-	char_stat.player_scene = player_scene
+	stats.player_obj = player_scene.player
+	char_stat.player_obj = player_scene.player
 	char_stat.bind_event()
+	player_scene.player.stats_change.emit()
 
 func bind_events():
 	battle.ended.connect(_on_battle_end)

@@ -37,7 +37,7 @@ func build():
 	return dmg
 
 func _enqueue_target(object):
-	target.append(object)
+	target = object
 
 func _dequeue_target():
-	target.pop_front()
+	target = null

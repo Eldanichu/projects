@@ -25,8 +25,7 @@ class BattleCounter:
 		var index = 0
 		for ms in mons:
 			if mon_scene_name == ms.name:
-				ms.kill()
-				is_battle_end()
+				battle_next()
 			index += 1
 
 	func remove_all():
@@ -38,16 +37,41 @@ class BattleCounter:
 			ms.queue_free()
 		reset()
 	
+	func get_target() -> MonObject:
+		if not has_target():
+			return null
+		return get_current().mon_obj
+
+	func has_target() -> bool:
+		var _cur := get_current()
+		if not _cur:
+			return false
+		if _cur.is_dead():
+			return false
+		return true
+
+	func get_current() -> MonsterScene:
+		if mons.is_empty():
+			return null
+		var _cur = mons[current] as MonsterScene
+		
+		return _cur
+	
 	func reset():
 		current = -1
 		total = 0
 	
 	func next():
+		if not has_next():
+			return
+		current += 1
+	
+	func has_next() -> bool:
 		var _max = total - 1
 		if current >= _max:
 			current = _max
-			return
-		current += 1
+			return false
+		return true
 	
 	func update_total():
 		total = len(mons)
@@ -56,7 +80,7 @@ class BattleCounter:
 		if is_battle_end():
 			return
 		next()
-		mons[current].auto_attack()
+		get_current().auto_attack()
 	
 	func is_battle_end():
 		var ended = true
@@ -92,11 +116,13 @@ func set_map(map_id):
 func spawn(mon_id):
 	var mon_obj = MonObject.new(mon_id)
 	var mon_scene:MonsterScene = monster_scene.instantiate()
-	mon_scene.spawned.connect(_on_monster_spawned)
-	mon_scene.attack.connect(_on_monster_attack)
-	mon_scene.dead.connect(_on_monster_dead)
 	mon_scene.mon_obj = mon_obj
+	var mon_scene_obj = mon_scene.mon_obj
+	mon_scene_obj.spawned.connect(_on_monster_spawned)
+	mon_scene_obj.on_attack.connect(_on_monster_attack)
+	mon_scene_obj.on_dead.connect(_on_monster_dead)
 	mon.add_child(mon_scene)
+	mon_scene_obj.stats_change.emit()
 	bc.add(mon_scene)
 
 func start_battle():
@@ -106,10 +132,10 @@ func start_battle():
 	if not has_mon():
 		print_stack()
 		return
-	P.dead.connect(_on_player_dead,CONNECT_REFERENCE_COUNTED)
 	open()
 	started.emit()
 	update_ui()
+	player_obj.on_attack.connect(_on_player_attack)
 
 func setup_battle_timer():
 	if not battle_timer:
@@ -132,6 +158,7 @@ func open():
 	char_stat.on_battle = true
 	setup_battle_timer()
 	bc.battle_next()
+	player_scene.start_battle()
 
 func close():
 	_switch_panel(false)
@@ -142,8 +169,9 @@ func close():
 
 func update_ui():
 	player_obj = player_scene.player
-	char_stat.player_scene = player_scene
+	char_stat.player_obj = player_obj
 	char_stat.bind_event()
+	player_obj.stats_change.emit()
 
 func has_player() -> bool:
 	if player_scene:
@@ -156,22 +184,24 @@ func has_mon():
 func _battle_timer_on_tick(tick):
 	time.text = str(int(tick))
 
+func _on_player_attack():
+	log.d("player attack")
+	var target := bc.get_target()
+	
+	player_obj.attack(target)
+
 func _on_player_dead():
 	close()
 
 func _on_monster_spawned(mon_inst:MonsterScene):
 	print("[battle]{_on_monster_spawned} ->",mon_inst.name)
 
-func _on_monster_attack(mon_inst:MonsterScene,dmg):
-	print("[battle]{_on_monster_attack} ->",mon_inst, dmg)
-	mon_inst.mon_obj.use_attack(player_scene.player)
+func _on_monster_attack(mon_inst:MonsterScene):
+	print("[battle]{_on_monster_attack} ->",mon_inst)
+	mon_inst.mon_obj.attack(player_scene.player)
 
 func _on_monster_dead(mon_inst:MonsterScene):
 	print("[battle]{_on_monster_dead} ->",mon_inst)
-	bc.remove(mon_inst.name)
-	if bc.is_battle_end():
-		close()
 	bc.battle_next()
-	
 	
 	

@@ -37,6 +37,8 @@ func stop():
 	timer.pause()
 
 func kill():
+	if not timer:
+		return
 	timer.clear()
 
 func set_interval(val:float) -> TweenProgress:

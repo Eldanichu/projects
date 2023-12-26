@@ -1,12 +1,12 @@
 extends RefCounted
 class_name BaseStat
 
-var HP = 16
-var HPMAX = 16
-var MP = 15
-var MPMAX = 15
+var HP = 0
+var HPMAX = 0
+var MP = 0
+var MPMAX = 0
 var EXP = 0
-var EXPMAX = 50
+var EXPMAX = 0
 var LEVEL = 1
 var ATK_CHANCE = 55
 
