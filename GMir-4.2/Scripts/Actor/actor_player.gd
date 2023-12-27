@@ -29,6 +29,10 @@ func dead():
 	if is_dead():
 		on_dead.emit()
 
+func set_hp_t(value:int):
+	super(value)
+	stats_change.emit()
+
 func set_hp(value:int, max_value:int = -1):
 	super(value, max_value)
 	stats_change.emit()
@@ -44,7 +48,9 @@ func set_def(value:int):
 func attack(mon_obj:MonObject):
 	if not mon_obj:
 		return
-	mon_obj.set_hp_t(-1)
+	var d := Damage.new()
+	d.set_dmg_type(DamageType.E.ATK).set_source(self).set_target(mon_obj)
+	d.build()
 
 func level_up(direct:bool = false):
 	super(direct)

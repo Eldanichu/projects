@@ -19,9 +19,10 @@ func set_hp_t(value:int):
 func attack(target:GameActor):
 	if not can_attack():
 		return
-	var damage = Damage.new()
-	damage.set_source(self).set_target(target).set_dmg_type(DamageType.E.ATK)
-	damage.build()
+	target.set_hp_t(-30)
+	#var damage = Damage.new()
+	#damage.set_source(self).set_target(target).set_dmg_type(DamageType.E.ATK)
+	#damage.build()
 
 func spell():
 	pass

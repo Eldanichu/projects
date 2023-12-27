@@ -26,10 +26,11 @@ func get_damage():
 	if not hits():
 		damage = 0
 		return damage
-	var tdef =  _target_stat["DEF"]
+	var tdef = _target_stat["DEF"]
 	if def_breaking_atk():
 		tdef = 0
-	damage += max(rnd.randomf(_attacker_stat["ATK"]) - tdef, 0)
+	var _atk = rnd.randomi(_attacker_stat["ATK"])
+	damage += max(_atk - tdef, 0)
 	var crit = get_crit_damage()
 	damage += crit
 	

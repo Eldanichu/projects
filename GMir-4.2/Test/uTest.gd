@@ -101,10 +101,12 @@ func _el_test_animate_number():
 	.start()
 
 func _import_monsters():
+	var n = NumberUtil.apply_percentages(100,[95,50])
+	print(n)
 	#print(get_dname("鹿002"))
-	file_select.show()
-
-	file_select.file_selected.connect(_file_selected)
+	#file_select.show()
+#
+	#file_select.file_selected.connect(_file_selected)
 	pass
 
 func _file_selected(path:String):

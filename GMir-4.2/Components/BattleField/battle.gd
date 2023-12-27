@@ -52,8 +52,8 @@ func player_event():
 
 func monter_event(scene:MonsterScene):
 	var _obj = scene.mon_obj
-	_obj.spawned.connect(_on_mon_spawned)
-	_obj.on_attack.connect(_on_mon_attack)
+	_obj.spawned.connect(_on_mon_spawned.bind(scene))
+	_obj.on_attack.connect(_on_mon_attack.bind(scene))
 	_obj.on_dead.connect(_on_mon_dead.bind(scene))
 
 func start_battle():
@@ -111,7 +111,9 @@ func _on_battle_process(tick):
 func _battle_time_out():
 	close_battle_timer()
 	ended.emit()
-
+"""
+----------------Player Battler----------------
+"""
 func _on_player_spawned():
 	print("[battle] player spawned")
 	pass
@@ -125,21 +127,27 @@ func _on_player_attack():
 
 func _on_player_dead():
 	print("[battle] player dead")
-	pass
+	bc.remove_all()
+	ended.emit()
 
+
+"""
+----------------Monster Battler----------------
+"""
 func _on_mon_spawned():
 	print("[battle] monster spawned")
 	pass
 
-func _on_mon_attack():
+func _on_mon_attack(scene:MonsterScene):
 	print("[battle] monster attacks")
-	pass
+	var obj = scene.mon_obj
+	obj.attack(_player)
+
 
 func _on_mon_dead(scene):
 	print("[battle] monster dead")
 	bc.remove(scene.name)
 	bc.next()
-	pass
 
 
 
