@@ -53,7 +53,7 @@ func set_exp_t(value:int):
 	if amount < _max_exp:
 		stats["EXP"] += amount
 		level_up()
-	
+
 	while _max_exp <= amount:
 		stats["EXP"] += amount
 		amount = amount - _max_exp

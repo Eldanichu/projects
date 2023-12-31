@@ -4,14 +4,14 @@ class_name TweenProgress
 signal ticking(count)
 signal timeout()
 
-@export_range(0.1,9,0.01) 
+@export_range(0.1,9,0.01)
 var duration:float = 0
 
 @export_enum(
 	"TRANS_CIRC",
-	"TRANS_ELASTIC",  
+	"TRANS_ELASTIC",
 	"TRANS_CUBIC"
-	) 
+	)
 var trans:String = "TRANS_CUBIC"
 
 
@@ -45,7 +45,7 @@ func set_interval(val:float) -> TweenProgress:
 	timer.interval = val
 	v_min = val
 	return self
-	
+
 func _on_tick(delta:float):
 	v_min = delta
 	emit_signal("ticking", delta)
@@ -59,10 +59,10 @@ func tween_progress():
 	var _min_v = max(v_min,0)
 	var _max_v = max(v_max,1)
 	percent = min((_min_v / _max_v * 100), max_value)
-	
+
 	if tween:
 		tween.kill()
-	
+
 	tween = create_tween() \
 		.bind_node(self) \
 		.set_parallel(true) \

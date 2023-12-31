@@ -15,7 +15,7 @@ func set_hp_t(value:int):
 	super(value)
 	stats_change.emit()
 	dead()
-	
+
 func attack(target:GameActor):
 	if not can_attack():
 		return

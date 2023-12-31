@@ -11,7 +11,7 @@ var duration:float = 0.0
 @export
 var interval:float = 1.0
 
-@export 
+@export
 var tick:bool = false
 
 var timer:Timer

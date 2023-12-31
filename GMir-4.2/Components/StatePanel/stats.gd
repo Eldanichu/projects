@@ -18,7 +18,7 @@ func update():
 	if not player:
 		return
 	var _player_stats = player.stats.get_properties()
-	
+
 	for key in _player_stats:
 		var node_name = "{prefix}{key}".format({
 			"prefix":PREFIX_NAME,

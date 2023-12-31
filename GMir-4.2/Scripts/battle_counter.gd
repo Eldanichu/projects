@@ -54,7 +54,7 @@ func get_current() -> MonsterScene:
 	if current == -1:
 		current = 0
 	var _cur = mons[current] as MonsterScene
-	
+
 	return _cur
 
 func reset():

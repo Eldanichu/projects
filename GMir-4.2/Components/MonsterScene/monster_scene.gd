@@ -43,4 +43,4 @@ func _on_stats_update():
 	m_hp.text = "{0}/{1}".format([mon_stat.HP,mon_stat.HPMAX])
 	m_lv.text = "Lv:{0}".format([str(mon_stat.LEVEL)])
 	m_name.text = mon_stat.DNAME
-	
+

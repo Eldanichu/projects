@@ -47,7 +47,7 @@ func toggle_panel(type:String):
 	var control = ui_func_box.get_node_or_null(current_display_box)
 	if control != null:
 		ControlUtil.hide_control(control)
-	
+
 	control = ui_func_box.get_node_or_null(type)
 	if control == null:
 		current_display_box = ""

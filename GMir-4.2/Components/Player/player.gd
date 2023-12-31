@@ -8,14 +8,24 @@ var player:ActorPlayer
 
 var attack_timer:TimerEx = TimerEx.new(self)
 
+var win_pos:Vector2
+var win_size:Vector2
+
 func _init():
 	pass
 
 func _ready():
+	update_window()
 	setup()
-	
-func _process(_delta):
-	pass
+
+func _physics_process(delta):
+	update_window()
+	debug_window.position = Vector2(win_pos.x + win_size.x,win_pos.y)
+
+
+func update_window():
+	win_pos = DisplayServer.window_get_position()
+	win_size = DisplayServer.window_get_size()
 
 func setup():
 	create()
@@ -33,7 +43,7 @@ func update_ui():
 
 func bind_event():
 	attack_timer.on_timeout.connect(_on_player_attack)
-	
+
 func start_battle():
 	attack_timer.interval = player.stats.ATKSPD / 1000.0
 	attack_timer.tick = false

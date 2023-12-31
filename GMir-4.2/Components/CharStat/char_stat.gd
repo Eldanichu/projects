@@ -23,7 +23,7 @@ func initialize():
 	battle_control.visible = battle_options
 	player.stats_change.connect(update, CONNECT_REFERENCE_COUNTED)
 	player.stats_change.emit()
-	
+
 func update():
 	var actor = player
 	hp_bar.v_max = actor.get_hp(false, true)
