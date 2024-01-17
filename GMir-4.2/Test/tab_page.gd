@@ -46,7 +46,7 @@ func get_box_page(limit:int = -1):
 """
 --Control
  |--TabContainer
-  |--ScrollContainer
+	|--ScrollContainer
 """
 func create_tab(tab_name:String):
 	if not tab_container:
@@ -63,8 +63,8 @@ func create_tab(tab_name:String):
 """
 --Control
  |--TabContainer
-  |--ScrollContainer
-   |--(V)(H)BoxContainer
+	|--ScrollContainer
+	 |--(V)(H)BoxContainer
 """
 func add_box_container(is_vert:bool = false) -> TabPage:
 	var box:BoxContainer = BoxContainer.new()
@@ -90,8 +90,8 @@ func get_container(cname:String = "") -> TabPage:
 """
 --Control
  |--TabContainer
-  |--ScrollContainer
-   |--(V)(H)BoxContainer
+	|--ScrollContainer
+	 |--(V)(H)BoxContainer
 	|-- (your nodes)
 """
 func add_node(node:Node):

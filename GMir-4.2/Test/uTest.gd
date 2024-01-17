@@ -4,6 +4,7 @@ var count = 0
 var label_value = 0
 
 @onready var file_select = %file_select
+@onready var prg_cup := $tab_container/s1/v_box_container/v_box_container2/prg_cup
 
 var hp = 0:
 	set(value):
@@ -32,7 +33,9 @@ class CB extends A:
 func _ready():
 	var b= CB.new();
 	b.foo()
-
+	prg_cup.timer.interval = 10
+	prg_cup.start()
+	
 	pass
 
 func _set_hp(ov,nv):
@@ -42,8 +45,6 @@ func _set_hp(ov,nv):
 func _setter_getter_test():
 	hp += 2
 	pass
-
-
 
 func _el_test_randomi():
 	var r := RandomEx.get_instance();
@@ -140,3 +141,6 @@ func get_dname(str:String):
 	var replaced = str.replace(matched_str,"")
 	return replaced
 	
+func _on_btn_cpu_pressed():
+	#prg_cup.set_process_ex(false)
+	prg_cup.timer.set_time_scale(0.5)

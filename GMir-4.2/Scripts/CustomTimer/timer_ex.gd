@@ -13,11 +13,13 @@ var interval:float = 1.0
 
 @export
 var tick:bool = false
+@export
+var loop:bool = true
 
 var timer:Timer
 
 var paused:bool = true
-var delta:float = 0
+var delta:float = 0.0
 
 func _init(node:Node):
 	paused = true
@@ -42,11 +44,20 @@ func _process(_delta):
 	delta = timer.time_left
 	_emit(delta)
 
-func start():
+func set_time_scale(scale:float):
+	if delta <= 0:
+		return
+	pause()
+	delta = delta * scale
+	timer.wait_time = delta
+	start(true)
+
+func start(scaled:bool = false):
 	if not paused && not soft_timeout():
 		return
 	paused = false
-	timer.wait_time = interval
+	if not scaled:
+		timer.wait_time = interval
 	if not tick:
 		duration = interval
 		_emit(delta)
@@ -54,7 +65,7 @@ func start():
 
 func pause():
 	paused = true
-	_emit(0)
+	_emit(delta)
 	timer.stop()
 
 func reset():
@@ -82,6 +93,12 @@ func _on_timeout():
 		delta = 0
 		emit_signal("on_timeout")
 	_emit(delta);
+	if not loop:
+		paused = true
+		timer.stop()
+		_emit(0)
+		return
+	
 	timer.start()
 
 func hard_timeout() -> bool:
