@@ -14,7 +14,7 @@ config/name="GMir-4.1"
 config/description="A game I wanna make."
 config/tags=PackedStringArray("mygame", "textgame")
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.2", "Mobile")
+config/features=PackedStringArray("4.2", "C#", "Mobile")
 boot_splash/show_image=false
 
 [autoload]
