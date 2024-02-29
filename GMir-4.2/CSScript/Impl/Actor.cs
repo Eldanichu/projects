@@ -9,8 +9,7 @@ public class Actor {
   public Actor(IActorProperties actorProperties) {
     _actorProperties = actorProperties;
   }
-
-  public IBaseProperties GetBase() {
-    return _actorProperties.GetBase();
-  }
+  
+  public IBaseProperties BaseProperties => _actorProperties.GetBase();
+  public IOtherProperties OtherProperties => _actorProperties.GetOther();
 }
