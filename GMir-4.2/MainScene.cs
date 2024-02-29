@@ -9,7 +9,7 @@ public partial class MainScene : Node2D
     var actorProps = new ActorProperties();
     var actor = new Actor(actorProps);
     var _b = actor.GetBase();
-    _b.hp = 10;
-
+    _b.hp = -10;
+    Console.WriteLine(_b.hp);
   }
 }

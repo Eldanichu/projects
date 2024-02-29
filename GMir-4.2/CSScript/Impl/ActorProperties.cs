@@ -1,4 +1,6 @@
-﻿using NSBaseProperties;
+﻿using System;
+using System.Reflection;
+using NSBaseProperties;
 
 namespace GMir4.Empty.CSScript.Impl; 
 
@@ -20,6 +22,7 @@ public class ActorProperties : IActorProperties {
   private int _lck;
   private int _mar;
   private int _cdr;
+  [ActorProperties("HP","血量")]
   public int hp {
     get => _hp;
     set {
@@ -104,6 +107,21 @@ public class ActorProperties : IActorProperties {
   public int mar { get; set; }
   public int cdr { get; set; }
 
+  public ActorProperties() {
+    // var _type = this.GetType();
+    // var propties = _type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+    //
+    // foreach (var prop in propties) {
+    //   var attr = prop.GetCustomAttribute<ActorPropertiesAttribute>();
+    //   if (attr == null) continue;
+    //   Console.WriteLine(attr);
+    // }
+    // var v =_type.GetProperty("hp");
+    // // var _ph = _type.GetProperty("hp");
+    // // var v = _ph.GetValue(this);
+    // Console.WriteLine(v);
+  }
+  
   public float Percentage(int pMin, int pMax) {
     var _pmin = pMin * 1.0f;
     var _pmax = pMax * 1.0f;
@@ -120,5 +138,15 @@ public class ActorProperties : IActorProperties {
 
   public IOtherProperties GetOther() {
     return this;
+  }
+}
+
+public class ActorPropertiesAttribute : Attribute {
+  
+  private string _Name;
+  private string _CnName;
+  public ActorPropertiesAttribute(string name,string cnName) {
+    _Name = name;
+    _CnName = cnName;
   }
 }
