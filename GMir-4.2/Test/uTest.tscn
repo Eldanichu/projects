@@ -14,6 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_hqxxd")
 
 [node name="sub_viewport_container" type="SubViewportContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +26,7 @@ grow_vertical = 2
 disable_3d = true
 handle_input_locally = false
 size = Vector2i(188, 334)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="dragable_panel" parent="sub_viewport_container/sub_viewport" instance=ExtResource("3_qv811")]
 anchor_left = 0.0319149
@@ -41,9 +42,10 @@ grow_vertical = 1
 
 [node name="sub_viewport2" type="SubViewport" parent="sub_viewport_container"]
 handle_input_locally = false
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="tab_container" type="TabContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -167,6 +169,20 @@ text = "player"
 [node name="prg_player" type="ProgressBar" parent="tab_container/s1/v_box_container/v_box_container"]
 layout_mode = 2
 script = ExtResource("2_1px86")
+
+[node name="tree" type="Tree" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 4
+column_titles_visible = true
+enable_recursive_folding = false
+hide_root = true
+select_mode = 2
 
 [connection signal="pressed" from="tab_container/s0/v0/h0/randomi" to="." method="_el_test_randomi"]
 [connection signal="pressed" from="tab_container/s0/v0/h1/randomf" to="." method="_el_test_randomf"]

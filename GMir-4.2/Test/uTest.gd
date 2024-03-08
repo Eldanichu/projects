@@ -5,6 +5,7 @@ var label_value = 0
 
 @onready var file_select = %file_select
 @onready var prg_cup := $tab_container/s1/v_box_container/v_box_container2/prg_cup
+@onready var tree = %tree
 
 var hp = 0:
 	set(value):
@@ -12,30 +13,68 @@ var hp = 0:
 		hp = value
 		_set_hp(ov,value)
 
-class A:
-	func _init() -> void:
-		print("A init")
-		pass
+class TableBuilder:
 	
-	func foo():
-		print("foo")
+	var _tree:Tree
+	var _body:TreeItem;
+	var _column_size:int = 0
+	var _col_prop:Dictionary = {}
+	var _columns:Array = []
+	var _data:Array = []
+	
+	func _init(treeNode:Tree):
+		_tree = treeNode
+		_body = _tree.create_item()
+		_tree.hide_root = true
+		
+	func add_row(row:Dictionary):
+		var _row = _tree.create_item(_body)
+		for col_index in _col_prop:
+			var prop = _col_prop[col_index]
+			if prop in row:
+				var value = str(row[prop])
+				_row.set_text(col_index,value)
 
-class CB extends A:
-	func _init() -> void:
-		super()
-		print("B init")
+	func set_columns(columns:Array):
+		_columns = columns
+		_calculate_columns()
+		_setup_columns()
 
-	func foo():
-		print("foo 2 do first")
-		super()
-		print("foo 2 do after")
+	func set_data(data:Array):
+		_data = data
+		_setup_rows()
+	
+	func _calculate_columns():
+		_column_size = len(_columns)
+		_tree.columns = _column_size
+	
+	func _setup_columns():
+		var _cols := _columns
+		var index = 0
+		for col in _cols:
+			_tree.set_column_title(index,col["label"])
+			_col_prop[index] = col["prop"]
+			index = index + 1
+
+	func _setup_rows():
+		if not len(_column_size):
+			return
+		var _rows = _data
+		var index = 0
+		for _row in _rows:
+			add_row(_row)
+			index = index + 1
 
 func _ready():
-	var b= CB.new();
-	b.foo()
-	prg_cup.timer.interval = 10
-	prg_cup.start()
-	
+	var table:TableBuilder = TableBuilder.new(tree)
+	table.set_columns([
+		{"label":"#1","prop":"a"},
+		{"label":"#2","prop":"b"},
+		{"label":"#3","prop":"c"},
+	])
+	table.set_data([
+		{"b":63453,"a":1,}
+	])
 	pass
 
 func _set_hp(ov,nv):
