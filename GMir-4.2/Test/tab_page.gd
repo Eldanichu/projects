@@ -14,6 +14,7 @@ var limit = 0
 
 func _init(node:Node = null):
 	_node = node
+	
 	setup()
 	
 func setup():

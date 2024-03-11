@@ -6,4 +6,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>GMir4.Empty</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="FFMpegCore" Version="5.1.0" />
+  </ItemGroup>
 </Project>
