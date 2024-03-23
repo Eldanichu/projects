@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq6qxm7wgrevk"]
+[gd_scene load_steps=3 format=3 uid="uid://bq6qxm7wgrevk"]
 
 [ext_resource type="Script" path="res://Test/uTest.gd" id="1_hqxxd"]
 [ext_resource type="Script" path="res://Components/TimerProgress/timer_bar.gd" id="2_1px86"]
-[ext_resource type="PackedScene" uid="uid://ip2r3i1qoyw2" path="res://Components/dragable_panel/dragable_panel.tscn" id="3_qv811"]
 
 [node name="uTest" type="Control"]
 layout_mode = 3
@@ -13,39 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hqxxd")
 
-[node name="sub_viewport_container" type="SubViewportContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="sub_viewport" type="SubViewport" parent="sub_viewport_container"]
-disable_3d = true
-handle_input_locally = false
-size = Vector2i(188, 334)
-render_target_update_mode = 0
-
-[node name="dragable_panel" parent="sub_viewport_container/sub_viewport" instance=ExtResource("3_qv811")]
-anchor_left = 0.0319149
-anchor_top = 0.0149701
-anchor_right = 0.0319149
-anchor_bottom = 0.0149701
-offset_left = 39.6596
-offset_top = 57.3353
-offset_right = 120.66
-offset_bottom = 107.335
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="sub_viewport2" type="SubViewport" parent="sub_viewport_container"]
-handle_input_locally = false
-render_target_update_mode = 0
-
 [node name="tab_container" type="TabContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,20 +136,6 @@ text = "player"
 [node name="prg_player" type="ProgressBar" parent="tab_container/s1/v_box_container/v_box_container"]
 layout_mode = 2
 script = ExtResource("2_1px86")
-
-[node name="tree" type="Tree" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-columns = 4
-column_titles_visible = true
-enable_recursive_folding = false
-hide_root = true
-select_mode = 2
 
 [connection signal="pressed" from="tab_container/s0/v0/h0/randomi" to="." method="_el_test_randomi"]
 [connection signal="pressed" from="tab_container/s0/v0/h1/randomf" to="." method="_el_test_randomf"]
