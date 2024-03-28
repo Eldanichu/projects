@@ -1,24 +1,23 @@
 extends Control
 
 var count = 0
-var label_value = 0
+var et:EnityTest = EnityTest.new()
 
 @onready var file_select = %file_select
 @onready var prg_cup := $tab_container/s1/v_box_container/v_box_container2/prg_cup
 @onready var tree = %tree
-
-var hp = 0:
-	set(value):
-		var ov = hp
-		hp = value
-		_set_hp(ov,value)
+@onready var lbl_gt = %lbl_gt
 
 
 func _ready():
-	var et:EnityTest = EnityTest.new()
-	et.hp = 1
-	print(et.variables)
-	print(et.hp)
+	pass
+
+func _el_enity_test():
+	et.hp = et.hp + 1
+	lbl_gt.text = str(et.properties.hp)
+	print(et.properties)
+
+func create_table():
 	var table:TableBuilder = TableBuilder.new(tree)
 	var props = table.get_property_list()
 	
@@ -30,15 +29,6 @@ func _ready():
 	table.set_data([
 		{"b":63453,"a":1,}
 	])
-	pass
-
-func _set_hp(ov,nv):
-	print("before->",ov)
-	print("after->",nv)
-
-func _setter_getter_test():
-	hp += 2
-	pass
 
 func _el_test_randomi():
 	var r := RandomEx.get_instance();

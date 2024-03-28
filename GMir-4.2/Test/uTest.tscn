@@ -19,10 +19,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 1
 
 [node name="s0" type="ScrollContainer" parent="tab_container"]
-visible = false
 layout_mode = 2
 
 [node name="v0" type="VBoxContainer" parent="tab_container/s0"]
@@ -103,7 +101,13 @@ layout_mode = 2
 layout_mode = 2
 text = "getter_test"
 
+[node name="lbl_gt" type="Label" parent="tab_container/s0/v0/h7"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
 [node name="s1" type="ScrollContainer" parent="tab_container"]
+visible = false
 layout_mode = 2
 
 [node name="v_box_container" type="VBoxContainer" parent="tab_container/s1"]
@@ -144,5 +148,5 @@ script = ExtResource("2_1px86")
 [connection signal="pressed" from="tab_container/s0/v0/h4/hit" to="." method="_el_test_hit"]
 [connection signal="pressed" from="tab_container/s0/v0/h5/loot" to="." method="_el_test_loot"]
 [connection signal="pressed" from="tab_container/s0/v0/h6/import_monster" to="." method="_import_monsters"]
-[connection signal="pressed" from="tab_container/s0/v0/h7/getter" to="." method="_setter_getter_test"]
+[connection signal="button_up" from="tab_container/s0/v0/h7/getter" to="." method="_el_enity_test"]
 [connection signal="pressed" from="tab_container/s1/v_box_container/v_box_container2/btn_cpu" to="." method="_on_btn_cpu_pressed"]

@@ -13,14 +13,13 @@ config_version=5
 config/name="GMir-4.1"
 config/description="A game I wanna make."
 config/tags=PackedStringArray("mygame", "textgame")
-run/main_scene="res://Test/uTest.tscn"
+run/main_scene="res://Scene/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/show_image=false
 
 [autoload]
 
 dbc="*res://AutoLoad/db_command.gd"
-G="*res://AutoLoad/globals.gd"
 
 [debug]
 
@@ -29,10 +28,10 @@ gdscript/warnings/get_node_default_without_onready=1
 
 [display]
 
-window/size/viewport_width=188
-window/size/viewport_height=334
-window/size/window_width_override=375
-window/size/window_height_override=667
+window/size/viewport_width=640
+window/size/viewport_height=384
+window/size/window_width_override=1280
+window/size/window_height_override=768
 window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
