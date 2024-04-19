@@ -5,8 +5,16 @@ var _player:PlayerNode
 
 var prop_nodes:Dictionary = {}
 
+var stat_mod:StatModfier = StatModfier.new()
+
+
+@onready var lbl_stat_mod = %stat_mod
+
 func _ready():
 	
+	pass
+
+func _physics_process(delta):
 	pass
 
 func set_player(player:PlayerNode):
@@ -39,6 +47,15 @@ func update_ui():
 	update_properties()
 	pass
 
+func _on_add_stat():
+	stat_mod.add("hp",100)
 
+func _on_remove_stat():
+	stat_mod.remove("hp")
 
+func _on_add_stat_value():
+	var sc = StatCal.new(100,0.5,StatCal.OPT.PERCENT)
+	stat_mod.add("hp",sc.add(10).add(10).calc())
 
+func _on_remove_stat_value():
+	stat_mod.undo("hp")

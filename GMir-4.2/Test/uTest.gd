@@ -1,7 +1,6 @@
 extends Control
 
 var count = 0
-var et:EnityTest = EnityTest.new()
 
 @onready var file_select = %file_select
 @onready var prg_cup := $tab_container/s1/v_box_container/v_box_container2/prg_cup
@@ -11,11 +10,6 @@ var et:EnityTest = EnityTest.new()
 
 func _ready():
 	pass
-
-func _el_enity_test():
-	et.hp = et.hp + 1
-	lbl_gt.text = str(et.properties.hp)
-	print(et.properties)
 
 func create_table():
 	var table:TableBuilder = TableBuilder.new(tree)

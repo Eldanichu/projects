@@ -87,11 +87,48 @@ size_flags_horizontal = 3
 [node name="region" type="PanelContainer" parent="margin_container4/h_box_container/margin_container2"]
 layout_mode = 2
 
-[node name="attack" type="Button" parent="margin_container4/h_box_container/margin_container2/region"]
+[node name="v_box_container" type="VBoxContainer" parent="margin_container4/h_box_container/margin_container2/region"]
+layout_mode = 2
+
+[node name="flow_contaniner" type="FlowContainer" parent="margin_container4/h_box_container/margin_container2/region/v_box_container"]
+layout_mode = 2
+
+[node name="attack" type="Button" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "attack"
+
+[node name="add_stat" type="Button" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "+stat"
+
+[node name="del_stat" type="Button" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "-stat"
+
+[node name="add_stat_value" type="Button" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "+stat_value"
+
+[node name="del_stat_value" type="Button" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "-stat_value"
+
+[node name="flow_container" type="FlowContainer" parent="margin_container4/h_box_container/margin_container2/region/v_box_container"]
+layout_mode = 2
+
+[node name="stat_mod" type="Label" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_container"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="margin_container3" type="MarginContainer" parent="margin_container4/h_box_container"]
 layout_mode = 2
@@ -100,4 +137,16 @@ size_flags_horizontal = 3
 [node name="region_r" type="PanelContainer" parent="margin_container4/h_box_container/margin_container3"]
 layout_mode = 2
 
-[connection signal="button_up" from="margin_container4/h_box_container/margin_container2/region/attack" to="." method="player_attack"]
+[node name="scroll_container" type="ScrollContainer" parent="margin_container4/h_box_container/margin_container3/region_r"]
+layout_mode = 2
+
+[node name="box_container" type="BoxContainer" parent="margin_container4/h_box_container/margin_container3/region_r/scroll_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="button_up" from="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner/attack" to="." method="player_attack"]
+[connection signal="button_up" from="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner/add_stat" to="." method="_on_add_stat"]
+[connection signal="button_up" from="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner/del_stat" to="." method="_on_remove_stat"]
+[connection signal="button_up" from="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner/add_stat_value" to="." method="_on_add_stat_value"]
+[connection signal="button_up" from="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner/del_stat_value" to="." method="_on_remove_stat_value"]
