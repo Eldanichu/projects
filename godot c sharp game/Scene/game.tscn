@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://Script/Object/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scene/game.cs" type="Script" id=2]
-
-[node name="game" type="Node2D"]
-script = ExtResource( 2 )
-PlayerScene = ExtResource( 1 )
