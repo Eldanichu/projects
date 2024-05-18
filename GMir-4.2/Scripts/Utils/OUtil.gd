@@ -15,3 +15,20 @@ static func get_propstr(properties:Dictionary, key:String) -> String:
 	if not key in properties:
 		return ""
 	return properties[key]
+
+func get_selected_enums(enum_var:Dictionary, flag_var:int):
+	var _enum = enum_var
+	var count = -1
+	var arr = []
+	for item in _enum:
+		count = count + 1
+		var bit:int = int(pow(2,_enum[item]))
+		if flag_var & bit:
+			arr.append(count)
+	return arr
+
+func set_selected_enums(enum_vars:Array) -> int:
+	var bit = 0
+	for index in range(0,len(enum_vars)):
+		bit += int(pow(2,enum_vars[index]))
+	return bit

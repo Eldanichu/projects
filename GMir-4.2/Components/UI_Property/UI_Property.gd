@@ -25,3 +25,5 @@ var val = "value":
 	get:
 		return val
 	
+func _ready():
+	pass

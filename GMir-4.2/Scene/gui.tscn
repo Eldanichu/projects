@@ -79,6 +79,35 @@ offset_bottom = 208.0
 keep_pressed_outside = true
 text = "tick"
 
+[node name="control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 308.0
+offset_top = 69.0
+offset_right = 591.0
+offset_bottom = 353.0
+
+[node name="panel_container" type="PanelContainer" parent="control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="scroll_container" type="ScrollContainer" parent="control/panel_container"]
+layout_mode = 2
+
+[node name="page_stat" type="BoxContainer" parent="control/panel_container/scroll_container"]
+unique_name_in_owner = true
+layout_mode = 2
+vertical = true
+
+[node name="hp" parent="control/panel_container/scroll_container/page_stat" instance=ExtResource("2_bxtm1")]
+layout_mode = 2
+
+[node name="level" parent="control/panel_container/scroll_container/page_stat" instance=ExtResource("2_bxtm1")]
+layout_mode = 2
+
 [connection signal="button_up" from="starttimer" to="." method="_on_button_button_up"]
 [connection signal="button_up" from="set scale" to="." method="_on_set_scale_button_up"]
 [connection signal="toggled" from="is_tick_timer" to="." method="_on_is_tick_timer_toggled"]

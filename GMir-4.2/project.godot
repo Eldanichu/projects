@@ -15,11 +15,17 @@ config/description="A game I wanna make."
 config/tags=PackedStringArray("mygame", "textgame")
 run/main_scene="res://Scene/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-boot_splash/show_image=false
+run/max_fps=60
+run/low_processor_mode=true
+boot_splash/bg_color=Color(0.252028, 0.252028, 0.252028, 1)
+boot_splash/image="res://Assets/images/splash.png"
+boot_splash/fullsize=false
+boot_splash/minimum_display_time=800
 
 [autoload]
 
 dbc="*res://AutoLoad/db_command.gd"
+G="*res://AutoLoad/globals.gd"
 
 [debug]
 
@@ -93,3 +99,8 @@ pause={
 renderer/rendering_method="mobile"
 2d/sdf/oversize=0
 2d/sdf/scale=0
+
+[xr]
+
+openxr/startup_alert=false
+openxr/extensions/hand_tracking=false
