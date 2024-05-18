@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn3v5jmqf4lor"]
+
+[ext_resource type="Script" path="res://Components/UI_Property/UI_Property.gd" id="1_jryef"]
+[ext_resource type="Theme" uid="uid://b1u528sajv868" path="res://Themes/stats_font.tres" id="1_ygq7c"]
+
+[node name="ui_property" type="BoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(120, 0)
+offset_right = 120.0
+offset_bottom = 14.0
+theme = ExtResource("1_ygq7c")
+script = ExtResource("1_jryef")
+
+[node name="label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "label"
+
+[node name="h_box_container" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="value" type="Label" parent="h_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "value"

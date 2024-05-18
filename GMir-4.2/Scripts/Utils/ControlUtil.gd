@@ -1,5 +1,5 @@
 extends Resource
-class_name ControlUtil
+class_name T
 
 func _init():
 	pass

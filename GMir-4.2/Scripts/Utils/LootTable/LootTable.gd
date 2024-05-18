@@ -1,25 +1,17 @@
 extends Node
 class_name LootTable
 
-enum LOOT_QTY {
-	NORMAL = 1,
-	MAGIC,
-	RARE,
-	UNIQUE,
-	LEGENDARY
-}
-
 class Loot:
 	
 	var KEY_ID:String = "id"
 	var KEY_WEIGHT:String = "weight"
 	var KEY_NAME:String = "name"
 	var KEY_INDEX:String = "idx"
-	var KEY_RV:String = "rv"
+	var KEY_RV:String = "rare"
 	var MAX_DROP_ITEM:int = 3
 	var ROLLING_QTY:bool = true
 	var UNROLLING_QTY:Array = [
-		LOOT_QTY.LEGENDARY
+		LT.QTY.LEGENDARY
 	]
 	
 	var rnd = RandomEx.get_instance()
@@ -91,7 +83,7 @@ class Loot:
 		return _drop_list
 	
 	func pick_random_qty():
-		for i in LOOT_QTY:
+		for i in LT.QTY:
 			_qtys.append(i)
 		var _picked = RandomEx.get_instance().pick(_qtys)
 		print(_picked)

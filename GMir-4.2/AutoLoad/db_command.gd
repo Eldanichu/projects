@@ -23,10 +23,8 @@ func query_mon_by(mon_id):
 	var sql = "select * from Monsters where ID = {monId}".format({
 		"monId":mon_id
 	})
-	log.d(sql)
 	db.query(sql)
 	var row = db.query_result[0]
-	log.d(row)
 	close()
 	return row
 	
@@ -81,20 +79,6 @@ func import_monster(mon_name:String, row:Dictionary):
 			"props":",".join(cols)
 		})
 	db.query(insert)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

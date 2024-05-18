@@ -9,6 +9,7 @@ var count = 0
 
 
 func _ready():
+
 	pass
 
 func create_table():
@@ -47,10 +48,6 @@ func _el_test_hit():
 	var rn = r.hit(40)
 	print(rn)
 
-func _el_test_loot():
-	var r := LootTable.get_instance();
-	var rn = r.data().get_items()
-	print(rn)
 
 func _el_test_connectDB():
 	print(dbc.query_mon_drops(1))

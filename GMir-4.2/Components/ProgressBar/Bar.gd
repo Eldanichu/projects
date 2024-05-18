@@ -5,13 +5,20 @@ class_name TimerProgress
 var v_min:float = 0:
 	set(value):
 		v_min = value
-		tween_progress()
+		F.await_tree(
+			func():
+				tween_progress()
+		, self)
+		
 
 @export 
 var v_max:float = 0:
 	set(value):
 		v_max = value
-		tween_progress()
+		F.await_tree(
+			func():
+				tween_progress()
+		, self)
 
 @export_range(0.1,9,0.01) 
 var duration:float = 0.2
@@ -27,6 +34,7 @@ var tween:Tween
 var percent:float = 0
 
 func _ready():
+	tween_progress()
 	pass
 
 func tween_progress():

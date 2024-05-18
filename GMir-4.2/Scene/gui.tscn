@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dt0uyv7ahibyw"]
+[gd_scene load_steps=4 format=3 uid="uid://dt0uyv7ahibyw"]
 
 [ext_resource type="Script" path="res://Scene/gui.gd" id="1_i8qp6"]
+[ext_resource type="PackedScene" uid="uid://cn3v5jmqf4lor" path="res://Components/UI_Property/UI_Property.tscn" id="2_bxtm1"]
+[ext_resource type="PackedScene" uid="uid://j6hvq4pejmsk" path="res://Components/ProgressBar/Bar.tscn" id="2_t4rxv"]
 
 [node name="gui" type="Control"]
 layout_mode = 3
@@ -11,142 +13,72 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i8qp6")
 
-[node name="margin_container4" type="MarginContainer" parent="."]
+[node name="Bar" parent="." instance=ExtResource("2_t4rxv")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 7.0
+offset_right = -13.0
+v_min = 10.0
+v_max = 100.0
+duration = 0.1
+trans = "TRANS_CIRC"
 
-[node name="h_box_container" type="HBoxContainer" parent="margin_container4"]
-layout_mode = 2
+[node name="h_slider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 26.0
+offset_right = 341.0
+offset_bottom = 42.0
 
-[node name="margin_container" type="MarginContainer" parent="margin_container4/h_box_container"]
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="ui_property" parent="." instance=ExtResource("2_bxtm1")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 57.0
+offset_right = 130.0
+offset_bottom = 71.0
 
-[node name="region_l" type="PanelContainer" parent="margin_container4/h_box_container/margin_container"]
-layout_mode = 2
+[node name="starttimer" type="Button" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 97.0
+offset_right = 105.0
+offset_bottom = 128.0
+text = "start timer"
 
-[node name="scroll_container" type="ScrollContainer" parent="margin_container4/h_box_container/margin_container/region_l"]
-layout_mode = 2
+[node name="set scale" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 134.0
+offset_right = 107.0
+offset_bottom = 165.0
+text = "set scale"
 
-[node name="box_container" type="BoxContainer" parent="margin_container4/h_box_container/margin_container/region_l/scroll_container"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-vertical = true
-
-[node name="h_box_container" type="HBoxContainer" parent="margin_container4/h_box_container/margin_container/region_l/scroll_container/box_container"]
-layout_mode = 2
-
-[node name="lbl_text" type="Label" parent="margin_container4/h_box_container/margin_container/region_l/scroll_container/box_container/h_box_container"]
-custom_minimum_size = Vector2(90, 0)
-layout_mode = 2
-text = "HP"
-
-[node name="value_hp" type="Label" parent="margin_container4/h_box_container/margin_container/region_l/scroll_container/box_container/h_box_container"]
+[node name="interval" type="LineEdit" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "0"
+layout_mode = 0
+offset_left = 114.0
+offset_top = 97.0
+offset_right = 210.0
+offset_bottom = 128.0
+placeholder_text = "interval"
 
-[node name="h_box_container2" type="HBoxContainer" parent="margin_container4/h_box_container/margin_container/region_l/scroll_container/box_container"]
-layout_mode = 2
-
-[node name="lbl_text" type="Label" parent="margin_container4/h_box_container/margin_container/region_l/scroll_container/box_container/h_box_container2"]
-custom_minimum_size = Vector2(90, 0)
-layout_mode = 2
-text = "MP"
-
-[node name="value_mp" type="Label" parent="margin_container4/h_box_container/margin_container/region_l/scroll_container/box_container/h_box_container2"]
+[node name="timer_scale" type="LineEdit" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "0"
+layout_mode = 0
+offset_left = 114.0
+offset_top = 134.0
+offset_right = 210.0
+offset_bottom = 165.0
+placeholder_text = "scale"
 
-[node name="h_box_container3" type="HBoxContainer" parent="margin_container4/h_box_container/margin_container/region_l/scroll_container/box_container"]
-layout_mode = 2
+[node name="is_tick_timer" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 177.0
+offset_right = 195.0
+offset_bottom = 208.0
+keep_pressed_outside = true
+text = "tick"
 
-[node name="lbl_text" type="Label" parent="margin_container4/h_box_container/margin_container/region_l/scroll_container/box_container/h_box_container3"]
-custom_minimum_size = Vector2(90, 0)
-layout_mode = 2
-text = "LEVEL"
-
-[node name="value_level" type="Label" parent="margin_container4/h_box_container/margin_container/region_l/scroll_container/box_container/h_box_container3"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "0"
-
-[node name="margin_container2" type="MarginContainer" parent="margin_container4/h_box_container"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="region" type="PanelContainer" parent="margin_container4/h_box_container/margin_container2"]
-layout_mode = 2
-
-[node name="v_box_container" type="VBoxContainer" parent="margin_container4/h_box_container/margin_container2/region"]
-layout_mode = 2
-
-[node name="flow_contaniner" type="FlowContainer" parent="margin_container4/h_box_container/margin_container2/region/v_box_container"]
-layout_mode = 2
-
-[node name="attack" type="Button" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "attack"
-
-[node name="add_stat" type="Button" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "+stat"
-
-[node name="del_stat" type="Button" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "-stat"
-
-[node name="add_stat_value" type="Button" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "+stat_value"
-
-[node name="del_stat_value" type="Button" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "-stat_value"
-
-[node name="flow_container" type="FlowContainer" parent="margin_container4/h_box_container/margin_container2/region/v_box_container"]
-layout_mode = 2
-
-[node name="stat_mod" type="Label" parent="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_container"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="margin_container3" type="MarginContainer" parent="margin_container4/h_box_container"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="region_r" type="PanelContainer" parent="margin_container4/h_box_container/margin_container3"]
-layout_mode = 2
-
-[node name="scroll_container" type="ScrollContainer" parent="margin_container4/h_box_container/margin_container3/region_r"]
-layout_mode = 2
-
-[node name="box_container" type="BoxContainer" parent="margin_container4/h_box_container/margin_container3/region_r/scroll_container"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[connection signal="button_up" from="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner/attack" to="." method="player_attack"]
-[connection signal="button_up" from="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner/add_stat" to="." method="_on_add_stat"]
-[connection signal="button_up" from="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner/del_stat" to="." method="_on_remove_stat"]
-[connection signal="button_up" from="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner/add_stat_value" to="." method="_on_add_stat_value"]
-[connection signal="button_up" from="margin_container4/h_box_container/margin_container2/region/v_box_container/flow_contaniner/del_stat_value" to="." method="_on_remove_stat_value"]
+[connection signal="button_up" from="starttimer" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="set scale" to="." method="_on_set_scale_button_up"]
+[connection signal="toggled" from="is_tick_timer" to="." method="_on_is_tick_timer_toggled"]
