@@ -1,5 +1,5 @@
 extends Control
-
+class_name UIProperty
 @onready 
 var CLabel:Label = %label
 @onready 
@@ -8,20 +8,14 @@ var CValue:Label = %value
 var label:String = "label":
 	set(value):
 		label = str(value)
-		F.await_tree(
-			func():
-				CLabel.text = label
-		, self)
+		CLabel.call_deferred("set_text",label)
 	get:
 		return label
 
 var val = "value":
 	set(value):
 		val = str(value)
-		F.await_tree(
-			func():
-				CValue.text = val
-		, self)
+		CValue.call_deferred("set_text",val)
 	get:
 		return val
 	

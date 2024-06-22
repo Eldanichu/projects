@@ -26,12 +26,11 @@ class Rnd:
 		var item = _array[i]
 		return item
 
-	func hit(chance:int):
-		var _c = ((chance * 1.00) / 100)
-		var r = randomf()
-		var res = r <= _c
-		return res
-
+	func chance(p:int) -> bool:
+		var hit = randomi(p - 1)
+		print("{RandomEx} - [chance] value-> {0}".format([hit]))
+		return hit == 0
+	
 	func uid(len:int = 8, number:bool = false) -> String:
 		var str = ""
 		var _A = "QWERTYUIOPASDFGHJKLZXCVBNM"

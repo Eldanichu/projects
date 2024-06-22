@@ -2,61 +2,70 @@ extends Node
 class_name TimerEx
 
 signal on_tick(delta)
+signal on_counting(count)
 signal on_timeout()
 signal on_paused()
 
 @export
-var loop:bool = true
+var loop:bool = false
 @export
-var tick:bool = false
+var times:int = 0
 @export
 var interval:float = 1.0
 
 var timer:Timer
-var duration:float = 0.0
 var paused:bool = true
 var delta:float = 0.0
+var count:int = 0
+var is_new_turn:bool = false
 
 func _init(node:Node):
+	reset()
+	if not node:
+		return
+	timer = Timer.new()
+	timer.autostart = false;
+	timer.process_callback = Timer.TIMER_PROCESS_PHYSICS
+	timer.timeout.connect(_on_timeout)
+	node.add_child(self)
+	add_child(timer)
+
+func start():
+	var _is_out_of_time = out_of_times()
+	var _is_infinite = is_infinite()
+	if _is_out_of_time and (not _is_infinite):
+		pause()
+		_emit(0)
+		return
+
+	var delta_zero = is_equal_approx(delta, 0.0)
+	if not delta_zero:
+		timer.wait_time = delta
+	else:
+		#print("start, interval" + str(interval))
+		timer.wait_time = interval
+	paused = false
+	timer.start()
+
+func pause():
+	if timer:
+		timer.stop()
 	paused = true
-	_emit(0)
-	if node:
-		timer = Timer.new()
-		timer.autostart = false;
-		timer.process_callback = Timer.TIMER_PROCESS_PHYSICS
-		timer.timeout.connect(_on_timeout)
-		node.add_child(self)
-		add_child(timer)
 
 func set_time_scale(scale:float):
-	if delta <= 0:
+	if delta <= 0.0:
 		return
 	pause_and_emit()
 	delta = delta * scale
 	timer.wait_time = delta
-	start(true)
-
-func start(scaled:bool = false):
-	reset()
-	if not paused && not soft_timeout():
-		return
-	paused = false
-	if not scaled:
-		timer.wait_time = interval
-	if not tick:
-		duration = interval
-		_emit(delta)
-	timer.start()
-
-func pause():
-	timer.stop()
-	paused = true
+	start()
 
 func pause_and_emit():
 	pause()
 	_emit(delta)
 
 func reset():
+	reset_count()
 	pause()
 	_reset_delta()
 	_emit(delta)
@@ -67,27 +76,21 @@ func clear():
 	queue_free()
 
 func _on_timeout():
-	if not tick:
-		duration = interval
-		timer.wait_time = interval
-	if paused:
-		return
-	if duration <= 0 and tick:
-		_emit(-1)
-		timer.start()
-		return
 	if hard_timeout():
-		_reset_delta()
-		emit_signal("on_timeout")
-		_emit(delta);
-		if loop:
-			timer.start()
-			return
-		pause()
-		
+		return
+	_reset_delta()
+	_emit_timeout()
 	_emit(delta);
-	
-	if not loop:
+	loop_timer()
+
+func loop_timer():
+	if loop:
+		inc_count()
+		if is_new_turn:
+			timer.wait_time = interval
+			#print("new turn interval->" + str(interval))
+		start()
+	else:
 		pause()
 		_emit(0)
 
@@ -98,16 +101,28 @@ func _emit(_delta:float):
 	delta = _delta
 	emit_signal("on_tick",delta)
 
+func _emit_timeout():
+	emit_signal("on_timeout")
+
 func _physics_process(_delta):
-	if tick:
-		return
-	if paused:
+	if hard_timeout() or out_of_times():
 		return
 	delta = timer.time_left
 	_emit(delta)
 
 func hard_timeout() -> bool:
-	return soft_timeout() || not timer.is_stopped()
+	return paused || timer.is_stopped()
 
-func soft_timeout() -> bool:
-	return delta >= duration
+func inc_count():
+	count = count + 1
+	is_new_turn = true
+	emit_signal("on_counting", count)
+
+func reset_count():
+	count = 0
+
+func out_of_times():
+	return count >= times
+
+func is_infinite():
+	return times <= 0

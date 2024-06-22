@@ -1,6 +1,11 @@
 extends RefCounted
 class_name OUtil
 
+static func get_prop(properties:Dictionary, key:String) -> Callable:
+	if not key in properties:
+		return Callable()
+	return properties[key]
+
 static func get_propf(properties:Dictionary, key:String) -> float:
 	if not key in properties:
 		return 0.0

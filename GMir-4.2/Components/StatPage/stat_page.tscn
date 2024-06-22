@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp52k7b127jqu"]
+
+[ext_resource type="Script" path="res://Components/StatPage/stat_page.gd" id="1_5a202"]
+[ext_resource type="PackedScene" uid="uid://cn3v5jmqf4lor" path="res://Components/UI_Property/UI_Property.tscn" id="1_oin3m"]
+
+[node name="stat_page" type="ScrollContainer"]
+offset_right = 163.0
+offset_bottom = 131.0
+script = ExtResource("1_5a202")
+
+[node name="page_stat" type="BoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+vertical = true
+
+[node name="level" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="hp" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="hpmax" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="mp" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="mpmax" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="expv" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="expvmax" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="ac" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="mac" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="dr" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="dc" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="dcc" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="ar" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="mar" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="mc" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="agi" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="mod" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="mf" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2
+
+[node name="lck" parent="page_stat" instance=ExtResource("1_oin3m")]
+layout_mode = 2

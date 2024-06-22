@@ -11,16 +11,18 @@ offset_bottom = 14.0
 theme = ExtResource("1_ygq7c")
 script = ExtResource("1_jryef")
 
-[node name="label" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 2
-text = "label"
-
 [node name="h_box_container" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="label" type="Label" parent="h_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "label"
+
 [node name="value" type="Label" parent="h_box_container"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 text = "value"
+horizontal_alignment = 2
