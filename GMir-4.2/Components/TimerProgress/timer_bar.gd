@@ -23,10 +23,7 @@ var percent:float = 0
 var timer:TimerEx
 
 func _ready():
-	timer = TimerEx.new(self)
-	timer.on_tick.connect(_on_tick)
-	timer.on_timeout.connect(_on_timeout)
-	timer.tick = false
+	pass
 	
 
 func set_process_ex(enable:bool):

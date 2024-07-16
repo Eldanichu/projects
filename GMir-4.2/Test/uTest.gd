@@ -50,7 +50,7 @@ func _el_test_hit():
 
 
 func _el_test_connectDB():
-	print(dbc.query_mon_drops(1))
+
 	pass
 
 func _el_test_animate_number():
@@ -63,12 +63,12 @@ func _el_test_animate_number():
 	.start()
 
 func _import_monsters():
-	var n = NumberUtil.apply_percentages(100,[95,50])
-	print(n)
+	#var n = NumberUtil.apply_percentages(100,[95,50])
+	#print(n)
 	#print(get_dname("鹿002"))
-	#file_select.show()
-#
-	#file_select.file_selected.connect(_file_selected)
+	file_select.show()
+
+	file_select.file_selected.connect(_file_selected)
 	pass
 
 func _file_selected(path:String):
@@ -78,19 +78,34 @@ func async_importer(path):
 	var reader = CsvReader.new()
 	reader.file_path = path
 	reader.open_file()
-	dbc.open()
+	var rmon = RESPItem.new()
+	rmon.open()
+	
 	for row in reader.data:
-		dbc.import_monster(row["Name"],{
+		var item = {
 			"NAME":row["Name"],
-			"DNAME":get_dname(row["Name"]),
-			"HP":row["HP"],
-			"MP":row["MP"],
-			"ATK":row["DcMax"],
-			"DEF":row["AC"],
-			"AGI":row["Hit"],
-			"ATKSPD":row["Attack_SPD"],
-		})
-	dbc.close()
+			"TYPE":row["StdMode"],
+			"LEVEL":row["Need"],
+			"LEVEL_REQ":row["NeedLevel"],
+			"DEF":row["AC2"],
+			"AGI":row["AC"],
+			"MOD0":row["DC"],
+			"MOD1":row["DC2"],
+			"LCK":"",
+			"ATKSPD":"",
+		}
+		var type = int(row["StdMode"])
+		if  type == 5:
+			item["LCK"] = row["AC"]
+			item["AGI"] = row["AC2"]
+			item["ATKSPD"] = row["MAC2"]
+		elif type == 0:
+			item["TIME"] = row["MAC2"]
+			item["ATK"] = row["AC"]
+			item["ELE"] = row["MAC"]
+			pass
+		rmon.import_item(row["Name"], item)
+	rmon.close()
 
 func get_dname(str:String):
 	var reg = RegEx.new()

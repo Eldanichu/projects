@@ -19,7 +19,7 @@ const DIC_CHAR_PROP = {
 	"mac":{ "label":"MAC", "key":"mac" ,"group":"0" },
 	"dr":{ "label":"Damage Reduction", "key":"dr" ,"group":"0" },
 	"dc":{ "label":"DC", "key":"dc" ,"group":"0" },
-	"dcc":{ "label":"Critical Chance", "key":"dcc" ,"group":"0" },
+	"dcc":{ "label":"DC MAX", "key":"dcc" ,"group":"0" },
 	"ar":{ "label":"Aumour Resistence", "key":"ar" ,"group":"0" },
 	"mar":{ "label":"MAR", "key":"mar" ,"group":"0" },
 	"mc":{ "label":"Magic Damage", "key":"mc" ,"group":"0" },

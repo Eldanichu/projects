@@ -7,7 +7,12 @@ class Rnd:
 	
 	func _init():
 		r = RandomNumberGenerator.new()
-
+	
+	func rand_i_range(vmin:int, vmax:int) -> int:
+		r.randomize()
+		var value = r.randi_range(vmin,vmax)
+		return value
+	
 	func randomi(range:int = 1) -> int:
 		r.randomize()
 		var rn = floor(ceil(r.randi())) % (range + 1)
@@ -27,7 +32,8 @@ class Rnd:
 		return item
 
 	func chance(p:int) -> bool:
-		var hit = randomi(p - 1)
+		var _p = max(0, p - 1)
+		var hit = randomi(_p)
 		print("{RandomEx} - [chance] value-> {0}".format([hit]))
 		return hit == 0
 	

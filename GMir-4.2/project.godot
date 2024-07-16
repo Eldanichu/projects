@@ -24,7 +24,7 @@ boot_splash/minimum_display_time=1500
 
 [autoload]
 
-dbc="*res://AutoLoad/db_command.gd"
+dbc="res://AutoLoad/db_command.gd"
 G="*res://AutoLoad/globals.gd"
 
 [debug]
