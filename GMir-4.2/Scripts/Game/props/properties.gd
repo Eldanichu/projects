@@ -1,5 +1,5 @@
 extends BaseProperties
-class_name Properties
+class_name PlayerProperties
 
 ### ----------------------------------------------------------------------------
 

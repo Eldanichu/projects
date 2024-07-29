@@ -56,7 +56,7 @@ func _set_value(key:String, value):
 	if tick_type == TICK_TYPE.PERCENT:
 		_exec_oper(max(0, (N.I2F(value)) / N.I2F(100)))
 	elif tick_type == TICK_TYPE.NUMBER:
-		_exec_oper(max(0, value))
+		_exec_oper(value)
 
 func _exec_oper(value):
 	var key = TKey

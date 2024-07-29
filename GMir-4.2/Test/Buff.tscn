@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cylrdlbreev2p"]
+
+[ext_resource type="Script" path="res://Test/Buff.gd" id="1_jk1n3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp1kf"]
+bg_color = Color(0.49, 0.49, 0.49, 0.733333)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2rryf"]
+bg_color = Color(0.69, 0.69, 0.69, 0.635294)
+
+[node name="buff" type="ProgressBar"]
+custom_minimum_size = Vector2(48, 48)
+theme_override_styles/background = SubResource("StyleBoxFlat_cp1kf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2rryf")
+value = 50.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("1_jk1n3")

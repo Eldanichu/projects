@@ -27,6 +27,8 @@ func update_prop_ui():
 	var props = obj.properties.prop
 	for p in props:
 		var prop_value = props[p]
+		if not p in G.DIC_CHAR_PROP:
+			continue
 		var dict_prop = G.DIC_CHAR_PROP[p]
 		var dict_key = dict_prop["key"]
 		if not dict_key in u_props:

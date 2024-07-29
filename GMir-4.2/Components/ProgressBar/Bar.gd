@@ -1,5 +1,5 @@
 extends ProgressBar
-class_name TimerProgress
+class_name ValueProgress
 
 @export 
 var v_min:float = 0:

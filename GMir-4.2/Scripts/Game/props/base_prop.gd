@@ -3,7 +3,7 @@ class_name BaseProperties
 
 var prop:Dictionary = {}
 
-var hp:int = 1:
+var hp:int = 0:
 	set(value):
 		hp = value
 		prop["hp"] = value

@@ -1,78 +1,47 @@
 extends ProgressBar
-class_name TweenProgress
+class_name ActionProgress
 
 signal ticking(count)
 signal timeout()
 
-@export_range(0.1,9,0.01)
-var duration:float = 0
+@onready var timer:TimerTick = TimerTick.new(self)
 
-@export_enum(
-	"TRANS_CIRC",
-	"TRANS_ELASTIC",
-	"TRANS_CUBIC"
-	)
-var trans:String = "TRANS_CUBIC"
-
-
-var v_min:float = 0
-var v_max:float = 0
-var tween:Tween
-var percent:float = 0
-
-var timer:TimerEx
+@export
+var interval:float = 0
 
 func _ready():
-	pass
-	
-
-func set_process_ex(enable:bool):
-	timer.set_process(enable)
+	timer.on_tick.connect(_on_timer_tick)
+	timer.on_counting.connect(_on_timer_counting)
+	timer.on_timeout.connect(_on_timer_timeout)
+	_percent(0)
 
 func start():
-	max_value = 100;
-	v_max = timer.interval
+	max_value = interval
+	timer.set_interval(interval)
 	timer.start()
 
-func stop():
+func pause():
 	timer.pause()
 
-func kill():
-	if not timer:
-		return
-	timer.clear()
+func restart():
+	timer.reset()
 
-func set_interval(val:float) -> TweenProgress:
-	timer.interval = val
-	v_min = val
-	return self
+func reduce_value(v):
+	timer.set_time_value(v)
 
-func _on_tick(delta:float):
-	v_min = delta
-	emit_signal("ticking", delta)
-	tween_progress()
+func reduce_scale(v):
+	timer.set_time_scale(v)
 
-func _on_timeout():
-	timer.start()
-	emit_signal("timeout")
+func _on_timer_tick(delta:float):
+	_percent(delta)
 
-func tween_progress():
-	var _min_v = max(v_min,0)
-	var _max_v = max(v_max,1)
-	percent = min((_min_v / _max_v * 100), max_value)
+func _on_timer_counting(index:int):
+	pass
 
-	if tween:
-		tween.kill()
+func _on_timer_timeout():
+	value = 0
 
-	tween = create_tween() \
-		.bind_node(self) \
-		.set_parallel(true) \
-		.set_trans(Tween[trans]) \
-		.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-
-	tween.parallel().tween_property(self, "value", percent ,duration)
-
-
-
-
-
+func _percent(delta):
+	var interval:float = interval
+	var p = delta
+	value = p

@@ -17,6 +17,9 @@ static func add_node_ex(target:Node, node:Node, node_name:String):
 	node.name = node_name
 	target.add_child(node, true)
 	var node_path = NodePath(node_name)
-	var mon_node := target.get_node_or_null(node_path)
+	var _node := target.get_node_or_null(node_path)
 	
-	return mon_node
+	return _node
+
+
+

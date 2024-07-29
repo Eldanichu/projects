@@ -42,7 +42,6 @@ func start():
 	if not delta_zero:
 		timer.wait_time = delta
 	else:
-		#print("start, interval" + str(interval))
 		timer.wait_time = interval
 	paused = false
 	timer.start()
@@ -53,11 +52,18 @@ func pause():
 	paused = true
 
 func set_time_scale(scale:float):
-	if delta <= 0.0:
-		return
 	pause_and_emit()
 	delta = delta * scale
 	timer.wait_time = delta
+	start()
+
+func set_time_value(value:float):
+	pause_and_emit()
+	delta = max(0, delta - value)
+	if is_zero_approx(delta):
+		timer.wait_time = interval
+	else:
+		timer.wait_time = delta
 	start()
 
 func pause_and_emit():
@@ -122,7 +128,7 @@ func reset_count():
 	count = 0
 
 func out_of_times():
-	return count >= times
+	return count >= times and times != 0
 
 func is_infinite():
 	return times <= 0

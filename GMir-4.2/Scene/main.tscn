@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbmywment77vn"]
 
 [ext_resource type="Script" path="res://Scene/main.gd" id="1_ib6f8"]
-[ext_resource type="PackedScene" uid="uid://dt0uyv7ahibyw" path="res://Scene/gui_test.tscn" id="2_xyvk3"]
+[ext_resource type="PackedScene" uid="uid://dt0uyv7ahibyw" path="res://Scene/gui.tscn" id="2_xyvk3"]
 [ext_resource type="PackedScene" uid="uid://d3h2codwrq1wb" path="res://Scene/spawner.tscn" id="3_2ux6s"]
 
 [node name="main" type="Node2D"]
@@ -10,9 +10,124 @@ script = ExtResource("1_ib6f8")
 
 [node name="game_gui" type="CanvasLayer" parent="."]
 
+[node name="game_start" type="Control" parent="game_gui"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="label" type="Label" parent="game_gui/game_start"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.217187
+anchor_top = 0.174187
+anchor_right = 0.833188
+anchor_bottom = 0.307188
+offset_top = 0.112
+offset_right = -0.240051
+offset_bottom = 0.0399933
+text = "GMir"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="start" type="Button" parent="game_gui/game_start"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.492188
+anchor_top = 0.455729
+anchor_right = 0.563813
+anchor_bottom = 0.528646
+offset_right = 0.159973
+offset_bottom = 3.0
+text = "Start"
+metadata/_edit_use_anchors_ = true
+
+[node name="game_menu" type="Control" parent="game_gui"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="label" type="Label" parent="game_gui/game_menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.753125
+anchor_top = 0.473958
+anchor_right = 0.948375
+anchor_bottom = 0.533458
+offset_right = 0.039978
+offset_bottom = 0.151993
+text = "Class Selection"
+metadata/_edit_use_anchors_ = true
+
+[node name="class_menu" type="Control" parent="game_gui/game_menu"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="war" type="Button" parent="game_gui/game_menu/class_menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.638021
+anchor_right = 0.978312
+anchor_bottom = 0.723771
+offset_left = 451.0
+offset_top = 221.479
+offset_right = 509.867
+offset_bottom = 249.049
+text = "Warrior"
+metadata/_edit_use_anchors_ = true
+metadata/war = 0
+
+[node name="wiz" type="Button" parent="game_gui/game_menu/class_menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.744792
+anchor_right = 0.978312
+anchor_bottom = 0.830542
+offset_left = 451.0
+offset_top = 258.208
+offset_right = 503.867
+offset_bottom = 285.778
+text = "Wizard"
+metadata/_edit_use_anchors_ = true
+metadata/wiz = 1
+
+[node name="taos" type="Button" parent="game_gui/game_menu/class_menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.856771
+anchor_right = 0.978312
+anchor_bottom = 0.942521
+offset_left = 451.0
+offset_top = 296.729
+offset_right = 485.867
+offset_bottom = 324.299
+text = "Taos"
+metadata/_edit_use_anchors_ = true
+metadata/taos = 2
+
 [node name="gui" parent="game_gui" instance=ExtResource("2_xyvk3")]
 unique_name_in_owner = true
+visible = false
 
 [node name="spawner" parent="." node_paths=PackedStringArray("gui") instance=ExtResource("3_2ux6s")]
+unique_name_in_owner = true
 process_mode = 1
 gui = NodePath("../game_gui/gui")
+
+[connection signal="pressed" from="game_gui/game_start/start" to="." method="_on_start_pressed"]

@@ -4,27 +4,29 @@ class_name Spawner
 @export
 var gui:GUI
 
+
 @onready var player_mamger = %player_mamger
 @onready var monster_manger = %monster_manger
 
-var player:Dictionary = {
-	"attack" : Callable()
-}
-
-var monster:Dictionary = {
-	
-}
+var player:Dictionary = {}
+var monster:Dictionary = {}
 
 func _ready():
-	spawn_monster()
-	bind_gui_events()
-	
-	
-func bind_gui_events():
-	if not gui:
-		return
-	gui.attack.pressed.connect(player.attack)
+	gui.visibility_changed.connect(game_state_changed)
 
+func game_state_changed():
+	if not gui.visible:
+		return
+	spawn_player()
+	#spawn_monster()
+
+func spawn_player():
+	var _tscn:PackedScene =  ResourceLoader.load("res://Scene/player.tscn")
+	var _scene = _tscn.instantiate() as PlayerNode
+	var _name = "target"
+	var _node = F.add_node_ex(player_mamger, _scene, _name) as PlayerNode
+	
+	player[_name] = _node
 
 func spawn_monster():
 	var mon_tscn:PackedScene =  ResourceLoader.load("res://Scene/monster.tscn")

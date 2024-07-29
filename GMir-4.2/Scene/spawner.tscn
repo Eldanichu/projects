@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3h2codwrq1wb"]
+[gd_scene load_steps=2 format=3 uid="uid://d3h2codwrq1wb"]
 
-[ext_resource type="PackedScene" uid="uid://b88vddl0ix2ae" path="res://Scene/player.tscn" id="1_7jccb"]
 [ext_resource type="Script" path="res://Scene/spawner.gd" id="1_850pj"]
 
 [node name="spawner" type="Node"]
@@ -8,8 +7,6 @@ script = ExtResource("1_850pj")
 
 [node name="player_mamger" type="Node" parent="."]
 unique_name_in_owner = true
-
-[node name="player" parent="player_mamger" instance=ExtResource("1_7jccb")]
 
 [node name="monster_manger" type="Node" parent="."]
 unique_name_in_owner = true
