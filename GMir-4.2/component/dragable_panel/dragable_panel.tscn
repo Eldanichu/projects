@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://ip2r3i1qoyw2"]
+
+[ext_resource type="Script" path="res://component/dragable_panel/dragable_panel.gd" id="1_oscx6"]
+
+[sub_resource type="SystemFont" id="SystemFont_y0qit"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sr6nf"]
+line_spacing = 1.0
+font = SubResource("SystemFont_y0qit")
+font_size = 9
+outline_size = 1
+outline_color = Color(1, 0, 0, 1)
+
+[node name="dragable_panel" type="Control"]
+layout_mode = 3
+offset_right = 63.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oscx6")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="HBoxContainer" parent="panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 13.0
+grow_horizontal = 2
+mouse_filter = 0
+
+[node name="label" type="Label" parent="panel/title"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "title"
+label_settings = SubResource("LabelSettings_sr6nf")
+
+[connection signal="mouse_entered" from="panel/title" to="." method="_on_title_mouse_entered"]
+[connection signal="mouse_exited" from="panel/title" to="." method="_on_title_mouse_exited"]

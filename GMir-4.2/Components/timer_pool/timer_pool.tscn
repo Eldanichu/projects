@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b52uu5aybwlkh"]
-
-[ext_resource type="Script" path="res://Components/timer_pool/timer_pool.gd" id="1_kccwc"]
-
-[node name="TimerPool" type="Node"]
-script = ExtResource("1_kccwc")

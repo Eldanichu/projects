@@ -8,9 +8,6 @@ static func await_tree(cb:Callable,node:Node = null):
 	if (not cb or cb.is_null() or not cb.is_valid()):
 		print_stack()
 		return
-	#if (not node.is_inside_tree()):
-		#print_stack()
-		#return
 	cb.bindv([]).call_deferred()
 
 static func add_node_ex(target:Node, node:Node, node_name:String):
@@ -20,6 +17,3 @@ static func add_node_ex(target:Node, node:Node, node_name:String):
 	var _node := target.get_node_or_null(node_path)
 	
 	return _node
-
-
-

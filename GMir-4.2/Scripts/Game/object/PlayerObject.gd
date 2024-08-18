@@ -3,10 +3,6 @@ class_name PlayerObject
 
 var job:BaseJob
 
-func _init(job_type:BaseJob.JOB):
-	super()
-	create_job(job_type)
-	
 func create_job(job_type:BaseJob.JOB):
 	if job_type == BaseJob.JOB.Wizard:
 		job = WizClass.new()
@@ -22,3 +18,6 @@ func level_up():
 	super()
 	job.get_max_exp()
 	job.calculate()
+
+func restore_hp():
+	properties.hp = properties.hp_max

@@ -2,7 +2,7 @@ extends BaseProperties
 class_name PlayerProperties
 
 ### ----------------------------------------------------------------------------
-
+var job:int = 0
 # range 1-100
 var mf:int:
 	set(value):

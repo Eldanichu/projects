@@ -7,6 +7,13 @@ const MON_INSTANCE_PREFIX = "mon_instance@{0}"
 
 ### ---------------------------------------------------------------------------
 
+const CLASS_TYPE:Dictionary = {
+	"war":0,
+	"wiz":1,
+	"taos":2
+}
+
+
 const DIC_CHAR_PROP = {
 	"hp":{ "label":"HP", "key":"hp" ,"group":"0" },
 	"hp_max":{ "label":"MAX HP", "key":"hpmax" ,"group":"0" },

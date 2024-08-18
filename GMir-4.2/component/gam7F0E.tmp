@@ -1,0 +1,132 @@
+[gd_scene load_steps=9 format=3 uid="uid://bc3lbpi48revl"]
+
+[ext_resource type="Script" path="res://Components/game_ui.gd" id="1_r2ph4"]
+[ext_resource type="PackedScene" uid="uid://005kgkwx52vv" path="res://Components/StatePanel/stats.tscn" id="2_btk5e"]
+[ext_resource type="PackedScene" uid="uid://b4d6muyuqnpre" path="res://Components/char.tscn" id="3_8xrf1"]
+[ext_resource type="PackedScene" uid="uid://ch0ln8t0na7a5" path="res://Components/MapSelection/map_selection.tscn" id="4_2qea4"]
+[ext_resource type="Theme" uid="uid://bx2sev850e6ox" path="res://Themes/font-sm.tres" id="4_byxu3"]
+[ext_resource type="PackedScene" uid="uid://c75akqqigtmh6" path="res://Components/CharStat/char_stat.tscn" id="4_e12ki"]
+[ext_resource type="PackedScene" uid="uid://swqnrbjdta3w" path="res://Components/BattleField/battle.tscn" id="7_ofvwp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l3eed"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+
+[node name="game_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r2ph4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="p_top" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+
+[node name="ScrollContainer" type="BoxContainer" parent="VBoxContainer/p_top"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/p_top/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ui_func_box" type="BoxContainer" parent="VBoxContainer/p_top/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="stats" parent="VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box" instance=ExtResource("2_btk5e")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="char" parent="VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box" instance=ExtResource("3_8xrf1")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="map" parent="VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box" instance=ExtResource("4_2qea4")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="p_bottom" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_l3eed")
+
+[node name="char_stat" parent="VBoxContainer/p_bottom" instance=ExtResource("4_e12ki")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="p_center" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/p_center"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ui_func_buttons" type="FlowContainer" parent="VBoxContainer/p_center/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="bag" type="Button" parent="VBoxContainer/p_center/MarginContainer/ui_func_buttons"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_byxu3")
+text = "Bag"
+
+[node name="stats" type="Button" parent="VBoxContainer/p_center/MarginContainer/ui_func_buttons"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_byxu3")
+text = "Stat"
+
+[node name="char" type="Button" parent="VBoxContainer/p_center/MarginContainer/ui_func_buttons"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_byxu3")
+text = "Char"
+
+[node name="map" type="Button" parent="VBoxContainer/p_center/MarginContainer/ui_func_buttons"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_byxu3")
+text = "Map
+"
+
+[node name="battle_gui" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="battle" parent="battle_gui" instance=ExtResource("7_ofvwp")]
+unique_name_in_owner = true
+
+[connection signal="map_click" from="VBoxContainer/p_top/ScrollContainer/MarginContainer/ui_func_box/map" to="." method="_on_map_click"]

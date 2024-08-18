@@ -14,17 +14,26 @@ func query_mon_by(mon_id):
 func query_map_mon_group(map_id):
 	open()
 	var sql = "select 
-				mg.MAP_ID,mg.MON_ID, 
-				mon.ID,mon.NAME,mon.DNAME
+				mg.MAP_ID,
+				mg.MON_ID, 
+				mon.ID,
+				mon.NAME,
+				mon.DNAME,
+				mon.HP,
+				mon.MP,
+				mon.DEF,
+				mon.ATK,
+				mon.AGI,
+				mon.ELE,
+				mon.ATKSPD,
+				mon.CASTSPD
 				from MonsterGroup mg 
 				left join Monsters mon on mg.MON_ID = mon.ID
 				where mg.MAP_ID = {map_id}".format({
 		"map_id":map_id
 	})
-	log.d(sql)
 	db.query(sql)
 	var rows = db.query_result
-	log.d(rows)
 	close()
 	return rows
 
@@ -34,10 +43,10 @@ func query_mon_drops(mon_id:int):
 				left join MonsterDrops md on md.MONID = m.ID 
 				where m.ID = {mon_id}" \
 				.format({"mon_id":mon_id})
-	log.d(sql)
+
 	db.query(sql)
 	var rows = db.query_result
-	log.d(rows)
+
 	close()
 	return rows
 

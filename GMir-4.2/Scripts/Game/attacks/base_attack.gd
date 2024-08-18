@@ -15,14 +15,6 @@ func melee_attack(target:GameObject):
 	if not target.has_method("update_ui"):
 		return
 	var dmg = calculate_damage(target)
-	var vt:ValueTick = ValueTick.new(target)
-	vt.TKey = "hp"
-	vt.TValue = dmg
-	vt.set_tick_type(vt.TICK_TYPE.NUMBER)
-	vt.set_tick_action(vt.TICK_ACTION.MINUS)
-	vt.set_max_value(target.properties.hp_max)
-	vt.proc()
-	target.update_ui()
 
 
 func calculate_damage(target:GameObject):
@@ -43,16 +35,4 @@ func calculate_damage(target:GameObject):
 	
 	if d<= 0:
 		d = 0
-	print("atk value->",d)
 	return d
-
-
-
-
-
-
-
-
-
-
-
