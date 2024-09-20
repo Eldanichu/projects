@@ -1,71 +1,61 @@
 extends RefCounted
 class_name UNode
 
-var tree_nodes:Dictionary = {}
+var uid = ResourceUID
+var _parent:Node
+var _nodes:Dictionary = {}
 
-var _get_class_parent_nodearent:Node
 func _init(parent:Node) -> void:
-	_get_class_parent_nodearent = parent
+	_parent = parent
 
 func add_node(node_name:String, node_obj:Node, parent:Node = null):
-	var _node_name = _get_new_node_name(node_name, parent)
-	node_obj.name = _node_name
+	node_obj.name = _node_id(node_name)
+	_u_get_parent(parent).add_child(node_obj)
+	return get_node_u(node_name)
 	
-	var _parent_node = _get_class_parent_node(parent)
-	_parent_node.add_child(node_obj)
-	
-	var _node_ref = _parent_node.get_node_or_null(_node_name)
-	tree_nodes[_node_name] = _node_ref
-	return _node_ref
+func get_node_u(node_name:String, parent:Node = null):
+	var _p_node = _u_get_parent(parent)
+	var _node_ref
+	if node_name in _nodes:
+		_node_ref = _nodes[node_name]
+	else:
+		return null
+	var _node_obj = _p_node.get_node_or_null(_node_ref)
+	return _node_obj
 
-func get_node_ex(node_name:String):
-	if node_name in tree_nodes:
-		return tree_nodes[node_name]
-	return null
-
-func get_nodes() -> Array:
-	return tree_nodes.values()
-
-func remove_node(node_name:String,parent:Node = null):
-	var _node = get_node_ex(node_name)
-	_get_class_parent_node(parent).remove_child(_node)
-	tree_nodes.erase(node_name)
-
-func pop_front():
-	var nodes = get_nodes()
-	if not len(nodes):
+func remove_node(node_name:String, parent:Node = null):
+	var _node_obj = get_node_u(node_name,parent)
+	var _p_node = _u_get_parent(parent)
+	if not _node_obj:
 		return
-	var first = nodes[0]
-	remove_node(first.name)
+	_p_node.remove_child(_node_obj)
 
-func check_if_duped_node_name(node_name:String, parent:Node = null) -> bool:
-	var children:Array = _get_class_parent_node(parent).get_children(true)
-	var is_dupe = false
-	for node in children:
-		if node.name == node_name:
-			is_dupe = true
-	return is_dupe
+func get_nodes(parent:Node):
+	var node_data:Array = []
+	for _node_name in _nodes:
+		var _n = get_node_u(_node_name)
+		node_data.append(_n)
+	return node_data
 
+func each_node(cb:Callable, parent:Node = null):
+	var nodes = get_nodes(parent)
+	var nodes_len = len(nodes)
+	for i in range(nodes_len - 1,-1,-1):
+		var node = nodes[i]
+		var nid = uid.get_id_path(StringName(node.name).to_int())
+		var nname = _nodes[str(nid)]
+		cb.bindv([nid,node]).call()
 
-func _get_class_parent_node(parent:Node) -> Node:
-	var p = parent
-	if p == null:
-		p = _get_class_parent_nodearent
-	return p
+func _node_id(node_name:String) -> String:
+	var id = uid.create_id()
+	uid.add_id(id, node_name)
+	var path = uid.get_id_path(id)
+	print("node added to uid:->", id, "| uid->name = ",uid.get_id_path(id))
+	var id_str = str(id)
+	_nodes[path] = id_str
+	return id_str
 
-func _empty_string(str:String) -> bool:
-	return str == "" or str == null
-
-func _get_hash_name(node_name:String) -> String:
-	return "{0}_{1}".format([node_name, hash(node_name)])
-
-func _get_new_node_name(node_name:String, parent:Node) -> String:
-	var _node_name = node_name
-	if _empty_string(_node_name):
-		_node_name = ""
-	var _parent_node = _get_class_parent_node(parent)
-	if check_if_duped_node_name(_node_name, _parent_node):
-		_node_name = node_name
-	
-	return _node_name
-	
+func _u_get_parent(parent:Node):
+	if not _parent:
+		return parent
+	return _parent
