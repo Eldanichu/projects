@@ -5,11 +5,16 @@ var uid = ResourceUID
 var _parent:Node
 var _nodes:Dictionary = {}
 
+func p(n:Node):
+	_parent = n
+
 func _init(parent:Node) -> void:
 	_parent = parent
 
 func add_node(node_name:String, node_obj:Node, parent:Node = null):
-	node_obj.name = _node_id(node_name)
+	var node_id = _node_id(node_name)
+	print("added node id->  ",node_id)
+	node_obj.name = node_id
 	_u_get_parent(parent).add_child(node_obj)
 	return get_node_u(node_name)
 	
@@ -19,7 +24,7 @@ func get_node_u(node_name:String, parent:Node = null):
 	if node_name in _nodes:
 		_node_ref = _nodes[node_name]
 	else:
-		return null
+		_node_ref = node_name
 	var _node_obj = _p_node.get_node_or_null(_node_ref)
 	return _node_obj
 
@@ -29,6 +34,7 @@ func remove_node(node_name:String, parent:Node = null):
 	if not _node_obj:
 		return
 	_p_node.remove_child(_node_obj)
+	_node_obj.queue_free()
 
 func get_nodes(parent:Node):
 	var node_data:Array = []
@@ -56,6 +62,6 @@ func _node_id(node_name:String) -> String:
 	return id_str
 
 func _u_get_parent(parent:Node):
-	if not _parent:
+	if parent != null:
 		return parent
 	return _parent

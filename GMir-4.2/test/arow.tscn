@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6343xb4y3v4p"]
+
+[ext_resource type="Script" path="res://test/arow.gd" id="1_4mfwc"]
+
+[node name="arow" type="BoxContainer"]
+script = ExtResource("1_4mfwc")
+
+[node name="c_text" type="TextEdit" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+scroll_fit_content_height = true
+
+[node name="delete" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "-"
+
+[connection signal="button_up" from="delete" to="." method="_on_delete_button_up"]

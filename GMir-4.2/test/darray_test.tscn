@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkojukyv7wpuf"]
+
+[ext_resource type="Script" path="res://test/darray_test.gd" id="1_xdxjv"]
+
+[node name="darray_test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xdxjv")
+
+[node name="h_box_container" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 252.0
+offset_bottom = 31.0
+
+[node name="add_row" type="Button" parent="h_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+"
+
+[node name="scroll_container" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 36.0
+offset_right = 252.0
+offset_bottom = 373.0
+
+[node name="lines" type="BoxContainer" parent="scroll_container"]
+unique_name_in_owner = true
+layout_mode = 2
+vertical = true
+
+[connection signal="button_up" from="h_box_container/add_row" to="." method="_on_add_row_button_up"]
