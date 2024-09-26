@@ -1,5 +1,5 @@
 extends BoxContainer
-class_name ARow
+class_name LineRow
 
 signal on_click(this)
 signal on_input(this,input_str)
@@ -34,5 +34,3 @@ func emit_input():
 		on_input.emit(self,0)
 	else:
 		on_input.emit(self,_text)
-	
-	

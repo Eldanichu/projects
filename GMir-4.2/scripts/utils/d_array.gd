@@ -1,19 +1,21 @@
 extends RefCounted
 class_name DArray
-	
+
 var _dict:Dictionary = {}
 var _dict_len:int = 0
 
-var _first_id:int = -1
-var _prev_id:int = -1
+var _first_id = -1
+var _prev_id = -1
 
 var _rid = ResourceUID
 
 func _init() -> void:
 	_update()
 
-func push(object):
-	var _id = _rid.create_id()
+func push(object,id = null):
+	var _id = id
+	if id == null:
+		_id = _rid.create_id()
 	_dict[_id] = object
 	_update()
 	_set_prev(_id)
@@ -45,7 +47,9 @@ func set_v_key(key:String,value):
 	_dict[key] = value
 
 func remove_key(key:String):
+	print(_dict[key])
 	_dict.erase(key)
+	print(_dict)
 	_update()
 
 func remove_index(idx:int):
