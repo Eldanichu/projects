@@ -13,9 +13,10 @@ func _init(parent:Node) -> void:
 
 func add_node(node_name:String, node_obj:Node, parent:Node = null):
 	var node_id = _node_id(node_name)
-	print("added node id->  ",node_id)
 	node_obj.name = node_id
 	_u_get_parent(parent).add_child(node_obj)
+	if node_name == "" or node_name == null:
+		return get_node_u(node_id)
 	return get_node_u(node_name)
 	
 func get_node_u(node_name:String, parent:Node = null):
@@ -33,6 +34,8 @@ func remove_node(node_name:String, parent:Node = null):
 	var _p_node = _u_get_parent(parent)
 	if not _node_obj:
 		return
+	if node_name in _nodes:
+		_nodes.erase(node_name)
 	_p_node.remove_child(_node_obj)
 	_node_obj.queue_free()
 
@@ -54,11 +57,9 @@ func each_node(cb:Callable, parent:Node = null):
 
 func _node_id(node_name:String) -> String:
 	var id = uid.create_id()
-	uid.add_id(id, node_name)
-	var path = uid.get_id_path(id)
-	print("node added to uid:->", id, "| uid->name = ",uid.get_id_path(id))
+	#print("node added to uid:->", id, "| uid->name = ",uid.get_id_path(id))
 	var id_str = str(id)
-	_nodes[path] = id_str
+	_nodes[id_str] = id_str
 	return id_str
 
 func _u_get_parent(parent:Node):
