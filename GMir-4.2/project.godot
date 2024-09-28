@@ -23,10 +23,6 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/minimum_display_time=1500
 
-[autoload]
-
-G="*res://autoload/globals.gd"
-
 [debug]
 
 settings/stdout/verbose_stdout=true

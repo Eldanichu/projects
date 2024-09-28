@@ -1,5 +1,5 @@
 extends Node2D
-class_name MainScene
+class_name Main
 
 @onready var _tree = UNode.new(self)
 
