@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq6qxm7wgrevk"]
+[gd_scene load_steps=2 format=3 uid="uid://bq6qxm7wgrevk"]
 
 [ext_resource type="Script" path="res://test/u_test.gd" id="1_hqxxd"]
-[ext_resource type="PackedScene" uid="uid://dkojukyv7wpuf" path="res://test/darray_test.tscn" id="2_1obt6"]
-
 
 [node name="uTest" type="Control"]
 layout_mode = 3
@@ -13,5 +11,39 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hqxxd")
 
-[node name="darray_test" parent="." instance=ExtResource("2_1obt6")]
-layout_mode = 1
+[node name="plus" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "+"
+
+[node name="plus" type="Button" parent="plus"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "+"
+
+[node name="plus" type="Button" parent="plus/plus"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "+"
+
+[node name="label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 3.0
+offset_right = 102.0
+offset_bottom = 26.0
+text = "d"
+
+[node name="minus" type="Button" parent="."]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 1.0
+offset_right = 135.0
+offset_bottom = 32.0
+text = "-"
+
+[connection signal="button_up" from="plus" to="." method="_on_plus_button_up"]
+[connection signal="button_up" from="plus/plus" to="." method="_on_plus_button_up"]
+[connection signal="button_up" from="plus/plus/plus" to="." method="_on_plus_button_up"]
+[connection signal="button_up" from="minus" to="." method="_on_minus_button_up"]
