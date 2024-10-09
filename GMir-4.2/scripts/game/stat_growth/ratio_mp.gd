@@ -8,6 +8,5 @@ func _init(level:int) -> void:
 	v0_rate = 22
 	
 
-
 func value() -> int:
 	return round(v0_const + (int(_level / v0_base + v0_acc) * v0_rate * _level))

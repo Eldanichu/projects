@@ -17,23 +17,13 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "+"
 
-[node name="plus" type="Button" parent="plus"]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "+"
-
-[node name="plus" type="Button" parent="plus/plus"]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "+"
-
-[node name="label" type="Label" parent="."]
+[node name="lvl" type="Label" parent="."]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 3.0
-offset_right = 102.0
-offset_bottom = 26.0
-text = "d"
+offset_left = 56.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 27.0
+text = "1"
 
 [node name="minus" type="Button" parent="."]
 layout_mode = 0
@@ -43,7 +33,37 @@ offset_right = 135.0
 offset_bottom = 32.0
 text = "-"
 
+[node name="h_box_container" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 37.0
+offset_right = 134.0
+offset_bottom = 77.0
+
+[node name="dc" type="Label" parent="h_box_container"]
+layout_mode = 2
+text = "dc"
+
+[node name="vdc" type="Label" parent="h_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="h_box_container2" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 69.0
+offset_right = 136.0
+offset_bottom = 109.0
+
+[node name="dc2" type="Label" parent="h_box_container2"]
+layout_mode = 2
+text = "dc_max"
+
+[node name="vdc2" type="Label" parent="h_box_container2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
 [connection signal="button_up" from="plus" to="." method="_on_plus_button_up"]
-[connection signal="button_up" from="plus/plus" to="." method="_on_plus_button_up"]
-[connection signal="button_up" from="plus/plus/plus" to="." method="_on_plus_button_up"]
 [connection signal="button_up" from="minus" to="." method="_on_minus_button_up"]

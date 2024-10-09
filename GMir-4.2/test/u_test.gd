@@ -3,21 +3,26 @@ extends Control
 var rnd = RandomEx.get_instance()
 
 
-@onready var label: Label = $label
+@onready var lvl: Label = $lvl
+@onready var vdc: Label = %vdc
+@onready var vdc_2: Label = %vdc2
 
-var f1:float = 0
-var f2:float = 0.25
-var r:int = 0
+var ilvl:int = 1
 func _ready():
-
+	calc()
 	pass
 
-
 func _on_minus_button_up() -> void:
-	f1 = f1 + f2
-	r = int(f1)
-	label.text = str(r)
-
+	ilvl = ilvl - 1
+	lvl.text = str(ilvl)
+	calc()
 
 func _on_plus_button_up() -> void:
-	pass # Replace with function body.
+	ilvl = ilvl + 1
+	lvl.text = str(ilvl)
+	calc()
+
+func calc():
+	var dc = DCConst.new(ilvl)
+	vdc_2.text = str(dc.value_max())
+	vdc.text = str(dc.value())
