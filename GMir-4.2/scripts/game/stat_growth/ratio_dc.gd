@@ -15,7 +15,7 @@ func _init(level:int) -> void:
 	
 
 func value() -> int:
-	return int(v0_const+((_level/(v0_base + v0_acc))) * pow(v0_const, 1 - v0_rate))
+	return int(v0_const+((_level/(v0_base + v0_rate)  * v0_acc )) * pow(v0_const, 1 - v0_rate))
 
 func value_max() -> int:
 	var res = v1_const+((_level/(v1_base + v1_rate) * v1_acc)) * pow(v1_base, 1 - v1_rate)
