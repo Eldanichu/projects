@@ -115,7 +115,3 @@ var mod:int:
 
 func _init():
 	pass
-
-
-
-

@@ -50,8 +50,3 @@ func value_changed(new_value):
 	if not _callback:
 		return
 	_callback.bind(_to).call()
-
-
-
-
-
