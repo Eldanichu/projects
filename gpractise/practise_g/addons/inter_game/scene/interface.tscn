@@ -1,0 +1,193 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxpjm1g6lj1sa"]
+
+[ext_resource type="Script" path="res://addons/inter_game/scene/interface.gd" id="1_34vc7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hm6r"]
+bg_color = Color(0, 0, 0, 0.529412)
+
+[sub_resource type="SystemFont" id="SystemFont_b3swa"]
+font_weight = 600
+hinting = 2
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_2lfcw"]
+default_font = SubResource("SystemFont_b3swa")
+default_font_size = 14
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_8hm6r")
+
+[node name="Interface" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_2lfcw")
+script = ExtResource("1_34vc7")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.039
+offset_bottom = -0.0799999
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 12
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+layout_mode = 2
+anchor_top = 0.037
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.360001
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 4
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/ScrollContainer/MarginContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="Button" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button2" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button3" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button4" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button5" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button6" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button7" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button8" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button9" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button10" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button11" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button12" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button13" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button14" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button15" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button16" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button17" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button18" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button19" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button20" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button21" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button22" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button23" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button24" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button25" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button26" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button27" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button28" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button29" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button30" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button31" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi"
+
+[node name="Button32" type="Button" parent="Control/ScrollContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "hi ended"
