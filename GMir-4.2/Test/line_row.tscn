@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://test/line_row.gd" id="1_4mfwc"]
 
-
 [node name="arow" type="BoxContainer"]
 script = ExtResource("1_4mfwc")
 

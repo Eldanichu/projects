@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://8i05dd6p61y3"]
+
+[ext_resource type="Script" path="res://component/text_line/text_line.gd" id="1_p3pob"]
+
+[node name="ubox" type="BoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+offset_right = 150.0
+offset_bottom = 23.0
+script = ExtResource("1_p3pob")
+label_position = 0
+
+[node name="label_margin" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_right = 2
+
+[node name="ulabel" type="Label" parent="label_margin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "lbl"
+
+[node name="uvalue" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "val"
