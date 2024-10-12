@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxpjm1g6lj1sa"]
+
+[ext_resource type="Script" path="res://inter_game/scene/interface.gd" id="1_34vc7"]
+[ext_resource type="PackedScene" uid="uid://b1kljaqr6r08d" path="res://components/number_operator/num_oper.tscn" id="2_km7rx"]
+[ext_resource type="PackedScene" uid="uid://8i05dd6p61y3" path="res://components/text_line/text_line.tscn" id="3_kf7gn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hm6r"]
+bg_color = Color(0, 0, 0, 0.529412)
+
+[sub_resource type="SystemFont" id="SystemFont_b3swa"]
+font_weight = 600
+hinting = 2
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_2lfcw"]
+default_font = SubResource("SystemFont_b3swa")
+default_font_size = 14
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_8hm6r")
+
+[node name="Interface" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_2lfcw")
+script = ExtResource("1_34vc7")
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 2
+
+[node name="top_info" type="PanelContainer" parent="ui"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.0820556
+offset_bottom = -0.0799999
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/top_info"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ui/top_info/MarginContainer"]
+layout_mode = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="ui/top_info/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="game_info" type="ScrollContainer" parent="ui"]
+layout_mode = 2
+anchor_top = 0.0925556
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.360001
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/game_info"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 4
+
+[node name="BoxContainer" type="BoxContainer" parent="ui/game_info/MarginContainer"]
+layout_mode = 2
+
+[node name="L" type="PanelContainer" parent="ui/game_info/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="M" type="PanelContainer" parent="ui/game_info/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.75
+
+[node name="R" type="PanelContainer" parent="ui/game_info/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FlowContainer" type="FlowContainer" parent="ui/game_info/MarginContainer/BoxContainer/R"]
+layout_mode = 2
+
+[node name="lv_oper" parent="ui/game_info/MarginContainer/BoxContainer/R/FlowContainer" instance=ExtResource("2_km7rx")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="lb_hp" parent="ui/game_info/MarginContainer/BoxContainer/R/FlowContainer" instance=ExtResource("3_kf7gn")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "hp"
+value = "0"
+
+[node name="lb_mp" parent="ui/game_info/MarginContainer/BoxContainer/R/FlowContainer" instance=ExtResource("3_kf7gn")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "mp"
+value = "0"

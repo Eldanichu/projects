@@ -1,5 +1,5 @@
-@tool
 extends Control
+class_name CustomLabel
 
 enum LABEL_ALIGN {
 	LEFT = 1,
@@ -44,17 +44,21 @@ var label_position:LABEL_POSITION = LABEL_POSITION.CENTER:
 var label:String = "lbl":
 	set(v):
 		label = v
-		_set_t(ulabel,v)
+		_set_t(ulabel,label)
 @export
-var value:String = "val":
+var value = "val":
 	set(v):
 		value = v
-		_set_t(uvalue,v)
+		_set_t(uvalue,value)
 
 
 func _ready() -> void:
 	print("[text_line] ready")
+	setup()
 	_label_align_update()
+func setup():
+	_set_t(ulabel,label)
+	_set_t(uvalue,value)
 
 func _label_align_update():
 	label_margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL

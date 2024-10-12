@@ -19,7 +19,7 @@ func level_up():
 
 func set_exp(amount: int, clear: bool = true):
 	var remain: int = amount - properties.expv
-	var _max        = properties.expv_max
+	var _max = properties.expv_max
 	if amount < _max:
 		properties.expv = properties.expv + amount
 	elif remain >= _max:

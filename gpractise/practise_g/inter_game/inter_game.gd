@@ -32,6 +32,7 @@ func _create():
 	_this.add_child(main_scene)
 	main_scene.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	main_scene.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_make_visible(false)
 	
 	
 func _make_visible(visible:bool):
