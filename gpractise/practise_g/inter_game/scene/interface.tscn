@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxpjm1g6lj1sa"]
+[gd_scene load_steps=8 format=3 uid="uid://cxpjm1g6lj1sa"]
 
 [ext_resource type="Script" path="res://inter_game/scene/interface.gd" id="1_34vc7"]
 [ext_resource type="PackedScene" uid="uid://b1kljaqr6r08d" path="res://components/number_operator/num_oper.tscn" id="2_km7rx"]
@@ -16,6 +16,13 @@ subpixel_positioning = 0
 default_font = SubResource("SystemFont_b3swa")
 default_font_size = 14
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_8hm6r")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h37qx"]
+bg_color = Color(0.19, 0.19, 0.19, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 
 [node name="Interface" type="PanelContainer"]
 anchors_preset = 15
@@ -90,22 +97,66 @@ size_flags_stretch_ratio = 1.75
 [node name="R" type="PanelContainer" parent="ui/game_info/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_h37qx")
 
-[node name="FlowContainer" type="FlowContainer" parent="ui/game_info/MarginContainer/BoxContainer/R"]
+[node name="grid" type="GridContainer" parent="ui/game_info/MarginContainer/BoxContainer/R"]
+layout_mode = 2
+columns = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="ui/game_info/MarginContainer/BoxContainer/R/grid"]
 layout_mode = 2
 
-[node name="lv_oper" parent="ui/game_info/MarginContainer/BoxContainer/R/FlowContainer" instance=ExtResource("2_km7rx")]
+[node name="lv_oper" parent="ui/game_info/MarginContainer/BoxContainer/R/grid/BoxContainer" instance=ExtResource("2_km7rx")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 1
 
-[node name="lb_hp" parent="ui/game_info/MarginContainer/BoxContainer/R/FlowContainer" instance=ExtResource("3_kf7gn")]
+[node name="stat_box" type="BoxContainer" parent="ui/game_info/MarginContainer/BoxContainer/R/grid"]
 unique_name_in_owner = true
+layout_mode = 2
+vertical = true
+
+[node name="lb_lv" parent="ui/game_info/MarginContainer/BoxContainer/R/grid/stat_box" instance=ExtResource("3_kf7gn")]
+layout_mode = 2
+label = "lv"
+value = "0"
+
+[node name="lb_ep1" parent="ui/game_info/MarginContainer/BoxContainer/R/grid/stat_box" instance=ExtResource("3_kf7gn")]
+layout_mode = 2
+label = "exp"
+value = "0"
+
+[node name="lb_hp1" parent="ui/game_info/MarginContainer/BoxContainer/R/grid/stat_box" instance=ExtResource("3_kf7gn")]
 layout_mode = 2
 label = "hp"
 value = "0"
 
-[node name="lb_mp" parent="ui/game_info/MarginContainer/BoxContainer/R/FlowContainer" instance=ExtResource("3_kf7gn")]
-unique_name_in_owner = true
+[node name="lb_mp1" parent="ui/game_info/MarginContainer/BoxContainer/R/grid/stat_box" instance=ExtResource("3_kf7gn")]
 layout_mode = 2
 label = "mp"
+value = "0"
+
+[node name="lb_def" parent="ui/game_info/MarginContainer/BoxContainer/R/grid/stat_box" instance=ExtResource("3_kf7gn")]
+layout_mode = 2
+label = "def"
+value = "0"
+
+[node name="lb_str" parent="ui/game_info/MarginContainer/BoxContainer/R/grid/stat_box" instance=ExtResource("3_kf7gn")]
+layout_mode = 2
+label = "str"
+value = "0"
+
+[node name="lb_dex" parent="ui/game_info/MarginContainer/BoxContainer/R/grid/stat_box" instance=ExtResource("3_kf7gn")]
+layout_mode = 2
+label = "dex"
+value = "0"
+
+[node name="lb_intl" parent="ui/game_info/MarginContainer/BoxContainer/R/grid/stat_box" instance=ExtResource("3_kf7gn")]
+layout_mode = 2
+label = "int"
+value = "0"
+
+[node name="lb_atk_sp" parent="ui/game_info/MarginContainer/BoxContainer/R/grid/stat_box" instance=ExtResource("3_kf7gn")]
+layout_mode = 2
+label = "attack speed"
 value = "0"

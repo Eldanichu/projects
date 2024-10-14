@@ -20,6 +20,7 @@ func create_class(class_type:CLASS_TYPE):
 		CLASS_TYPE.WAR:
 			class_ = WarClass.new()
 			class_.prop = prop
+			return class_ as WarClass
 			
 
 func set_exp(amount: int, clear: bool = true):
