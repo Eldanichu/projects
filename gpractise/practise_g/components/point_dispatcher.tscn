@@ -9,6 +9,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l3jlr")
+points = 4
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
@@ -20,7 +21,7 @@ vertical = true
 [node name="title" type="BoxContainer" parent="ScrollContainer/BoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/BoxContainer/title"]
+[node name="lbl_points2" type="Label" parent="ScrollContainer/BoxContainer/title"]
 layout_mode = 2
 text = "points"
 

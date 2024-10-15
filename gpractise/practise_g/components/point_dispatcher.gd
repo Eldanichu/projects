@@ -3,7 +3,9 @@ extends MarginContainer
 @onready var body: BoxContainer = %body
 @onready var lbl_points: Label = $ScrollContainer/BoxContainer/title/lbl_points
 
-var points:int = 15
+@export_range(4,999)
+var points:int = 5
+
 var remains:int:
 	set(v):
 		remains = v
@@ -15,11 +17,12 @@ var total_added:int = 0
 var _inc_btns:Array = []
 var _dec_btns:Array = []
 
+
 func _ready() -> void:
 	get_dec_buttons()
 	get_inc_buttons()
 	remains = points
-	each_point.resize(remains - 1)
+	each_point.resize(remains)
 	each_point.fill(0)
 	check_button_status()
 
