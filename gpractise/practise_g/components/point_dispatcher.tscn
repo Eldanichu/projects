@@ -1,0 +1,110 @@
+[gd_scene load_steps=2 format=3 uid="uid://b75ri84ttn6q4"]
+
+[ext_resource type="Script" path="res://components/point_dispatcher.gd" id="1_l3jlr"]
+
+[node name="PointDispatcher" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l3jlr")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="title" type="BoxContainer" parent="ScrollContainer/BoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/BoxContainer/title"]
+layout_mode = 2
+text = "points"
+
+[node name="lbl_points" type="Label" parent="ScrollContainer/BoxContainer/title"]
+layout_mode = 2
+text = "0"
+
+[node name="body" type="BoxContainer" parent="ScrollContainer/BoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+vertical = true
+
+[node name="a1" type="BoxContainer" parent="ScrollContainer/BoxContainer/body"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ScrollContainer/BoxContainer/body/a1"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "-"
+
+[node name="Label" type="Label" parent="ScrollContainer/BoxContainer/body/a1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+text = "0"
+
+[node name="Button2" type="Button" parent="ScrollContainer/BoxContainer/body/a1"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "+"
+
+[node name="a2" type="BoxContainer" parent="ScrollContainer/BoxContainer/body"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ScrollContainer/BoxContainer/body/a2"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "-"
+
+[node name="Label" type="Label" parent="ScrollContainer/BoxContainer/body/a2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+text = "0"
+
+[node name="Button2" type="Button" parent="ScrollContainer/BoxContainer/body/a2"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "+"
+
+[node name="a3" type="BoxContainer" parent="ScrollContainer/BoxContainer/body"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ScrollContainer/BoxContainer/body/a3"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "-"
+
+[node name="Label" type="Label" parent="ScrollContainer/BoxContainer/body/a3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+text = "0"
+
+[node name="Button2" type="Button" parent="ScrollContainer/BoxContainer/body/a3"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "+"
+
+[node name="a4" type="BoxContainer" parent="ScrollContainer/BoxContainer/body"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ScrollContainer/BoxContainer/body/a4"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "-"
+
+[node name="Label" type="Label" parent="ScrollContainer/BoxContainer/body/a4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+text = "0"
+
+[node name="Button2" type="Button" parent="ScrollContainer/BoxContainer/body/a4"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "+"
