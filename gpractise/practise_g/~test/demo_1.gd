@@ -5,9 +5,9 @@ class_name DemoScene
 var rnd := RandomEx.get_instance()
 
 func _ready() -> void:
-	var lbl:Label
+	var lbl:Button
 	for i in range(0,10):
-		lbl = Label.new()
+		lbl = Button.new()
 		lbl.text = str("lb_text_{0}".format([i]))
 		lbl.add_to_group("lb_texts")
 		grid.add_child(lbl)
@@ -23,3 +23,5 @@ func _ready() -> void:
 	var max_col = min(grid_i, columns);
 	var max_row = ceil(grid_i / columns);
 	print("max ->"+"({0},{1})".format([max_col,max_row]) )
+	pass
+	

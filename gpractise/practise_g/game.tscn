@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cxpjm1g6lj1sa" path="res://inter_game/scene/interface.tscn" id="2_x25ns"]
 
 [node name="game" type="Node"]
-process_mode = 1
 script = ExtResource("1_5vijd")
 
 [node name="Interface" parent="." instance=ExtResource("2_x25ns")]

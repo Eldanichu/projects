@@ -13,9 +13,9 @@ class Rnd:
 		var value = r.randi_range(vmin,vmax)
 		return value
 	
-	func randomi(range:int = 1) -> int:
+	func randomi(rng:int = 1) -> int:
 		r.randomize()
-		var rn = floor(ceil(r.randi())) % (range + 1)
+		var rn = floor(ceil(r.randi())) % (rng + 1)
 		return rn
 
 	func randomf(rangeP:float = 1.0) -> float:
@@ -37,7 +37,7 @@ class Rnd:
 		print("{RandomEx} - [chance] value-> {0}".format([hit]))
 		return hit == 0
 	
-	func uid(len:int = 8, number:bool = false) -> String:
+	func uid(l:int = 8, number:bool = false) -> String:
 		var str = ""
 		var _A = "QWERTYUIOPASDFGHJKLZXCVBNM"
 		var _a = "qwertyuiopasdfghjklzxcvbnm"
@@ -49,7 +49,7 @@ class Rnd:
 		var seeds_len = len(seeds)
 		var _res_str = []
 		var char
-		var _l = min(len, seeds_len - 1)
+		var _l = min(l, seeds_len - 1)
 		for i in range(_l , 0 , -1):
 			var r_index = randomi(seeds_len - 1)
 			char = seeds[r_index]

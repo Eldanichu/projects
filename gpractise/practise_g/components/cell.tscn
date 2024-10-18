@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl5wjsxcgk5lw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32kne"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="cell" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="outline" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_32kne")
+
+[node name="cell_img" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2

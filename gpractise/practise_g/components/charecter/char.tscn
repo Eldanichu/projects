@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://di5rox4w7ys4t"]
+
+[ext_resource type="PackedScene" uid="uid://dl5wjsxcgk5lw" path="res://components/cell.tscn" id="1_seaxu"]
+
+[node name="Char" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+
+[node name="gear" type="BoxContainer" parent="BoxContainer"]
+custom_minimum_size = Vector2(320, 480)
+layout_mode = 2
+
+[node name="bag" type="BoxContainer" parent="BoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BoxContainer/bag"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="BoxContainer/bag/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 8
+
+[node name="cell" parent="BoxContainer/bag/ScrollContainer/GridContainer" instance=ExtResource("1_seaxu")]
+layout_mode = 2
+
+[node name="cell2" parent="BoxContainer/bag/ScrollContainer/GridContainer" instance=ExtResource("1_seaxu")]
+layout_mode = 2
+
+[node name="cell3" parent="BoxContainer/bag/ScrollContainer/GridContainer" instance=ExtResource("1_seaxu")]
+layout_mode = 2
+
+[node name="cell4" parent="BoxContainer/bag/ScrollContainer/GridContainer" instance=ExtResource("1_seaxu")]
+layout_mode = 2
+
+[node name="cell5" parent="BoxContainer/bag/ScrollContainer/GridContainer" instance=ExtResource("1_seaxu")]
+layout_mode = 2
+
+[node name="cell6" parent="BoxContainer/bag/ScrollContainer/GridContainer" instance=ExtResource("1_seaxu")]
+layout_mode = 2
+
+[node name="cell7" parent="BoxContainer/bag/ScrollContainer/GridContainer" instance=ExtResource("1_seaxu")]
+layout_mode = 2
+
+[node name="cell8" parent="BoxContainer/bag/ScrollContainer/GridContainer" instance=ExtResource("1_seaxu")]
+layout_mode = 2
+
+[node name="cell9" parent="BoxContainer/bag/ScrollContainer/GridContainer" instance=ExtResource("1_seaxu")]
+layout_mode = 2
+
+[node name="cell10" parent="BoxContainer/bag/ScrollContainer/GridContainer" instance=ExtResource("1_seaxu")]
+layout_mode = 2
