@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://mia8e5quq8y2"]
+
+[node name="battle_field" type="BoxContainer"]
+anchors_preset = -1
+anchor_right = 0.529688
+anchor_bottom = 0.670833
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+metadata/_edit_use_anchors_ = true

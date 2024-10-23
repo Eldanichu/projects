@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjc1wadyxptt2"]
+
+[ext_resource type="Script" path="res://components/bag.gd" id="1_53h3o"]
+[ext_resource type="PackedScene" uid="uid://dpurvwkt552bd" path="res://components/table.tscn" id="2_b37ge"]
+
+[node name="bag" type="BoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+offset_right = 320.0
+offset_bottom = 282.0
+size_flags_horizontal = 3
+script = ExtResource("1_53h3o")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="table" parent="ScrollContainer" instance=ExtResource("2_b37ge")]
+layout_mode = 2

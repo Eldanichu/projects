@@ -18,10 +18,10 @@ func _on_tc_10_button_up() -> void:
 
 
 func _on_tc_50_button_up() -> void:
-	var res = _tc_test(50)	
+	var res = _tc_test(50)
 	P.new("test-50",P.array_ln(res))
 
 
 func _on_tc_100_button_up() -> void:
-	var res = _tc_test(100)	
+	var res = _tc_test(100)
 	P.new("test-100",P.array_ln(res))

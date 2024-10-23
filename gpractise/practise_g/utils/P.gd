@@ -32,6 +32,6 @@ static func array_ln(val):
 			if i < val.size() - 1:
 				s = (s + str(ln)) + "\n"
 			else:
-				s = (s + str(ln)) 
+				s = (s + str(ln))
 			i = i + 1
 	return s

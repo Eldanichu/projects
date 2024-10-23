@@ -21,7 +21,7 @@ func create_class(class_type:CLASS_TYPE):
 			class_ = WarClass.new()
 			class_.prop = prop
 			return class_ as WarClass
-			
+
 
 func set_exp(amount: int, clear: bool = true):
 	var remain: int = amount - prop[KEY_EXP]

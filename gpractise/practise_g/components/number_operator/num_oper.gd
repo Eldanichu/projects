@@ -37,7 +37,7 @@ func _ready() -> void:
 func _notify():
 	_make_disable(disabled)
 	disabled_which()
-	
+
 
 func _on_dec_button_up() -> void:
 	_value = _value - 1

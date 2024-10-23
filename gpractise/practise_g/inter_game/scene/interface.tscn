@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxpjm1g6lj1sa"]
+[gd_scene load_steps=9 format=3 uid="uid://cxpjm1g6lj1sa"]
 
 [ext_resource type="Script" path="res://inter_game/scene/interface.gd" id="1_34vc7"]
+[ext_resource type="PackedScene" uid="uid://mia8e5quq8y2" path="res://components/battle_field.tscn" id="2_0w0dj"]
 [ext_resource type="PackedScene" uid="uid://b1kljaqr6r08d" path="res://components/number_operator/num_oper.tscn" id="2_km7rx"]
 [ext_resource type="PackedScene" uid="uid://8i05dd6p61y3" path="res://components/text_line/text_line.tscn" id="3_kf7gn"]
 
@@ -94,6 +95,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.75
 
+[node name="battle_field" parent="ui/game_info/MarginContainer/BoxContainer/M" instance=ExtResource("2_0w0dj")]
+layout_mode = 2
+
 [node name="R" type="PanelContainer" parent="ui/game_info/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -101,7 +105,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_h37qx")
 
 [node name="grid" type="GridContainer" parent="ui/game_info/MarginContainer/BoxContainer/R"]
 layout_mode = 2
-columns = 2
 
 [node name="BoxContainer" type="BoxContainer" parent="ui/game_info/MarginContainer/BoxContainer/R/grid"]
 layout_mode = 2

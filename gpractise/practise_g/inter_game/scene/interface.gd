@@ -13,14 +13,15 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func _on_lv_change(v):
+func _on_lv_change(v,n):
 	var actor_class = actor.create_class(Actor.CLASS_TYPE.WAR) as WarClass
 	var prop = actor.prop
 	prop.lv = v
 	actor_class.calc()
+	print(prop)
 	update_stats_from_prop()
 
-func update_stats_from_prop(): 
+func update_stats_from_prop():
 	var n_stats = stat_box.get_children()
 	for n in n_stats:
 		var lb = n as CustomLabel
